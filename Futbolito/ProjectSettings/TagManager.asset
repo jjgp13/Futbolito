@@ -41,12 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: players
-    uniqueID: 331218617
+  - name: playfield
+    uniqueID: 3305887407
     locked: 0
   - name: ball
     uniqueID: 3340466089
     locked: 0
-  - name: playfield
-    uniqueID: 3305887407
+  - name: players
+    uniqueID: 331218617
     locked: 0
