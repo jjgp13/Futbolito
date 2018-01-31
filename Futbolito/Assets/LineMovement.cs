@@ -13,12 +13,10 @@ public class LineMovement : MonoBehaviour {
     //Screen width
     float screenHalfWidthInWorldUnits;
 
-
-	
 	void Start () {
-
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
-        print(screenHalfWidthInWorldUnits);
+        //print(screenHalfWidthInWorldUnits/3);
+        DevidePaddlesInLine(screenHalfWidthInWorldUnits, numberPaddles);
 	}
 	
 	void Update () {
@@ -26,7 +24,13 @@ public class LineMovement : MonoBehaviour {
         float xMov = Input.acceleration.x;
         float velocity = xMov * speed;
         transform.Translate(Vector2.right * velocity * Time.deltaTime);
-
-
 	}
+
+    void DevidePaddlesInLine(float screenWidth, int numPaddles){
+        for (int i = 0; i < numberPaddles; i++)
+        {
+            GameObject newPaddle = (GameObject)Instantiate(pad, transform.position, Quaternion.identity);
+            newPaddle.transform.parent = transform;
+        }
+    }
 }
