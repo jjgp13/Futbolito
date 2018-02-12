@@ -195,7 +195,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
+
 --- !u!114 &33494914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,9 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &453396988
-=======
---- !u!1 &34413072
->>>>>>> 921a0dcaaa4886970ca9b1fab8997f8c7f882a83
+
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -233,7 +231,7 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 34413072}
   m_Enabled: 1
-<<<<<<< HEAD
+
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe3b695cad8ade74596e55d20946a345, type: 3}
   m_Name: 
@@ -242,7 +240,6 @@ BoxCollider2D:
   numberPaddles: 2
   pad: {fileID: 1310025300261412, guid: 083432a780346cc4ca4d3d683f58e57d, type: 2}
 --- !u!4 &453396990
-=======
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -261,8 +258,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!4 &34413074
->>>>>>> 921a0dcaaa4886970ca9b1fab8997f8c7f882a83
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -397,11 +392,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502333617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
+
   m_LocalPosition: {x: 0, y: 0, z: 1}
-=======
-  m_LocalPosition: {x: 0, y: 0, z: 0}
->>>>>>> 921a0dcaaa4886970ca9b1fab8997f8c7f882a83
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 34413074}
