@@ -6,6 +6,7 @@ public class PlayerAnimationController : MonoBehaviour {
 
     public Animator animatorController;
     public float timeTouching;
+    public int hitForce;
 
 	// Use this for initialization
 	void Start () {
