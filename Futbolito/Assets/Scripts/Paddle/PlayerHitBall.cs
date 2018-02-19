@@ -8,15 +8,27 @@ public class PlayerHitBall : MonoBehaviour {
     public float levelOneForce, levelTwoForce, levelThreeForce;
     public int hitForce;
 
+    
+
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Ball")
+        detectCollistion(other.gameObject);
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        detectCollistion(other.gameObject);
+    }
+
+    private void detectCollistion(GameObject obj)
+    {
+        if (obj.gameObject.tag == "Ball")
         {
-            if (other.gameObject.transform.position.y > transform.position.y && hitForce != 0)
+            if (hitForce != 0)
             {
                 //Get x Velocity
                 float xPaddlePos = transform.position.x;
-                float xBallPos = other.transform.position.x;
+                float xBallPos = obj.transform.position.x;
                 float xVel = (xBallPos - xPaddlePos) * xVelOnPaddleHitFactor;
 
                 //Get Y velocity
@@ -37,7 +49,7 @@ public class PlayerHitBall : MonoBehaviour {
                 }
 
                 //Add force
-                other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(xVel, yVel));
+                obj.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(xVel, yVel));
             }
         }
     }
