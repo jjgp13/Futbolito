@@ -10,7 +10,7 @@ public class BallBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-        //StartCoroutine( KickOff());
+        StartCoroutine( KickOff());
 	}
 
     void AddVelocity()

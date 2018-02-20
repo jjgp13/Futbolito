@@ -6,27 +6,29 @@ public class LineMovement : MonoBehaviour {
     
     //Line Speed. Depends on the number of players.
     public float speed;
-    //Get limit from the other script
-    float xLimit, halfPlayer;
+    public bool isActive;
 
 	void Start () {
         //Set speed of line
         SetSpeed(GetComponent<SetLine>().numberPaddles);
-        xLimit = GetComponent<SetLine>().xLimit;
-        halfPlayer = GetComponent<SetLine>().halfPlayer;
+        //Set selection as false.
+        isActive = false;
 	}
 	
 	void Update () {
         //Line movement
-        //float xMov = Input.acceleration.x;
-        float xMov = Input.GetAxis("Horizontal");
-        float velocity = xMov * speed;
-        transform.Translate(Vector2.right * velocity * Time.deltaTime);
-        if(transform.position.x < -xLimit + halfPlayer)
-            transform.position = new Vector2(-xLimit + halfPlayer, transform.position.y);
-        if (transform.position.x > xLimit - halfPlayer)
-            transform.position = new Vector2(xLimit - halfPlayer, transform.position.y);   
-	}
+        if (isActive)
+        {
+            //float xMov = Input.acceleration.x;
+            float xMov = Input.GetAxis("Horizontal");
+            float velocity = xMov * speed;
+            transform.Translate(Vector2.right * velocity * Time.deltaTime);
+            if (transform.position.x < -GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer)
+                transform.position = new Vector2(-GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer, transform.position.y);
+            if (transform.position.x > GetComponent<SetLine>().xLimit - GetComponent<SetLine>().halfPlayer)
+                transform.position = new Vector2(GetComponent<SetLine>().xLimit - GetComponent<SetLine>().halfPlayer, transform.position.y);
+        }
+    }
 
     void SetSpeed(int numPlayerInLine)
     {

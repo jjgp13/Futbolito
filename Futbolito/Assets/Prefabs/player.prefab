@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4337451446030452}
   - component: {fileID: 212943662615449042}
-  - component: {fileID: 50221098887546706}
   - component: {fileID: 61908929142357924}
   - component: {fileID: 95569099755741644}
   - component: {fileID: 114130473505388842}
@@ -39,32 +38,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541516827129650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.8209923, y: -1.578036, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50221098887546706
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1541516827129650}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 7
 --- !u!61 &61908929142357924
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -131,10 +110,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16832e011d0b09141a95ef1af76f032d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xVelOnPaddleHitFactor: 25
-  levelOneForce: 10
-  levelTwoForce: 20
-  levelThreeForce: 30
+  xVelOnPaddleHitFactor: 30
+  levelOneForce: 20
+  levelTwoForce: 35
+  levelThreeForce: 50
   hitForce: 0
 --- !u!212 &212943662615449042
 SpriteRenderer:
