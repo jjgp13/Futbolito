@@ -10,18 +10,18 @@ public class BallBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-        StartCoroutine( KickOff());
+        Invoke("AddVelocity", 3f);
 	}
+
+    private void Update()
+    {
+        //print(rb.velocity);
+        //if (rb.velocity == Vector2.zero) AddVelocity();
+    }
 
     void AddVelocity()
     {
         Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce), Random.Range(-initalBallForce, initalBallForce));
         rb.AddForce(initialVel);
-    }
-
-    IEnumerator KickOff()
-    {
-        yield return new WaitForSeconds(3);
-        AddVelocity();
     }
 }

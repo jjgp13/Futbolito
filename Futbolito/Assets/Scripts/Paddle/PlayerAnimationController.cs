@@ -11,8 +11,8 @@ public class PlayerAnimationController : MonoBehaviour {
 	void Update () {
         if (gameObject.GetComponentInParent<LineMovement>().isActive)
         {
-            //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary) {
-            if (Input.GetKey(KeyCode.Space))
+            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary)
+            //if (Input.GetKey(KeyCode.Space))
             {
                 timeTouching += Time.deltaTime;
                 animatorController.SetFloat("timeTouching", timeTouching);

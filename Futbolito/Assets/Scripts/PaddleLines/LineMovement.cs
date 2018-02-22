@@ -7,20 +7,21 @@ public class LineMovement : MonoBehaviour {
     //Line Speed. Depends on the number of players.
     public float speed;
     public bool isActive;
+    private int paddlesInLine;
 
 	void Start () {
         //Set speed of line
-        SetSpeed(GetComponent<SetLine>().numberPaddles);
+        paddlesInLine = GetComponent<SetLine>().numberPaddles;
+        SetSpeed(paddlesInLine);
         //Set selection as false.
         isActive = false;
 	}
 	
 	void Update () {
-        //Line movement
         if (isActive)
         {
-            //float xMov = Input.acceleration.x;
-            float xMov = Input.GetAxis("Horizontal");
+            float xMov = Input.acceleration.x;
+            //float xMov = Input.GetAxis("Horizontal");
             float velocity = xMov * speed;
             transform.Translate(Vector2.right * velocity * Time.deltaTime);
             if (transform.position.x < -GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer)
@@ -35,19 +36,19 @@ public class LineMovement : MonoBehaviour {
         switch (numPlayerInLine)
         {
             case 1:
-                speed = 10f;
+                speed = 15f;
                 break;
             case 2:
-                speed = 7.5f;
+                speed = 12.5f;
                 break;
             case 3:
-                speed = 5f;
+                speed = 10f;
                 break;
             case 4:
-                speed = 2.5f;
+                speed = 7.5f;
                 break;
             case 5:
-                speed = 1f;
+                speed = 5f;
                 break;
         }
     }
