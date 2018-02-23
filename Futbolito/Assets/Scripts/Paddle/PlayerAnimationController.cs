@@ -6,9 +6,13 @@ public class PlayerAnimationController : MonoBehaviour {
 
     public Animator animatorController;
     public float timeTouching;
-	
-	// Update is called once per frame
-	void Update () {
+
+    public float xVelOnPaddleHitFactor;
+    public float levelOneForce, levelTwoForce, levelThreeForce;
+    public int hitForce;
+
+    // Update is called once per frame
+    void Update () {
         if (gameObject.GetComponentInParent<LineMovement>().isActive)
         {
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary)

@@ -10,7 +10,7 @@ public class BallBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-        Invoke("AddVelocity", 3f);
+        Invoke("AddInitialVelocity", 3f);
 	}
 
     private void Update()
@@ -19,9 +19,81 @@ public class BallBehavior : MonoBehaviour {
         //if (rb.velocity == Vector2.zero) AddVelocity();
     }
 
-    void AddVelocity()
+    void AddInitialVelocity()
     {
         Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce), Random.Range(-initalBallForce, initalBallForce));
         rb.AddForce(initialVel);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        Vector2 normal = other.contacts[0].normal;
+        detectCollision(other.gameObject, normal);
+    }
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        Vector2 normal = other.contacts[0].normal;
+        detectCollision(other.gameObject, normal);
+    }
+
+    private void detectCollision(GameObject obj, Vector2 normal)
+    {
+        if (obj.gameObject.tag == "PlayerPaddle") PlayerHitBall(obj, normal);
+        if (obj.gameObject.tag == "NPCPaddle") NPCHitBall(obj, normal);
+    }
+
+    void PlayerHitBall(GameObject obj, Vector2 normal)
+    {
+        int hitForce = obj.GetComponent<PlayerAnimationController>().hitForce;
+        float xVelOnPaddleHitFactor = obj.GetComponent<PlayerAnimationController>().xVelOnPaddleHitFactor;
+        float levelOneForce = obj.GetComponent<PlayerAnimationController>().levelOneForce;
+        float levelTwoForce = obj.GetComponent<PlayerAnimationController>().levelTwoForce;
+        float levelThreeForce = obj.GetComponent<PlayerAnimationController>().levelThreeForce;
+
+        if (hitForce != 0)
+        {
+            //Get x Velocity
+            float xPaddlePos = transform.position.x;
+            float xBallPos = obj.transform.position.x;
+            float xVel = (xBallPos - xPaddlePos) * xVelOnPaddleHitFactor;
+
+            //Get Y velocity
+            float yVel = 0;
+            switch (hitForce)
+            {
+                case 1:
+                    yVel = levelOneForce;
+                    break;
+                case 2:
+                    yVel = levelTwoForce;
+                    break;
+                case 3:
+                    yVel = levelThreeForce;
+                    break;
+                default:
+                    break;
+            }
+            //yVel = yVel * normal.y;
+
+            //Add force
+            rb.AddForce(new Vector2(xVel, yVel));
+        }
+    }
+
+    void NPCHitBall(GameObject obj, Vector2 normal)
+    {
+        if (obj.GetComponent<NPCStats>().isShooting)
+        {
+            float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
+            float xPaddlePos = transform.position.x;
+            float xBallPos = obj.transform.position.x;
+            float xVel = (xBallPos - xPaddlePos) * shootSpeed;
+
+            float yVel = shootSpeed * normal.y;
+
+            //Add force
+            rb.AddForce(new Vector2(xVel, yVel));
+        }
     }
 }

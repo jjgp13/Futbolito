@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 277624460}
   - component: {fileID: 277624461}
   - component: {fileID: 277624462}
+  - component: {fileID: 277624463}
   m_Layer: 0
   m_Name: GoalKeeperLine
   m_TagString: Untagged
@@ -327,6 +328,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
   speed: 0.5
+  isActive: 0
+  nearDistance: 0
+--- !u!114 &277624463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 277624459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0388c53874ae4fb99177714bdf219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &292236620
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,6 +405,7 @@ GameObject:
   - component: {fileID: 328610818}
   - component: {fileID: 328610819}
   - component: {fileID: 328610820}
+  - component: {fileID: 328610821}
   m_Layer: 0
   m_Name: AttackLine
   m_TagString: Untagged
@@ -439,6 +454,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
   speed: 0.5
+  isActive: 0
+  nearDistance: 0
+--- !u!114 &328610821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 328610817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0388c53874ae4fb99177714bdf219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &386671497
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,6 +891,7 @@ GameObject:
   - component: {fileID: 870017850}
   - component: {fileID: 870017851}
   - component: {fileID: 870017852}
+  - component: {fileID: 870017853}
   m_Layer: 0
   m_Name: MidLine
   m_TagString: Untagged
@@ -911,6 +940,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
   speed: 0.5
+  isActive: 0
+  nearDistance: 0
+--- !u!114 &870017853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870017849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0388c53874ae4fb99177714bdf219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &907490642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,6 +1390,7 @@ GameObject:
   - component: {fileID: 1541552374}
   - component: {fileID: 1541552375}
   - component: {fileID: 1541552376}
+  - component: {fileID: 1541552377}
   m_Layer: 0
   m_Name: DefenseLine
   m_TagString: Untagged
@@ -1396,6 +1439,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
   speed: 0.5
+  isActive: 0
+  nearDistance: 0
+--- !u!114 &1541552377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1541552373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb0388c53874ae4fb99177714bdf219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1735383526
 GameObject:
   m_ObjectHideFlags: 0

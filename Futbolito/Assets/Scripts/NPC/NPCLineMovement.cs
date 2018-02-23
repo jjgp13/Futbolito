@@ -6,9 +6,11 @@ public class NPCLineMovement : MonoBehaviour {
 
     public GameObject ball;
     public float speed;
+    public bool isActive;
+    public float nearDistance;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         ball = GameObject.Find("Ball");
 	}
 	
@@ -16,7 +18,7 @@ public class NPCLineMovement : MonoBehaviour {
 	void Update () {
         //Get nearest Child
         GameObject nearChild = transform.GetChild(0).gameObject;
-        float nearDistance = Vector2.Distance(ball.transform.position, transform.GetChild(0).transform.position);
+        nearDistance = Vector2.Distance(ball.transform.position, transform.GetChild(0).transform.position);
         for (int i = 1; i < transform.childCount; i++)
         {
             float nextDistance = Vector2.Distance(ball.transform.position, transform.GetChild(i).transform.position);
