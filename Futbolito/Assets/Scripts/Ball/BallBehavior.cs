@@ -56,7 +56,8 @@ public class BallBehavior : MonoBehaviour {
             //Get x Velocity
             float xPaddlePos = transform.position.x;
             float xBallPos = obj.transform.position.x;
-            float xVel = (xBallPos - xPaddlePos) * xVelOnPaddleHitFactor;
+            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xVelOnPaddleHitFactor;
+            if (xBallPos < xPaddlePos) xVel = xVel * -1; 
 
             //Get Y velocity
             float yVel = 0;
@@ -88,7 +89,8 @@ public class BallBehavior : MonoBehaviour {
             float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
             float xPaddlePos = transform.position.x;
             float xBallPos = obj.transform.position.x;
-            float xVel = (xBallPos - xPaddlePos) * shootSpeed;
+            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * shootSpeed * 5;
+            if (xBallPos < xPaddlePos) xVel = xVel * -1;
 
             float yVel = shootSpeed * normal.y;
 
