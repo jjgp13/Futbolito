@@ -437,7 +437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af79985e4b0a1f246928e5a8fb67a95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberPaddles: 1
+  numberPaddles: 3
   pad: {fileID: 1541516827129650, guid: 71c4af37692e247459ad2550cc35ed18, type: 2}
   xLimit: 0
   halfPlayer: 0
@@ -1192,6 +1192,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1252008115}
+  - component: {fileID: 1252008116}
   m_Layer: 0
   m_Name: NPCLines
   m_TagString: Untagged
@@ -1216,6 +1217,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1252008116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1252008114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d51c63e70a07b0439c3f313f4321a5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 0}
+  lines:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1388238806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,7 +1440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af79985e4b0a1f246928e5a8fb67a95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberPaddles: 5
+  numberPaddles: 2
   pad: {fileID: 1541516827129650, guid: 71c4af37692e247459ad2550cc35ed18, type: 2}
   xLimit: 0
   halfPlayer: 0

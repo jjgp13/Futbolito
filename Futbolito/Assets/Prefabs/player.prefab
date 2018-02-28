@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorController: {fileID: 95569099755741644}
   timeTouching: 0
-  xVelOnPaddleHitFactor: 50
+  xVelOnPaddleHitFactor: 25
   levelOneForce: 10
   levelTwoForce: 20
   levelThreeForce: 30

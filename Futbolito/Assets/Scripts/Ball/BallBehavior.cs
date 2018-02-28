@@ -54,10 +54,10 @@ public class BallBehavior : MonoBehaviour {
         if (hitForce != 0)
         {
             //Get x Velocity
-            float xPaddlePos = transform.position.x;
-            float xBallPos = obj.transform.position.x;
+            float xPaddlePos = obj.transform.position.x;
+            float xBallPos = transform.position.x;
             float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xVelOnPaddleHitFactor;
-            if (xBallPos < xPaddlePos) xVel = xVel * -1; 
+            if (xBallPos < xPaddlePos) xVel = -xVel;
 
             //Get Y velocity
             float yVel = 0;
@@ -80,6 +80,12 @@ public class BallBehavior : MonoBehaviour {
             //Add force
             rb.AddForce(new Vector2(xVel, yVel));
         }
+        else
+        {
+            Vector2 vel = rb.velocity;
+            vel /= 2;
+            rb.velocity = vel;
+        }
     }
 
     void NPCHitBall(GameObject obj, Vector2 normal)
@@ -87,12 +93,13 @@ public class BallBehavior : MonoBehaviour {
         if (obj.GetComponent<NPCStats>().isShooting)
         {
             float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
-            float xPaddlePos = transform.position.x;
-            float xBallPos = obj.transform.position.x;
-            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * shootSpeed * 5;
-            if (xBallPos < xPaddlePos) xVel = xVel * -1;
+            float xPaddlePos = obj.transform.position.x;
+            float xBallPos = transform.position.x;
+            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * 25;
+            if (xBallPos < xPaddlePos) xVel = -xVel;
 
-            float yVel = shootSpeed * normal.y;
+            //float yVel = shootSpeed * normal.y;
+            float yVel = -shootSpeed;
 
             //Add force
             rb.AddForce(new Vector2(xVel, yVel));
