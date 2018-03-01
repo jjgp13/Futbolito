@@ -19,17 +19,22 @@ public class NPCLinesHandler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        for (int i = 0; i < transform.childCount; i++)
+        if (ball != null)
         {
-            if(lines[i].transform.position.y < ball.transform.position.y)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                SetLineGivenBallPosition(i, false);
-            }
-            else
-            {
-                SetLineGivenBallPosition(i, true);
+                if (lines[i].transform.position.y < ball.transform.position.y)
+                {
+                    SetLineGivenBallPosition(i, false);
+                }
+                else
+                {
+                    SetLineGivenBallPosition(i, true);
+                }
             }
         }
+
+        if (ball == null) ball = GameObject.FindGameObjectWithTag("Ball");
     }
 
     void SetLineGivenBallPosition(int child, bool state)

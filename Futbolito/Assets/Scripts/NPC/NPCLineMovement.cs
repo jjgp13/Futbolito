@@ -16,7 +16,7 @@ public class NPCLineMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (isActive)
+        if (isActive && ball != null)
         {
             //Get nearest Child
             GameObject nearChild = transform.GetChild(0).gameObject;
@@ -40,6 +40,7 @@ public class NPCLineMovement : MonoBehaviour {
                 transform.position = new Vector2(GetComponent<SetLine>().xLimit - GetComponent<SetLine>().halfPlayer, transform.position.y);
         }
 
+        if (ball == null) ball = GameObject.FindGameObjectWithTag("Ball");
     }
 
 }
