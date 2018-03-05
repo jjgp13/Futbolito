@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour {
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float initalBallForce;
 
 	// Use this for initialization
@@ -17,6 +17,7 @@ public class BallBehavior : MonoBehaviour {
     {
         //print(rb.velocity);
         //if (rb.velocity == Vector2.zero) AddVelocity();
+        
     }
 
     void AddInitialVelocity()
@@ -79,6 +80,7 @@ public class BallBehavior : MonoBehaviour {
 
             //Add force
             rb.AddForce(new Vector2(xVel, yVel));
+            rb.AddTorque(xVel);
         }
         else
         {
@@ -103,6 +105,7 @@ public class BallBehavior : MonoBehaviour {
 
             //Add force
             rb.AddForce(new Vector2(xVel, yVel));
+            rb.AddTorque(xVel);
         }
     }
 }

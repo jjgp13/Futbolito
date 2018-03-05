@@ -18,32 +18,32 @@ public class SetPlayfield : MonoBehaviour {
     void Start () {
         //Set walls collider position
         //Side Walls
-        leftWall.size = new Vector2(1f, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height * 1.5f, 0f)).y);
-        leftWall.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x - 0.5f, 0f);
+        leftWall.size = new Vector2(0.93f, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height * 1.43f, 0f)).y);
+        leftWall.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x, 0f);
 
-        rightWall.size = new Vector2(1f, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height * 1.5f, 0f)).y);
-        rightWall.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x + 0.5f, 0f);
+        rightWall.size = new Vector2(0.93f, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height * 1.43f, 0f)).y);
+        rightWall.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x, 0f);
         
         //UpperWalls
-        upperLeft.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1f, 0f, 0f)).x, 1f);
-        upperLeft.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y + 0.5f);
+        upperLeft.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1.08f, 0f, 0f)).x, 0.5f);
+        upperLeft.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y - 0.23f);
 
-        upperRight.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1f, 0f, 0f)).x, 1f);
-        upperRight.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y + 0.5f);
+        upperRight.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1.08f, 0f, 0f)).x, 0.5f);
+        upperRight.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y - 0.23f);
 
         //LowerWalls
-        lowerLeft.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1f, 0f, 0f)).x, 1f);
-        lowerLeft.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y - 0.5f);
+        lowerLeft.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1.08f, 0f, 0f)).x, 0.5f);
+        lowerLeft.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y + 0.23f);
 
-        lowerRight.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1f, 0f, 0f)).x, 1f);
-        lowerRight.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y - 0.5f);
+        lowerRight.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1.08f, 0f, 0f)).x, 0.5f);
+        lowerRight.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y + 0.23f);
 
         //Goals Triggers.
-        goalTriggerPlayer.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1f, 0f, 0f)).x, 1f);
-        goalTriggerPlayer.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y - 0.75f);
+        goalTriggerPlayer.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.93f, 0f, 0f)).x, 0.5f);
+        goalTriggerPlayer.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, 0f, 0f)).y - 0.2f);
 
-        goalTriggerNPC.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 1f, 0f, 0f)).x, 1f);
-        goalTriggerNPC.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y + 0.75f);
+        goalTriggerNPC.size = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.93f, 0f, 0f)).x, 0.5f);
+        goalTriggerNPC.offset = new Vector2(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0f, 0f)).x, Camera.main.ScreenToWorldPoint(new Vector3(0f, Screen.height, 0f)).y + 0.2f);
     }
 	
 	// Update is called once per frame
