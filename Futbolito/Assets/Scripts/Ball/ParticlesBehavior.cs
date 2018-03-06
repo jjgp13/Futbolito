@@ -5,16 +5,15 @@ using UnityEngine;
 public class ParticlesBehavior : MonoBehaviour {
 
     public ParticleSystem particles;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private int y, x; 
 	
 	// Update is called once per frame
 	void Update () {
-        int emission = (int)GetComponent<Rigidbody2D>().velocity.y;
-        emission = Mathf.Abs(emission);
+        y = Mathf.Abs((int)GetComponent<Rigidbody2D>().velocity.y);
+        x = Mathf.Abs((int)GetComponent<Rigidbody2D>().velocity.x);
+        int emission;
+        if(y > x) emission = y;
+        else emission = x;
         particles.Emit(emission);
 	}
 }

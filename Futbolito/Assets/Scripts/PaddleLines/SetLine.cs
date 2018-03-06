@@ -21,7 +21,7 @@ public class SetLine : MonoBehaviour {
         //Spawn pads in line, given the number.
         DevidePaddlesInLine(screenHalfWidthInWorldUnits * 2, numberPaddles);
         //Get x maximum movement in the line, given the number of paddles
-        xLimit = (screenHalfWidthInWorldUnits * 2) / (numberPaddles + 1);
+        xLimit = ((screenHalfWidthInWorldUnits * 2) / (numberPaddles + 1)) - 0.3f;
         //Get size of the paddle.
         halfPlayer = pad.transform.localScale.x / 2;
     }
