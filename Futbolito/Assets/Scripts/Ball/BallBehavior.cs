@@ -17,7 +17,7 @@ public class BallBehavior : MonoBehaviour {
     {
         //print(rb.velocity);
         //if (rb.velocity == Vector2.zero) AddVelocity();
-        
+        //print(rb.velocity);
     }
 
     void AddInitialVelocity()
@@ -32,60 +32,45 @@ public class BallBehavior : MonoBehaviour {
         detectCollision(other.gameObject, normal);
     }
 
-    private void OnCollisionStay2D(Collision2D other)
+    /*private void OnCollisionStay2D(Collision2D other)
     {
         Vector2 normal = other.contacts[0].normal;
         detectCollision(other.gameObject, normal);
-    }
+        foreach (ContactPoint2D contact in other.contacts)
+        {
+            print(contact + " hit " + contact.otherCollider.name);
+            Debug.DrawRay(contact.point, contact.normal, Color.red);
+        }
+    }*/
 
     private void detectCollision(GameObject obj, Vector2 normal)
     {
         if (obj.gameObject.tag == "PlayerPaddle") PlayerHitBall(obj, normal);
         if (obj.gameObject.tag == "NPCPaddle") NPCHitBall(obj, normal);
+        if (obj.gameObject.tag == "Wall") BallHitAgainstWall(obj, normal);
     }
 
     void PlayerHitBall(GameObject obj, Vector2 normal)
     {
-        int hitForce = obj.GetComponent<PlayerAnimationController>().hitForce;
-        float xVelOnPaddleHitFactor = obj.GetComponent<PlayerAnimationController>().xVelOnPaddleHitFactor;
-        float levelOneForce = obj.GetComponent<PlayerAnimationController>().levelOneForce;
-        float levelTwoForce = obj.GetComponent<PlayerAnimationController>().levelTwoForce;
-        float levelThreeForce = obj.GetComponent<PlayerAnimationController>().levelThreeForce;
+        float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
+        float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
+        float xPaddlePos = obj.transform.position.x;
+        float xBallPos = transform.position.x;
+        float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
+        if (xBallPos < xPaddlePos) xVel = -xVel;
 
-        if (hitForce != 0)
+        if (yForce != 0)
         {
-            //Get x Velocity
-            float xPaddlePos = obj.transform.position.x;
-            float xBallPos = transform.position.x;
-            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xVelOnPaddleHitFactor;
-            if (xBallPos < xPaddlePos) xVel = -xVel;
-
-            //Get Y velocity
-            float yVel = 0;
-            switch (hitForce)
-            {
-                case 1:
-                    yVel = levelOneForce;
-                    break;
-                case 2:
-                    yVel = levelTwoForce;
-                    break;
-                case 3:
-                    yVel = levelThreeForce;
-                    break;
-                default:
-                    break;
-            }
-            //yVel = yVel * normal.y;
-
             //Add force
-            rb.AddForce(new Vector2(xVel, yVel));
-            rb.AddTorque(xVel);
+            rb.AddForce(new Vector2(xVel, yForce));
+            rb.AddTorque(xVel, ForceMode2D.Impulse);
         }
         else
         {
             Vector2 vel = rb.velocity;
-            vel /= 2;
+            vel.y = vel.y / 2;
+            vel.x = xVel;
+            print(vel + " " + rb.velocity);
             rb.velocity = vel;
         }
     }
@@ -105,7 +90,14 @@ public class BallBehavior : MonoBehaviour {
 
             //Add force
             rb.AddForce(new Vector2(xVel, yVel));
-            rb.AddTorque(xVel);
+            rb.AddTorque(xVel,ForceMode2D.Impulse);
         }
+    }
+
+    public void BallHitAgainstWall(GameObject obj, Vector2 normal)
+    {
+        Vector2 vel = rb.velocity;
+        vel *= 0.8f;
+        rb.velocity = vel;
     }
 }

@@ -28,10 +28,10 @@ public class NPCLinesHandler : MonoBehaviour {
         } else ball = GameObject.FindGameObjectWithTag("Ball");
     }
 
-    void SetLineGivenBallPosition(int child, bool state)
+    void SetLineGivenBallPosition(int child, bool isActive)
     {
-        lines[child].GetComponent<NPCLineMovement>().isActive = state;
+        lines[child].GetComponent<NPCLineMovement>().isActive = isActive;
         for (int j = 0; j < lines[child].transform.childCount; j++)
-            lines[child].transform.GetChild(j).GetComponent<Animator>().SetBool("Active", state);
+            lines[child].transform.GetChild(j).GetComponent<Animator>().SetBool("Active", isActive);
     }
 }

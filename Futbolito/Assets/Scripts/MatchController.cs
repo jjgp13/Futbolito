@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class MatchController : MonoBehaviour {
 
     public static MatchController _matchController;
-    public Text playerGoalsText;
-    public Text NPCGoalsText;
     public GameObject ball;
+
+    public Sprite[] scoreSprites;
+    public GameObject playerScoreSprite, NPCScoreSprite;
 
     private void Awake()
     {
@@ -17,23 +18,23 @@ public class MatchController : MonoBehaviour {
 
     private void Start()
     {
-        playerGoals = 0;
-        NPC_Goals = 0;
+        playerScore = 0;
+        NPCScore = 0;
     }
 
-    private int playerGoals;
-    private int NPC_Goals;
+    private int playerScore;
+    private int NPCScore;
 
     public void AdjustScorePlayer()
     {
-        playerGoals++;
-        playerGoalsText.text = playerGoals.ToString();
+        playerScore++;
+        playerScoreSprite.GetComponent<SpriteRenderer>().sprite = scoreSprites[playerScore];
     }
 
     public void AdjustScoreNPC()
     {
-        NPC_Goals++;
-        NPCGoalsText.text = NPC_Goals.ToString();
+        NPCScore++;
+        NPCScoreSprite.GetComponent<SpriteRenderer>().sprite = scoreSprites[NPCScore];
     }
 
     public void SpawnBall()

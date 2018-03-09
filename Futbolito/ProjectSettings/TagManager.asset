@@ -48,12 +48,12 @@ TagManager:
   - name: playfield
     uniqueID: 3305887407
     locked: 0
+  - name: Walls
+    uniqueID: 775681537
+    locked: 0
   - name: ball
     uniqueID: 3340466089
     locked: 0
   - name: players
     uniqueID: 331218617
-    locked: 0
-  - name: Walls
-    uniqueID: 775681537
     locked: 0

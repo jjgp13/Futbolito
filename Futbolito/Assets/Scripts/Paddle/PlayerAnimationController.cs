@@ -7,9 +7,7 @@ public class PlayerAnimationController : MonoBehaviour {
     public Animator animatorController;
     public float timeTouching;
 
-    public float xVelOnPaddleHitFactor;
-    public float levelOneForce, levelTwoForce, levelThreeForce;
-    public int hitForce;
+    public float xForce, yForce;
 
     // Update is called once per frame
     void Update () {
