@@ -355,8 +355,10 @@ MonoBehaviour:
   m_ViewPositions:
     m_KeySerializationHelper:
     - {fileID: 1107507578149767800, guid: 6d0b0c34ccc0e6f4fb4c090bcf1b5b29, type: 2}
+    - {fileID: 1107404967044307334, guid: e892cdbc37b199a4f9060ac70b1215fd, type: 2}
     m_ValueSerializationHelper:
     - {x: 1341, y: 201.40001}
+    - {x: 957.00006, y: 201.40001}
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 0}
   m_BreadCrumbs: []
@@ -529,7 +531,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 8afbffff
     m_LastClickedInstanceID: -1142
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000a0290000be290000d42700004038000050410000fc2700000a280000c62700003c2a000000000000642b0000922c0000b6270000ac2d000072370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -618,8 +620,8 @@ MonoBehaviour:
     height: 577
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8afbffff
-    m_LastClickedID: -1142
+    m_SelectedIDs: ec9bffff
+    m_LastClickedID: -25620
     m_ExpandedIDs: a6fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -675,9 +677,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.5669235, y: -2.3964996, z: -0.05453922}
+    m_Target: {x: 0.03998001, y: -2.5911055, z: -0.03515625}
     speed: 2
-    m_Value: {x: 0.5669235, y: -2.3964996, z: -0.05453922}
+    m_Value: {x: 0.03998001, y: -2.5911055, z: -0.03515625}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -704,9 +706,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 6.295494
+    m_Target: 4.421194
     speed: 2
-    m_Value: 6.295494
+    m_Value: 4.421194
   m_Ortho:
     m_Target: 1
     speed: 2

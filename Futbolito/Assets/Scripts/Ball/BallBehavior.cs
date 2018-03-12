@@ -68,9 +68,9 @@ public class BallBehavior : MonoBehaviour {
         else
         {
             Vector2 vel = rb.velocity;
-            vel.y = vel.y / 2;
+            vel.y = vel.y / 3;
             vel.x = xVel;
-            print(vel + " " + rb.velocity);
+            print(rb.velocity + " " + vel);
             rb.velocity = vel;
         }
     }
@@ -82,7 +82,7 @@ public class BallBehavior : MonoBehaviour {
             float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
             float xPaddlePos = obj.transform.position.x;
             float xBallPos = transform.position.x;
-            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * 25;
+            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * 75;
             if (xBallPos < xPaddlePos) xVel = -xVel;
 
             //float yVel = shootSpeed * normal.y;
