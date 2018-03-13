@@ -11,6 +11,23 @@ public class MatchController : MonoBehaviour {
     public Sprite[] scoreSprites;
     public GameObject playerScoreSprite, NPCScoreSprite;
 
+    private int playerScore;
+    public int PlayerScore
+    {
+        get
+        {
+            return playerScore;
+        }
+    }
+    private int NPCScore;
+    public int NPC_Score
+    {
+        get
+        {
+            return NPCScore;
+        }
+    }
+
     private void Awake()
     {
         _matchController = this;
@@ -22,8 +39,6 @@ public class MatchController : MonoBehaviour {
         NPCScore = 0;
     }
 
-    private int playerScore;
-    private int NPCScore;
 
     public void AdjustScorePlayer()
     {

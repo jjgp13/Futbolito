@@ -5,6 +5,7 @@ using UnityEngine;
 public class LinesHandler : MonoBehaviour {
 
     public Queue<GameObject> linesSelected = new Queue<GameObject>();
+    
 
     // Update is called once per frame
     void Update () {

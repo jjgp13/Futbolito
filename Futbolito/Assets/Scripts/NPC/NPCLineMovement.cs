@@ -8,11 +8,15 @@ public class NPCLineMovement : MonoBehaviour {
     public float speed;
     public bool isActive;
     public float nearDistance;
+    private int paddlesInLine;
 
     // Use this for initialization
     void Start () {
         ball = GameObject.Find("Ball");
-	}
+        //Set speed of line
+        paddlesInLine = GetComponent<SetLine>().numberPaddles;
+        SetSpeed(paddlesInLine);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -32,7 +36,7 @@ public class NPCLineMovement : MonoBehaviour {
             }
 
             if (ball.transform.position.x > nearChild.transform.position.x) transform.Translate(Vector2.right * speed * Time.deltaTime);
-            else transform.Translate(Vector2.right * -speed * Time.deltaTime);
+            if (ball.transform.position.x < nearChild.transform.position.x) transform.Translate(Vector2.right * -speed * Time.deltaTime);
 
             if (transform.position.x < -GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer)
                 transform.position = new Vector2(-GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer, transform.position.y);
@@ -43,4 +47,26 @@ public class NPCLineMovement : MonoBehaviour {
         if (ball == null) ball = GameObject.FindGameObjectWithTag("Ball");
     }
 
+
+    void SetSpeed(int numPlayerInLine)
+    {
+        switch (numPlayerInLine)
+        {
+            case 1:
+                speed = 1f;
+                break;
+            case 2:
+                speed = 0.75f;
+                break;
+            case 3:
+                speed = 0.5f;
+                break;
+            case 4:
+                speed = 0.25f;
+                break;
+            case 5:
+                speed = 0.1f;
+                break;
+        }
+    }
 }

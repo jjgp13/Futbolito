@@ -32,17 +32,6 @@ public class BallBehavior : MonoBehaviour {
         detectCollision(other.gameObject, normal);
     }
 
-    /*private void OnCollisionStay2D(Collision2D other)
-    {
-        Vector2 normal = other.contacts[0].normal;
-        detectCollision(other.gameObject, normal);
-        foreach (ContactPoint2D contact in other.contacts)
-        {
-            print(contact + " hit " + contact.otherCollider.name);
-            Debug.DrawRay(contact.point, contact.normal, Color.red);
-        }
-    }*/
-
     private void detectCollision(GameObject obj, Vector2 normal)
     {
         if (obj.gameObject.tag == "PlayerPaddle") PlayerHitBall(obj, normal);
@@ -70,27 +59,37 @@ public class BallBehavior : MonoBehaviour {
             Vector2 vel = rb.velocity;
             vel.y = vel.y / 3;
             vel.x = xVel;
-            print(rb.velocity + " " + vel);
             rb.velocity = vel;
         }
     }
 
     void NPCHitBall(GameObject obj, Vector2 normal)
     {
+        float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
+        float xPaddlePos = obj.transform.position.x;
+        float xBallPos = transform.position.x;
+        float xVel;
+
         if (obj.GetComponent<NPCStats>().isShooting)
         {
-            float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
-            float xPaddlePos = obj.transform.position.x;
-            float xBallPos = transform.position.x;
-            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * 75;
+            
+            xVel = Mathf.Abs(xBallPos - xPaddlePos) * 75;
             if (xBallPos < xPaddlePos) xVel = -xVel;
 
-            //float yVel = shootSpeed * normal.y;
             float yVel = -shootSpeed;
 
             //Add force
             rb.AddForce(new Vector2(xVel, yVel));
             rb.AddTorque(xVel,ForceMode2D.Impulse);
+        }
+        else
+        {
+            Vector2 vel = rb.velocity;
+            vel.y = vel.y / 3;
+
+            xVel = Mathf.Abs(xBallPos - xPaddlePos) * 10;
+            vel.x = xVel;
+            rb.velocity = vel;
         }
     }
 

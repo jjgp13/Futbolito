@@ -9,7 +9,7 @@ public class GoalNPC : MonoBehaviour {
         if(other.gameObject.tag == "Ball")
         {
             MatchController._matchController.AdjustScoreNPC();
-            MatchController._matchController.SpawnBall();
+            if(MatchController._matchController.NPC_Score < 5) MatchController._matchController.SpawnBall();
             Destroy(other.gameObject);
         }
     }
