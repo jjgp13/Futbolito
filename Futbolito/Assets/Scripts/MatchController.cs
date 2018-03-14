@@ -11,6 +11,8 @@ public class MatchController : MonoBehaviour {
     public Sprite[] scoreSprites;
     public GameObject playerScoreSprite, NPCScoreSprite;
 
+    public GameObject golAnimation;
+
     private int playerScore;
     public int PlayerScore
     {
@@ -57,5 +59,9 @@ public class MatchController : MonoBehaviour {
         Instantiate(ball, Vector2.zero, Quaternion.identity);
     }
 
-    
+    public IEnumerator DeactivateGolAnimation()
+    {
+        yield return new WaitForSeconds(2.5f);
+        golAnimation.SetActive(false);
+    }
 }

@@ -6,19 +6,12 @@ public class BallBehavior : MonoBehaviour {
 
     public Rigidbody2D rb;
     public float initalBallForce;
+    public GameObject ballExplosion;
 
 	// Use this for initialization
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();
-        Invoke("AddInitialVelocity", 3f);
+        Invoke("AddInitialVelocity", 5f);
 	}
-
-    private void Update()
-    {
-        //print(rb.velocity);
-        //if (rb.velocity == Vector2.zero) AddVelocity();
-        //print(rb.velocity);
-    }
 
     void AddInitialVelocity()
     {
@@ -28,18 +21,17 @@ public class BallBehavior : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Vector2 normal = other.contacts[0].normal;
-        detectCollision(other.gameObject, normal);
+        detectCollision(other.gameObject);
     }
 
-    private void detectCollision(GameObject obj, Vector2 normal)
+    private void detectCollision(GameObject obj)
     {
-        if (obj.gameObject.tag == "PlayerPaddle") PlayerHitBall(obj, normal);
-        if (obj.gameObject.tag == "NPCPaddle") NPCHitBall(obj, normal);
-        if (obj.gameObject.tag == "Wall") BallHitAgainstWall(obj, normal);
+        if (obj.gameObject.tag == "PlayerPaddle") PlayerHitBall(obj);
+        if (obj.gameObject.tag == "NPCPaddle") NPCHitBall(obj);
+        if (obj.gameObject.tag == "Wall") BallHitAgainstWall(obj);
     }
 
-    void PlayerHitBall(GameObject obj, Vector2 normal)
+    void PlayerHitBall(GameObject obj)
     {
         float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
         float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
@@ -63,7 +55,7 @@ public class BallBehavior : MonoBehaviour {
         }
     }
 
-    void NPCHitBall(GameObject obj, Vector2 normal)
+    void NPCHitBall(GameObject obj)
     {
         float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
         float xPaddlePos = obj.transform.position.x;
@@ -93,10 +85,15 @@ public class BallBehavior : MonoBehaviour {
         }
     }
 
-    public void BallHitAgainstWall(GameObject obj, Vector2 normal)
+    public void BallHitAgainstWall(GameObject obj)
     {
         Vector2 vel = rb.velocity;
         vel *= 0.8f;
         rb.velocity = vel;
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(ballExplosion, gameObject.transform.position, Quaternion.identity);
     }
 }

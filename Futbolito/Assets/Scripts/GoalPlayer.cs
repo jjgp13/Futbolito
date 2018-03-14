@@ -8,6 +8,8 @@ public class GoalPlayer : MonoBehaviour {
     {
         if (other.gameObject.tag == "Ball")
         {
+            MatchController._matchController.golAnimation.SetActive(true);
+            StartCoroutine(MatchController._matchController.DeactivateGolAnimation());
             MatchController._matchController.AdjustScorePlayer();
             if(MatchController._matchController.PlayerScore < 5 ) MatchController._matchController.SpawnBall();
             Destroy(other.gameObject);
