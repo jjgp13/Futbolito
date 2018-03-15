@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3740e51c61e9f33458e073c91b508405
-timeCreated: 1519160493
+guid: 46b4a8119859b3843888a89c80782501
+timeCreated: 1521154835
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -67,7 +67,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   - buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -77,7 +76,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   - buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -87,7 +85,6 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -95,10 +92,10 @@ TextureImporter:
       name: SelectLine_0
       rect:
         serializedVersion: 2
-        x: 20
-        y: 68
-        width: 32
-        height: 56
+        x: 40
+        y: 136
+        width: 56
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,10 +106,10 @@ TextureImporter:
       name: SelectLine_1
       rect:
         serializedVersion: 2
-        x: 20
-        y: 4
-        width: 32
-        height: 56
+        x: 40
+        y: 8
+        width: 56
+        height: 112
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
