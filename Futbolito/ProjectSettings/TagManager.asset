@@ -6,7 +6,8 @@ TagManager:
   tags:
   - Ball
   - Wall
-  - Paddle
+  - PlayerPaddle
+  - NPCPaddle
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - playfield
   - players
   - ball
-  - 
+  - playfieldWalls
   - 
   - 
   - 
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: playfield
     uniqueID: 3305887407
+    locked: 0
+  - name: Walls
+    uniqueID: 775681537
     locked: 0
   - name: ball
     uniqueID: 3340466089
