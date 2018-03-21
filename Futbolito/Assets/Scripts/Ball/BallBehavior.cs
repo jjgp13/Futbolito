@@ -8,6 +8,10 @@ public class BallBehavior : MonoBehaviour {
     public float initalBallForce;
     public GameObject ballExplosion;
 
+    public float yVelDrag, wallHitDrag;
+    public float xVelOnPaddleHit, xVelOnPaddleHold;
+    
+
 	// Use this for initialization
 	void Start () {
         Invoke("AddInitialVelocity", 5f);
@@ -49,7 +53,7 @@ public class BallBehavior : MonoBehaviour {
         else
         {
             Vector2 vel = rb.velocity;
-            vel.y = vel.y / 3;
+            vel.y = vel.y / yVelDrag;
             vel.x = xVel;
             rb.velocity = vel;
         }
@@ -65,7 +69,7 @@ public class BallBehavior : MonoBehaviour {
         if (obj.GetComponent<NPCStats>().isShooting)
         {
             
-            xVel = Mathf.Abs(xBallPos - xPaddlePos) * 75;
+            xVel = Mathf.Abs(xBallPos - xPaddlePos) * shootSpeed;
             if (xBallPos < xPaddlePos) xVel = -xVel;
 
             float yVel = -shootSpeed;
@@ -77,9 +81,9 @@ public class BallBehavior : MonoBehaviour {
         else
         {
             Vector2 vel = rb.velocity;
-            vel.y = vel.y / 3;
+            vel.y = vel.y / yVelDrag;
 
-            xVel = Mathf.Abs(xBallPos - xPaddlePos) * 10;
+            xVel = Mathf.Abs(xBallPos - xPaddlePos) * xVelOnPaddleHold;
             vel.x = xVel;
             rb.velocity = vel;
         }
@@ -88,7 +92,7 @@ public class BallBehavior : MonoBehaviour {
     public void BallHitAgainstWall(GameObject obj)
     {
         Vector2 vel = rb.velocity;
-        vel *= 0.8f;
+        vel *= wallHitDrag;
         rb.velocity = vel;
     }
 

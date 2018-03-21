@@ -13,6 +13,8 @@ public class MatchController : MonoBehaviour {
 
     public GameObject golAnimation;
 
+    public Text textPauseScore;
+
     private int playerScore;
     public int PlayerScore
     {
@@ -46,12 +48,14 @@ public class MatchController : MonoBehaviour {
     {
         playerScore++;
         playerScoreSprite.GetComponent<SpriteRenderer>().sprite = scoreSprites[playerScore];
+        UpdatePauseScore();
     }
 
     public void AdjustScoreNPC()
     {
         NPCScore++;
         NPCScoreSprite.GetComponent<SpriteRenderer>().sprite = scoreSprites[NPCScore];
+        UpdatePauseScore();
     }
 
     public void SpawnBall()
@@ -63,5 +67,10 @@ public class MatchController : MonoBehaviour {
     {
         yield return new WaitForSeconds(2.5f);
         golAnimation.SetActive(false);
+    }
+
+    public void UpdatePauseScore()
+    {
+        textPauseScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
 }
