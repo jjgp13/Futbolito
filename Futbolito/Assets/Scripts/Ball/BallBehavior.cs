@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class BallBehavior : MonoBehaviour {
 
-    public Rigidbody2D rb;
+    Rigidbody2D rb;
     public float initalBallForce;
     public GameObject ballExplosion;
 
-    public float yVelDrag, wallHitDrag;
+    public Vector2 paddleHitDecreaseFactor;
+    public float wallHitDrag;
     public float xVelOnPaddleHit, xVelOnPaddleHold;
     
-
 	// Use this for initialization
 	void Start () {
+        rb = GetComponent<Rigidbody2D>();
         Invoke("AddInitialVelocity", 5f);
 	}
 
@@ -52,10 +53,10 @@ public class BallBehavior : MonoBehaviour {
         }
         else
         {
-            Vector2 vel = rb.velocity;
-            vel.y = vel.y / yVelDrag;
-            vel.x = xVel;
-            rb.velocity = vel;
+            Vector2 newVel = rb.velocity;
+            newVel.x *= paddleHitDecreaseFactor.x;
+            newVel.y *= paddleHitDecreaseFactor.y;
+            rb.velocity = newVel;
         }
     }
 
@@ -80,12 +81,10 @@ public class BallBehavior : MonoBehaviour {
         }
         else
         {
-            Vector2 vel = rb.velocity;
-            vel.y = vel.y / yVelDrag;
-
-            xVel = Mathf.Abs(xBallPos - xPaddlePos) * xVelOnPaddleHold;
-            vel.x = xVel;
-            rb.velocity = vel;
+            Vector2 newVel = rb.velocity;
+            newVel.x *= paddleHitDecreaseFactor.x;
+            newVel.y *= paddleHitDecreaseFactor.y;
+            rb.velocity = newVel;
         }
     }
 
@@ -94,10 +93,5 @@ public class BallBehavior : MonoBehaviour {
         Vector2 vel = rb.velocity;
         vel *= wallHitDrag;
         rb.velocity = vel;
-    }
-
-    private void OnDestroy()
-    {
-        Instantiate(ballExplosion, gameObject.transform.position, Quaternion.identity);
     }
 }

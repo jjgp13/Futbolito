@@ -2059,6 +2059,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114795961957217222, guid: bd0de3375e588ce449420ef17ccb7eae,
+        type: 2}
+      propertyPath: paddleHitDecreaseFactor.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
   m_IsPrefabParent: 0
