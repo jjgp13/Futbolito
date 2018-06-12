@@ -5,12 +5,15 @@ using UnityEngine;
 public class BallBehavior : MonoBehaviour {
 
     Rigidbody2D rb;
-    public float initalBallForce;
     public GameObject ballExplosion;
 
-    public Vector2 paddleHitDecreaseFactor;
+    [Range(0, 50)]
+    public float initalBallForce;
+    [Header("Values between 0 and 1")]
+    public Vector2 DecreaseFactor;
+
+    [Range(0f, 1f)]
     public float wallHitDrag;
-    public float xVelOnPaddleHit, xVelOnPaddleHold;
     
 	// Use this for initialization
 	void Start () {
@@ -54,8 +57,8 @@ public class BallBehavior : MonoBehaviour {
         else
         {
             Vector2 newVel = rb.velocity;
-            newVel.x *= paddleHitDecreaseFactor.x;
-            newVel.y *= paddleHitDecreaseFactor.y;
+            newVel.x *= DecreaseFactor.x;
+            newVel.y *= DecreaseFactor.y;
             rb.velocity = newVel;
         }
     }
@@ -82,8 +85,8 @@ public class BallBehavior : MonoBehaviour {
         else
         {
             Vector2 newVel = rb.velocity;
-            newVel.x *= paddleHitDecreaseFactor.x;
-            newVel.y *= paddleHitDecreaseFactor.y;
+            newVel.x *= DecreaseFactor.x;
+            newVel.y *= DecreaseFactor.y;
             rb.velocity = newVel;
         }
     }

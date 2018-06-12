@@ -1702,6 +1702,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b975e94a6200b40946ca0818f12aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballExplosion: {fileID: 1870101335115698, guid: 368dfd215e2b0224a9f461d12f8950f4,
+    type: 2}
 --- !u!1 &911517723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2059,11 +2061,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 114795961957217222, guid: bd0de3375e588ce449420ef17ccb7eae,
-        type: 2}
-      propertyPath: paddleHitDecreaseFactor.x
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
   m_IsPrefabParent: 0
@@ -2184,6 +2181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f57f03fc46c67844b6aca7dfcae1e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballExplosion: {fileID: 1870101335115698, guid: 368dfd215e2b0224a9f461d12f8950f4,
+    type: 2}
 --- !u!1 &1406016707
 GameObject:
   m_ObjectHideFlags: 0
