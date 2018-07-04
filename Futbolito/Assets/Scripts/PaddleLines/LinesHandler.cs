@@ -12,7 +12,7 @@ public class LinesHandler : MonoBehaviour {
         if (linesSelected.Count > 2)
         {
             GameObject ins = linesSelected.Dequeue();
-            ins.GetComponent<LineSelection>().lineSelected(false, 0);
+            ins.GetComponent<LineSelection>().lineSelected(false, GetComponentInChildren<LineSelection>().lineInactiveSprite);
         }
 	}
 }
