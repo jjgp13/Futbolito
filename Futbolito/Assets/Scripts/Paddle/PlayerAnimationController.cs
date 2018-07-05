@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerAnimationController : MonoBehaviour {
 
@@ -9,12 +8,18 @@ public class PlayerAnimationController : MonoBehaviour {
 
     public float xForce, yForce;
 
+    public GameObject shootButton;
+
+    private void Awake()
+    {
+        shootButton = GameObject.Find("ShootButton");
+    }
+
     // Update is called once per frame
     void Update () {
         if (gameObject.GetComponentInParent<LineMovement>().isActive)
         {
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Stationary)
-            //if (Input.GetKey(KeyCode.Space))
+            if (shootButton.GetComponent<ShootButton>().isShooting)
             {
                 timeTouching += Time.deltaTime;
                 animatorController.SetFloat("timeTouching", timeTouching);
@@ -27,5 +32,8 @@ public class PlayerAnimationController : MonoBehaviour {
                 animatorController.SetFloat("timeTouching", timeTouching);
             }
         }
+
+        
     }
+
 }
