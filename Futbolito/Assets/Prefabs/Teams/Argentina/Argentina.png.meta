@@ -4,14 +4,14 @@ timeCreated: 1530286571
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Argentina_0
-    21300002: Argentina_1
-    21300004: Argentina_2
-    21300006: Argentina_3
+    21300000: Idle
+    21300002: Shoot1
+    21300004: Shoot2
+    21300006: Shoot3
     21300008: Argentina_4
-    21300010: Argentina_5
-    21300012: Argentina_6
-    21300014: Argentina_7
+    21300010: Shoot_1B
+    21300012: Shoot_2B
+    21300014: Shoot_3B
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -108,7 +108,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Argentina_0
+      name: Idle
       rect:
         serializedVersion: 2
         x: 32
@@ -116,13 +116,13 @@ TextureImporter:
         width: 64
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Argentina_1
+      name: Shoot1
       rect:
         serializedVersion: 2
         x: 160
@@ -130,13 +130,13 @@ TextureImporter:
         width: 64
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Argentina_2
+      name: Shoot2
       rect:
         serializedVersion: 2
         x: 288
@@ -144,13 +144,13 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Argentina_3
+      name: Shoot3
       rect:
         serializedVersion: 2
         x: 32
@@ -158,7 +158,7 @@ TextureImporter:
         width: 64
         height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -172,13 +172,13 @@ TextureImporter:
         width: 64
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Argentina_5
+      name: Shoot_1B
       rect:
         serializedVersion: 2
         x: 288
@@ -186,13 +186,13 @@ TextureImporter:
         width: 64
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Argentina_6
+      name: Shoot_2B
       rect:
         serializedVersion: 2
         x: 32
@@ -200,13 +200,13 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Argentina_7
+      name: Shoot_3B
       rect:
         serializedVersion: 2
         x: 160
@@ -214,7 +214,7 @@ TextureImporter:
         width: 64
         height: 88
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
