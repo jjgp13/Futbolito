@@ -2128,12 +2128,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     - target: {fileID: 114795961957217222, guid: bd0de3375e588ce449420ef17ccb7eae,
         type: 2}
-<<<<<<< HEAD:Futbolito/Assets/Scenes/GameMatch.unity
       propertyPath: paddleHitDecreaseFactor.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -2141,17 +2138,7 @@ Prefab:
         type: 2}
       propertyPath: wallHitDrag
       value: 0.8
-=======
-      propertyPath: initalBallForce
-      value: 25
->>>>>>> fb1a5c5093cc19aa6a88c9996de18e658ea1180b:Futbolito/Assets/_Scenes/GameMatch.unity
       objectReference: {fileID: 0}
-=======
->>>>>>> parent of fb1a5c5... Shoot Button
-=======
->>>>>>> parent of fb1a5c5... Shoot Button
-=======
->>>>>>> parent of fb1a5c5... Shoot Button
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
   m_IsPrefabParent: 0
