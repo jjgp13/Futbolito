@@ -1942,56 +1942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3b975e94a6200b40946ca0818f12aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Futbolito/Assets/Scenes/GameMatch.unity
   ballExplosion: {fileID: 0}
-=======
-  ballExplosion: {fileID: 1870101335115698, guid: 368dfd215e2b0224a9f461d12f8950f4,
-    type: 2}
---- !u!1 &911033570
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 911033571}
-  - component: {fileID: 911033572}
-  m_Layer: 0
-  m_Name: SelectionLinesHandler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &911033571
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 911033570}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -149.05109, y: -20.531555, z: -12.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1826834087}
-  - {fileID: 108617126}
-  - {fileID: 1708686942}
-  - {fileID: 829256500}
-  m_Father: {fileID: 2085919937}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &911033572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 911033570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c30b7613142314f880a9b4d23c362d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
->>>>>>> fb1a5c5093cc19aa6a88c9996de18e658ea1180b:Futbolito/Assets/_Scenes/GameMatch.unity
 --- !u!1 &911517723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2558,12 +2509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f57f03fc46c67844b6aca7dfcae1e23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Futbolito/Assets/Scenes/GameMatch.unity
   ballExplosion: {fileID: 0}
-=======
-  ballExplosion: {fileID: 1870101335115698, guid: 368dfd215e2b0224a9f461d12f8950f4,
-    type: 2}
->>>>>>> fb1a5c5093cc19aa6a88c9996de18e658ea1180b:Futbolito/Assets/_Scenes/GameMatch.unity
 --- !u!1 &1406016707
 GameObject:
   m_ObjectHideFlags: 0

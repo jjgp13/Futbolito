@@ -5,10 +5,6 @@ using UnityEngine;
 public class BallBehavior : MonoBehaviour {
 
     Rigidbody2D rb;
-<<<<<<< HEAD
-    public int initalBallForce;
-=======
->>>>>>> fb1a5c5093cc19aa6a88c9996de18e658ea1180b
     public GameObject ballExplosion;
 
     [Range(0, 50)]
