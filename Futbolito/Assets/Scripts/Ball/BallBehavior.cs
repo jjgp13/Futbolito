@@ -5,10 +5,6 @@ using UnityEngine;
 public class BallBehavior : MonoBehaviour {
 
     Rigidbody2D rb;
-<<<<<<< HEAD
-=======
-    public float initalBallForce;
->>>>>>> parent of 2e9aa93... Changes
     public GameObject ballExplosion;
 
     [Range(0, 50)]
@@ -18,7 +14,6 @@ public class BallBehavior : MonoBehaviour {
 
     [Range(0f, 1f)]
     public float wallHitDrag;
-    public float xVelOnPaddleHit, xVelOnPaddleHold;
     
 	// Use this for initialization
 	void Start () {
