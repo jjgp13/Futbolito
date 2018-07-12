@@ -2129,6 +2129,7 @@ Prefab:
       value: 3
       objectReference: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
     - target: {fileID: 114795961957217222, guid: bd0de3375e588ce449420ef17ccb7eae,
         type: 2}
 <<<<<<< HEAD:Futbolito/Assets/Scenes/GameMatch.unity
@@ -2144,6 +2145,8 @@ Prefab:
       value: 25
 >>>>>>> fb1a5c5093cc19aa6a88c9996de18e658ea1180b:Futbolito/Assets/_Scenes/GameMatch.unity
       objectReference: {fileID: 0}
+=======
+>>>>>>> parent of fb1a5c5... Shoot Button
 =======
 >>>>>>> parent of fb1a5c5... Shoot Button
     m_RemovedComponents: []
