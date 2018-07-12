@@ -5,12 +5,11 @@ using UnityEngine;
 public class BallBehavior : MonoBehaviour {
 
     Rigidbody2D rb;
-    public float initalBallForce;
+    public int initalBallForce;
     public GameObject ballExplosion;
 
     public Vector2 paddleHitDecreaseFactor;
     public float wallHitDrag;
-    public float xVelOnPaddleHit, xVelOnPaddleHold;
     
 	// Use this for initialization
 	void Start () {
