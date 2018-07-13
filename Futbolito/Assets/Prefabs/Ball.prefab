@@ -108,7 +108,7 @@ MonoBehaviour:
     type: 2}
   initalBallForce: 23
   DecreaseFactor: {x: 0.75, y: 0.25}
-  wallHitDrag: 0.75
+  wallHitDrag: 0.9
 --- !u!198 &198487737403101404
 ParticleSystem:
   m_ObjectHideFlags: 1

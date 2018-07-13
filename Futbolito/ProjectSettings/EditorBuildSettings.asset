@@ -6,17 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+    path: Assets/_Scenes/MainMenu.unity
     guid: 4103755c40680ce438a3968c36381c14
   - enabled: 1
-    path: Assets/Scenes/TeamMenu.unity
+    path: Assets/_Scenes/TeamMenu.unity
     guid: ebdd0fdac0d06354387bcf1ea31d0d2c
   - enabled: 1
-    path: Assets/Scenes/GameMatch.unity
+    path: Assets/_Scenes/GameMatch.unity
     guid: b68587482c5df8a4a978e57245205dae
-  - enabled: 1
-    path: Assets/Scenes/Tournament.unity
-    guid: 87f08acd42ac52941afe7eb29fefd7de
-  - enabled: 1
-    path: Assets/Scenes/Online.unity
-    guid: baee584da9257c642b1b367e1b39ee0b

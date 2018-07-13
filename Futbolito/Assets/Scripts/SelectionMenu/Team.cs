@@ -14,6 +14,6 @@ public class Team : ScriptableObject {
     public int midfield;
     public int attack;
 
-    public AnimationClip[] animations;
+    public string spriteSheetName;
 
 }

@@ -113,15 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7d7ce89cba59024bb77a20b81ef0d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animSprites:
-  - {fileID: 21300000, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
-  - {fileID: 21300002, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
-  - {fileID: 21300004, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
-  - {fileID: 21300006, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
-  - {fileID: 21300008, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
-  - {fileID: 21300010, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
-  - {fileID: 21300012, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
-  - {fileID: 21300014, guid: db236ffc42c2ac242b41e868fe9594fd, type: 3}
+  teamPicked: Mexico
+  SpriteSheetName: MexU
 --- !u!212 &212943662615449042
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -156,7 +149,7 @@ SpriteRenderer:
   m_SortingLayerID: 331218617
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300012, guid: fc9876eccec64754c924c35ab35cb1e2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1657313c6b7d271418b8b278ff8e943f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
