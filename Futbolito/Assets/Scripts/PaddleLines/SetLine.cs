@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SetLine : MonoBehaviour {
 
     //Paddle reference to spawn in line.
     public GameObject pad;
-
+    public string objectInfo;
+    
     //Number of paddles in line.
     public int numberPaddles;
     private Team teamInfo;
@@ -19,7 +18,10 @@ public class SetLine : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        teamInfo = GameObject.Find("TeamPickedInfo").GetComponent<TeamPickedInfo>().teamPicked;
+        GameObject playerInfo = GameObject.Find(objectInfo);
+        if(playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
+        else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
+        
         numberPaddles = GetNumberOfPaddles(gameObject.name);
 
         //Get screen width
@@ -53,9 +55,9 @@ public class SetLine : MonoBehaviour {
             case "AttackLine":
                 return teamInfo.attack;
             case "MidLine":
-                return teamInfo.attack;
+                return teamInfo.midfield;
             case "DefenseLine":
-                return teamInfo.attack;
+                return teamInfo.defense;
             default:
                 return 1;
         }

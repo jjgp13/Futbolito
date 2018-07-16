@@ -17,7 +17,7 @@ public class DisplayTeam : MonoBehaviour {
         flagImage = GameObject.Find("TeamFlag").GetComponent<Image>();
         formationImage = GameObject.Find("TeamFormation").GetComponent<Image>();
         teamName = GameObject.Find("TeamName").GetComponent<Text>();
-        teamPicked = GameObject.Find("TeamPickedInfo");
+        teamPicked = GameObject.Find("playerInfo");
     }
 
     public void DisplayTeamInfo()
