@@ -46,6 +46,7 @@ public class MatchController : MonoBehaviour {
 
     public void AdjustScorePlayer()
     {
+        GetComponent<SoundMatchController>().PlayGolSound();
         playerScore++;
         playerScoreSprite.GetComponent<SpriteRenderer>().sprite = scoreSprites[playerScore];
         UpdatePauseScore();
@@ -53,6 +54,7 @@ public class MatchController : MonoBehaviour {
 
     public void AdjustScoreNPC()
     {
+        GetComponent<SoundMatchController>().PlayGolSound();
         NPCScore++;
         NPCScoreSprite.GetComponent<SpriteRenderer>().sprite = scoreSprites[NPCScore];
         UpdatePauseScore();

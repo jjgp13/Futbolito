@@ -6,6 +6,9 @@ public class BallBehavior : MonoBehaviour {
 
     Rigidbody2D rb;
     public GameObject ballExplosion;
+    public float timeToWaitToStart;
+
+    private BallSoundsController soundC;
 
     [Range(0, 50)]
     public float initalBallForce;
@@ -18,7 +21,9 @@ public class BallBehavior : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody2D>();
-        Invoke("AddInitialVelocity", 5f);
+        StartCoroutine(MatchController._matchController.GetComponent<SoundMatchController>().PlayKO());
+        Invoke("AddInitialVelocity", timeToWaitToStart);
+        soundC = GetComponent<BallSoundsController>();
 	}
 
     void AddInitialVelocity()
@@ -30,6 +35,12 @@ public class BallBehavior : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D other)
     {
         detectCollision(other.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "GoalTrigger")
+            soundC.PlaySound(soundC.goal);
     }
 
     private void detectCollision(GameObject obj)
@@ -51,11 +62,13 @@ public class BallBehavior : MonoBehaviour {
         if (yForce != 0)
         {
             //Add force
+            soundC.PlaySound(soundC.paddleHit);
             rb.AddForce(new Vector2(xVel, yForce));
             rb.AddTorque(xVel, ForceMode2D.Impulse);
         }
         else
         {
+            soundC.PlaySound(soundC.againstPaddle);
             Vector2 newVel = rb.velocity;
             newVel.x *= DecreaseFactor.x;
             newVel.y *= DecreaseFactor.y;
@@ -79,11 +92,13 @@ public class BallBehavior : MonoBehaviour {
             float yVel = -shootSpeed;
 
             //Add force
+            soundC.PlaySound(soundC.paddleHit);
             rb.AddForce(new Vector2(xVel, yVel));
             rb.AddTorque(xVel,ForceMode2D.Impulse);
         }
         else
         {
+            soundC.PlaySound(soundC.againstPaddle);
             Vector2 newVel = rb.velocity;
             newVel.x *= DecreaseFactor.x;
             newVel.y *= DecreaseFactor.y;
@@ -93,6 +108,7 @@ public class BallBehavior : MonoBehaviour {
 
     public void BallHitAgainstWall(GameObject obj)
     {
+        soundC.PlaySound(soundC.againstWall);
         Vector2 vel = rb.velocity;
         vel *= wallHitDrag;
         rb.velocity = vel;

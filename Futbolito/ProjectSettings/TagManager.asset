@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - PlayerPaddle
   - NPCPaddle
+  - GoalTrigger
   layers:
   - Default
   - TransparentFX

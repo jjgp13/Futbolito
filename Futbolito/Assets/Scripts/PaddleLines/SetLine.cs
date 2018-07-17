@@ -17,7 +17,7 @@ public class SetLine : MonoBehaviour {
     public float halfPlayer;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         GameObject playerInfo = GameObject.Find(objectInfo);
         if(playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
         else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
