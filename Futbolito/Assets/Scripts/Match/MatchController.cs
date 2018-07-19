@@ -75,4 +75,9 @@ public class MatchController : MonoBehaviour {
     {
         textPauseScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
+
+    public void PlayEndMatchAnimation()
+    {
+
+    }
 }

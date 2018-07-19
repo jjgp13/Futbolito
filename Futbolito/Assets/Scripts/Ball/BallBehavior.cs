@@ -37,12 +37,6 @@ public class BallBehavior : MonoBehaviour {
         detectCollision(other.gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "GoalTrigger")
-            soundC.PlaySound(soundC.goal);
-    }
-
     private void detectCollision(GameObject obj)
     {
         if (obj.gameObject.tag == "PlayerPaddle") PlayerHitBall(obj);

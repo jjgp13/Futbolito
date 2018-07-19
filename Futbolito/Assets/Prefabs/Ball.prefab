@@ -203,10 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c580a2919b6f64facd2d3d759fbc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  againstPaddle: {fileID: 8300000, guid: c24aa6df19c4c454296b9c8309c19528, type: 3}
-  paddleHit: {fileID: 8300000, guid: 27e697afda0c5544285869d6aadfcb50, type: 3}
-  againstWall: {fileID: 8300000, guid: 2561520a2ddb2ba47991bdc23d6e60f8, type: 3}
-  goal: {fileID: 8300000, guid: 19469a75648dc7f429a024c8bc995372, type: 3}
+  againstPaddle: {fileID: 8300000, guid: 4a783787911968049bd0716c71f1fcb4, type: 3}
+  paddleHit: {fileID: 8300000, guid: 72e3729fa04c6d841ba0f865aa0201b0, type: 3}
+  againstWall: {fileID: 8300000, guid: 5912dae4f645d834691f3a8c2e638223, type: 3}
 --- !u!198 &198487737403101404
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -267,7 +266,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 551097241
+  randomSeed: -1494285898
   InitialModule:
     serializedVersion: 3
     enabled: 1

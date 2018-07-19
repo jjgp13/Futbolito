@@ -7,7 +7,6 @@ public class BallSoundsController : MonoBehaviour {
     public AudioClip againstPaddle;
     public AudioClip paddleHit;
     public AudioClip againstWall;
-    public AudioClip goal;
 
     private AudioSource audioS;
 
