@@ -20,12 +20,12 @@ public class LineSelection : MonoBehaviour {
         if (!line.GetComponent<LineMovement>().isActive)
         {
             lineSelected(true, lineActiveSprite);
-            GetComponentInParent<LinesHandler>().linesSelected.Enqueue(gameObject);
+            //GetComponentInParent<LinesHandler>().linesSelected.Enqueue(gameObject);
         }
         else
         {
             lineSelected(false, lineInactiveSprite);
-            GetComponentInParent<LinesHandler>().linesSelected.Dequeue();
+            //GetComponentInParent<LinesHandler>().linesSelected.Dequeue();
         }
     }
 

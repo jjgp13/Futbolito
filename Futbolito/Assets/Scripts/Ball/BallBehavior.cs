@@ -34,14 +34,9 @@ public class BallBehavior : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        detectCollision(other.gameObject);
-    }
-
-    private void detectCollision(GameObject obj)
-    {
-        if (obj.gameObject.tag == "PlayerPaddle") PlayerHitBall(obj);
-        if (obj.gameObject.tag == "NPCPaddle") NPCHitBall(obj);
-        if (obj.gameObject.tag == "Wall") BallHitAgainstWall(obj);
+        if (other.gameObject.tag == "PlayerPaddle") PlayerHitBall(other.gameObject);
+        if (other.gameObject.tag == "NPCPaddle") NPCHitBall(other.gameObject);
+        if (other.gameObject.tag == "Wall") BallHitAgainstWall(other.gameObject);
     }
 
     void PlayerHitBall(GameObject obj)
@@ -62,11 +57,19 @@ public class BallBehavior : MonoBehaviour {
         }
         else
         {
-            soundC.PlaySound(soundC.againstPaddle);
-            Vector2 newVel = rb.velocity;
-            newVel.x *= DecreaseFactor.x;
-            newVel.y *= DecreaseFactor.y;
-            rb.velocity = newVel;
+            if (!obj.GetComponent<PlayerAnimationController>().holdBtn.isHolding)
+            {
+                soundC.PlaySound(soundC.againstPaddle);
+                Vector2 newVel = rb.velocity;
+                newVel.x *= DecreaseFactor.x;
+                newVel.y *= DecreaseFactor.y;
+                rb.velocity = newVel;
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
+                gameObject.transform.SetParent(obj.transform);
+            }
         }
     }
 

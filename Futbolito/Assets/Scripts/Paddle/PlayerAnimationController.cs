@@ -4,36 +4,33 @@ using UnityEngine.UI;
 public class PlayerAnimationController : MonoBehaviour {
 
     public Animator animatorController;
-    public float timeTouching;
 
     public float xForce, yForce;
 
-    public GameObject shootButton;
+    public ShootButton shootBtn;
+    public HoldButton holdBtn;
 
     private void Awake()
     {
-        shootButton = GameObject.Find("ShootButton");
+        shootBtn = GameObject.Find("ShootButton").GetComponent<ShootButton>();
+        holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
     }
 
     // Update is called once per frame
-    void FixedUpdate () {
+    void Update () {
         if (gameObject.GetComponentInParent<LineMovement>().isActive)
         {
-            if (shootButton.GetComponent<ShootButton>().isShooting)
+            if (shootBtn.isShooting)
             {
-                timeTouching += Time.deltaTime;
-                animatorController.SetFloat("timeTouching", timeTouching);
                 animatorController.SetBool("touching", true);
+                animatorController.SetFloat("timeTouching", shootBtn.holdingTime);
             }
             else
             {
                 animatorController.SetBool("touching", false);
-                timeTouching = 0;
-                animatorController.SetFloat("timeTouching", timeTouching);
+                animatorController.SetFloat("timeTouching", shootBtn.holdingTime);
             }
         }
-
-        
     }
 
 }

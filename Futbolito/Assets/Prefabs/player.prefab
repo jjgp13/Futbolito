@@ -119,10 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorController: {fileID: 95569099755741644}
-  timeTouching: 0
   xForce: 0
   yForce: 0
-  shootButton: {fileID: 0}
+  shootBtn: {fileID: 0}
 --- !u!114 &114757819027460776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -169,7 +168,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 331218617
   m_SortingLayer: 4
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1657313c6b7d271418b8b278ff8e943f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
