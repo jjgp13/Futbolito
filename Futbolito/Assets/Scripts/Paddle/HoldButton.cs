@@ -8,7 +8,7 @@ public class HoldButton : MonoBehaviour {
     public bool isHolding;
     public float availableTime;
     public Slider holdSlider;
-    private bool empty;
+    public bool empty;
 
 	// Use this for initialization
 	void Start () {

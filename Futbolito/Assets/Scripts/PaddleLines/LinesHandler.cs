@@ -6,7 +6,6 @@ public class LinesHandler : MonoBehaviour {
 
     public GameObject[] lines;
     public GameObject ball;
-    //public Queue<GameObject> linesSelected = new Queue<GameObject>();
 
     private void Start()
     {
@@ -14,13 +13,8 @@ public class LinesHandler : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
-        /*if (linesSelected.Count > 2)
-        {
-            GameObject ins = linesSelected.Dequeue();
-            ins.GetComponent<LineSelection>().lineSelected(false, GetComponentInChildren<LineSelection>().lineInactiveSprite);
-        }*/
-
+    void Update ()
+    {
         if (ball != null)
         {
             GetClosetsLines();
