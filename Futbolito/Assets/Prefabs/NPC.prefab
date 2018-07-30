@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShooting: 0
-  shootSpeed: 50
+  shootSpeed: 75
 --- !u!212 &212943662615449042
 SpriteRenderer:
   m_ObjectHideFlags: 1

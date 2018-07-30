@@ -12,7 +12,7 @@ public class PlayerAnimationController : MonoBehaviour {
 
     private void Awake()
     {
-        shootBtn = GameObject.Find("ShootButton").GetComponent<ShootButton>();
+        shootBtn = GameObject.Find("ShootBtn").GetComponent<ShootButton>();
         holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
     }
 

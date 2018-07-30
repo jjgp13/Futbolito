@@ -26,11 +26,11 @@ public class BallBehavior : MonoBehaviour {
         Invoke("AddInitialVelocity", timeToWaitToStart);
 
         soundC = GetComponent<BallSoundsController>();
-        shootBtn = GameObject.Find("ShootButton").GetComponent<ShootButton>();
+        shootBtn = GameObject.Find("ShootBtn").GetComponent<ShootButton>();
         holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(transform.parent != null)
         {
