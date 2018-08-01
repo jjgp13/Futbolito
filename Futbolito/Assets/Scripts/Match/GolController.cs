@@ -19,12 +19,10 @@ public class GolController : MonoBehaviour {
         if (other.gameObject.tag == "Ball")
         {
             PlaySound();
-            MatchController._matchController.golAnimation.SetActive(true);
-            StartCoroutine(MatchController._matchController.DeactivateGolAnimation());
-            if (gameObject.name == "PlayerGol")
-                MatchController._matchController.AdjustScorePlayer();
-            else if (gameObject.name == "NPCGol")
-                MatchController._matchController.AdjustScoreNPC();
+            if (gameObject.name == "PlayerGol" || gameObject.name == "NPCGol")
+                MatchController._matchController.AdjustScore(gameObject.name);
+            StartCoroutine(MatchController._matchController.GolAnimation());
+            
 
             if (MatchController._matchController.PlayerScore < 5 && MatchController._matchController.NPC_Score < 5) MatchController._matchController.SpawnBall();
             else MatchController._matchController.PlayEndMatchAnimation();

@@ -26,8 +26,6 @@ public class BallBehavior : MonoBehaviour {
         Invoke("AddInitialVelocity", timeToWaitToStart);
 
         soundC = GetComponent<BallSoundsController>();
-        shootBtn = GameObject.Find("ShootBtn").GetComponent<ShootButton>();
-        holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
     }
 
     private void FixedUpdate()
@@ -43,6 +41,8 @@ public class BallBehavior : MonoBehaviour {
 
     void AddInitialVelocity()
     {
+        shootBtn = GameObject.Find("ShootBtn").GetComponent<ShootButton>();
+        holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
         Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce), Random.Range(-initalBallForce, initalBallForce));
         rb.AddForce(initialVel);
     }
