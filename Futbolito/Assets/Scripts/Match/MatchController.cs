@@ -46,6 +46,7 @@ public class MatchController : MonoBehaviour {
     {
         playerScore = 0;
         NPCScore = 0;
+        
     }
 
 

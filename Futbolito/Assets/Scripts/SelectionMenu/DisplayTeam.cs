@@ -11,6 +11,9 @@ public class DisplayTeam : MonoBehaviour {
     private Image formationImage;
     private Text teamName;
 
+    private GameObject playerPad;
+    private GameObject npcPad;
+
     private void Start()
     {
         animController = GameObject.Find("TeamSelectedUI").GetComponent<Animator>();
@@ -18,6 +21,9 @@ public class DisplayTeam : MonoBehaviour {
         formationImage = GameObject.Find("TeamFormation").GetComponent<Image>();
         teamName = GameObject.Find("TeamName").GetComponent<Text>();
         teamPicked = GameObject.Find("playerInfo");
+
+        playerPad = GameObject.Find("PlayerPad");
+        npcPad = GameObject.Find("NPCPad");
     }
 
     public void DisplayTeamInfo()
@@ -27,6 +33,11 @@ public class DisplayTeam : MonoBehaviour {
         formationImage.sprite = team.formation;
         teamName.text = team.teamName;
         teamPicked.GetComponent<TeamPickedInfo>().teamPicked = team;
+    }
+
+    public void ChangePadAspect()
+    {
+
     }
 
 }

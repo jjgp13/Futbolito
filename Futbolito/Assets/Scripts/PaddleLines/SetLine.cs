@@ -20,9 +20,16 @@ public class SetLine : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        GameObject playerInfo = GameObject.Find(objectInfo);
-        if(playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
-        else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
+        if(transform.parent.name == "Player")
+        {
+            GameObject playerInfo = GameObject.Find(objectInfo);
+            if (playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
+            else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
+        } else if(transform.parent.name == "NPC")
+        {
+
+        }
+        
         
         numberPaddles = GetNumberOfPaddles(gameObject.name);
 

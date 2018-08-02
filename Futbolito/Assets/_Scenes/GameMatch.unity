@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 131882900}
   - component: {fileID: 131882901}
   m_Layer: 0
-  m_Name: PlayerLines
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3648,7 +3648,7 @@ GameObject:
   - component: {fileID: 1252008115}
   - component: {fileID: 1252008116}
   m_Layer: 0
-  m_Name: NPCLines
+  m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
