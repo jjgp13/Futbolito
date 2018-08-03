@@ -8,6 +8,9 @@ public class MatchController : MonoBehaviour {
     public static MatchController _matchController;
     public GameObject ball;
 
+    public Team playerTeam;
+    public Team NpcTeam;
+
     public Sprite[] scoreSprites;
 
     public GameObject golAnimation;
@@ -46,6 +49,9 @@ public class MatchController : MonoBehaviour {
     {
         playerScore = 0;
         NPCScore = 0;
+        playerTeam = GameObject.Find("PlayerInfo").GetComponent<TeamPickedInfo>().teamPicked;
+        NpcTeam = GameObject.Find("NpcInfo").GetComponent<TeamPickedInfo>().teamPicked;
+
         
     }
 
@@ -74,6 +80,8 @@ public class MatchController : MonoBehaviour {
     public IEnumerator GolAnimation()
     {
         golAnimation.SetActive(true);
+        GameObject.FindGameObjectWithTag("PlayerFlags").GetComponent<Image>().sprite = playerTeam.flag;
+        GameObject.FindGameObjectWithTag("NpcFlags").GetComponent<Image>().sprite = NpcTeam.flag;
         SetUIState(false);
         yield return new WaitForSeconds(4f);
         golAnimation.SetActive(false);

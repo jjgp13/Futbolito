@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf6672f8954862488b332a4db11a355, type: 3}
-  m_Name: ArgenitaInfo
+  m_Name: ArgentinaInfo
   m_EditorClassIdentifier: 
   teamName: Argentina
   flag: {fileID: 21300048, guid: 5a0cff96cf6fab84b87e670bf5e990af, type: 3}

@@ -6,7 +6,6 @@ public class SetLine : MonoBehaviour {
 
     //Paddle reference to spawn in line.
     public GameObject pad;
-    public string objectInfo;
     
     //Number of paddles in line.
     public int numberPaddles;
@@ -22,12 +21,14 @@ public class SetLine : MonoBehaviour {
     void Awake () {
         if(transform.parent.name == "Player")
         {
-            GameObject playerInfo = GameObject.Find(objectInfo);
+            GameObject playerInfo = GameObject.Find("PlayerInfo");
             if (playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
             else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
         } else if(transform.parent.name == "NPC")
         {
-
+            GameObject npcInfo = GameObject.Find("NpcInfo");
+            if (npcInfo == null) teamInfo = Resources.Load<Team>("Teams/Argentina/ArgentinaInfo");
+            else teamInfo = npcInfo.GetComponent<TeamPickedInfo>().teamPicked;
         }
         
         
