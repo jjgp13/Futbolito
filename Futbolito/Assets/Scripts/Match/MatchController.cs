@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MatchController : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class MatchController : MonoBehaviour {
 
     public Sprite[] scoreSprites;
 
+    public GameObject gameFinishedMenu;
     public GameObject golAnimation;
     public GameObject playerScoreUI;
     public GameObject NPCScoreUI;
@@ -51,8 +53,6 @@ public class MatchController : MonoBehaviour {
         NPCScore = 0;
         playerTeam = GameObject.Find("PlayerInfo").GetComponent<TeamPickedInfo>().teamPicked;
         NpcTeam = GameObject.Find("NpcInfo").GetComponent<TeamPickedInfo>().teamPicked;
-
-        
     }
 
 
@@ -100,8 +100,15 @@ public class MatchController : MonoBehaviour {
         textPauseScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
 
-    public void PlayEndMatchAnimation()
+    public IEnumerator PlayEndMatchAnimation()
     {
+        yield return new WaitForSeconds(5f);
+        gameFinishedMenu.SetActive(true);
+        SetUIState(false);
+    }
 
+    public void LoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 }

@@ -23,9 +23,8 @@ public class GolController : MonoBehaviour {
                 MatchController._matchController.AdjustScore(gameObject.name);
             StartCoroutine(MatchController._matchController.GolAnimation());
             
-
             if (MatchController._matchController.PlayerScore < 5 && MatchController._matchController.NPC_Score < 5) MatchController._matchController.SpawnBall();
-            else MatchController._matchController.PlayEndMatchAnimation();
+            else StartCoroutine (MatchController._matchController.PlayEndMatchAnimation());
             Instantiate(GolExplosionAnimation, other.gameObject.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
         }

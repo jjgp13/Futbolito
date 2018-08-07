@@ -73,7 +73,7 @@ public class BallBehavior : MonoBehaviour {
                 float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
                 if (xBallPos < xPaddlePos) xVel = -xVel;
                 //Add force
-                BallHitted(new Vector2(xVel, yForce));
+                BallHitted(new Vector2(xVel * 1.5f, yForce));
             }
             else
             {
@@ -95,7 +95,7 @@ public class BallBehavior : MonoBehaviour {
             if (xBallPos < xPaddlePos) xVel = -xVel;
             float yVel = -shootSpeed;
             //Add force
-            BallHitted(new Vector2(xVel, yVel));
+            BallHitted(new Vector2(xVel * 1.5f, yVel));
         }
         else
         {
