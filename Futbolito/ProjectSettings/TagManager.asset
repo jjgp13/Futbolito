@@ -8,6 +8,10 @@ TagManager:
   - Wall
   - PlayerPaddle
   - NPCPaddle
+  - GoalTrigger
+  - NpcFlags
+  - PlayerFlags
+  - PlayerFlag
   layers:
   - Default
   - TransparentFX

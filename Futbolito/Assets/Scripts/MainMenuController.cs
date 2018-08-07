@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class MainMenuController : MonoBehaviour {
 
-	
-    public void ChangeScene(int indexScene)
+    public void LoadScene(int sceneIndex)
     {
-        SceneManager.LoadScene(indexScene);
+        SceneManager.LoadScene(sceneIndex);
     }
 }

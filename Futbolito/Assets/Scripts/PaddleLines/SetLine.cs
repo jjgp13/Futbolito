@@ -1,13 +1,16 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class SetLine : MonoBehaviour {
 
-    //Number of paddles in line.
-    public int numberPaddles;
     //Paddle reference to spawn in line.
     public GameObject pad;
+    
+    //Number of paddles in line.
+    public int numberPaddles;
+    private Team teamInfo;
+    
     //Screen width
     float screenHalfWidthInWorldUnits;
     //Movement limit
@@ -15,7 +18,22 @@ public class SetLine : MonoBehaviour {
     public float halfPlayer;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
+        if(transform.parent.name == "Player")
+        {
+            GameObject playerInfo = GameObject.Find("PlayerInfo");
+            if (playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
+            else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
+        } else if(transform.parent.name == "NPC")
+        {
+            GameObject npcInfo = GameObject.Find("NpcInfo");
+            if (npcInfo == null) teamInfo = Resources.Load<Team>("Teams/Argentina/ArgentinaInfo");
+            else teamInfo = npcInfo.GetComponent<TeamPickedInfo>().teamPicked;
+        }
+        
+        
+        numberPaddles = GetNumberOfPaddles(gameObject.name);
+
         //Get screen width
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
         //Spawn pads in line, given the number.
@@ -34,7 +52,24 @@ public class SetLine : MonoBehaviour {
         {
             iniPos += spawnPos;
             GameObject newPaddle = Instantiate(pad, new Vector2(iniPos, transform.position.y), Quaternion.identity);
+            newPaddle.GetComponent<SetAnimations>().teamPicked = teamInfo.teamName;
+            newPaddle.GetComponent<SetAnimations>().SpriteSheetName = teamInfo.spriteSheetName;
             newPaddle.transform.parent = transform;
+        }
+    }
+
+    int GetNumberOfPaddles(string lineType)
+    {
+        switch (lineType)
+        {
+            case "AttackLine":
+                return teamInfo.attack;
+            case "MidLine":
+                return teamInfo.midfield;
+            case "DefenseLine":
+                return teamInfo.defense;
+            default:
+                return 1;
         }
     }
 }

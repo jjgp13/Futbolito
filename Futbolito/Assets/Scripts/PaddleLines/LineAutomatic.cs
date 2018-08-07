@@ -4,28 +4,11 @@ using UnityEngine;
 
 public class LineAutomatic : MonoBehaviour {
 
-    //GameObject ball;
 
-    /// <summary>
-    /// For automatic controls.
-    /// </summary>
-    /*private void Update()
+    public void lineSelected(bool isSelected)
     {
-        if (ball != null)
-        {
-            if(transform.position.y < ball.transform.position.y && GetComponentInParent<LinesHandler>().linesSelected.Count < 3)
-            {
-                lineSelected(true, 1);
-                GetComponentInParent<LinesHandler>().linesSelected.Enqueue(gameObject);
-            }
-            else
-            {
-                lineSelected(false, 0);
-                GetComponentInParent<LinesHandler>().linesSelected.Dequeue();
-            }
-        }
-        else ball = GameObject.FindGameObjectWithTag("Ball");
-    }*/
-
+        gameObject.GetComponent<LineMovement>().isActive = isSelected;
+        for (int i = 0; i < gameObject.transform.childCount; i++) gameObject.transform.GetChild(i).GetComponent<Animator>().SetBool("holding", isSelected);
+    }
 
 }

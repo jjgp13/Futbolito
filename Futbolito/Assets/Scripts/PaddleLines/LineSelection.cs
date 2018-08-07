@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class LineSelection : MonoBehaviour {
 
@@ -18,12 +20,12 @@ public class LineSelection : MonoBehaviour {
         if (!line.GetComponent<LineMovement>().isActive)
         {
             lineSelected(true, lineActiveSprite);
-            GetComponentInParent<LinesHandler>().linesSelected.Enqueue(gameObject);
+            //GetComponentInParent<LinesHandler>().linesSelected.Enqueue(gameObject);
         }
         else
         {
             lineSelected(false, lineInactiveSprite);
-            GetComponentInParent<LinesHandler>().linesSelected.Dequeue();
+            //GetComponentInParent<LinesHandler>().linesSelected.Dequeue();
         }
     }
 
