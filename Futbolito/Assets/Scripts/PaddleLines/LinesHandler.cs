@@ -13,7 +13,7 @@ public class LinesHandler : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void FixedUpdate ()
     {
         if (ball != null)
         {
@@ -28,11 +28,12 @@ public class LinesHandler : MonoBehaviour {
         float dis;
         for (i = 1; i < lines.Length; i++)
         {
-            dis = Vector2.Distance(lines[i].transform.position, ball.transform.position);
+            //dis = Vector2.Distance(lines[i].transform.position, ball.transform.position);
+            dis = ball.transform.position.y - lines[i].transform.position.y;
             GameObject temp = lines[i];
             j = i - 1;
             
-            while (j >= 0 && Vector2.Distance(lines[j].transform.position, ball.transform.position) > dis)
+            while (j >= 0 && (ball.transform.position.y - lines[i].transform.position.y) > dis)
             {
                 lines[j + 1] = lines[j];
                 j = j - 1;
@@ -44,4 +45,5 @@ public class LinesHandler : MonoBehaviour {
         lines[2].GetComponent<LineAutomatic>().lineSelected(false);
         lines[3].GetComponent<LineAutomatic>().lineSelected(false);
     }
+    
 }

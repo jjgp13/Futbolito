@@ -4,24 +4,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class MatchController : MonoBehaviour {
 
     public static MatchController _matchController;
     public GameObject ball;
+    public bool gameIsPaused;
 
     public Team playerTeam;
-    public Team NpcTeam;
+    public Team npcTeam;
 
-    public Sprite[] scoreSprites;
+    public GameObject gameFinishedMenu_UI;
+    public GameObject pausedMenu_UI;
 
-    public GameObject gameFinishedMenu;
-    public GameObject golAnimation;
-    public GameObject playerScoreUI;
-    public GameObject NPCScoreUI;
+    public GameObject golAnimation_UI;
+    public GameObject playerScore_UI;
+    public GameObject NPCScore_UI;
 
-    public GameObject holdingUI;
-    public GameObject shootingUI;
-    public GameObject pauseBtnUI;
+    public GameObject holding_UI;
+    public GameObject shooting_UI;
+    public GameObject pauseBtn_UI;
 
     public Text textPauseScore;
 
@@ -51,8 +53,16 @@ public class MatchController : MonoBehaviour {
     {
         playerScore = 0;
         NPCScore = 0;
+        gameIsPaused = false;
+
         playerTeam = GameObject.Find("PlayerInfo").GetComponent<TeamPickedInfo>().teamPicked;
-        NpcTeam = GameObject.Find("NpcInfo").GetComponent<TeamPickedInfo>().teamPicked;
+        npcTeam = GameObject.Find("NpcInfo").GetComponent<TeamPickedInfo>().teamPicked;
+        SetTeamFlags("PlayerFlags", playerTeam.flag);
+        SetTeamFlags("NpcFlags", npcTeam.flag);
+
+        gameFinishedMenu_UI.SetActive(false);
+        pausedMenu_UI.SetActive(false);
+        golAnimation_UI.SetActive(false);
     }
 
 
@@ -62,12 +72,12 @@ public class MatchController : MonoBehaviour {
         if (golName == "PlayerGol")
         {
             playerScore++;
-            playerScoreUI.transform.GetChild(playerScore-1).GetComponent<Image>().color = Color.white;
+            playerScore_UI.transform.GetChild(playerScore-1).GetComponent<Image>().color = Color.white;
         }
         else if (golName == "NPCGol")
         {
             NPCScore++;
-            NPCScoreUI.transform.GetChild(NPCScore-1).GetComponent<Image>().color = Color.white;
+            NPCScore_UI.transform.GetChild(NPCScore-1).GetComponent<Image>().color = Color.white;
         }
         UpdateUIScore();
     }
@@ -79,20 +89,18 @@ public class MatchController : MonoBehaviour {
 
     public IEnumerator GolAnimation()
     {
-        golAnimation.SetActive(true);
-        GameObject.FindGameObjectWithTag("PlayerFlags").GetComponent<Image>().sprite = playerTeam.flag;
-        GameObject.FindGameObjectWithTag("NpcFlags").GetComponent<Image>().sprite = NpcTeam.flag;
+        golAnimation_UI.SetActive(true);
         SetUIState(false);
         yield return new WaitForSeconds(4f);
-        golAnimation.SetActive(false);
+        golAnimation_UI.SetActive(false);
         SetUIState(true);
     }
 
     public void SetUIState(bool active)
     {
-        holdingUI.SetActive(active);
-        shootingUI.SetActive(active);
-        pauseBtnUI.SetActive(active);
+        holding_UI.SetActive(active);
+        shooting_UI.SetActive(active);
+        pauseBtn_UI.SetActive(active);
     }
 
     public void UpdateUIScore()
@@ -102,13 +110,35 @@ public class MatchController : MonoBehaviour {
 
     public IEnumerator PlayEndMatchAnimation()
     {
-        yield return new WaitForSeconds(5f);
-        gameFinishedMenu.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        gameFinishedMenu_UI.SetActive(true);
         SetUIState(false);
+    }
+
+    public void SetTeamFlags(string tag, Sprite flag)
+    {
+        GameObject[] flags = GameObject.FindGameObjectsWithTag(tag);
+        for (int i = 0; i < flags.Length; i++) flags[i].GetComponent<Image>().sprite = flag;
+    }
+
+    public void Resume()
+    {
+        pausedMenu_UI.SetActive(false);
+        Time.timeScale = 1f;
+        gameIsPaused = false;
+    }
+
+    public void Pause()
+    {
+        pausedMenu_UI.SetActive(true);
+        Time.timeScale = 0f;
+        gameIsPaused = true;
     }
 
     public void LoadScene(int index)
     {
         SceneManager.LoadScene(index);
     }
+
+
 }
