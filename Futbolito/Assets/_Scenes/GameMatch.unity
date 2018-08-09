@@ -394,13 +394,6 @@ MonoBehaviour:
   gameIsPaused: 0
   playerTeam: {fileID: 0}
   npcTeam: {fileID: 0}
-  scoreSprites:
-  - {fileID: 21300000, guid: 1bce851c9bbacac40a0fc8ad266d9b8a, type: 3}
-  - {fileID: 21300002, guid: 1bce851c9bbacac40a0fc8ad266d9b8a, type: 3}
-  - {fileID: 21300004, guid: 1bce851c9bbacac40a0fc8ad266d9b8a, type: 3}
-  - {fileID: 21300006, guid: 1bce851c9bbacac40a0fc8ad266d9b8a, type: 3}
-  - {fileID: 21300008, guid: 1bce851c9bbacac40a0fc8ad266d9b8a, type: 3}
-  - {fileID: 21300010, guid: 1bce851c9bbacac40a0fc8ad266d9b8a, type: 3}
   gameFinishedMenu_UI: {fileID: 980379847}
   pausedMenu_UI: {fileID: 408746904}
   golAnimation_UI: {fileID: 625984228}
@@ -1689,6 +1682,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  velocity: 0
   isActive: 0
 --- !u!114 &386671500
 MonoBehaviour:
@@ -1804,6 +1798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  velocity: 0
   isActive: 0
 --- !u!114 &408635761
 MonoBehaviour:
@@ -2754,6 +2749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  velocity: 0
   isActive: 0
 --- !u!114 &744769891
 MonoBehaviour:
@@ -6478,6 +6474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  velocity: 0
   isActive: 0
 --- !u!114 &1903469822
 MonoBehaviour:
