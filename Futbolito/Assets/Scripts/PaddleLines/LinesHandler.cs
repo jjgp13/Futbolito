@@ -13,7 +13,7 @@ public class LinesHandler : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void FixedUpdate ()
     {
         if (ball != null)
         {
@@ -24,24 +24,48 @@ public class LinesHandler : MonoBehaviour {
 
     private void GetClosetsLines()
     {
-        int i, j;
-        float dis;
-        for (i = 1; i < lines.Length; i++)
+        //approach
+        /*
+        for (int i = 0; i < 2; i++)
         {
-            dis = Vector2.Distance(lines[i].transform.position, ball.transform.position);
-            GameObject temp = lines[i];
-            j = i - 1;
-            
-            while (j >= 0 && Vector2.Distance(lines[j].transform.position, ball.transform.position) > dis)
-            {
-                lines[j + 1] = lines[j];
-                j = j - 1;
-            }
-            lines[j + 1] = temp;
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i + 1; j < lines.Length; j++)
+                if (GetDistanceToBall(lines[j]) < GetDistanceToBall(lines[min_idx]))
+                    min_idx = j;
+
+            // Swap the found minimum element with the first
+            // element
+            GameObject temp = lines[min_idx];
+            lines[min_idx] = lines[i];
+            lines[i] = temp;
+        }*/
+        float ballPos = ball.transform.position.y;
+        if (ballPos < -2.1f)
+        {
+            lines[0].GetComponent<LineAutomatic>().lineSelected(true);
+            lines[1].GetComponent<LineAutomatic>().lineSelected(true);
+            lines[2].GetComponent<LineAutomatic>().lineSelected(false);
+            lines[3].GetComponent<LineAutomatic>().lineSelected(false);
+        } else if (ballPos > 1.85f)
+        {
+            lines[0].GetComponent<LineAutomatic>().lineSelected(false);
+            lines[1].GetComponent<LineAutomatic>().lineSelected(false);
+            lines[2].GetComponent<LineAutomatic>().lineSelected(true);
+            lines[3].GetComponent<LineAutomatic>().lineSelected(true);
         }
-        lines[0].GetComponent<LineAutomatic>().lineSelected(true);
-        lines[1].GetComponent<LineAutomatic>().lineSelected(true);
-        lines[2].GetComponent<LineAutomatic>().lineSelected(false);
-        lines[3].GetComponent<LineAutomatic>().lineSelected(false);
+        else
+        {
+            lines[0].GetComponent<LineAutomatic>().lineSelected(false);
+            lines[1].GetComponent<LineAutomatic>().lineSelected(true);
+            lines[2].GetComponent<LineAutomatic>().lineSelected(true);
+            lines[3].GetComponent<LineAutomatic>().lineSelected(false);
+        }
+    }
+
+    float GetDistanceToBall(GameObject line)
+    {
+        float dist = Mathf.Abs(ball.transform.position.y - line.transform.position.y);
+        return dist;
     }
 }

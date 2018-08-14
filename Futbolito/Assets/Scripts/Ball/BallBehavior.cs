@@ -13,6 +13,7 @@ public class BallBehavior : MonoBehaviour {
     public Vector2 DecreaseFactor;
 
     private BallSoundsController soundC;
+
     private ShootButton shootBtn;
     private HoldButton holdBtn;
 
@@ -32,9 +33,11 @@ public class BallBehavior : MonoBehaviour {
     {
         if(transform.parent != null)
         {
+            float velOnRelease = transform.parent.GetComponentInParent<LineMovement>().velocity;
             if (!holdBtn.isHolding || holdBtn.empty)
             {
                 transform.parent = null;
+                rb.velocity = new Vector2(velOnRelease, 0f);
             }
         }
     }
@@ -73,7 +76,7 @@ public class BallBehavior : MonoBehaviour {
                 float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
                 if (xBallPos < xPaddlePos) xVel = -xVel;
                 //Add force
-                BallHitted(new Vector2(xVel, yForce));
+                BallHitted(new Vector2(xVel * 1.5f, yForce));
             }
             else
             {
@@ -95,7 +98,7 @@ public class BallBehavior : MonoBehaviour {
             if (xBallPos < xPaddlePos) xVel = -xVel;
             float yVel = -shootSpeed;
             //Add force
-            BallHitted(new Vector2(xVel, yVel));
+            BallHitted(new Vector2(xVel * 1.5f, yVel));
         }
         else
         {

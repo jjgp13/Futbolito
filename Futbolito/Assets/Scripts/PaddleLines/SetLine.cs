@@ -40,6 +40,7 @@ public class SetLine : MonoBehaviour {
         DevidePaddlesInLine(screenHalfWidthInWorldUnits * 2, numberPaddles);
         //Get x maximum movement in the line, given the number of paddles
         xLimit = ((screenHalfWidthInWorldUnits * 2) / (numberPaddles + 1)) - 0.3f;
+        if (numberPaddles == 1 && gameObject.name == "GKLine") xLimit = 1.75f;
         //Get size of the paddle.
         halfPlayer = pad.transform.localScale.x / 2;
     }
