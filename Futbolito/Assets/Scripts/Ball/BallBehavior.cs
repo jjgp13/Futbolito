@@ -7,6 +7,10 @@ public class BallBehavior : MonoBehaviour {
     Rigidbody2D rb;
     public GameObject ballExplosion;
     public float timeToWaitToStart;
+    private float ballInactive;
+    private bool kickOff;
+
+
     [Range(0, 50)]
     public float initalBallForce;
     [Header("Values between 0 and 1")]
@@ -26,11 +30,15 @@ public class BallBehavior : MonoBehaviour {
         StartCoroutine(MatchController._matchController.GetComponent<SoundMatchController>().PlayKO());
         Invoke("AddInitialVelocity", timeToWaitToStart);
 
+        ballInactive = 0;
+        kickOff = false;
+
         soundC = GetComponent<BallSoundsController>();
     }
 
     private void FixedUpdate()
     {
+        print(ballInactive + " : "+ rb.velocity);
         if(transform.parent != null)
         {
             float velOnRelease = transform.parent.GetComponentInParent<LineMovement>().velocity;
@@ -38,6 +46,17 @@ public class BallBehavior : MonoBehaviour {
             {
                 transform.parent = null;
                 rb.velocity = new Vector2(velOnRelease, 0f);
+            }
+        }
+        else
+        {
+            if (rb.velocity == Vector2.zero && kickOff) ballInactive += Time.deltaTime;
+            else ballInactive = 0;
+
+            if(ballInactive > 3f)
+            {
+                MatchController._matchController.SpawnBall();
+                Destroy(gameObject);
             }
         }
     }
@@ -48,6 +67,7 @@ public class BallBehavior : MonoBehaviour {
         holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
         Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce), Random.Range(-initalBallForce, initalBallForce));
         rb.AddForce(initialVel);
+        kickOff = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
