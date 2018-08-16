@@ -1398,12 +1398,12 @@ Prefab:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1541516827129650, guid: 352991deeca90494a9b8a555941c2900, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1541516827129650, guid: 352991deeca90494a9b8a555941c2900, type: 2}
       propertyPath: m_Name
       value: PlayerPad
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541516827129650, guid: 352991deeca90494a9b8a555941c2900, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 352991deeca90494a9b8a555941c2900, type: 2}
@@ -1448,12 +1448,12 @@ Prefab:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1541516827129650, guid: 71c4af37692e247459ad2550cc35ed18, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1541516827129650, guid: 71c4af37692e247459ad2550cc35ed18, type: 2}
       propertyPath: m_Name
       value: NPCPad
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541516827129650, guid: 71c4af37692e247459ad2550cc35ed18, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 71c4af37692e247459ad2550cc35ed18, type: 2}

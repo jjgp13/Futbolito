@@ -38,7 +38,6 @@ public class BallBehavior : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        print(ballInactive + " : "+ rb.velocity);
         if(transform.parent != null)
         {
             float velOnRelease = transform.parent.GetComponentInParent<LineMovement>().velocity;
@@ -96,7 +95,7 @@ public class BallBehavior : MonoBehaviour {
                 float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
                 if (xBallPos < xPaddlePos) xVel = -xVel;
                 //Add force
-                BallHitted(new Vector2(xVel * 1.5f, yForce));
+                BallHitted(new Vector2(xVel, yForce));
             }
             else
             {
