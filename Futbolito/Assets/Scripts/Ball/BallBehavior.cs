@@ -71,6 +71,7 @@ public class BallBehavior : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log(other.GetContact(0).point);
         if (other.gameObject.tag == "PlayerPaddle") PlayerHitBall(other.gameObject);
         if (other.gameObject.tag == "NPCPaddle") NPCHitBall(other.gameObject);
         if (other.gameObject.tag == "Wall") BallHitAgainstWall(other.gameObject);
