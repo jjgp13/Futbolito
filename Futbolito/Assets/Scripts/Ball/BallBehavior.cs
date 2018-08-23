@@ -5,7 +5,8 @@ using UnityEngine;
 public class BallBehavior : MonoBehaviour {
 
     Rigidbody2D rb;
-    public GameObject ballExplosion;
+    public ParticleSystem ballExplosion;
+    public ParticleSystem ballHit;
     public float timeToWaitToStart;
     private float ballInactive;
     private bool kickOff;
@@ -49,10 +50,10 @@ public class BallBehavior : MonoBehaviour {
         }
         else
         {
-            if (rb.velocity == Vector2.zero && kickOff) ballInactive += Time.deltaTime;
+            if ((rb.velocity.x > -0.1 && rb.velocity.x < 0.1 && rb.velocity.y > -0.1 && rb.velocity.y < 0.1) && kickOff) ballInactive += Time.deltaTime;
             else ballInactive = 0;
 
-            if(ballInactive > 3f)
+            if(ballInactive >= 5f)
             {
                 MatchController._matchController.SpawnBall();
                 Destroy(gameObject);
@@ -71,14 +72,14 @@ public class BallBehavior : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log(other.GetContact(0).point);
-        if (other.gameObject.tag == "PlayerPaddle") PlayerHitBall(other.gameObject);
-        if (other.gameObject.tag == "NPCPaddle") NPCHitBall(other.gameObject);
+        if (other.gameObject.tag == "PlayerPaddle") PlayerHitBall(other);
+        if (other.gameObject.tag == "NPCPaddle") NPCHitBall(other);
         if (other.gameObject.tag == "Wall") BallHitAgainstWall(other.gameObject);
     }
 
-    void PlayerHitBall(GameObject obj)
+    void PlayerHitBall(Collision2D other)
     {
+        GameObject obj = other.gameObject;
         bool holding = holdBtn.isHolding;
         if (holding)
         {
@@ -90,6 +91,7 @@ public class BallBehavior : MonoBehaviour {
             float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
             if (yForce != 0)
             {
+                if (yForce > 100f) StartCoroutine(StopTimeOnBallHit());
                 float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
                 float xPaddlePos = obj.transform.position.x;
                 float xBallPos = transform.position.x;
@@ -97,16 +99,19 @@ public class BallBehavior : MonoBehaviour {
                 if (xBallPos < xPaddlePos) xVel = -xVel;
                 //Add force
                 BallHitted(new Vector2(xVel, yForce));
+                Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
+                Instantiate(ballHit, pos, Quaternion.identity);
             }
             else
             {
-                BallHitPadWithNoState();
+                BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
             }
         }
     }
 
-    void NPCHitBall(GameObject obj)
+    void NPCHitBall(Collision2D other)
     {
+        GameObject obj = other.gameObject;
         float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
         float xPaddlePos = obj.transform.position.x;
         float xBallPos = transform.position.x;
@@ -118,11 +123,13 @@ public class BallBehavior : MonoBehaviour {
             if (xBallPos < xPaddlePos) xVel = -xVel;
             float yVel = -shootSpeed;
             //Add force
-            BallHitted(new Vector2(xVel * 1.5f, yVel));
+            BallHitted(new Vector2(xVel, yVel));
+            Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
+            Instantiate(ballHit, pos, Quaternion.identity);
         }
         else
         {
-            BallHitPadWithNoState();
+            BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
         }
     }
 
@@ -134,7 +141,13 @@ public class BallBehavior : MonoBehaviour {
         rb.velocity = vel;
     }
 
-    public void BallHitPadWithNoState()
+    public void BallHitPadWithNoState(float normal, string tag)
+    {
+        if (normal > 0 && tag == "PlayerPaddle") DecreaseBallVel();
+        else if(normal < 0 && tag == "NPCPaddle") DecreaseBallVel();
+    }
+
+    void DecreaseBallVel()
     {
         soundC.PlaySound(soundC.againstPaddle);
         Vector2 newVel = rb.velocity;
@@ -148,5 +161,12 @@ public class BallBehavior : MonoBehaviour {
         soundC.PlaySound(soundC.paddleHit);
         rb.AddForce(force);
         rb.AddTorque(force.x, ForceMode2D.Impulse);
+    }
+
+    IEnumerator StopTimeOnBallHit()
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 1f;
     }
 }

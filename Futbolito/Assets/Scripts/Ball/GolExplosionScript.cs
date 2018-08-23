@@ -5,10 +5,11 @@ using UnityEngine;
 public class GolExplosionScript : MonoBehaviour {
 
     public ParticleSystem particles;
+    public int timeToDestroy;
 
 	// Use this for initialization
 	void Start () {
-        Invoke("DestroyExplosion", 2);
+        Invoke("DestroyExplosion", timeToDestroy);
 	}
 	
 	void DestroyExplosion()
