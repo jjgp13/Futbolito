@@ -205,6 +205,8 @@ MonoBehaviour:
     type: 2}
   ballHit: {fileID: 198481944206875294, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
   timeToWaitToStart: 5
+  slowDownFactor: 0
+  slowDownTime: 1
   initalBallForce: 50
   DecreaseFactor: {x: 0.75, y: 0.25}
   wallHitDrag: 0.9

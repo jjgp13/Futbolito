@@ -126,6 +126,8 @@ public class MatchController : MonoBehaviour {
         pausedMenu_UI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
+        holding_UI.SetActive(true);
+        shooting_UI.SetActive(true);
     }
 
     public void Pause()
@@ -133,6 +135,9 @@ public class MatchController : MonoBehaviour {
         pausedMenu_UI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+        holding_UI.SetActive(false);
+        shooting_UI.SetActive(false);
+        
     }
 
     public void LoadScene(int index)
