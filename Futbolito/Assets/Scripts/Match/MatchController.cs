@@ -137,7 +137,6 @@ public class MatchController : MonoBehaviour {
         gameIsPaused = true;
         holding_UI.SetActive(false);
         shooting_UI.SetActive(false);
-        
     }
 
     public void LoadScene(int index)

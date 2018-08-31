@@ -679,6 +679,52 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 585703513}
   m_CullTransparentMesh: 0
+--- !u!1001 &716922355
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604950521580854, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455399053135452, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &763802473
 Prefab:
   m_ObjectHideFlags: 0

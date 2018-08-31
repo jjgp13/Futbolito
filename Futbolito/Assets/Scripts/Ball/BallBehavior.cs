@@ -12,7 +12,7 @@ public class BallBehavior : MonoBehaviour {
     private bool kickOff;
 
     public float slowDownFactor = 0f;
-    public float slowDownTime = 2f;
+    public float slowDownTime = 1f;
     float timer = 0;
 
     [Range(0, 50)]
@@ -42,8 +42,7 @@ public class BallBehavior : MonoBehaviour {
 
     void Update()
     {
-        print("Scaled Time: " + Time.timeScale + "FixedDTime:" + Time.fixedDeltaTime);
-        if(Time.timeScale < 1f)
+        if(Time.timeScale < 1f && !MatchController._matchController.gameIsPaused)
         {
             timer += slowDownTime * Time.unscaledDeltaTime;
             if (timer >= slowDownTime)
@@ -186,6 +185,5 @@ public class BallBehavior : MonoBehaviour {
     void StopTimeOnBallHit()
     {
         Time.timeScale = slowDownFactor;
-        //Time.fixedDeltaTime = Time.timeScale * 0.02f;
     }
 }
