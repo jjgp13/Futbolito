@@ -9,6 +9,9 @@ public class ToursMenuController : MonoBehaviour {
     public GameObject teamsPanel;
     public Image dummyImage;
 
+    public Button[] toursBtns;
+    public Sprite selectedTourSprite, notSelectedTourSprite;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -20,6 +23,7 @@ public class ToursMenuController : MonoBehaviour {
 
     public void DisplayTeamsOnPanel(int tourIndex)
     {
+        DeleteTeamsFromPanel();
         Tournament tour = tours[tourIndex];
         for (int i = 0; i < tour.teams.Length; i++)
         {
@@ -32,12 +36,18 @@ public class ToursMenuController : MonoBehaviour {
 
     void DeleteTeamsFromPanel()
     {
-        if(teamsPanel.transform.childCount > 0)
+        foreach (Transform child in teamsPanel.transform)
         {
-            for (int i = 0; i < teamsPanel.transform.childCount; i++)
-            {
-                GameObject.Destroy(teamsPanel.transform.GetChild(i));
-            }
+            Destroy(child.gameObject);
         }
+    }
+
+    public void ChangeButtonSprite(int index) {
+        for (int i = 0; i < toursBtns.Length; i++)
+        {
+            if (index == i) toursBtns[index].image.sprite = selectedTourSprite;
+            else toursBtns[i].image.sprite = notSelectedTourSprite;
+        }
+        //toursBtns[index].image.sprite = selectedTourSprite;
     }
 }

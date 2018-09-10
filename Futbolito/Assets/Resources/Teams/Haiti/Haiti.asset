@@ -13,8 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: Haiti
   flag: {fileID: 21300064, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
-  formation: {fileID: 0}
-  defense: 0
-  midfield: 0
-  attack: 0
-  spriteSheetName: 
+  formation: {fileID: 21300004, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  defense: 4
+  midfield: 5
+  attack: 1
+  spriteSheetName: HaitiLocal
