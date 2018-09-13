@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: ArgentinaInfo
   m_EditorClassIdentifier: 
   teamName: Argentina
-  flag: {fileID: 21300048, guid: 5a0cff96cf6fab84b87e670bf5e990af, type: 3}
+  flag: {fileID: 21300048, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
   formation: {fileID: 21300004, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
   defense: 4
   midfield: 5

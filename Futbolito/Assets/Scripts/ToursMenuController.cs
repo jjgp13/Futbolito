@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ToursMenuController : MonoBehaviour {
 
     public Tournament[] tours;
     public GameObject teamsPanel;
-    public Image dummyImage;
+
+    public Button teamButton;
 
     public Button[] toursBtns;
     public Sprite selectedTourSprite, notSelectedTourSprite;
@@ -23,11 +25,6 @@ public class ToursMenuController : MonoBehaviour {
     void Start () {
         teamsLayout = teamsLayoutObj.GetComponent<GridLayoutGroup>();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void DisplayTeamsOnPanel(int tourIndex)
     {
@@ -38,10 +35,10 @@ public class ToursMenuController : MonoBehaviour {
         Tournament tour = tours[tourIndex];
         for (int i = 0; i < tour.teams.Length; i++)
         {
-            Image newFlag = Instantiate(dummyImage);
+            Button newTeam = Instantiate(teamButton);
             Team team = tour.teams[i];
-            newFlag.sprite = team.flag;
-            newFlag.transform.SetParent(teamsPanel.transform);
+            newTeam.image.sprite = team.flag;
+            newTeam.transform.SetParent(teamsPanel.transform);
         }
     }
 
@@ -74,7 +71,7 @@ public class ToursMenuController : MonoBehaviour {
         {
             teamsLayout.padding = new RectOffset(20, 20, 20, 20);
             teamsLayout.cellSize = new Vector2(128, 104);
-            teamsLayout.spacing = new Vector2(150, 15);
+            teamsLayout.spacing = new Vector2(130, 15);
             teamsLayout.startAxis = GridLayoutGroup.Axis.Vertical;
         }
         else if (teamsN == 24)
@@ -86,10 +83,15 @@ public class ToursMenuController : MonoBehaviour {
         }
         else
         {
-            teamsLayout.padding = new RectOffset(8,6,20,20);
-            teamsLayout.cellSize = new Vector2(88, 64);
-            teamsLayout.spacing = new Vector2(0, 60);
+            teamsLayout.padding = new RectOffset(5,5,20,20);
+            teamsLayout.cellSize = new Vector2(80, 56);
+            teamsLayout.spacing = new Vector2(10, 70);
             teamsLayout.startAxis = GridLayoutGroup.Axis.Horizontal;
         }
+    }
+
+    public void MainMenu(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }
