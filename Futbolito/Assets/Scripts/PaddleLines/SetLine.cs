@@ -23,12 +23,12 @@ public class SetLine : MonoBehaviour {
         {
             GameObject playerInfo = GameObject.Find("PlayerInfo");
             if (playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
-            else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
+            //else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
         } else if(transform.parent.name == "NPC")
         {
             GameObject npcInfo = GameObject.Find("NpcInfo");
             if (npcInfo == null) teamInfo = Resources.Load<Team>("Teams/Argentina/ArgentinaInfo");
-            else teamInfo = npcInfo.GetComponent<TeamPickedInfo>().teamPicked;
+            //else teamInfo = npcInfo.GetComponent<TeamPickedInfo>().teamPicked;
         }
         
         

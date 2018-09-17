@@ -9,9 +9,9 @@ TagManager:
   - PlayerPaddle
   - NPCPaddle
   - GoalTrigger
-  - NpcFlags
   - PlayerFlags
-  - PlayerFlag
+  - FlagOutline
+  - ComFlags
   layers:
   - Default
   - TransparentFX

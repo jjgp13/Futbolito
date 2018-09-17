@@ -1,15 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TeamSelected : MonoBehaviour {
 
+    public Team team;
     public Image flagOutline;
+    public bool isSelected = false;
 
     public void SelectTeam()
     {
-        if(transform.childCount == 0)
+        if (isSelected) isSelected = false;
+        else isSelected = true;
+
+        if(isSelected)
         {
             DeletePreviousSelected();
             Image outline = Instantiate(flagOutline);
@@ -18,19 +21,21 @@ public class TeamSelected : MonoBehaviour {
             Vector2 size = gameObject.GetComponent<RectTransform>().sizeDelta;
             int inc = 16;
             outline.rectTransform.sizeDelta = new Vector2(size.x + inc, size.y + inc);
-        } else
-        {
-            Destroy(gameObject.transform.GetChild(0).gameObject);
         }
     }
 
-    void DeletePreviousSelected()
+    public void DeletePreviousSelected()
     {
-        GameObject parent = gameObject.transform.parent.gameObject;
-        for (int i = 0; i < parent.transform.childCount; i++)
+        GameObject[] outlines = GameObject.FindGameObjectsWithTag("FlagOutline");
+        foreach (var item in outlines)
         {
-            if (parent.transform.GetChild(i).gameObject.transform.childCount > 0)
-                Destroy(parent.transform.GetChild(i).GetChild(0).gameObject);
+            item.GetComponentInParent<TeamSelected>().isSelected = false;
+            Destroy(item.gameObject);
         }
+    }
+
+    public Team ReturnTeamSelected()
+    {
+        return team;
     }
 }
