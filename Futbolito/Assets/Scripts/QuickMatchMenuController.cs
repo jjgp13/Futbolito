@@ -26,7 +26,6 @@ public class QuickMatchMenuController : MonoBehaviour {
     public GameObject playerInfo;
     public GameObject comInfo;
 
-
     public GameObject matchInfo;
     public Button setMatchBtn;
 

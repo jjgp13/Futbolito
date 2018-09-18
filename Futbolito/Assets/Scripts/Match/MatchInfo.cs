@@ -1,20 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public struct lineUp
-{
-    int defense;
-    int med;
-    int attack;
-}
-
 public class MatchInfo : MonoBehaviour{
 
     public Team playerTeam;
-    public lineUp playerLineUp;
+    public int[] playerLineUp;
+    public string playerUniform;
 
     public Team comTeam;
-    public lineUp comLineUp;
+    public int[] comLineUp;
+    public string comUniform;
 
     public int matchTime;
     public int difficulty;
