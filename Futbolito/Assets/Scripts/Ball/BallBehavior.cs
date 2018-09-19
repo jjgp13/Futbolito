@@ -11,6 +11,9 @@ public class BallBehavior : MonoBehaviour {
     private float ballInactive;
     private bool kickOff;
 
+    public float slowDownFactor = 0f;
+    public float slowDownTime = 1f;
+    float timer = 0;
 
     [Range(0, 50)]
     public float initalBallForce;
@@ -35,6 +38,22 @@ public class BallBehavior : MonoBehaviour {
         kickOff = false;
 
         soundC = GetComponent<BallSoundsController>();
+    }
+
+    void Update()
+    {
+        if(Time.timeScale < 1f && !MatchController._matchController.gameIsPaused)
+        {
+            timer += slowDownTime * Time.unscaledDeltaTime;
+            if (timer >= slowDownTime)
+            {
+                Time.timeScale = 1f;
+            }
+        }
+        else
+        {
+            timer = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -91,7 +110,7 @@ public class BallBehavior : MonoBehaviour {
             float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
             if (yForce != 0)
             {
-                if (yForce > 100f) StartCoroutine(StopTimeOnBallHit());
+                if (yForce > 100f) StopTimeOnBallHit();
                 float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
                 float xPaddlePos = obj.transform.position.x;
                 float xBallPos = transform.position.x;
@@ -163,10 +182,8 @@ public class BallBehavior : MonoBehaviour {
         rb.AddTorque(force.x, ForceMode2D.Impulse);
     }
 
-    IEnumerator StopTimeOnBallHit()
+    void StopTimeOnBallHit()
     {
-        Time.timeScale = 0.1f;
-        yield return new WaitForSeconds(1f);
-        Time.timeScale = 1f;
+        Time.timeScale = slowDownFactor;
     }
 }

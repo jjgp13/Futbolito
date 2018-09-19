@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebefa44667156ce438e64bef80d3d5e3, type: 3}
+  m_Name: AfricanCup
+  m_EditorClassIdentifier: 
+  tourName: African Cup
+  cupImage: {fileID: 21300008, guid: c54765494d758e44d8be2a3d989a53da, type: 3}
+  teams:
+  - {fileID: 11400000, guid: 9a2e55ae73573e84e9ebdf94ea28c5e3, type: 2}
+  - {fileID: 11400000, guid: e5dae0206a28c89459c9eafd341400d6, type: 2}
+  - {fileID: 11400000, guid: 2e4acb00b603adb498f70c64bcadb2c6, type: 2}
+  - {fileID: 11400000, guid: f248733cd542f884c936243bc14ce004, type: 2}
+  - {fileID: 11400000, guid: 55b8c82a016bee642825ecdcab8c2a28, type: 2}
+  - {fileID: 11400000, guid: c5db077fddddc3a4396b8c646d6d9e67, type: 2}
+  - {fileID: 11400000, guid: 8dc95d510667085498e5112a27a033b3, type: 2}
+  - {fileID: 11400000, guid: 7c28961bbbc70434ab9403f3465feee0, type: 2}
+  - {fileID: 11400000, guid: bae297dc63d577746b9c2c26b1febe68, type: 2}
+  - {fileID: 11400000, guid: a78dc47521be0bc46a64e9421148c10b, type: 2}
+  - {fileID: 11400000, guid: 1bc9b11c2f2a90344af862c3164a3b81, type: 2}
+  - {fileID: 11400000, guid: 9fd42ced3ff6e274cadcd2683007db4e, type: 2}
+  - {fileID: 11400000, guid: 5723e9a123c7d5949ad72b59c53cc4a0, type: 2}
+  - {fileID: 11400000, guid: 60626da7e825f1b418f4150a2affbb7e, type: 2}
+  - {fileID: 11400000, guid: 72f0b93affd5aab42bb2e1e0a88f6484, type: 2}
+  - {fileID: 11400000, guid: e4f7ea0f6cf298e4785dd363eb513c24, type: 2}

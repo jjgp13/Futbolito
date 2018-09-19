@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebefa44667156ce438e64bef80d3d5e3, type: 3}
+  m_Name: EuroCup
+  m_EditorClassIdentifier: 
+  tourName: Euro Cup
+  cupImage: {fileID: 21300006, guid: c54765494d758e44d8be2a3d989a53da, type: 3}
+  teams:
+  - {fileID: 11400000, guid: c3af4b50d19ae6546a0b4f0a67fbd9d3, type: 2}
+  - {fileID: 11400000, guid: 4ed25c59cb2f37c4ca3a957335a81881, type: 2}
+  - {fileID: 11400000, guid: 09b8894b1929ef54fbf2986456c6e39b, type: 2}
+  - {fileID: 11400000, guid: 3a881645d1f18cd4dbd68636b4216663, type: 2}
+  - {fileID: 11400000, guid: 1d6bbe6bea202834bb43039f3371172c, type: 2}
+  - {fileID: 11400000, guid: ba26cf8612b9c61429469e2826694e39, type: 2}
+  - {fileID: 11400000, guid: 435786aa87fd67743bf0ab1c36890c0a, type: 2}
+  - {fileID: 11400000, guid: c40061d5decf94c47b464640b58c8040, type: 2}
+  - {fileID: 11400000, guid: 49efdcea784b0464eb0bfff42f1a1d11, type: 2}
+  - {fileID: 11400000, guid: f935365aefaa8884a98ba820df85ca72, type: 2}
+  - {fileID: 11400000, guid: d99121fc38c0fa74da0f6bd970264f03, type: 2}
+  - {fileID: 11400000, guid: b35c82c4f6d6eff418dc5b653805be9f, type: 2}
+  - {fileID: 11400000, guid: 3255c2b370208eb40881a2d07a2bc355, type: 2}
+  - {fileID: 11400000, guid: cee4afb14ead3854595a299388fbbf01, type: 2}
+  - {fileID: 11400000, guid: 9671782b108b25142ab0e2adedb7dda3, type: 2}
+  - {fileID: 11400000, guid: 62a8896cb0e5e7b4eb75fb2790d3e634, type: 2}
+  - {fileID: 11400000, guid: cbf41572e73175f49b2eb2d7bf0b6112, type: 2}
+  - {fileID: 11400000, guid: d483737acdac257478396232151e0527, type: 2}
+  - {fileID: 11400000, guid: ab869e1869a2f04449b0e8fa7cd696fd, type: 2}
+  - {fileID: 11400000, guid: 8c745b8f5c9ca554e95a9c28e8f7d937, type: 2}
+  - {fileID: 11400000, guid: 61201a8fcd2a9c442a0d56b8f985b627, type: 2}
+  - {fileID: 11400000, guid: b9b304d4269510e4ab35102cb7c05435, type: 2}
+  - {fileID: 11400000, guid: a3fac329035ecd84db08deecacb06a19, type: 2}
+  - {fileID: 11400000, guid: 17a945e10a562fe4bb1fd50009531987, type: 2}

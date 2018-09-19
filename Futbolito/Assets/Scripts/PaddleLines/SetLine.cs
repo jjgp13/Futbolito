@@ -10,6 +10,7 @@ public class SetLine : MonoBehaviour {
     //Number of paddles in line.
     public int numberPaddles;
     private Team teamInfo;
+    private string teamUniform;
     
     //Screen width
     float screenHalfWidthInWorldUnits;
@@ -19,16 +20,16 @@ public class SetLine : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        if(transform.parent.name == "Player")
+        MatchInfo matchInfo = GameObject.Find("MatchInfo").GetComponent<MatchInfo>();
+
+        if (transform.parent.name == "Player")
         {
-            GameObject playerInfo = GameObject.Find("PlayerInfo");
-            if (playerInfo == null) teamInfo = Resources.Load<Team>("Teams/Mexico/MexicoInfo");
-            else teamInfo = playerInfo.GetComponent<TeamPickedInfo>().teamPicked;
+            teamInfo = Resources.Load<Team>("Teams/" + matchInfo.playerTeam.teamName + "/" + matchInfo.playerTeam.teamName);
+            teamUniform = matchInfo.playerUniform;
         } else if(transform.parent.name == "NPC")
         {
-            GameObject npcInfo = GameObject.Find("NpcInfo");
-            if (npcInfo == null) teamInfo = Resources.Load<Team>("Teams/Argentina/ArgentinaInfo");
-            else teamInfo = npcInfo.GetComponent<TeamPickedInfo>().teamPicked;
+            teamInfo = Resources.Load<Team>("Teams/" + matchInfo.comTeam.teamName + "/" + matchInfo.comTeam.teamName);
+            teamUniform = matchInfo.comUniform;
         }
         
         
@@ -54,7 +55,7 @@ public class SetLine : MonoBehaviour {
             iniPos += spawnPos;
             GameObject newPaddle = Instantiate(pad, new Vector2(iniPos, transform.position.y), Quaternion.identity);
             newPaddle.GetComponent<SetAnimations>().teamPicked = teamInfo.teamName;
-            newPaddle.GetComponent<SetAnimations>().SpriteSheetName = teamInfo.spriteSheetName;
+            newPaddle.GetComponent<SetAnimations>().uniform = teamUniform;
             newPaddle.transform.parent = transform;
         }
     }
@@ -64,11 +65,11 @@ public class SetLine : MonoBehaviour {
         switch (lineType)
         {
             case "AttackLine":
-                return teamInfo.attack;
+                return teamInfo.teamFormation.attack;
             case "MidLine":
-                return teamInfo.midfield;
+                return teamInfo.teamFormation.mid;
             case "DefenseLine":
-                return teamInfo.defense;
+                return teamInfo.teamFormation.defense;
             default:
                 return 1;
         }

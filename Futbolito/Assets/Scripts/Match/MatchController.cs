@@ -55,8 +55,8 @@ public class MatchController : MonoBehaviour {
         NPCScore = 0;
         gameIsPaused = false;
 
-        playerTeam = GameObject.Find("PlayerInfo").GetComponent<TeamPickedInfo>().teamPicked;
-        npcTeam = GameObject.Find("NpcInfo").GetComponent<TeamPickedInfo>().teamPicked;
+        //playerTeam = GameObject.Find("MatchInfoObj").GetComponent<MatchInfo>().teamPicked;
+        //npcTeam = GameObject.Find("MatchInfoObj").GetComponent<MatchInfo>().teamPicked;
         SetTeamFlags("PlayerFlags", playerTeam.flag);
         SetTeamFlags("NpcFlags", npcTeam.flag);
 
@@ -126,6 +126,8 @@ public class MatchController : MonoBehaviour {
         pausedMenu_UI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
+        holding_UI.SetActive(true);
+        shooting_UI.SetActive(true);
     }
 
     public void Pause()
@@ -133,6 +135,8 @@ public class MatchController : MonoBehaviour {
         pausedMenu_UI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+        holding_UI.SetActive(false);
+        shooting_UI.SetActive(false);
     }
 
     public void LoadScene(int index)

@@ -7,7 +7,7 @@ public class SetAnimations : MonoBehaviour {
 
     // The name of the sprite sheet to use
     public string teamPicked;
-    public string SpriteSheetName;
+    public string uniform;
 
     // The name of the currently loaded sprite sheet
     private string LoadedSpriteSheetName;
@@ -31,7 +31,7 @@ public class SetAnimations : MonoBehaviour {
     private void LateUpdate()
     {
         // Check if the sprite sheet name has changed (possibly manually in the inspector)
-        if (LoadedSpriteSheetName != SpriteSheetName)
+        if (LoadedSpriteSheetName != uniform)
         {
             // Load the new sprite sheet
             LoadSpriteSheet();
@@ -47,10 +47,10 @@ public class SetAnimations : MonoBehaviour {
     {
         // Load the sprites from a sprite sheet file (png). 
         // Note: The file specified must exist in a folder named Resources
-        var sprites = Resources.LoadAll<Sprite>("Teams/"+teamPicked+"/"+SpriteSheetName);
+        var sprites = Resources.LoadAll<Sprite>("Teams/"+teamPicked+"/"+uniform);
         spriteSheet = sprites.ToDictionary(x => x.name, x => x);
 
         // Remember the name of the sprite sheet in case it is changed later
-        LoadedSpriteSheetName = SpriteSheetName;
+        LoadedSpriteSheetName = uniform;
     }
 }

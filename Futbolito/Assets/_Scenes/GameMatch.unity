@@ -785,11 +785,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c30b7613142314f880a9b4d23c362d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lines:
-  - {fileID: 386671497}
-  - {fileID: 744769888}
-  - {fileID: 1903469819}
-  - {fileID: 408635758}
   ball: {fileID: 0}
 --- !u!1 &132668595
 GameObject:
@@ -3407,7 +3402,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c30b7613142314f880a9b4d23c362d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lines: []
   ball: {fileID: 0}
 --- !u!1 &911517723
 GameObject:
