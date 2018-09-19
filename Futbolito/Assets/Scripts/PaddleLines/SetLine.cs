@@ -20,16 +20,15 @@ public class SetLine : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        MatchInfo matchInfo = GameObject.Find("MatchInfo").GetComponent<MatchInfo>();
 
         if (transform.parent.name == "Player")
         {
-            teamInfo = Resources.Load<Team>("Teams/" + matchInfo.playerTeam.teamName + "/" + matchInfo.playerTeam.teamName);
-            teamUniform = matchInfo.playerUniform;
+            teamInfo = Resources.Load<Team>("Teams/" + MatchInfo._matchInfo.playerTeam.teamName + "/" + MatchInfo._matchInfo.playerTeam.teamName);
+            teamUniform = MatchInfo._matchInfo.playerUniform;
         } else if(transform.parent.name == "NPC")
         {
-            teamInfo = Resources.Load<Team>("Teams/" + matchInfo.comTeam.teamName + "/" + matchInfo.comTeam.teamName);
-            teamUniform = matchInfo.comUniform;
+            teamInfo = Resources.Load<Team>("Teams/" + MatchInfo._matchInfo.comTeam.teamName + "/" + MatchInfo._matchInfo.comTeam.teamName);
+            teamUniform = MatchInfo._matchInfo.comUniform;
         }
         
         

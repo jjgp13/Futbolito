@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 4831436}
   - component: {fileID: 4831435}
   - component: {fileID: 4831434}
+  - component: {fileID: 4831437}
   m_Layer: 5
   m_Name: Formations
   m_TagString: Untagged
@@ -215,6 +216,20 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 4831432}
   m_CullTransparentMesh: 0
+--- !u!114 &4831437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 4831432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1459decbd5847545b8617b0deec724c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressedSprite: {fileID: 21300002, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  notPressedSprite: {fileID: 21300000, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  panelChildren: []
 --- !u!1 &26186898
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +751,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  m_Sprite: {fileID: 21300002, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1426,10 +1441,20 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1151516273}
     - target: {fileID: 1101083044648014, guid: 349c8366b30dc0f428e3d5c26d93003c, type: 2}
       propertyPath: m_Name
       value: BackTeamSelection
+      objectReference: {fileID: 0}
+    - target: {fileID: 114108088053700000, guid: 349c8366b30dc0f428e3d5c26d93003c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MatchSettingMenuAnimation
+      objectReference: {fileID: 0}
+    - target: {fileID: 114108088053700000, guid: 349c8366b30dc0f428e3d5c26d93003c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 349c8366b30dc0f428e3d5c26d93003c, type: 2}
@@ -1605,7 +1630,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1738,7 +1763,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 395731173}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 931924887}
+        m_MethodName: ChangePanelSelection
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &395731173
@@ -1760,8 +1796,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3088,6 +3124,7 @@ GameObject:
   - component: {fileID: 701328051}
   - component: {fileID: 701328053}
   - component: {fileID: 701328052}
+  - component: {fileID: 701328054}
   m_Layer: 5
   m_Name: MatchSettingsPanel
   m_TagString: Untagged
@@ -3155,6 +3192,24 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701328050}
   m_CullTransparentMesh: 0
+--- !u!95 &701328054
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 701328050}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8dc59cd8eb0a78744b6f2a8839bba208, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &705723786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3504,7 +3559,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 770290390}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 931924887}
+        m_MethodName: ChangePanelSelection
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &770290390
@@ -3526,8 +3592,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300002, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3595,7 +3661,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -4087,6 +4153,7 @@ GameObject:
   - component: {fileID: 931924885}
   - component: {fileID: 931924884}
   - component: {fileID: 931924886}
+  - component: {fileID: 931924887}
   m_Layer: 5
   m_Name: TimePanel
   m_TagString: Untagged
@@ -4112,7 +4179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000012159, y: -300}
+  m_AnchoredPosition: {x: 0, y: -300}
   m_SizeDelta: {x: -594.1, y: -1097.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &931924884
@@ -4172,6 +4239,20 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &931924887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 931924882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1459decbd5847545b8617b0deec724c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressedSprite: {fileID: 21300002, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  notPressedSprite: {fileID: 21300000, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  panelChildren: []
 --- !u!1 &951564797
 GameObject:
   m_ObjectHideFlags: 0
@@ -5150,8 +5231,7 @@ MonoBehaviour:
   teamsRegion: {fileID: 951564799}
   buttonLeft: {fileID: 1384516997}
   buttonRight: {fileID: 1479489869}
-  playerInfo: {fileID: 1271968916}
-  comInfo: {fileID: 1913133147}
+  matchSettingMenu: {fileID: 701328050}
   matchInfo: {fileID: 1566417761}
   setMatchBtn: {fileID: 1679747775}
 --- !u!1 &1161684224
@@ -5165,6 +5245,7 @@ GameObject:
   - component: {fileID: 1161684228}
   - component: {fileID: 1161684227}
   - component: {fileID: 1161684226}
+  - component: {fileID: 1161684229}
   m_Layer: 5
   m_Name: DifficultyPanel
   m_TagString: Untagged
@@ -5250,6 +5331,20 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1161684224}
   m_CullTransparentMesh: 0
+--- !u!114 &1161684229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1161684224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1459decbd5847545b8617b0deec724c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressedSprite: {fileID: 21300002, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  notPressedSprite: {fileID: 21300000, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  panelChildren: []
 --- !u!1 &1188485033
 GameObject:
   m_ObjectHideFlags: 0
@@ -7372,10 +7467,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTeam: {fileID: 0}
-  playerLineUp: 000000000000000000000000
+  playerLineUp: 
   playerUniform: 
   comTeam: {fileID: 0}
-  comLineUp: 000000000000000000000000
+  comLineUp: 
   comUniform: 
   matchTime: 0
   difficulty: 0
@@ -7454,7 +7549,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1592469136}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 931924887}
+        m_MethodName: ChangePanelSelection
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1592469136
@@ -7476,8 +7582,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7785,7 +7891,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1679747776}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1151516273}
+        m_MethodName: MatchSettingMenuAnimation
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1679747776
@@ -7913,6 +8030,7 @@ GameObject:
   - component: {fileID: 1810786138}
   - component: {fileID: 1810786137}
   - component: {fileID: 1810786136}
+  - component: {fileID: 1810786139}
   m_Layer: 5
   m_Name: Formations
   m_TagString: Untagged
@@ -8004,6 +8122,20 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1810786134}
   m_CullTransparentMesh: 0
+--- !u!114 &1810786139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1810786134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1459decbd5847545b8617b0deec724c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pressedSprite: {fileID: 21300002, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  notPressedSprite: {fileID: 21300000, guid: d3619a184f7b9cf4fa274d2d358929fd, type: 3}
+  panelChildren: []
 --- !u!1 &1818379142
 GameObject:
   m_ObjectHideFlags: 0

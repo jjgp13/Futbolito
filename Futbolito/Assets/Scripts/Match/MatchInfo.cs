@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MatchInfo : MonoBehaviour{
+public class MatchInfo : MonoBehaviour {
 
+    public static MatchInfo _matchInfo;
     public Team playerTeam;
     public int[] playerLineUp;
     public string playerUniform;
@@ -14,10 +15,10 @@ public class MatchInfo : MonoBehaviour{
     public int matchTime;
     public int difficulty;
 
-	// Use this for initialization
-	void Start () {
-        DontDestroyOnLoad(gameObject);
-	}
+    private void Awake()
+    {
+        _matchInfo = this;
+    }
 
     public void SetFlags(string tag, Sprite flag, string teamName)
     {

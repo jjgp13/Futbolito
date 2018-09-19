@@ -23,12 +23,16 @@ public class QuickMatchMenuController : MonoBehaviour {
     public Button buttonLeft, buttonRight;
     int begin, end;
 
-    public GameObject playerInfo;
-    public GameObject comInfo;
-
+    public GameObject matchSettingMenu;
     public GameObject matchInfo;
     public Button setMatchBtn;
 
+
+    // Use this for initialization
+    void Start()
+    {
+        DontDestroyOnLoad(matchInfo);
+    }
 
     public void SelectedConf(string region)
     {
@@ -147,17 +151,22 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     void ReturnTeamSelected(TeamSelected btnInfo)
     {
-        MatchInfo info = matchInfo.GetComponent<MatchInfo>();
-        if (info.playerTeam == null)
+        if (MatchInfo._matchInfo.playerTeam == null)
         {
-            info.playerTeam = btnInfo.team;
-            info.SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            MatchInfo._matchInfo.playerTeam = btnInfo.team;
+            MatchInfo._matchInfo.SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
         }
         else
         {
-            info.comTeam = btnInfo.team;
-            info.SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            MatchInfo._matchInfo.comTeam = btnInfo.team;
+            MatchInfo._matchInfo.SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
         }
+    }
+
+    public void MatchSettingMenuAnimation(bool active)
+    {
+        Animator anim = matchSettingMenu.GetComponent<Animator>();
+        anim.SetBool("Show", active);
     }
 
 }
