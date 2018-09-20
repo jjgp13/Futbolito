@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class QuickMatchMenuController : MonoBehaviour {
 
+    //This game ob
+    public GameObject matchInfo;
 
     //Reference to panel that handles teams
     public GameObject teamsPanel;
@@ -23,9 +25,10 @@ public class QuickMatchMenuController : MonoBehaviour {
     public Button buttonLeft, buttonRight;
     int begin, end;
 
-    public GameObject matchSettingMenu;
-    public GameObject matchInfo;
     public Button setMatchBtn;
+    public GameObject matchSettingMenu;
+    public Image playerFormationImage, comFormationImage;
+    
 
 
     // Use this for initialization
@@ -149,24 +152,60 @@ public class QuickMatchMenuController : MonoBehaviour {
         mapRegion.sprite = mapSprite;
     }
 
+    /// <summary>
+    /// Get info of the team button that has been pressed and set its info to the match game object info
+    /// Set default values.
+    /// </summary>
+    /// <param name="btnInfo"></param>
     void ReturnTeamSelected(TeamSelected btnInfo)
     {
         if (MatchInfo._matchInfo.playerTeam == null)
         {
+            //Set info needed for Match scene
             MatchInfo._matchInfo.playerTeam = btnInfo.team;
-            MatchInfo._matchInfo.SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            
+            MatchInfo._matchInfo.playerLineUp.defense = btnInfo.team.teamFormation.defense;
+            MatchInfo._matchInfo.playerLineUp.mid = btnInfo.team.teamFormation.mid;
+            MatchInfo._matchInfo.playerLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.playerUniform = "Local";
+
+            //Set UI given team selected
+            SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            playerFormationImage.sprite = btnInfo.team.formationImage;
         }
         else
         {
+            //Set info needed for Match scene
             MatchInfo._matchInfo.comTeam = btnInfo.team;
-            MatchInfo._matchInfo.SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            MatchInfo._matchInfo.comLineUp.defense = btnInfo.team.teamFormation.defense;
+            MatchInfo._matchInfo.comLineUp.mid = btnInfo.team.teamFormation.mid;
+            MatchInfo._matchInfo.comLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.comUniform = "Local";
+
+            //Set UI given team selected
+            SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            comFormationImage.sprite = btnInfo.team.formationImage;
         }
     }
 
-    public void MatchSettingMenuAnimation(bool active)
+    //On click MatchSettings button it will show the match settings panel
+    public void MatchSettingMenuAnimation(bool state)
     {
         Animator anim = matchSettingMenu.GetComponent<Animator>();
-        anim.SetBool("Show", active);
+        anim.SetBool("Show", state);
     }
 
+    //On click Team button this will set the UI flags in main panel and match settings panel
+    void SetFlags(string tag, Sprite flag, string teamName)
+    {
+        GameObject[] flags = GameObject.FindGameObjectsWithTag(tag);
+        foreach (var item in flags)
+        {
+            item.GetComponent<Image>().sprite = flag;
+            item.transform.GetChild(1).GetComponent<Text>().text = teamName;
+        }
+    }
+
+    //Set uniforms buttons for a team
+    //void SetUniforms(string tag)
 }
