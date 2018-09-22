@@ -54,8 +54,8 @@ public class MatchController : MonoBehaviour {
         NPCScore = 0;
         gameIsPaused = false;
 
-        //playerTeam = GameObject.Find("MatchInfoObj").GetComponent<MatchInfo>().teamPicked;
-        //npcTeam = GameObject.Find("MatchInfoObj").GetComponent<MatchInfo>().teamPicked;
+        playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
+        npcTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().comTeam;
         SetTeamFlags("PlayerFlags", playerTeam.flag);
         SetTeamFlags("NpcFlags", npcTeam.flag);
 

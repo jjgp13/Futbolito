@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuickMatchMenuController : MonoBehaviour {
 
@@ -27,10 +28,8 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     public Button setMatchBtn;
     public GameObject matchSettingMenu;
-    public Image playerFormationImage, comFormationImage;
+    public GameObject playerUI, comUI;
     
-
-
     // Use this for initialization
     void Start()
     {
@@ -171,7 +170,7 @@ public class QuickMatchMenuController : MonoBehaviour {
 
             //Set UI given team selected
             SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
-            playerFormationImage.sprite = btnInfo.team.formationImage;
+            SetUI(playerUI, btnInfo.team);
         }
         else
         {
@@ -184,7 +183,7 @@ public class QuickMatchMenuController : MonoBehaviour {
 
             //Set UI given team selected
             SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
-            comFormationImage.sprite = btnInfo.team.formationImage;
+            SetUI(comUI, btnInfo.team);
         }
     }
 
@@ -206,6 +205,20 @@ public class QuickMatchMenuController : MonoBehaviour {
         }
     }
 
-    //Set uniforms buttons for a team
-    //void SetUniforms(string tag)
+    void SetUI(GameObject parent, Team team)
+    {
+
+        //Set Uniforms
+        Image local = parent.transform.Find("Uniforms/LocalU/Uniforme").GetComponent<Image>();
+        Image visit = parent.transform.Find("Uniforms/VisitU/Uniforme").GetComponent<Image>();
+        local.sprite = team.firstU;
+        visit.sprite = team.secondU;
+        //Set lineup image
+        parent.transform.Find("FormationImage").GetComponent<Image>().sprite = team.formationImage;
+    }
+
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
 }
