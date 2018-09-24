@@ -26,6 +26,9 @@ public class MatchController : MonoBehaviour {
 
     public Text textPauseScore;
 
+    public Text timeText;
+    private float timer;
+
     private int playerScore;
     public int PlayerScore
     {
@@ -54,6 +57,11 @@ public class MatchController : MonoBehaviour {
         NPCScore = 0;
         gameIsPaused = false;
 
+        //Set time
+        timer = MatchInfo._matchInfo.matchTime * 60;
+        timeText.text = timer + ":00";
+
+
         playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
         npcTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().comTeam;
         SetTeamFlags("PlayerFlags", playerTeam.flag);
@@ -62,6 +70,15 @@ public class MatchController : MonoBehaviour {
         gameFinishedMenu_UI.SetActive(false);
         pausedMenu_UI.SetActive(false);
         golAnimation_UI.SetActive(false);
+    }
+
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+
+        string minutes = Mathf.Floor(timer / 60).ToString("00");
+        string seconds = (timer % 60).ToString("00");
+        timeText.text = string.Format("{0}:{1}", minutes, seconds);
     }
 
 

@@ -19,5 +19,4 @@ public class MatchInfo : MonoBehaviour {
     {
         _matchInfo = this;
     }
-
 }

@@ -11,6 +11,7 @@ public class SetLine : MonoBehaviour {
     public int numberPaddles;
     private Team teamInfo;
     private string teamUniform;
+    private Formation teamFormation;
     
     //Screen width
     float screenHalfWidthInWorldUnits;
@@ -25,10 +26,12 @@ public class SetLine : MonoBehaviour {
         {
             teamInfo = Resources.Load<Team>("Teams/" + MatchInfo._matchInfo.playerTeam.teamName + "/" + MatchInfo._matchInfo.playerTeam.teamName);
             teamUniform = MatchInfo._matchInfo.playerUniform;
+            teamFormation = MatchInfo._matchInfo.playerLineUp;
         } else if(transform.parent.name == "NPC")
         {
             teamInfo = Resources.Load<Team>("Teams/" + MatchInfo._matchInfo.comTeam.teamName + "/" + MatchInfo._matchInfo.comTeam.teamName);
             teamUniform = MatchInfo._matchInfo.comUniform;
+            teamFormation = MatchInfo._matchInfo.comLineUp;
         }
         
         
@@ -64,11 +67,11 @@ public class SetLine : MonoBehaviour {
         switch (lineType)
         {
             case "AttackLine":
-                return teamInfo.teamFormation.attack;
+                return teamFormation.attack;
             case "MidLine":
-                return teamInfo.teamFormation.mid;
+                return teamFormation.mid;
             case "DefenseLine":
-                return teamInfo.teamFormation.defense;
+                return teamFormation.defense;
             default:
                 return 1;
         }

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class QuickMatchMenuController : MonoBehaviour {
 
     //This game ob
-    public GameObject matchInfo;
+    public MatchInfo matchInfo;
 
     //Reference to panel that handles teams
     public GameObject teamsPanel;
@@ -29,6 +29,7 @@ public class QuickMatchMenuController : MonoBehaviour {
     public Button setMatchBtn;
     public GameObject matchSettingMenu;
     public GameObject playerUI, comUI;
+    public GameObject notTeamSelectedPanel;
     
     // Use this for initialization
     void Start()
@@ -190,8 +191,15 @@ public class QuickMatchMenuController : MonoBehaviour {
     //On click MatchSettings button it will show the match settings panel
     public void MatchSettingMenuAnimation(bool state)
     {
-        Animator anim = matchSettingMenu.GetComponent<Animator>();
-        anim.SetBool("Show", state);
+        if(MatchInfo._matchInfo.playerTeam == null || MatchInfo._matchInfo.comTeam == null) notTeamSelectedPanel.SetActive(true);
+        else
+        {
+            Animator anim = matchSettingMenu.GetComponent<Animator>();
+            anim.SetBool("Show", state);
+            MatchInfo._matchInfo.matchTime = 4;
+            MatchInfo._matchInfo.difficulty = 1;
+        }
+
     }
 
     //On click Team button this will set the UI flags in main panel and match settings panel
@@ -207,7 +215,6 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     void SetUI(GameObject parent, Team team)
     {
-
         //Set Uniforms
         Image local = parent.transform.Find("Uniforms/LocalU/Uniforme").GetComponent<Image>();
         Image visit = parent.transform.Find("Uniforms/VisitU/Uniforme").GetComponent<Image>();
@@ -220,5 +227,10 @@ public class QuickMatchMenuController : MonoBehaviour {
     public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void HidePanel(GameObject panel)
+    {
+        panel.SetActive(false);
     }
 }

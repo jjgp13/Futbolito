@@ -8,7 +8,6 @@ public class PanelSelection : MonoBehaviour {
     public Sprite pressedSprite, notPressedSprite;
     public List<GameObject> panelChildren;
     public Image formationImage;
-    public MatchInfo matchInfo;
 
     private void Start()
     {
@@ -20,6 +19,7 @@ public class PanelSelection : MonoBehaviour {
         }
     }
 
+    //Change color of the button pressed
     public void ChangePanelSelection(int btnIndex)
     {
         for (int i = 0; i < panelChildren.Count; i++)
@@ -29,30 +29,44 @@ public class PanelSelection : MonoBehaviour {
         }
     }
 
-    void GetLineUp(string btnText)
-    {
-        int[] lineup = new int[3];
-        string[] lines = btnText.Split(new char[] { '-' });
-        for (int i = 0; i < lines.Length; i++)
-        {
-            lineup[i] = int.Parse(lines[i]);
-        }
-        if (gameObject.transform.parent.name == "PlayerUI")
-        {
-            matchInfo.playerLineUp.defense = lineup[0];
-            matchInfo.playerLineUp.mid = lineup[1];
-            matchInfo.playerLineUp.attack = lineup[2];
-        }
-        if (gameObject.transform.parent.name == "ComUI")
-        {
-            matchInfo.comLineUp.defense = lineup[0];
-            matchInfo.comLineUp.mid = lineup[1];
-            matchInfo.comLineUp.attack = lineup[2];
-        }   
-    }
-
+    //Change formation sprite given the button pressed
     public void ChangeFormationImage(Sprite lineUp)
     {
         formationImage.sprite = lineUp;
+    }
+
+    //Set teams line up given the str of the button pressed
+    public void SetLineUp(Button lineup)
+    {
+        string formation = lineup.transform.GetChild(0).GetComponent<Text>().text;
+        string grandParent = transform.parent.gameObject.name;
+        Formation line = new Formation();
+        string[] lineByline = formation.Split(new char[] { '-' });
+        line.defense = int.Parse(lineByline[0]);
+        line.mid = int.Parse(lineByline[1]);
+        line.attack = int.Parse(lineByline[2]);
+
+        if (grandParent == "PlayerUI") MatchInfo._matchInfo.playerLineUp = line;
+        else if (grandParent == "ComUI") MatchInfo._matchInfo.comLineUp = line;
+    }
+
+    public void SetTime(int time)
+    {
+        MatchInfo._matchInfo.matchTime = time;
+    }
+
+    public void SetDifficulty(int difficulty)
+    {
+        //0 is easy
+        //1 is normal
+        //2 is hard
+        MatchInfo._matchInfo.difficulty = difficulty;
+    }
+
+    public void SetUniform(string uniform)
+    {
+        string grandParent = transform.parent.gameObject.name;
+        if (grandParent == "PlayerUI") MatchInfo._matchInfo.playerUniform = uniform;
+        else if (grandParent == "ComUI") MatchInfo._matchInfo.comUniform = uniform;
     }
 }
