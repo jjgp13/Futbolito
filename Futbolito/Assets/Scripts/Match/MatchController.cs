@@ -29,6 +29,8 @@ public class MatchController : MonoBehaviour {
     public Text timeText;
     private float timer;
 
+    public GameObject intialAnimationObject;
+
     private int playerScore;
     public int PlayerScore
     {
@@ -53,6 +55,7 @@ public class MatchController : MonoBehaviour {
 
     private void Start()
     {
+        StartCoroutine(InitAnimation());
         playerScore = 0;
         NPCScore = 0;
         gameIsPaused = false;
@@ -65,7 +68,7 @@ public class MatchController : MonoBehaviour {
         playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
         npcTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().comTeam;
         SetTeamFlags("PlayerFlags", playerTeam.flag);
-        SetTeamFlags("NpcFlags", npcTeam.flag);
+        SetTeamFlags("ComFlags", npcTeam.flag);
 
         gameFinishedMenu_UI.SetActive(false);
         pausedMenu_UI.SetActive(false);
@@ -160,5 +163,9 @@ public class MatchController : MonoBehaviour {
         SceneManager.LoadScene(index);
     }
 
-
+    IEnumerator InitAnimation()
+    {
+        yield return new WaitForSeconds(1);
+        intialAnimationObject.SetActive(true);
+    }
 }
