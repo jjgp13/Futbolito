@@ -13,8 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: El Salvador
   flag: {fileID: 21300094, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
-  formation: {fileID: 21300004, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  defense: 4
-  midfield: 5
-  attack: 1
-  spriteSheetName: Salvador
+  formationImage: {fileID: 21300008, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  teamFormation:
+    defense: 4
+    mid: 4
+    attack: 2
+  firstU: {fileID: 21300000, guid: ef0c386b225d0294b8622769b97d7471, type: 3}
+  secondU: {fileID: 21300002, guid: ef0c386b225d0294b8622769b97d7471, type: 3}

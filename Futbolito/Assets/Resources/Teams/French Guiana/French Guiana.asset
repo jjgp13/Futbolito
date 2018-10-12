@@ -13,8 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: French Guiana
   flag: {fileID: 21300086, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
-  formation: {fileID: 21300010, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  defense: 5
-  midfield: 4
-  attack: 1
-  spriteSheetName: GuyanaLocal
+  formationImage: {fileID: 21300000, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  teamFormation:
+    defense: 4
+    mid: 4
+    attack: 2
+  firstU: {fileID: 21300000, guid: 5d8331423378d2044912a94ec4af304f, type: 3}
+  secondU: {fileID: 21300002, guid: 5d8331423378d2044912a94ec4af304f, type: 3}
