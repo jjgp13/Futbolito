@@ -12,6 +12,8 @@ TagManager:
   - PlayerFlags
   - FlagOutline
   - ComFlags
+  - PlayerUniforms
+  - ComUniforms
   layers:
   - Default
   - TransparentFX

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuickMatchMenuController : MonoBehaviour {
 
+    //This game ob
+    public MatchInfo matchInfo;
 
     //Reference to panel that handles teams
     public GameObject teamsPanel;
@@ -23,12 +26,16 @@ public class QuickMatchMenuController : MonoBehaviour {
     public Button buttonLeft, buttonRight;
     int begin, end;
 
-    public GameObject playerInfo;
-    public GameObject comInfo;
-
-    public GameObject matchInfo;
     public Button setMatchBtn;
-
+    public GameObject matchSettingMenu;
+    public GameObject playerUI, comUI;
+    public GameObject notTeamSelectedPanel;
+    
+    // Use this for initialization
+    void Start()
+    {
+        DontDestroyOnLoad(matchInfo);
+    }
 
     public void SelectedConf(string region)
     {
@@ -145,19 +152,85 @@ public class QuickMatchMenuController : MonoBehaviour {
         mapRegion.sprite = mapSprite;
     }
 
+    /// <summary>
+    /// Get info of the team button that has been pressed and set its info to the match game object info
+    /// Set default values.
+    /// </summary>
+    /// <param name="btnInfo"></param>
     void ReturnTeamSelected(TeamSelected btnInfo)
     {
-        MatchInfo info = matchInfo.GetComponent<MatchInfo>();
-        if (info.playerTeam == null)
+        if (MatchInfo._matchInfo.playerTeam == null)
         {
-            info.playerTeam = btnInfo.team;
-            info.SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            //Set info needed for Match scene
+            MatchInfo._matchInfo.playerTeam = btnInfo.team;
+            
+            MatchInfo._matchInfo.playerLineUp.defense = btnInfo.team.teamFormation.defense;
+            MatchInfo._matchInfo.playerLineUp.mid = btnInfo.team.teamFormation.mid;
+            MatchInfo._matchInfo.playerLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.playerUniform = "Local";
+
+            //Set UI given team selected
+            SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            SetUI(playerUI, btnInfo.team);
         }
         else
         {
-            info.comTeam = btnInfo.team;
-            info.SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            //Set info needed for Match scene
+            MatchInfo._matchInfo.comTeam = btnInfo.team;
+            MatchInfo._matchInfo.comLineUp.defense = btnInfo.team.teamFormation.defense;
+            MatchInfo._matchInfo.comLineUp.mid = btnInfo.team.teamFormation.mid;
+            MatchInfo._matchInfo.comLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.comUniform = "Local";
+
+            //Set UI given team selected
+            SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            SetUI(comUI, btnInfo.team);
         }
     }
 
+    //On click MatchSettings button it will show the match settings panel
+    public void MatchSettingMenuAnimation(bool state)
+    {
+        if(MatchInfo._matchInfo.playerTeam == null || MatchInfo._matchInfo.comTeam == null) notTeamSelectedPanel.SetActive(true);
+        else
+        {
+            Animator anim = matchSettingMenu.GetComponent<Animator>();
+            anim.SetBool("Show", state);
+            MatchInfo._matchInfo.matchTime = 4;
+            MatchInfo._matchInfo.difficulty = 1;
+        }
+
+    }
+
+    //On click Team button this will set the UI flags in main panel and match settings panel
+    void SetFlags(string tag, Sprite flag, string teamName)
+    {
+        GameObject[] flags = GameObject.FindGameObjectsWithTag(tag);
+        foreach (var item in flags)
+        {
+            item.GetComponent<Image>().sprite = flag;
+            item.transform.GetChild(1).GetComponent<Text>().text = teamName;
+        }
+    }
+
+    void SetUI(GameObject parent, Team team)
+    {
+        //Set Uniforms
+        Image local = parent.transform.Find("Uniforms/LocalU/Uniforme").GetComponent<Image>();
+        Image visit = parent.transform.Find("Uniforms/VisitU/Uniforme").GetComponent<Image>();
+        local.sprite = team.firstU;
+        visit.sprite = team.secondU;
+        //Set lineup image
+        parent.transform.Find("FormationImage").GetComponent<Image>().sprite = team.formationImage;
+    }
+
+    public void ChangeScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
+    public void HidePanel(GameObject panel)
+    {
+        panel.SetActive(false);
+    }
 }

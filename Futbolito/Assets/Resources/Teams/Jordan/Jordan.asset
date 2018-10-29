@@ -13,8 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: Jordan
   flag: {fileID: 21300156, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
-  formation: {fileID: 21300014, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  defense: 3
-  midfield: 4
-  attack: 3
-  spriteSheetName: JordaniaLocal
+  formationImage: {fileID: 21300012, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  teamFormation:
+    defense: 5
+    mid: 2
+    attack: 3
+  firstU: {fileID: 21300002, guid: cec6a5d570eeb0d4b8208f8de0bbd757, type: 3}
+  secondU: {fileID: 21300002, guid: a02758891ba9cbe458afb031719cd349, type: 3}

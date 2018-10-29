@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -27,6 +26,11 @@ public class MatchController : MonoBehaviour {
 
     public Text textPauseScore;
 
+    public Text timeText;
+    private float timer;
+
+    public GameObject intialAnimationObject;
+
     private int playerScore;
     public int PlayerScore
     {
@@ -51,18 +55,33 @@ public class MatchController : MonoBehaviour {
 
     private void Start()
     {
+        StartCoroutine(InitAnimation());
         playerScore = 0;
         NPCScore = 0;
         gameIsPaused = false;
 
-        //playerTeam = GameObject.Find("MatchInfoObj").GetComponent<MatchInfo>().teamPicked;
-        //npcTeam = GameObject.Find("MatchInfoObj").GetComponent<MatchInfo>().teamPicked;
+        //Set time
+        timer = MatchInfo._matchInfo.matchTime * 60;
+        timeText.text = timer + ":00";
+
+
+        playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
+        npcTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().comTeam;
         SetTeamFlags("PlayerFlags", playerTeam.flag);
-        SetTeamFlags("NpcFlags", npcTeam.flag);
+        SetTeamFlags("ComFlags", npcTeam.flag);
 
         gameFinishedMenu_UI.SetActive(false);
         pausedMenu_UI.SetActive(false);
         golAnimation_UI.SetActive(false);
+    }
+
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+
+        string minutes = Mathf.Floor(timer / 60).ToString("00");
+        string seconds = (timer % 60).ToString("00");
+        timeText.text = string.Format("{0}:{1}", minutes, seconds);
     }
 
 
@@ -144,5 +163,9 @@ public class MatchController : MonoBehaviour {
         SceneManager.LoadScene(index);
     }
 
-
+    IEnumerator InitAnimation()
+    {
+        yield return new WaitForSeconds(1);
+        intialAnimationObject.SetActive(true);
+    }
 }
