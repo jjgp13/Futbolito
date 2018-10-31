@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/Tournament.unity
+- path: Assets/_Scenes/GameMatch.unity
   isLoaded: 1
   isActive: 1
