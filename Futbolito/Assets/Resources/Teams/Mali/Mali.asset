@@ -13,8 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: Mali
   flag: {fileID: 21300134, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
-  formation: {fileID: 21300004, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  defense: 4
-  midfield: 5
-  attack: 1
-  spriteSheetName: MaliLocal
+  formationImage: {fileID: 21300016, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  teamFormation:
+    defense: 3
+    mid: 5
+    attack: 2
+  firstU: {fileID: 0}
+  secondU: {fileID: 0}
