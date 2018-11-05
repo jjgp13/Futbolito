@@ -22,8 +22,7 @@ public class GolController : MonoBehaviour {
             if (gameObject.name == "PlayerGol" || gameObject.name == "NPCGol")
                 MatchController._matchController.AdjustScore(gameObject.name);
             StartCoroutine(MatchController._matchController.GolAnimation());
-            
-            
+
             Instantiate(GolExplosionAnimation, other.gameObject.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
         }

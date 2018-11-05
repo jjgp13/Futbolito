@@ -31,6 +31,8 @@ public class MatchController : MonoBehaviour {
 
     public Text timeText;
     private float timer;
+    private bool startMatch;
+    private bool endMatch;
 
     private int playerScore;
     public int PlayerScore
@@ -63,7 +65,8 @@ public class MatchController : MonoBehaviour {
 
         //Set time
         timer = MatchInfo._matchInfo.matchTime * 60;
-        timeText.text = timer + ":00";
+        timeText.text = "TIME";
+        endMatch = true;
 
 
         playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
@@ -80,11 +83,24 @@ public class MatchController : MonoBehaviour {
 
     private void Update()
     {
-        timer -= Time.deltaTime;
+        if(timer > 0 && startMatch && ball != null)
+        {
+            timer -= Time.deltaTime;
 
-        string minutes = Mathf.Floor(timer / 60).ToString("00");
-        string seconds = (timer % 60).ToString("00");
-        timeText.text = string.Format("{0}:{1}", minutes, seconds);
+            string minutes = Mathf.Floor(timer / 60).ToString("00");
+            string seconds = (timer % 60).ToString("00");
+            timeText.text = string.Format("{0}:{1}", minutes, seconds);
+        }
+
+        if (timer <= 0)
+        {
+            timeText.text = "00:00";
+            if (endMatch)
+            {
+                StartCoroutine(PlayEndMatchAnimation());
+                endMatch = false;
+            }
+        }
     }
 
 
@@ -107,10 +123,8 @@ public class MatchController : MonoBehaviour {
 
     public void CheckScore()
     {
-        if(playerScore == 5)
-        {
-
-        }
+        if (playerScore == 5 || NPCScore == 5) StartCoroutine(PlayEndMatchAnimation());
+        else SpawnBall();
     }
 
     public void SpawnBall()
@@ -141,8 +155,18 @@ public class MatchController : MonoBehaviour {
 
     public IEnumerator PlayEndMatchAnimation()
     {
-        yield return new WaitForSeconds(4f);
-        //gameFinishedMenu_UI.SetActive(true);
+        endMatch = true;
+        Destroy(ball);
+        yield return new WaitForSeconds(2f);
+        Menu_UI.SetActive(true);
+        if (playerScore > NPCScore)
+            StatusTitleMenu.text = "YOU WIN!";
+        else if (playerScore < NPCScore)
+            StatusTitleMenu.text = "YOU LOSE!";
+        else
+            StatusTitleMenu.text = "DRAW!";
+        pausePanel.SetActive(false);
+        finishPanel.SetActive(true);
         SetUIState(false);
     }
 
@@ -179,5 +203,7 @@ public class MatchController : MonoBehaviour {
     {
         yield return new WaitForSeconds(1);
         intialAnimationObject.SetActive(true);
+        yield return new WaitForSeconds(4);
+        startMatch = true;
     }
 }

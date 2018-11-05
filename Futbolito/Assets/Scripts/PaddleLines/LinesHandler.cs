@@ -26,7 +26,7 @@ public class LinesHandler : MonoBehaviour {
     private void GetClosetsLines()
     {
         float ballPos = ball.transform.position.y;
-        if (ballPos < -4.25f)
+        if (ballPos < -4.6f)
             ActivateLines(new bool[] {true, false, false, false});
         else if (ballPos < -2.1f)
             ActivateLines(new bool[] { true, true, false, false });
