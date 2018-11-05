@@ -13,8 +13,13 @@ public class MatchController : MonoBehaviour {
     public Team playerTeam;
     public Team npcTeam;
 
-    public GameObject gameFinishedMenu_UI;
-    public GameObject pausedMenu_UI;
+    public GameObject intialAnimationObject;
+
+    public GameObject Menu_UI;
+    public GameObject pausePanel;
+    public GameObject finishPanel;
+    public Text StatusTitleMenu;
+    public Text matchTextScore;
 
     public GameObject golAnimation_UI;
     public GameObject playerScore_UI;
@@ -24,12 +29,8 @@ public class MatchController : MonoBehaviour {
     public GameObject shooting_UI;
     public GameObject pauseBtn_UI;
 
-    public Text textPauseScore;
-
     public Text timeText;
     private float timer;
-
-    public GameObject intialAnimationObject;
 
     private int playerScore;
     public int PlayerScore
@@ -70,8 +71,10 @@ public class MatchController : MonoBehaviour {
         SetTeamFlags("PlayerFlags", playerTeam.flag);
         SetTeamFlags("ComFlags", npcTeam.flag);
 
-        gameFinishedMenu_UI.SetActive(false);
-        pausedMenu_UI.SetActive(false);
+
+        pausePanel.SetActive(true);
+        finishPanel.SetActive(false);
+        Menu_UI.SetActive(false);
         golAnimation_UI.SetActive(false);
     }
 
@@ -99,6 +102,15 @@ public class MatchController : MonoBehaviour {
             NPCScore_UI.transform.GetChild(NPCScore-1).GetComponent<Image>().color = Color.white;
         }
         UpdateUIScore();
+        CheckScore();
+    }
+
+    public void CheckScore()
+    {
+        if(playerScore == 5)
+        {
+
+        }
     }
 
     public void SpawnBall()
@@ -124,13 +136,13 @@ public class MatchController : MonoBehaviour {
 
     public void UpdateUIScore()
     {
-        textPauseScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
+        matchTextScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
 
     public IEnumerator PlayEndMatchAnimation()
     {
         yield return new WaitForSeconds(4f);
-        gameFinishedMenu_UI.SetActive(true);
+        //gameFinishedMenu_UI.SetActive(true);
         SetUIState(false);
     }
 
@@ -142,7 +154,7 @@ public class MatchController : MonoBehaviour {
 
     public void Resume()
     {
-        pausedMenu_UI.SetActive(false);
+        Menu_UI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
         holding_UI.SetActive(true);
@@ -151,7 +163,7 @@ public class MatchController : MonoBehaviour {
 
     public void Pause()
     {
-        pausedMenu_UI.SetActive(true);
+        Menu_UI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
         holding_UI.SetActive(false);
