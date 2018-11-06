@@ -87,6 +87,7 @@ public class BallBehavior : MonoBehaviour {
         Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce), Random.Range(-initalBallForce, initalBallForce));
         rb.AddForce(initialVel);
         kickOff = true;
+        MatchController._matchController.ballInGame = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)

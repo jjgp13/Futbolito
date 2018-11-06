@@ -25,6 +25,7 @@ public class GolController : MonoBehaviour {
 
             Instantiate(GolExplosionAnimation, other.gameObject.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            MatchController._matchController.ballInGame = false;
         }
     }
 

@@ -31,8 +31,8 @@ public class MatchController : MonoBehaviour {
 
     public Text timeText;
     private float timer;
-    private bool startMatch;
     private bool endMatch;
+    public bool ballInGame;
 
     private int playerScore;
     public int PlayerScore
@@ -66,14 +66,13 @@ public class MatchController : MonoBehaviour {
         //Set time
         timer = MatchInfo._matchInfo.matchTime * 60;
         timeText.text = "TIME";
-        endMatch = true;
-
+        ballInGame = false;
+        endMatch = false;
 
         playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
         npcTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().comTeam;
         SetTeamFlags("PlayerFlags", playerTeam.flag);
         SetTeamFlags("ComFlags", npcTeam.flag);
-
 
         pausePanel.SetActive(true);
         finishPanel.SetActive(false);
@@ -83,7 +82,7 @@ public class MatchController : MonoBehaviour {
 
     private void Update()
     {
-        if(timer > 0 && startMatch && ball != null)
+        if(timer > 0 && ballInGame)
         {
             timer -= Time.deltaTime;
 
@@ -94,15 +93,18 @@ public class MatchController : MonoBehaviour {
 
         if (timer <= 0)
         {
-            timeText.text = "00:00";
-            if (endMatch)
-            {
-                StartCoroutine(PlayEndMatchAnimation());
-                endMatch = false;
-            }
+            endMatch = true;
+            timeText.text = "FINISH";
+        }
+
+        if (endMatch)
+        {
+            timer = 1;
+            StartCoroutine(PlayEndMatchAnimation());
+            ballInGame = false;
+            endMatch = false;
         }
     }
-
 
     public void AdjustScore(string golName)
     {
@@ -124,7 +126,10 @@ public class MatchController : MonoBehaviour {
     public void CheckScore()
     {
         if (playerScore == 5 || NPCScore == 5) StartCoroutine(PlayEndMatchAnimation());
-        else SpawnBall();
+        else
+        {
+            SpawnBall();
+        }
     }
 
     public void SpawnBall()
@@ -138,7 +143,7 @@ public class MatchController : MonoBehaviour {
         SetUIState(false);
         yield return new WaitForSeconds(4f);
         golAnimation_UI.SetActive(false);
-        SetUIState(true);
+        if(playerScore < 5 && NPCScore < 5) SetUIState(true);
     }
 
     public void SetUIState(bool active)
@@ -155,9 +160,11 @@ public class MatchController : MonoBehaviour {
 
     public IEnumerator PlayEndMatchAnimation()
     {
-        endMatch = true;
-        Destroy(ball);
-        yield return new WaitForSeconds(2f);
+        
+        ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Destroy(GameObject.FindGameObjectWithTag("Ball"));
+
+        yield return new WaitForSeconds(4f);
         Menu_UI.SetActive(true);
         if (playerScore > NPCScore)
             StatusTitleMenu.text = "YOU WIN!";
@@ -204,6 +211,5 @@ public class MatchController : MonoBehaviour {
         yield return new WaitForSeconds(1);
         intialAnimationObject.SetActive(true);
         yield return new WaitForSeconds(4);
-        startMatch = true;
     }
 }
