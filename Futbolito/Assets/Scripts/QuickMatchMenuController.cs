@@ -212,7 +212,7 @@ public class QuickMatchMenuController : MonoBehaviour {
             clearTeamSelection.SetActive(false);
             Animator anim = matchSettingMenu.GetComponent<Animator>();
             anim.SetBool("Show", state);
-            MatchInfo._matchInfo.matchTime = 4;
+            MatchInfo._matchInfo.matchTime = 2;
             MatchInfo._matchInfo.difficulty = 1;
         }
 
