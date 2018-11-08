@@ -207,7 +207,7 @@ MonoBehaviour:
   timeToWaitToStart: 5
   slowDownFactor: 0
   slowDownTime: 1
-  initalBallForce: 50
+  initalBallForce: 25
   DecreaseFactor: {x: 0.75, y: 0.25}
   wallHitDrag: 0.9
 --- !u!114 &114929075324353662

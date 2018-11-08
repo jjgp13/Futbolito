@@ -242,6 +242,7 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     public void ChangeScene(string sceneName)
     {
+        if(sceneName == "MainMenu") Destroy(GameObject.Find("MatchInfo"));
         SceneManager.LoadScene(sceneName);
     }
 

@@ -20,6 +20,7 @@ public class MatchController : MonoBehaviour {
     public GameObject finishPanel;
     public Text StatusTitleMenu;
     public Text matchTextScore;
+    public Text finalMatchStatus;
 
     public GameObject golAnimation_UI;
     public GameObject playerScore_UI;
@@ -100,7 +101,7 @@ public class MatchController : MonoBehaviour {
         if (endMatch)
         {
             timer = 1;
-            StartCoroutine(PlayEndMatchAnimation());
+            StartCoroutine(PlayEndMatchAnimation(false));
             ballInGame = false;
             endMatch = false;
         }
@@ -125,7 +126,10 @@ public class MatchController : MonoBehaviour {
 
     public void CheckScore()
     {
-        if (playerScore == 5 || NPCScore == 5) StartCoroutine(PlayEndMatchAnimation());
+        if (playerScore == 5 || NPCScore == 5)
+        {
+            StartCoroutine(PlayEndMatchAnimation(true));
+        }
         else
         {
             SpawnBall();
@@ -158,13 +162,27 @@ public class MatchController : MonoBehaviour {
         matchTextScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
 
-    public IEnumerator PlayEndMatchAnimation()
+    public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
-        
+
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Destroy(GameObject.FindGameObjectWithTag("Ball"));
 
-        yield return new WaitForSeconds(4f);
+        if (knockout)
+        {
+            finalMatchStatus.text = "Knockout";
+            yield return new WaitForSeconds(4f);
+            finalMatchStatus.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            finalMatchStatus.gameObject.SetActive(false);
+        }
+        else
+        {
+            finalMatchStatus.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            finalMatchStatus.gameObject.SetActive(false);
+        }
+
         Menu_UI.SetActive(true);
         if (playerScore > NPCScore)
             StatusTitleMenu.text = "YOU WIN!";
@@ -201,9 +219,14 @@ public class MatchController : MonoBehaviour {
         shooting_UI.SetActive(false);
     }
 
-    public void LoadScene(int index)
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(index);
+        if (sceneName == "MainMenu")
+        {
+            Time.timeScale = 1;
+            Destroy(GameObject.Find("MatchInfo"));
+        }
+        SceneManager.LoadScene(sceneName);
     }
 
     IEnumerator InitAnimation()

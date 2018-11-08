@@ -84,7 +84,7 @@ public class BallBehavior : MonoBehaviour {
     {
         shootBtn = GameObject.Find("ShootBtn").GetComponent<ShootButton>();
         holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
-        Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce), Random.Range(-initalBallForce, initalBallForce));
+        Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce) * 2, Random.Range(-initalBallForce, initalBallForce));
         rb.AddForce(initialVel);
         kickOff = true;
         MatchController._matchController.ballInGame = true;

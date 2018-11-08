@@ -481,6 +481,7 @@ MonoBehaviour:
   finishPanel: {fileID: 762483144}
   StatusTitleMenu: {fileID: 1755867132}
   matchTextScore: {fileID: 1471740865}
+  finalMatchStatus: {fileID: 1508718606}
   golAnimation_UI: {fileID: 625984228}
   playerScore_UI: {fileID: 1601151980}
   NPCScore_UI: {fileID: 1612883338}
@@ -1998,7 +1999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &408746905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2665,7 +2666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &625984229
 Transform:
   m_ObjectHideFlags: 0
@@ -3636,13 +3637,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 105161460}
         m_MethodName: LoadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -4056,13 +4057,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 105161460}
         m_MethodName: LoadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: MainMenu
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -5070,7 +5071,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1508718605
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5080,7 +5081,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1778746672}
   m_Father: {fileID: 2085919937}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6409,7 +6411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1748157033
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6637,15 +6639,15 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1508718605}
     m_Modifications:
     - target: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -360
       objectReference: {fileID: 0}
     - target: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -640
       objectReference: {fileID: 0}
     - target: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6657,11 +6659,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
       propertyPath: m_LocalRotation.w
@@ -6669,11 +6671,41 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198443561121750398, guid: 9b0241c1d1fdf5d46a02006f5be550d4,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxGradient.ctime1
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 198443561121750398, guid: 9b0241c1d1fdf5d46a02006f5be550d4,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198443561121750398, guid: 9b0241c1d1fdf5d46a02006f5be550d4,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxGradient.key1.g
+      value: 0.94832873
+      objectReference: {fileID: 0}
+    - target: {fileID: 198443561121750398, guid: 9b0241c1d1fdf5d46a02006f5be550d4,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxGradient.m_NumColorKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 198443561121750398, guid: 9b0241c1d1fdf5d46a02006f5be550d4,
+        type: 2}
+      propertyPath: InitialModule.startColor.maxGradient.key0.g
+      value: 0.94832873
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b0241c1d1fdf5d46a02006f5be550d4, type: 2}
   m_IsPrefabAsset: 0
+--- !u!4 &1778746672 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4903956730984920, guid: 9b0241c1d1fdf5d46a02006f5be550d4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1778746671}
 --- !u!1 &1816145108
 GameObject:
   m_ObjectHideFlags: 0
@@ -7216,13 +7248,13 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 105161460}
         m_MethodName: LoadScene
-        m_Mode: 3
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: GameMatch
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
