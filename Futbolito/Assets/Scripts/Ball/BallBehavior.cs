@@ -8,12 +8,16 @@ public class BallBehavior : MonoBehaviour {
     public ParticleSystem ballExplosion;
     public ParticleSystem ballHit;
     public float timeToWaitToStart;
-    private float ballInactive;
+    private float inactiveBallTime;
     private bool kickOff;
 
     public float slowDownFactor = 0f;
     public float slowDownTime = 1f;
     float timer = 0;
+
+    [Header("Restarting ball values")]
+    public int timeInactiveToRespawn;
+    public float velocityLimit;
 
     [Range(0, 50)]
     public float initalBallForce;
@@ -34,7 +38,7 @@ public class BallBehavior : MonoBehaviour {
         StartCoroutine(MatchController._matchController.GetComponent<SoundMatchController>().PlayKO());
         Invoke("AddInitialVelocity", timeToWaitToStart);
 
-        ballInactive = 0;
+        inactiveBallTime = 0;
         kickOff = false;
 
         soundC = GetComponent<BallSoundsController>();
@@ -69,11 +73,25 @@ public class BallBehavior : MonoBehaviour {
         }
         else
         {
-            if ((rb.velocity.x > -0.1 && rb.velocity.x < 0.1 && rb.velocity.y > -0.1 && rb.velocity.y < 0.1) && kickOff) ballInactive += Time.deltaTime;
-            else ballInactive = 0;
-
-            if(ballInactive >= 5f)
+            if ((rb.velocity.x > -velocityLimit && rb.velocity.x < velocityLimit && rb.velocity.y > -velocityLimit && rb.velocity.y < velocityLimit) && kickOff)
             {
+                inactiveBallTime += Time.deltaTime;
+                if(timeInactiveToRespawn - inactiveBallTime <= 3)
+                {
+                    MatchController._matchController.timeInactiveBallPanel.SetActive(true);
+                    MatchController._matchController.restartingBallTimeText.text = "RESTARTING BALL IN: " + (timeInactiveToRespawn - inactiveBallTime).ToString("0");
+                }
+            }
+            else
+            {
+                MatchController._matchController.timeInactiveBallPanel.SetActive(false);
+                inactiveBallTime = 0;
+            }
+
+
+            if(inactiveBallTime >= timeInactiveToRespawn)
+            {
+                MatchController._matchController.timeInactiveBallPanel.SetActive(false);
                 MatchController._matchController.SpawnBall();
                 Destroy(gameObject);
             }

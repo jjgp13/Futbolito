@@ -35,6 +35,10 @@ public class MatchController : MonoBehaviour {
     private bool endMatch;
     public bool ballInGame;
 
+    public GameObject timeInactiveBallPanel;
+    public Text restartingBallTimeText;
+    
+
     private int playerScore;
     public int PlayerScore
     {

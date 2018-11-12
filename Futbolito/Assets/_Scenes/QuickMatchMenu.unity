@@ -2387,7 +2387,7 @@ RectTransform:
   m_Children:
   - {fileID: 1037690063}
   m_Father: {fileID: 1151516272}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3811,7 +3811,7 @@ RectTransform:
   - {fileID: 1161684225}
   - {fileID: 1918862355}
   m_Father: {fileID: 1151516272}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5981,8 +5981,8 @@ RectTransform:
   - {fileID: 1913133148}
   - {fileID: 1679747774}
   - {fileID: 197684714}
-  - {fileID: 701328051}
   - {fileID: 429944405}
+  - {fileID: 701328051}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6106,7 +6106,7 @@ MonoBehaviour:
   playerUI: {fileID: 1377894809}
   comUI: {fileID: 564982942}
   notTeamSelectedPanel: {fileID: 197684713}
-  clearTeamSelection: {fileID: 429944404}
+  clearTeamSelectionButton: {fileID: 429944404}
   flagOutline: {fileID: 21300000, guid: 52182876d45fe4c42acf29bd6c6b211b, type: 3}
 --- !u!1 &1161684224
 GameObject:

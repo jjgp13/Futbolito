@@ -31,7 +31,7 @@ public class QuickMatchMenuController : MonoBehaviour {
     public GameObject playerUI, comUI;
     public GameObject notTeamSelectedPanel;
 
-    public GameObject clearTeamSelection;
+    public GameObject clearTeamSelectionButton;
     public Sprite flagOutline;
     
     // Use this for initialization
@@ -177,7 +177,7 @@ public class QuickMatchMenuController : MonoBehaviour {
             SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
             SetUI(playerUI, btnInfo.team);
             //Activate clear selection button
-            clearTeamSelection.SetActive(true);
+            clearTeamSelectionButton.SetActive(true);
         }
         else
         {
@@ -194,11 +194,12 @@ public class QuickMatchMenuController : MonoBehaviour {
         }
     }
 
+    //Clear teams selected (Button)
     public void ClearTeamSelection()
     {
+        clearTeamSelectionButton.SetActive(false);
         MatchInfo._matchInfo.playerTeam = null;
         MatchInfo._matchInfo.comTeam = null;
-        clearTeamSelection.SetActive(false);
         SetFlags("PlayerFlags", flagOutline, "");
         SetFlags("ComFlags", flagOutline, "");
     }
@@ -209,13 +210,11 @@ public class QuickMatchMenuController : MonoBehaviour {
         if(MatchInfo._matchInfo.playerTeam == null || MatchInfo._matchInfo.comTeam == null) notTeamSelectedPanel.SetActive(true);
         else
         {
-            clearTeamSelection.SetActive(false);
             Animator anim = matchSettingMenu.GetComponent<Animator>();
             anim.SetBool("Show", state);
             MatchInfo._matchInfo.matchTime = 2;
             MatchInfo._matchInfo.difficulty = 1;
         }
-
     }
 
     //On click Team button this will set the UI flags in main panel and match settings panel
