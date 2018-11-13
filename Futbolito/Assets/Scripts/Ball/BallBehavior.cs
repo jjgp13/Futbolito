@@ -26,9 +26,6 @@ public class BallBehavior : MonoBehaviour {
 
     private BallSoundsController soundC;
 
-    private ShootButton shootBtn;
-    private HoldButton holdBtn;
-
     [Range(0f, 1f)]
     public float wallHitDrag;
 
@@ -62,46 +59,32 @@ public class BallBehavior : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if(transform.parent != null)
+        if ((rb.velocity.x > -velocityLimit && rb.velocity.x < velocityLimit && rb.velocity.y > -velocityLimit && rb.velocity.y < velocityLimit) && kickOff)
         {
-            float velOnRelease = transform.parent.GetComponentInParent<LineMovement>().velocity;
-            if (!holdBtn.isHolding || holdBtn.empty)
+            inactiveBallTime += Time.deltaTime;
+            if (timeInactiveToRespawn - inactiveBallTime <= 3)
             {
-                transform.parent = null;
-                rb.velocity = new Vector2(velOnRelease, 0f);
+                MatchController._matchController.timeInactiveBallPanel.SetActive(true);
+                MatchController._matchController.restartingBallTimeText.text = "RESTARTING BALL IN: " + (timeInactiveToRespawn - inactiveBallTime).ToString("0");
             }
         }
         else
         {
-            if ((rb.velocity.x > -velocityLimit && rb.velocity.x < velocityLimit && rb.velocity.y > -velocityLimit && rb.velocity.y < velocityLimit) && kickOff)
-            {
-                inactiveBallTime += Time.deltaTime;
-                if(timeInactiveToRespawn - inactiveBallTime <= 3)
-                {
-                    MatchController._matchController.timeInactiveBallPanel.SetActive(true);
-                    MatchController._matchController.restartingBallTimeText.text = "RESTARTING BALL IN: " + (timeInactiveToRespawn - inactiveBallTime).ToString("0");
-                }
-            }
-            else
-            {
-                MatchController._matchController.timeInactiveBallPanel.SetActive(false);
-                inactiveBallTime = 0;
-            }
-
-
-            if(inactiveBallTime >= timeInactiveToRespawn)
-            {
-                MatchController._matchController.timeInactiveBallPanel.SetActive(false);
-                MatchController._matchController.SpawnBall();
-                Destroy(gameObject);
-            }
+            MatchController._matchController.timeInactiveBallPanel.SetActive(false);
+            inactiveBallTime = 0;
         }
+
+
+        if (inactiveBallTime >= timeInactiveToRespawn)
+        {
+            MatchController._matchController.timeInactiveBallPanel.SetActive(false);
+            MatchController._matchController.SpawnBall();
+            Destroy(gameObject);
+        }       
     }
 
     void AddInitialVelocity()
     {
-        shootBtn = GameObject.Find("ShootBtn").GetComponent<ShootButton>();
-        holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
         Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce) * 2, Random.Range(-initalBallForce, initalBallForce));
         rb.AddForce(initialVel);
         kickOff = true;
@@ -118,32 +101,24 @@ public class BallBehavior : MonoBehaviour {
     void PlayerHitBall(Collision2D other)
     {
         GameObject obj = other.gameObject;
-        bool holding = holdBtn.isHolding;
-        if (holding)
+
+        float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
+        if (yForce != 0)
         {
-            rb.velocity = Vector2.zero;
-            gameObject.transform.SetParent(obj.transform);
+            if (yForce > 100f) StopTimeOnBallHit();
+            float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
+            float xPaddlePos = obj.transform.position.x;
+            float xBallPos = transform.position.x;
+            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
+            if (xBallPos < xPaddlePos) xVel = -xVel;
+            //Add force
+            BallHitted(new Vector2(xVel, yForce));
+            Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
+            Instantiate(ballHit, pos, Quaternion.identity);
         }
         else
         {
-            float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
-            if (yForce != 0)
-            {
-                if (yForce > 100f) StopTimeOnBallHit();
-                float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
-                float xPaddlePos = obj.transform.position.x;
-                float xBallPos = transform.position.x;
-                float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
-                if (xBallPos < xPaddlePos) xVel = -xVel;
-                //Add force
-                BallHitted(new Vector2(xVel, yForce));
-                Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
-                Instantiate(ballHit, pos, Quaternion.identity);
-            }
-            else
-            {
-                BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
-            }
+            BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
         }
     }
 

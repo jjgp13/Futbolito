@@ -5,13 +5,20 @@ using UnityEngine.UI;
 
 public class HoldButton : MonoBehaviour {
 
+    public static HoldButton _holdButton;
+
     public bool isHolding;
     public float availableTime;
     public Slider holdSlider;
     public bool empty;
 
-	// Use this for initialization
-	void Start () {
+    private void Awake()
+    {
+        _holdButton = this;
+    }
+
+    // Use this for initialization
+    void Start () {
         availableTime = 3f;
         empty = false;
 	}
@@ -48,9 +55,15 @@ public class HoldButton : MonoBehaviour {
     IEnumerator HoldingEmpty()
     {
         empty = true;
+        gameObject.GetComponent<Button>().interactable = false;
+        isHolding = false;
         holdSlider.GetComponent<Animator>().SetBool("Empty", empty);
+
         yield return new WaitForSeconds(3);
+
         empty = false;
+        gameObject.GetComponent<Button>().interactable = true;
         holdSlider.GetComponent<Animator>().SetBool("Empty", empty);
     }
+    
 }

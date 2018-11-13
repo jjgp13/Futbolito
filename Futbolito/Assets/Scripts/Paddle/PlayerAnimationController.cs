@@ -7,28 +7,41 @@ public class PlayerAnimationController : MonoBehaviour {
 
     public float xForce, yForce;
 
-    public ShootButton shootBtn;
-    public HoldButton holdBtn;
+    public ParticleSystem attractBall;
 
-    private void Awake()
+    private void Start()
     {
-        shootBtn = GameObject.Find("ShootBtn").GetComponent<ShootButton>();
-        holdBtn = GameObject.Find("HoldBtn").GetComponent<HoldButton>();
+        attractBall.Stop();
     }
 
     // Update is called once per frame
     void Update () {
         if (gameObject.GetComponentInParent<LineMovement>().isActive)
         {
-            if (shootBtn.isShooting)
+            if (ShootButton._shootButton.isShooting)
             {
                 animatorController.SetBool("touching", true);
-                animatorController.SetFloat("timeTouching", shootBtn.holdingTime);
+                animatorController.SetFloat("timeTouching", ShootButton._shootButton.holdingTime);
             }
             else
             {
                 animatorController.SetBool("touching", false);
-                animatorController.SetFloat("timeTouching", shootBtn.holdingTime);
+                animatorController.SetFloat("timeTouching", ShootButton._shootButton.holdingTime);
+            }
+
+            if (HoldButton._holdButton.isHolding)
+            {
+                if(HoldButton._holdButton.availableTime > 0 && !HoldButton._holdButton.empty)
+                {
+                    GetComponent<PointEffector2D>().forceMagnitude = -1;
+                    attractBall.Play();
+                }
+                    
+            }
+            else
+            {
+                GetComponent<PointEffector2D>().forceMagnitude = 0;
+                attractBall.Stop();
             }
         }
     }
