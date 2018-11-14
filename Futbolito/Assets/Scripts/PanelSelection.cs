@@ -57,9 +57,9 @@ public class PanelSelection : MonoBehaviour {
 
     public void SetDifficulty(int difficulty)
     {
-        //0 is easy
-        //1 is normal
-        //2 is hard
+        //1 is easy
+        //2 is normal
+        //3 is hard
         MatchInfo._matchInfo.difficulty = difficulty;
     }
 

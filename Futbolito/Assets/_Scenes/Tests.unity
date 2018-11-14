@@ -599,6 +599,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
+        type: 2}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
+        type: 2}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 58537865357930838, guid: 352991deeca90494a9b8a555941c2900,
+        type: 2}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
+        type: 2}
+      propertyPath: ShapeModule.radius.value
+      value: 0.6057776
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 352991deeca90494a9b8a555941c2900, type: 2}
   m_IsPrefabAsset: 0

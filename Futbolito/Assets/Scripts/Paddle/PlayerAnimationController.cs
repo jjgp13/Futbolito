@@ -34,7 +34,8 @@ public class PlayerAnimationController : MonoBehaviour {
                 if(HoldButton._holdButton.availableTime > 0 && !HoldButton._holdButton.empty)
                 {
                     GetComponent<PointEffector2D>().forceMagnitude = -1;
-                    attractBall.Play();
+                    if(!attractBall.isPlaying)
+                        attractBall.Play();
                 }
                     
             }
@@ -43,7 +44,9 @@ public class PlayerAnimationController : MonoBehaviour {
                 GetComponent<PointEffector2D>().forceMagnitude = 0;
                 attractBall.Stop();
             }
-        }
+        } else
+            if(attractBall.isPlaying)
+                attractBall.Stop();
     }
 
 }

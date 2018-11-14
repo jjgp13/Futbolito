@@ -11,10 +11,12 @@ public class HoldButton : MonoBehaviour {
     public float availableTime;
     public Slider holdSlider;
     public bool empty;
+    public Button btnReference;
 
     private void Awake()
     {
         _holdButton = this;
+        btnReference = GetComponent<Button>();
     }
 
     // Use this for initialization
@@ -55,14 +57,14 @@ public class HoldButton : MonoBehaviour {
     IEnumerator HoldingEmpty()
     {
         empty = true;
-        gameObject.GetComponent<Button>().interactable = false;
+        btnReference.interactable = false;
         isHolding = false;
         holdSlider.GetComponent<Animator>().SetBool("Empty", empty);
 
         yield return new WaitForSeconds(3);
 
         empty = false;
-        gameObject.GetComponent<Button>().interactable = true;
+        btnReference.interactable = true;
         holdSlider.GetComponent<Animator>().SetBool("Empty", empty);
     }
     
