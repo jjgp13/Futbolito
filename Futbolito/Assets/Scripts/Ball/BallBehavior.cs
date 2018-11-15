@@ -12,7 +12,7 @@ public class BallBehavior : MonoBehaviour {
     private bool kickOff;
 
     public float slowDownFactor = 0f;
-    public float slowDownTime = 1f;
+    public float slowDownTime = 5f;
     float timer = 0;
 
     [Header("Restarting ball values")]
@@ -29,6 +29,9 @@ public class BallBehavior : MonoBehaviour {
     [Range(0f, 1f)]
     public float wallHitDrag;
 
+    public Camera mainCamera;
+    private Vector3 camaraIniPos;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -39,16 +42,21 @@ public class BallBehavior : MonoBehaviour {
         kickOff = false;
 
         soundC = GetComponent<BallSoundsController>();
+
+        mainCamera = FindObjectOfType<Camera>();
+        camaraIniPos = mainCamera.transform.position;
     }
 
     void Update()
     {
         if(Time.timeScale < 1f && !MatchController._matchController.gameIsPaused)
         {
-            timer += slowDownTime * Time.unscaledDeltaTime;
+            timer += Time.unscaledDeltaTime;
             if (timer >= slowDownTime)
             {
                 Time.timeScale = 1f;
+                mainCamera.orthographicSize = 6.4f;
+                mainCamera.transform.position = camaraIniPos;
             }
         }
         else
@@ -179,5 +187,7 @@ public class BallBehavior : MonoBehaviour {
     void StopTimeOnBallHit()
     {
         Time.timeScale = slowDownFactor;
+        mainCamera.orthographicSize = 1;
+        mainCamera.transform.position = transform.position;
     }
 }

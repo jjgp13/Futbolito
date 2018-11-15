@@ -3620,6 +3620,26 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 20520740031122990, guid: 1a9a6779aed0b304aa2e86b46b440f8c,
+        type: 2}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20520740031122990, guid: 1a9a6779aed0b304aa2e86b46b440f8c,
+        type: 2}
+      propertyPath: orthographic size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 20520740031122990, guid: 1a9a6779aed0b304aa2e86b46b440f8c,
+        type: 2}
+      propertyPath: orthographic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20520740031122990, guid: 1a9a6779aed0b304aa2e86b46b440f8c,
+        type: 2}
+      propertyPath: m_Depth
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a9a6779aed0b304aa2e86b46b440f8c, type: 2}
   m_IsPrefabAsset: 0
@@ -8014,7 +8034,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 38.463394
   orthographic: 1
   orthographic size: 5
   m_Depth: -1
@@ -9969,7 +9989,7 @@ Prefab:
     - target: {fileID: 224524445930239506, guid: 349c8366b30dc0f428e3d5c26d93003c,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 1.5999756
+      value: 1.6000977
       objectReference: {fileID: 0}
     - target: {fileID: 224524445930239506, guid: 349c8366b30dc0f428e3d5c26d93003c,
         type: 2}

@@ -94,12 +94,16 @@ public class MatchController : MonoBehaviour {
             string minutes = Mathf.Floor(timer / 60).ToString("00");
             string seconds = (timer % 60).ToString("00");
             timeText.text = string.Format("{0}:{1}", minutes, seconds);
+            
+            if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);
+
         }
 
         if (timer <= 0)
         {
             endMatch = true;
             timeText.text = "FINISH";
+            timeText.GetComponent<Animator>().SetBool("Warning", false);
         }
 
         if (endMatch)

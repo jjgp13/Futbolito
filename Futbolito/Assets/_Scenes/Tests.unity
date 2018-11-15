@@ -259,7 +259,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4299902345970284, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.12
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 4299902345970284, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
       propertyPath: m_LocalPosition.y
@@ -598,31 +598,6 @@ Prefab:
     - target: {fileID: 4337451446030452, guid: 352991deeca90494a9b8a555941c2900, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
-        type: 2}
-      propertyPath: InitialModule.startSpeed.scalar
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
-        type: 2}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
-        type: 2}
-      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 58537865357930838, guid: 352991deeca90494a9b8a555941c2900,
-        type: 2}
-      propertyPath: m_Radius
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198742338819376840, guid: 352991deeca90494a9b8a555941c2900,
-        type: 2}
-      propertyPath: ShapeModule.radius.value
-      value: 0.6057776
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 352991deeca90494a9b8a555941c2900, type: 2}

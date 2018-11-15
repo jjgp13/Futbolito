@@ -8,6 +8,7 @@ public class PlayerAnimationController : MonoBehaviour {
     public float xForce, yForce;
 
     public ParticleSystem attractBall;
+    public ParticleSystem chargingShoot;
 
     private void Start()
     {
@@ -20,11 +21,22 @@ public class PlayerAnimationController : MonoBehaviour {
         {
             if (ShootButton._shootButton.isShooting)
             {
+                if(!chargingShoot.isPlaying) chargingShoot.Play();
+                var emission = chargingShoot.emission;
+                emission.rateOverTime = ShootButton._shootButton.holdingTime * 100;
+
                 animatorController.SetBool("touching", true);
                 animatorController.SetFloat("timeTouching", ShootButton._shootButton.holdingTime);
             }
             else
             {
+                if (chargingShoot.isPlaying)
+                {
+                    chargingShoot.Stop();
+                    var emission = chargingShoot.emission;
+                    emission.rateOverTime = 0;
+                }
+
                 animatorController.SetBool("touching", false);
                 animatorController.SetFloat("timeTouching", ShootButton._shootButton.holdingTime);
             }
@@ -37,16 +49,18 @@ public class PlayerAnimationController : MonoBehaviour {
                     if(!attractBall.isPlaying)
                         attractBall.Play();
                 }
-                    
             }
             else
             {
                 GetComponent<PointEffector2D>().forceMagnitude = 0;
                 attractBall.Stop();
             }
-        } else
-            if(attractBall.isPlaying)
-                attractBall.Stop();
+        }
+        else
+        {
+            if (attractBall.isPlaying) attractBall.Stop();
+            if (chargingShoot.isPlaying) chargingShoot.Stop();
+        }
     }
 
 }
