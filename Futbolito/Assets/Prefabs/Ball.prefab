@@ -206,12 +206,14 @@ MonoBehaviour:
   ballHit: {fileID: 198481944206875294, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
   timeToWaitToStart: 5
   slowDownFactor: 0
-  slowDownTime: 1
+  slowDownTime: 3
   timeInactiveToRespawn: 7
   velocityLimit: 0.1
   initalBallForce: 37.5
   DecreaseFactor: {x: 0.75, y: 0.25}
   wallHitDrag: 0.9
+  mainCamera: {fileID: 0}
+  camaraIniPos: {x: 0, y: 0, z: 0}
 --- !u!114 &114929075324353662
 MonoBehaviour:
   m_ObjectHideFlags: 1

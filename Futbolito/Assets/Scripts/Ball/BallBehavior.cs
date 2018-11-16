@@ -7,12 +7,14 @@ public class BallBehavior : MonoBehaviour {
     Rigidbody2D rb;
     public ParticleSystem ballExplosion;
     public ParticleSystem ballHit;
+    public ParticleSystem energyParticles;
+
     public float timeToWaitToStart;
     private float inactiveBallTime;
     private bool kickOff;
 
-    public float slowDownFactor = 0f;
-    public float slowDownTime = 5f;
+    public float slowDownFactor;
+    public float slowDownTime;
     float timer = 0;
 
     [Header("Restarting ball values")]
@@ -30,7 +32,7 @@ public class BallBehavior : MonoBehaviour {
     public float wallHitDrag;
 
     public Camera mainCamera;
-    private Vector3 camaraIniPos;
+    public Vector3 camaraIniPos;
 
     // Use this for initialization
     void Start () {
@@ -49,6 +51,7 @@ public class BallBehavior : MonoBehaviour {
 
     void Update()
     {
+        Debug.Log(timer);
         if(Time.timeScale < 1f && !MatchController._matchController.gameIsPaused)
         {
             timer += Time.unscaledDeltaTime;
@@ -188,6 +191,6 @@ public class BallBehavior : MonoBehaviour {
     {
         Time.timeScale = slowDownFactor;
         mainCamera.orthographicSize = 1;
-        mainCamera.transform.position = transform.position;
+        mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -20f);
     }
 }
