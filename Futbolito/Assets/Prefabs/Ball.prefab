@@ -204,6 +204,8 @@ MonoBehaviour:
   ballExplosion: {fileID: 198531503197013392, guid: 368dfd215e2b0224a9f461d12f8950f4,
     type: 2}
   ballHit: {fileID: 198481944206875294, guid: b8c15a0a39a39fa4597ea087a37fac15, type: 2}
+  energyParticles: {fileID: 1111364612822958, guid: 290079df60ece7b46a8cbf5c574e9110,
+    type: 2}
   timeToWaitToStart: 5
   slowDownFactor: 0
   slowDownTime: 3

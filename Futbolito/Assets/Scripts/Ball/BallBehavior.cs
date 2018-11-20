@@ -7,7 +7,7 @@ public class BallBehavior : MonoBehaviour {
     Rigidbody2D rb;
     public ParticleSystem ballExplosion;
     public ParticleSystem ballHit;
-    public ParticleSystem energyParticles;
+    public GameObject energyParticles;
 
     public float timeToWaitToStart;
     private float inactiveBallTime;
@@ -31,8 +31,11 @@ public class BallBehavior : MonoBehaviour {
     [Range(0f, 1f)]
     public float wallHitDrag;
 
+    [Header("Camera references")]
     public Camera mainCamera;
-    public Vector3 camaraIniPos;
+    private Vector3 camaraIniPos;
+    public float cameraMinSize;
+    public float cameraMaxSize;
 
     // Use this for initialization
     void Start () {
@@ -51,7 +54,6 @@ public class BallBehavior : MonoBehaviour {
 
     void Update()
     {
-        Debug.Log(timer);
         if(Time.timeScale < 1f && !MatchController._matchController.gameIsPaused)
         {
             timer += Time.unscaledDeltaTime;
@@ -112,7 +114,7 @@ public class BallBehavior : MonoBehaviour {
     void PlayerHitBall(Collision2D other)
     {
         GameObject obj = other.gameObject;
-
+        
         float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
         if (yForce != 0)
         {
@@ -189,6 +191,7 @@ public class BallBehavior : MonoBehaviour {
 
     void StopTimeOnBallHit()
     {
+        Instantiate(energyParticles, transform.position, Quaternion.identity);
         Time.timeScale = slowDownFactor;
         mainCamera.orthographicSize = 1;
         mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -20f);
