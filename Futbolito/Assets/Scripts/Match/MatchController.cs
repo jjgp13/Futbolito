@@ -13,8 +13,14 @@ public class MatchController : MonoBehaviour {
     public Team playerTeam;
     public Team npcTeam;
 
-    public GameObject gameFinishedMenu_UI;
-    public GameObject pausedMenu_UI;
+    public GameObject intialAnimationObject;
+
+    public GameObject Menu_UI;
+    public GameObject pausePanel;
+    public GameObject finishPanel;
+    public Text StatusTitleMenu;
+    public Text matchTextScore;
+    public Text finalMatchStatus;
 
     public GameObject golAnimation_UI;
     public GameObject playerScore_UI;
@@ -24,12 +30,14 @@ public class MatchController : MonoBehaviour {
     public GameObject shooting_UI;
     public GameObject pauseBtn_UI;
 
-    public Text textPauseScore;
-
     public Text timeText;
     private float timer;
+    private bool endMatch;
+    public bool ballInGame;
 
-    public GameObject intialAnimationObject;
+    public GameObject timeInactiveBallPanel;
+    public Text restartingBallTimeText;
+    
 
     private int playerScore;
     public int PlayerScore
@@ -62,28 +70,50 @@ public class MatchController : MonoBehaviour {
 
         //Set time
         timer = MatchInfo._matchInfo.matchTime * 60;
-        timeText.text = timer + ":00";
-
+        timeText.text = "TIME";
+        ballInGame = false;
+        endMatch = false;
 
         playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
         npcTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().comTeam;
         SetTeamFlags("PlayerFlags", playerTeam.flag);
         SetTeamFlags("ComFlags", npcTeam.flag);
 
-        gameFinishedMenu_UI.SetActive(false);
-        pausedMenu_UI.SetActive(false);
+        pausePanel.SetActive(true);
+        finishPanel.SetActive(false);
+        Menu_UI.SetActive(false);
         golAnimation_UI.SetActive(false);
     }
 
     private void Update()
     {
-        timer -= Time.deltaTime;
+        if(timer > 0 && ballInGame)
+        {
+            timer -= Time.deltaTime;
 
-        string minutes = Mathf.Floor(timer / 60).ToString("00");
-        string seconds = (timer % 60).ToString("00");
-        timeText.text = string.Format("{0}:{1}", minutes, seconds);
+            string minutes = Mathf.Floor(timer / 60).ToString("00");
+            string seconds = (timer % 60).ToString("00");
+            timeText.text = string.Format("{0}:{1}", minutes, seconds);
+            
+            if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);
+
+        }
+
+        if (timer <= 0)
+        {
+            endMatch = true;
+            timeText.text = "FINISH";
+            timeText.GetComponent<Animator>().SetBool("Warning", false);
+        }
+
+        if (endMatch)
+        {
+            timer = 1;
+            StartCoroutine(PlayEndMatchAnimation(false));
+            ballInGame = false;
+            endMatch = false;
+        }
     }
-
 
     public void AdjustScore(string golName)
     {
@@ -99,6 +129,19 @@ public class MatchController : MonoBehaviour {
             NPCScore_UI.transform.GetChild(NPCScore-1).GetComponent<Image>().color = Color.white;
         }
         UpdateUIScore();
+        CheckScore();
+    }
+
+    public void CheckScore()
+    {
+        if (playerScore == 5 || NPCScore == 5)
+        {
+            StartCoroutine(PlayEndMatchAnimation(true));
+        }
+        else
+        {
+            SpawnBall();
+        }
     }
 
     public void SpawnBall()
@@ -112,7 +155,7 @@ public class MatchController : MonoBehaviour {
         SetUIState(false);
         yield return new WaitForSeconds(4f);
         golAnimation_UI.SetActive(false);
-        SetUIState(true);
+        if(playerScore < 5 && NPCScore < 5) SetUIState(true);
     }
 
     public void SetUIState(bool active)
@@ -124,13 +167,39 @@ public class MatchController : MonoBehaviour {
 
     public void UpdateUIScore()
     {
-        textPauseScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
+        matchTextScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
 
-    public IEnumerator PlayEndMatchAnimation()
+    public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
-        yield return new WaitForSeconds(4f);
-        gameFinishedMenu_UI.SetActive(true);
+
+        ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        Destroy(GameObject.FindGameObjectWithTag("Ball"));
+
+        if (knockout)
+        {
+            finalMatchStatus.text = "Knockout";
+            yield return new WaitForSeconds(4f);
+            finalMatchStatus.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            finalMatchStatus.gameObject.SetActive(false);
+        }
+        else
+        {
+            finalMatchStatus.gameObject.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            finalMatchStatus.gameObject.SetActive(false);
+        }
+
+        Menu_UI.SetActive(true);
+        if (playerScore > NPCScore)
+            StatusTitleMenu.text = "YOU WIN!";
+        else if (playerScore < NPCScore)
+            StatusTitleMenu.text = "YOU LOSE!";
+        else
+            StatusTitleMenu.text = "DRAW!";
+        pausePanel.SetActive(false);
+        finishPanel.SetActive(true);
         SetUIState(false);
     }
 
@@ -142,7 +211,7 @@ public class MatchController : MonoBehaviour {
 
     public void Resume()
     {
-        pausedMenu_UI.SetActive(false);
+        Menu_UI.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
         holding_UI.SetActive(true);
@@ -151,21 +220,27 @@ public class MatchController : MonoBehaviour {
 
     public void Pause()
     {
-        pausedMenu_UI.SetActive(true);
+        Menu_UI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
         holding_UI.SetActive(false);
         shooting_UI.SetActive(false);
     }
 
-    public void LoadScene(int index)
+    public void LoadScene(string sceneName)
     {
-        SceneManager.LoadScene(index);
+        if (sceneName == "MainMenu")
+        {
+            Time.timeScale = 1;
+            Destroy(GameObject.Find("MatchInfo"));
+        }
+        SceneManager.LoadScene(sceneName);
     }
 
     IEnumerator InitAnimation()
     {
         yield return new WaitForSeconds(1);
         intialAnimationObject.SetActive(true);
+        yield return new WaitForSeconds(4);
     }
 }

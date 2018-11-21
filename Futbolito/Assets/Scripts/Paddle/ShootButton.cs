@@ -5,9 +5,16 @@ using UnityEngine.UI;
 
 public class ShootButton : MonoBehaviour {
 
+    public static ShootButton _shootButton;
+
     public bool isShooting;
     public float holdingTime;
     public Slider shootSlider;
+
+    private void Awake()
+    {
+        _shootButton = this;
+    }
 
     // Use this for initialization
     void Start () {

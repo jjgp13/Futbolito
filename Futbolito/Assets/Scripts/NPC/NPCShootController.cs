@@ -6,7 +6,7 @@ public class NPCShootController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(GetComponent<NPCLineMovement>().nearDistance < 0.5f)
+        if(GetComponent<NPCLineMovement>().nearDistance < 0.4f)
         {
             for (int i = 0; i < transform.childCount; i++)
             {

@@ -15,7 +15,7 @@ public class NPCLineMovement : MonoBehaviour {
         ball = GameObject.Find("Ball");
         //Set speed of line
         paddlesInLine = GetComponent<SetLine>().numberPaddles;
-        SetSpeed(paddlesInLine);
+        SetLineSpeed(paddlesInLine);
     }
 	
 	// Update is called once per frame
@@ -48,7 +48,7 @@ public class NPCLineMovement : MonoBehaviour {
     }
 
 
-    void SetSpeed(int numPlayerInLine)
+    void SetLineSpeed(int numPlayerInLine)
     {
         switch (numPlayerInLine)
         {
@@ -68,5 +68,8 @@ public class NPCLineMovement : MonoBehaviour {
                 speed = 0.5f;
                 break;
         }
+
+        if (MatchInfo._matchInfo.difficulty == 1) speed -= 0.25f;
+        if (MatchInfo._matchInfo.difficulty == 3) speed += 0.25f;
     }
 }

@@ -30,12 +30,16 @@ public class QuickMatchMenuController : MonoBehaviour {
     public GameObject matchSettingMenu;
     public GameObject playerUI, comUI;
     public GameObject notTeamSelectedPanel;
+
+    public GameObject clearTeamSelectionButton;
+    public Sprite flagOutline;
     
     // Use this for initialization
     void Start()
     {
         DontDestroyOnLoad(matchInfo);
     }
+
 
     public void SelectedConf(string region)
     {
@@ -172,6 +176,8 @@ public class QuickMatchMenuController : MonoBehaviour {
             //Set UI given team selected
             SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
             SetUI(playerUI, btnInfo.team);
+            //Activate clear selection button
+            clearTeamSelectionButton.SetActive(true);
         }
         else
         {
@@ -188,6 +194,16 @@ public class QuickMatchMenuController : MonoBehaviour {
         }
     }
 
+    //Clear teams selected (Button)
+    public void ClearTeamSelection()
+    {
+        clearTeamSelectionButton.SetActive(false);
+        MatchInfo._matchInfo.playerTeam = null;
+        MatchInfo._matchInfo.comTeam = null;
+        SetFlags("PlayerFlags", flagOutline, "");
+        SetFlags("ComFlags", flagOutline, "");
+    }
+
     //On click MatchSettings button it will show the match settings panel
     public void MatchSettingMenuAnimation(bool state)
     {
@@ -196,10 +212,9 @@ public class QuickMatchMenuController : MonoBehaviour {
         {
             Animator anim = matchSettingMenu.GetComponent<Animator>();
             anim.SetBool("Show", state);
-            MatchInfo._matchInfo.matchTime = 4;
+            MatchInfo._matchInfo.matchTime = 2;
             MatchInfo._matchInfo.difficulty = 1;
         }
-
     }
 
     //On click Team button this will set the UI flags in main panel and match settings panel
@@ -226,6 +241,7 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     public void ChangeScene(string sceneName)
     {
+        if(sceneName == "MainMenu") Destroy(GameObject.Find("MatchInfo"));
         SceneManager.LoadScene(sceneName);
     }
 

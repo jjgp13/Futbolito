@@ -19,14 +19,23 @@ public class GolController : MonoBehaviour {
         if (other.gameObject.tag == "Ball")
         {
             PlaySound();
+
             if (gameObject.name == "PlayerGol" || gameObject.name == "NPCGol")
                 MatchController._matchController.AdjustScore(gameObject.name);
+
+
+            HoldButton._holdButton.isHolding = false;
+            HoldButton._holdButton.btnReference.interactable = true;
+            ShootButton._shootButton.isShooting = false;
+
+
             StartCoroutine(MatchController._matchController.GolAnimation());
-            
-            if (MatchController._matchController.PlayerScore < 5 && MatchController._matchController.NPC_Score < 5) MatchController._matchController.SpawnBall();
-            else StartCoroutine (MatchController._matchController.PlayEndMatchAnimation());
+
             Instantiate(GolExplosionAnimation, other.gameObject.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
+            MatchController._matchController.ballInGame = false;
+
+            
         }
     }
 
