@@ -10,6 +10,14 @@ public class MatchController : MonoBehaviour {
     public GameObject ball;
     public bool gameIsPaused;
 
+    public float slowDownTime;
+    public float slowDownAmount;
+    public bool bulletTime;
+    private float bulletTimeTimer;
+
+    public GameObject cam;
+    private Animator camAnimator;
+
     public Team playerTeam;
     public Team npcTeam;
 
@@ -83,6 +91,10 @@ public class MatchController : MonoBehaviour {
         finishPanel.SetActive(false);
         Menu_UI.SetActive(false);
         golAnimation_UI.SetActive(false);
+
+        camAnimator = cam.GetComponent<Animator>();
+        bulletTime = false;
+        bulletTimeTimer = 0;
     }
 
     private void Update()
@@ -97,6 +109,18 @@ public class MatchController : MonoBehaviour {
             
             if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);
 
+        }
+
+        if (bulletTime)
+        {
+            bulletTimeTimer += Time.unscaledDeltaTime;
+            if(bulletTimeTimer > slowDownTime)
+            {
+                Time.timeScale = 1f;
+                bulletTime = false;
+                bulletTimeTimer = 0;
+                camAnimator.SetBool("BulletTime", false);
+            }
         }
 
         if (timer <= 0)
@@ -242,5 +266,13 @@ public class MatchController : MonoBehaviour {
         yield return new WaitForSeconds(1);
         intialAnimationObject.SetActive(true);
         yield return new WaitForSeconds(4);
+    }
+
+    public void PlayBulletTimeAnimation(Vector2 pos)
+    {
+        cam.transform.position = new Vector3(pos.x, pos.y, -20);
+        Time.timeScale = slowDownAmount;
+        bulletTime = true;
+        camAnimator.SetBool("BulletTime", true);
     }
 }

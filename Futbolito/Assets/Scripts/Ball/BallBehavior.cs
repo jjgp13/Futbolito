@@ -13,10 +13,6 @@ public class BallBehavior : MonoBehaviour {
     private float inactiveBallTime;
     private bool kickOff;
 
-    public float slowDownFactor;
-    public float slowDownTime;
-    float timer = 0;
-
     [Header("Restarting ball values")]
     public int timeInactiveToRespawn;
     public float velocityLimit;
@@ -31,11 +27,6 @@ public class BallBehavior : MonoBehaviour {
     [Range(0f, 1f)]
     public float wallHitDrag;
 
-    [Header("Camera references")]
-    public Camera mainCamera;
-    private Vector3 camaraIniPos;
-    public float cameraMinSize;
-    public float cameraMaxSize;
 
     // Use this for initialization
     void Start () {
@@ -47,27 +38,7 @@ public class BallBehavior : MonoBehaviour {
         kickOff = false;
 
         soundC = GetComponent<BallSoundsController>();
-
-        mainCamera = FindObjectOfType<Camera>();
-        camaraIniPos = mainCamera.transform.position;
-    }
-
-    void Update()
-    {
-        if(Time.timeScale < 1f && !MatchController._matchController.gameIsPaused)
-        {
-            timer += Time.unscaledDeltaTime;
-            if (timer >= slowDownTime)
-            {
-                Time.timeScale = 1f;
-                mainCamera.orthographicSize = 6.4f;
-                mainCamera.transform.position = camaraIniPos;
-            }   
-        }
-        else
-        {
-            timer = 0;
-        }
+        
     }
 
     private void FixedUpdate()
@@ -118,7 +89,7 @@ public class BallBehavior : MonoBehaviour {
         float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
         if (yForce != 0)
         {
-            if (yForce > 100f) StopTimeOnBallHit();
+            if (yForce > 100f) MatchController._matchController.PlayBulletTimeAnimation(new Vector2(transform.position.x, transform.position.y));
             float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
             float xPaddlePos = obj.transform.position.x;
             float xBallPos = transform.position.x;
@@ -188,12 +159,5 @@ public class BallBehavior : MonoBehaviour {
         rb.AddForce(force);
         rb.AddTorque(force.x, ForceMode2D.Impulse);
     }
-
-    void StopTimeOnBallHit()
-    {
-        Instantiate(energyParticles, transform.position, Quaternion.identity);
-        Time.timeScale = slowDownFactor;
-        mainCamera.orthographicSize = 1;
-        mainCamera.transform.position = new Vector3(transform.position.x, transform.position.y, -20f);
-    }
+    
 }

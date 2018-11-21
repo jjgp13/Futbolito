@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 33494912}
   - component: {fileID: 33494911}
   - component: {fileID: 33494910}
+  - component: {fileID: 33494914}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -342,6 +343,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &33494914
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33494909}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8c38f2a07433034428d7c33a49dd26a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &34413073
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -473,6 +492,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ball: {fileID: 1960860146755258, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
   gameIsPaused: 0
+  slowDownTime: 3
+  slowDownAmount: 0
+  bulletTime: 0
+  cam: {fileID: 33494909}
   playerTeam: {fileID: 11400000, guid: 1dc968877b32b884093a7504df60a913, type: 2}
   npcTeam: {fileID: 11400000, guid: 721c2a155040f58488d3524ec044bcec, type: 2}
   intialAnimationObject: {fileID: 1748157032}
