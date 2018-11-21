@@ -62,7 +62,7 @@ public class BallBehavior : MonoBehaviour {
                 Time.timeScale = 1f;
                 mainCamera.orthographicSize = 6.4f;
                 mainCamera.transform.position = camaraIniPos;
-            }
+            }   
         }
         else
         {
