@@ -11,9 +11,10 @@ public class MatchController : MonoBehaviour {
     public bool gameIsPaused;
 
     public float slowDownTime;
-    public float slowDownAmount;
+    public float timesSlower;
     public bool bulletTime;
     private float bulletTimeTimer;
+    private Vector2 ballPosition;
 
     public GameObject cam;
     private Animator camAnimator;
@@ -116,6 +117,7 @@ public class MatchController : MonoBehaviour {
             bulletTimeTimer += Time.unscaledDeltaTime;
             if(bulletTimeTimer > slowDownTime)
             {
+                cam.transform.position = new Vector3(0, 0, -20);
                 Time.timeScale = 1f;
                 bulletTime = false;
                 bulletTimeTimer = 0;
@@ -271,8 +273,15 @@ public class MatchController : MonoBehaviour {
     public void PlayBulletTimeAnimation(Vector2 pos)
     {
         cam.transform.position = new Vector3(pos.x, pos.y, -20);
-        Time.timeScale = slowDownAmount;
+        Time.timeScale = 0.02f;
         bulletTime = true;
         camAnimator.SetBool("BulletTime", true);
+    }
+
+    public IEnumerator BallHittedEffect()
+    {
+        Time.timeScale = 0.5f;
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 1;
     }
 }

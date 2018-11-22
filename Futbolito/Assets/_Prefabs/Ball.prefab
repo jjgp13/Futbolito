@@ -58,14 +58,14 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 0.15
-  m_LinearDrag: 0.1
-  m_AngularDrag: 5
+  m_LinearDrag: 0.5
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &58260529080698874
@@ -207,16 +207,11 @@ MonoBehaviour:
   energyParticles: {fileID: 1299852194616872, guid: 290079df60ece7b46a8cbf5c574e9110,
     type: 2}
   timeToWaitToStart: 5
-  slowDownFactor: 0
-  slowDownTime: 3
   timeInactiveToRespawn: 7
   velocityLimit: 0.1
-  initalBallForce: 37.5
+  initalBallForce: 25
   DecreaseFactor: {x: 0.75, y: 0.25}
   wallHitDrag: 0.9
-  mainCamera: {fileID: 0}
-  cameraMinSize: 1
-  cameraMaxSize: 6.4
 --- !u!114 &114929075324353662
 MonoBehaviour:
   m_ObjectHideFlags: 1

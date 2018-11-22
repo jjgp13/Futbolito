@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PlayerAnimationController : MonoBehaviour {
 
     public Animator animatorController;
+    public float magneticForce;
 
     public float xForce, yForce;
 
@@ -45,7 +46,7 @@ public class PlayerAnimationController : MonoBehaviour {
             {
                 if(HoldButton._holdButton.availableTime > 0 && !HoldButton._holdButton.empty)
                 {
-                    GetComponent<PointEffector2D>().forceMagnitude = -1;
+                    GetComponent<PointEffector2D>().forceMagnitude = magneticForce;
                     if(!attractBall.isPlaying)
                         attractBall.Play();
                 }

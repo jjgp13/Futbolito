@@ -85,25 +85,43 @@ public class BallBehavior : MonoBehaviour {
     void PlayerHitBall(Collision2D other)
     {
         GameObject obj = other.gameObject;
-        
-        float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
-        if (yForce != 0)
-        {
-            if (yForce > 100f) MatchController._matchController.PlayBulletTimeAnimation(new Vector2(transform.position.x, transform.position.y));
-            float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
-            float xPaddlePos = obj.transform.position.x;
-            float xBallPos = transform.position.x;
-            float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
-            if (xBallPos < xPaddlePos) xVel = -xVel;
-            //Add force
-            BallHitted(new Vector2(xVel, yForce));
-            Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
-            Instantiate(ballHit, pos, Quaternion.identity);
-        }
-        else
-        {
-            BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
-        }
+
+        ContactPoint2D contactInfo = other.GetContact(0);
+        Debug.Log("Normal: " + contactInfo.normal);
+        Debug.Log("Normal impulse: " + contactInfo.normalImpulse);
+
+        Debug.Log(Vector2.Angle(other.gameObject.transform.position, transform.position));
+        Debug.Log(Vector2.SignedAngle(other.gameObject.transform.position, transform.position));
+
+        float xVel = -Vector2.SignedAngle(other.gameObject.transform.position, transform.position);
+        float yVel = ShootButton._shootButton.holdingTime;
+        Vector2 velocity = new Vector2(xVel, yVel);
+
+        rb.AddForceAtPosition(velocity.normalized, contactInfo.point, ForceMode2D.Impulse);
+
+        //float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
+        //if (yForce != 0)
+        //{
+        //    if (yForce > 100f)
+        //    {
+        //        MatchController._matchController.PlayBulletTimeAnimation(new Vector2(transform.position.x, transform.position.y));
+        //        Instantiate(energyParticles, transform.position, Quaternion.identity);
+        //    }
+        //    float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
+        //    float xPaddlePos = obj.transform.position.x;
+        //    float xBallPos = transform.position.x;
+        //    float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
+        //    if (xBallPos < xPaddlePos) xVel = -xVel;
+        //    //Add force
+        //    //StartCoroutine(MatchController._matchController.BallHittedEffect());
+        //    BallHitted(new Vector2(xVel, yForce));
+        //    Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
+        //    Instantiate(ballHit, pos, Quaternion.identity);
+        //}
+        //else
+        //{
+        //    BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
+        //}
     }
 
     void NPCHitBall(Collision2D other)

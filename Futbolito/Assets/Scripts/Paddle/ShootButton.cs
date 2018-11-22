@@ -9,6 +9,7 @@ public class ShootButton : MonoBehaviour {
 
     public bool isShooting;
     public float holdingTime;
+    public float shootForce;
     public Slider shootSlider;
 
     private void Awake()
@@ -25,10 +26,10 @@ public class ShootButton : MonoBehaviour {
     private void Update()
     {
         shootSlider.value = Mathf.Clamp01(holdingTime / 3f);
-
         if (isShooting)
             if (holdingTime < 3)
                 holdingTime += Time.deltaTime;
+             
 
         if (!isShooting)
             holdingTime = 0;

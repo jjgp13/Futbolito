@@ -54,8 +54,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4337451446030452}
   - component: {fileID: 212943662615449042}
-  - component: {fileID: 61908929142357924}
   - component: {fileID: 50646569453009556}
+  - component: {fileID: 61908929142357924}
   - component: {fileID: 95569099755741644}
   - component: {fileID: 114130473505388842}
   - component: {fileID: 114757819027460776}
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorController: {fileID: 95569099755741644}
+  magneticForce: -0.1
   xForce: 0
   yForce: 0
   attractBall: {fileID: 198545946335611030}

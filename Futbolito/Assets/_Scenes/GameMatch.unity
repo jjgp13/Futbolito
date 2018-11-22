@@ -493,7 +493,7 @@ MonoBehaviour:
   ball: {fileID: 1960860146755258, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
   gameIsPaused: 0
   slowDownTime: 3
-  slowDownAmount: 0
+  timesSlower: 0
   bulletTime: 0
   cam: {fileID: 33494909}
   playerTeam: {fileID: 11400000, guid: 1dc968877b32b884093a7504df60a913, type: 2}
@@ -4671,6 +4671,11 @@ Prefab:
       value: 
       objectReference: {fileID: 198481944206875294, guid: b8c15a0a39a39fa4597ea087a37fac15,
         type: 2}
+    - target: {fileID: 50490533672678618, guid: bd0de3375e588ce449420ef17ccb7eae,
+        type: 2}
+      propertyPath: m_Mass
+      value: 0.02895292
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd0de3375e588ce449420ef17ccb7eae, type: 2}
   m_IsPrefabAsset: 0
