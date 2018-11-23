@@ -17,15 +17,7 @@ public class BallBehavior : MonoBehaviour {
     public int timeInactiveToRespawn;
     public float velocityLimit;
 
-    [Range(0, 50)]
-    public float initalBallForce;
-    [Header("Values between 0 and 1")]
-    public Vector2 DecreaseFactor;
-
     private BallSoundsController soundC;
-
-    [Range(0f, 1f)]
-    public float wallHitDrag;
 
 
     // Use this for initialization
@@ -69,8 +61,23 @@ public class BallBehavior : MonoBehaviour {
 
     void AddInitialVelocity()
     {
-        Vector2 initialVel = new Vector2(Random.Range(-initalBallForce, initalBallForce) * 2, Random.Range(-initalBallForce, initalBallForce));
-        rb.AddForce(initialVel);
+        float xVel = Random.Range(1f, 3f);
+        float yVel = Random.Range(1f, 3f);
+        switch (Random.Range(0, 4))
+        {
+            case 0:
+                rb.AddForce(new Vector2(xVel, yVel));
+                break;
+            case 1:
+                rb.AddForce(new Vector2(-xVel, yVel));
+                break;
+            case 2:
+                rb.AddForce(new Vector2(-xVel, -yVel));
+                break;
+            case 3:
+                rb.AddForce(new Vector2(xVel, -yVel));
+                break;
+        }
         kickOff = true;
         MatchController._matchController.ballInGame = true;
     }
@@ -79,49 +86,28 @@ public class BallBehavior : MonoBehaviour {
     {
         if (other.gameObject.tag == "PlayerPaddle") PlayerHitBall(other);
         if (other.gameObject.tag == "NPCPaddle") NPCHitBall(other);
-        if (other.gameObject.tag == "Wall") BallHitAgainstWall(other.gameObject);
     }
 
     void PlayerHitBall(Collision2D other)
     {
+        float hitForce = ShootButton._shootButton.shootForce;
         GameObject obj = other.gameObject;
-
-        ContactPoint2D contactInfo = other.GetContact(0);
-        Debug.Log("Normal: " + contactInfo.normal);
-        Debug.Log("Normal impulse: " + contactInfo.normalImpulse);
-
-        Debug.Log(Vector2.Angle(other.gameObject.transform.position, transform.position));
-        Debug.Log(Vector2.SignedAngle(other.gameObject.transform.position, transform.position));
-
-        float xVel = -Vector2.SignedAngle(other.gameObject.transform.position, transform.position);
-        float yVel = ShootButton._shootButton.holdingTime;
-        Vector2 velocity = new Vector2(xVel, yVel);
-
-        rb.AddForceAtPosition(velocity.normalized, contactInfo.point, ForceMode2D.Impulse);
-
-        //float yForce = obj.GetComponent<PlayerAnimationController>().yForce;
-        //if (yForce != 0)
-        //{
-        //    if (yForce > 100f)
-        //    {
-        //        MatchController._matchController.PlayBulletTimeAnimation(new Vector2(transform.position.x, transform.position.y));
-        //        Instantiate(energyParticles, transform.position, Quaternion.identity);
-        //    }
-        //    float xForce = obj.GetComponent<PlayerAnimationController>().xForce;
-        //    float xPaddlePos = obj.transform.position.x;
-        //    float xBallPos = transform.position.x;
-        //    float xVel = Mathf.Abs(xBallPos - xPaddlePos) * xForce;
-        //    if (xBallPos < xPaddlePos) xVel = -xVel;
-        //    //Add force
-        //    //StartCoroutine(MatchController._matchController.BallHittedEffect());
-        //    BallHitted(new Vector2(xVel, yForce));
-        //    Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
-        //    Instantiate(ballHit, pos, Quaternion.identity);
-        //}
-        //else
-        //{
-        //    BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
-        //}
+        if (hitForce != 0)
+        {
+            if (hitForce > 2f)
+            {
+                MatchController._matchController.PlayBulletTimeAnimation(new Vector2(transform.position.x, transform.position.y));
+                Instantiate(energyParticles, transform.position, Quaternion.identity);
+            }
+            float xPaddlePos = obj.transform.position.x;
+            float xBallPos = transform.position.x;
+            float xVel = Mathf.Abs(xBallPos - xPaddlePos);
+            if (xBallPos < xPaddlePos) xVel = -xVel;
+            //StartCoroutine(MatchController._matchController.BallHittedEffect());
+            BallHitted(new Vector2(xVel, hitForce), other.GetContact(0).point);
+            Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
+            Instantiate(ballHit, pos, Quaternion.identity);
+        }
     }
 
     void NPCHitBall(Collision2D other)
@@ -138,44 +124,17 @@ public class BallBehavior : MonoBehaviour {
             if (xBallPos < xPaddlePos) xVel = -xVel;
             float yVel = -shootSpeed;
             //Add force
-            BallHitted(new Vector2(xVel, yVel));
+            BallHitted(new Vector2(xVel, yVel), other.GetContact(0).point);
             Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
             Instantiate(ballHit, pos, Quaternion.identity);
         }
-        else
-        {
-            BallHitPadWithNoState(other.GetContact(0).normal.y, obj.tag);
-        }
     }
 
-    public void BallHitAgainstWall(GameObject obj)
-    {
-        soundC.PlaySound(soundC.againstWall);
-        Vector2 vel = rb.velocity;
-        vel *= wallHitDrag;
-        rb.velocity = vel;
-    }
-
-    public void BallHitPadWithNoState(float normal, string tag)
-    {
-        if (normal > 0 && tag == "PlayerPaddle") DecreaseBallVel();
-        else if(normal < 0 && tag == "NPCPaddle") DecreaseBallVel();
-    }
-
-    void DecreaseBallVel()
-    {
-        soundC.PlaySound(soundC.againstPaddle);
-        Vector2 newVel = rb.velocity;
-        newVel.x *= DecreaseFactor.x;
-        newVel.y *= DecreaseFactor.y;
-        rb.velocity = newVel;
-    }
-
-    public void BallHitted(Vector2 force)
+    public void BallHitted(Vector2 force, Vector2 point)
     {
         soundC.PlaySound(soundC.paddleHit);
-        rb.AddForce(force);
-        rb.AddTorque(force.x, ForceMode2D.Impulse);
+        rb.AddForceAtPosition(force, point, ForceMode2D.Impulse);
+        //rb.AddForce(force, ForceMode2D.Impulse);
     }
     
 }

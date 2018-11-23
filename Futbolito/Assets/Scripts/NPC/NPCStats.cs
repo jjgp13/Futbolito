@@ -5,7 +5,7 @@ using UnityEngine;
 public class NPCStats : MonoBehaviour{
 
     public bool isShooting;
-    public int shootSpeed;
+    public float shootSpeed;
 
     private void Start()
     {
@@ -13,13 +13,13 @@ public class NPCStats : MonoBehaviour{
         switch (d)
         {
             case 1:
-                shootSpeed = 30;
+                shootSpeed = 0.2f;
                 break;
             case 2:
-                shootSpeed = 50;
+                shootSpeed = 0.5f;
                 break;
             case 3:
-                shootSpeed = 70;
+                shootSpeed = 1f;
                 break;
         }
     }

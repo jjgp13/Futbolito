@@ -28,9 +28,11 @@ public class ShootButton : MonoBehaviour {
         shootSlider.value = Mathf.Clamp01(holdingTime / 3f);
         if (isShooting)
             if (holdingTime < 3)
+            {
                 holdingTime += Time.deltaTime;
-             
-
+                shootForce = holdingTime;
+            }
+        
         if (!isShooting)
             holdingTime = 0;
     }

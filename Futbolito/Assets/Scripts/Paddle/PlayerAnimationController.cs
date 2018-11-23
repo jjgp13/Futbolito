@@ -6,7 +6,7 @@ public class PlayerAnimationController : MonoBehaviour {
     public Animator animatorController;
     public float magneticForce;
 
-    public float xForce, yForce;
+    public bool shootingAnimationPlaying;
 
     public ParticleSystem attractBall;
     public ParticleSystem chargingShoot;
@@ -24,7 +24,7 @@ public class PlayerAnimationController : MonoBehaviour {
             {
                 if(!chargingShoot.isPlaying) chargingShoot.Play();
                 var emission = chargingShoot.emission;
-                emission.rateOverTime = ShootButton._shootButton.holdingTime * 100;
+                emission.rateOverTime = ShootButton._shootButton.holdingTime * 50f;
 
                 animatorController.SetBool("touching", true);
                 animatorController.SetFloat("timeTouching", ShootButton._shootButton.holdingTime);
@@ -61,7 +61,13 @@ public class PlayerAnimationController : MonoBehaviour {
         {
             if (attractBall.isPlaying) attractBall.Stop();
             if (chargingShoot.isPlaying) chargingShoot.Stop();
+            animatorController.SetBool("touching", false);
         }
+    }
+
+    public void ResetShootForce()
+    {
+        ShootButton._shootButton.shootForce = 0;
     }
 
 }

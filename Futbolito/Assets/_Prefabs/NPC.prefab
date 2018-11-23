@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4337451446030452}
   - component: {fileID: 212943662615449042}
-  - component: {fileID: 61908929142357924}
   - component: {fileID: 50002017884306206}
+  - component: {fileID: 61908929142357924}
   - component: {fileID: 95242669687091604}
   - component: {fileID: 114858504249764762}
   - component: {fileID: 114272128308957070}
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1541516827129650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -209.02916, y: -770.2309, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isShooting: 0
-  shootSpeed: 50
+  shootSpeed: 0
 --- !u!212 &212943662615449042
 SpriteRenderer:
   m_ObjectHideFlags: 1
