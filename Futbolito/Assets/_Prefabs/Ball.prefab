@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4299902345970284}
   - component: {fileID: 212994865255349974}
   - component: {fileID: 50490533672678618}
+  - component: {fileID: 114795961957217222}
   - component: {fileID: 58260529080698874}
   - component: {fileID: 82951106883203872}
-  - component: {fileID: 114795961957217222}
   - component: {fileID: 199590037812927922}
   - component: {fileID: 114929075324353662}
   - component: {fileID: 114035902950926756}
@@ -58,8 +58,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 0.02895292
+  m_UseAutoMass: 0
+  m_Mass: 0.25
   m_LinearDrag: 0.25
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -209,6 +209,8 @@ MonoBehaviour:
   timeToWaitToStart: 5
   timeInactiveToRespawn: 7
   velocityLimit: 0.1
+  iniMinForce: 0.5
+  iniMaxForce: 1.5
 --- !u!114 &114929075324353662
 MonoBehaviour:
   m_ObjectHideFlags: 1

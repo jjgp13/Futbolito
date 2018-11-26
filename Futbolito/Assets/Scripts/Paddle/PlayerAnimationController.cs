@@ -6,8 +6,6 @@ public class PlayerAnimationController : MonoBehaviour {
     public Animator animatorController;
     public float magneticForce;
 
-    public bool shootingAnimationPlaying;
-
     public ParticleSystem attractBall;
     public ParticleSystem chargingShoot;
 
@@ -62,6 +60,7 @@ public class PlayerAnimationController : MonoBehaviour {
             if (attractBall.isPlaying) attractBall.Stop();
             if (chargingShoot.isPlaying) chargingShoot.Stop();
             animatorController.SetBool("touching", false);
+            animatorController.SetFloat("timeTouching", 0);
         }
     }
 

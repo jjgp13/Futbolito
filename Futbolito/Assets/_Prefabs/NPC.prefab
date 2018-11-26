@@ -134,6 +134,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isShooting: 0
   shootSpeed: 0
+  shootSpeeds:
+  - 1
+  - 1.5
+  - 2
 --- !u!212 &212943662615449042
 SpriteRenderer:
   m_ObjectHideFlags: 1

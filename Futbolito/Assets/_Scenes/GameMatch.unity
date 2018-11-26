@@ -1504,7 +1504,7 @@ AreaEffector2D:
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
   m_ForceAngle: 90
-  m_ForceMagnitude: 0.01
+  m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0
   m_Drag: 0
@@ -6460,7 +6460,7 @@ AreaEffector2D:
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
   m_ForceAngle: -90
-  m_ForceMagnitude: 0.01
+  m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0
   m_Drag: 0
@@ -6769,7 +6769,7 @@ AreaEffector2D:
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
   m_ForceAngle: -90
-  m_ForceMagnitude: 0.01
+  m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0
   m_Drag: 0
@@ -7870,7 +7870,7 @@ AreaEffector2D:
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
   m_ForceAngle: 90
-  m_ForceMagnitude: 0.01
+  m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0
   m_Drag: 0

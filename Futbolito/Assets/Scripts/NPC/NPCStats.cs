@@ -7,19 +7,21 @@ public class NPCStats : MonoBehaviour{
     public bool isShooting;
     public float shootSpeed;
 
+    public float[] shootSpeeds;
+
     private void Start()
     {
         int d = MatchInfo._matchInfo.difficulty;
         switch (d)
         {
             case 1:
-                shootSpeed = 0.2f;
+                shootSpeed = shootSpeeds[d - 1];
                 break;
             case 2:
-                shootSpeed = 0.5f;
+                shootSpeed = shootSpeeds[d - 1];
                 break;
             case 3:
-                shootSpeed = 1f;
+                shootSpeed = shootSpeeds[d - 1];
                 break;
         }
     }
