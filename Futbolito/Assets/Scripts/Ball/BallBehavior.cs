@@ -101,7 +101,7 @@ public class BallBehavior : MonoBehaviour {
                 Instantiate(energyParticles, transform.position, Quaternion.identity);
             }
             if (hitForce < 1) hitForce = 1;
-            float xVel = Mathf.Abs(transform.position.x - obj.transform.position.x);
+            float xVel = Mathf.Abs(transform.position.x - obj.transform.position.x) * 2;
             if (transform.position.x < obj.transform.position.x) xVel = -xVel;
             //StartCoroutine(MatchController._matchController.BallHittedEffect());
             BallHitted(new Vector2(xVel, hitForce));

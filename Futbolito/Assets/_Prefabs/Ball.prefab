@@ -59,7 +59,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.25
+  m_Mass: 0.15
   m_LinearDrag: 0.25
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -209,8 +209,8 @@ MonoBehaviour:
   timeToWaitToStart: 5
   timeInactiveToRespawn: 7
   velocityLimit: 0.1
-  iniMinForce: 0.5
-  iniMaxForce: 1.5
+  iniMinForce: 0.25
+  iniMaxForce: 1
 --- !u!114 &114929075324353662
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -135,9 +135,9 @@ MonoBehaviour:
   isShooting: 0
   shootSpeed: 0
   shootSpeeds:
+  - 0.5
   - 1
   - 1.5
-  - 2
 --- !u!212 &212943662615449042
 SpriteRenderer:
   m_ObjectHideFlags: 1

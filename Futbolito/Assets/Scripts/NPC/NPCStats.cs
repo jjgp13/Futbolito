@@ -11,17 +11,17 @@ public class NPCStats : MonoBehaviour{
 
     private void Start()
     {
-        int d = MatchInfo._matchInfo.difficulty;
+        int d = MatchInfo._matchInfo.difficulty - 1;
         switch (d)
         {
             case 1:
-                shootSpeed = shootSpeeds[d - 1];
+                shootSpeed = shootSpeeds[d];
                 break;
             case 2:
-                shootSpeed = shootSpeeds[d - 1];
+                shootSpeed = shootSpeeds[d];
                 break;
             case 3:
-                shootSpeed = shootSpeeds[d - 1];
+                shootSpeed = shootSpeeds[d];
                 break;
         }
     }
