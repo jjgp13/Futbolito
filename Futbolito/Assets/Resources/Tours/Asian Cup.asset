@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebefa44667156ce438e64bef80d3d5e3, type: 3}
+  m_Name: Asian Cup
+  m_EditorClassIdentifier: 
+  tourName: Asian Cup
+  cupImage: {fileID: 21300010, guid: c54765494d758e44d8be2a3d989a53da, type: 3}
+  teams:
+  - {fileID: 11400000, guid: 484af936daf532547b53373af8c72e06, type: 2}
+  - {fileID: 11400000, guid: 9faea70bfea39964880e19391bef4bc8, type: 2}
+  - {fileID: 11400000, guid: 94e0899bb7625ae42901a1dd4eea188f, type: 2}
+  - {fileID: 11400000, guid: 003b856d2f7783e48b87a24d4b1abd84, type: 2}
+  - {fileID: 11400000, guid: edee1e7cb146a3e4fae90a61d5d929cc, type: 2}
+  - {fileID: 11400000, guid: e76043c9117be494fa79684a18f1c7de, type: 2}
+  - {fileID: 11400000, guid: ef198bb267c53de41b7e328acbfd72d7, type: 2}
+  - {fileID: 11400000, guid: 91ac942b840277c4fba82ef99f8561b5, type: 2}
+  - {fileID: 11400000, guid: 80c7f5a2431577046ba58e58dd097553, type: 2}
+  - {fileID: 11400000, guid: 955dba5ee07a41e46b24b9f09df1280b, type: 2}
+  - {fileID: 11400000, guid: 1ee3f2ec19cadc24494d277963dd02f4, type: 2}
+  - {fileID: 11400000, guid: 73284a395ae8fdc459597586320a1483, type: 2}
+  - {fileID: 11400000, guid: 953e101e24dbec34f96e4abef22d022d, type: 2}
+  - {fileID: 11400000, guid: d4511436d02d6474693eeb93eef93917, type: 2}
+  - {fileID: 11400000, guid: 3e0e86e96d00e684695a2072b9fbb62f, type: 2}
+  - {fileID: 11400000, guid: f6f208a28c6e9d54da436052fabc409d, type: 2}

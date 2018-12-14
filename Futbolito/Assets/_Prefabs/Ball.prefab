@@ -208,9 +208,9 @@ MonoBehaviour:
     type: 2}
   timeToWaitToStart: 5
   timeInactiveToRespawn: 7
-  velocityLimit: 0.1
+  minVelocityLimit: 0.1
   iniMinForce: 0.25
-  iniMaxForce: 1
+  iniMaxForce: 0.75
 --- !u!114 &114929075324353662
 MonoBehaviour:
   m_ObjectHideFlags: 1

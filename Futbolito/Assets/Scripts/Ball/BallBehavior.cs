@@ -15,7 +15,7 @@ public class BallBehavior : MonoBehaviour {
 
     [Header("Restarting ball values")]
     public int timeInactiveToRespawn;
-    public float velocityLimit;
+    public float minVelocityLimit;
     public float iniMinForce, iniMaxForce;
 
     private BallSoundsController soundC;
@@ -36,7 +36,7 @@ public class BallBehavior : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if ((rb.velocity.x > -velocityLimit && rb.velocity.x < velocityLimit && rb.velocity.y > -velocityLimit && rb.velocity.y < velocityLimit) && kickOff)
+        if ((rb.velocity.x > -minVelocityLimit && rb.velocity.x < minVelocityLimit && rb.velocity.y > -minVelocityLimit && rb.velocity.y < minVelocityLimit) && kickOff)
         {
             inactiveBallTime += Time.deltaTime;
             if (timeInactiveToRespawn - inactiveBallTime <= 3)

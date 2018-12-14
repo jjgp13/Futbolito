@@ -199,8 +199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animatorController: {fileID: 95569099755741644}
-  magneticForce: -0.75
-  shootingAnimationPlaying: 0
+  magneticForce: -1
   attractBall: {fileID: 198545946335611030}
   chargingShoot: {fileID: 198742338819376840}
 --- !u!114 &114757819027460776
