@@ -12,8 +12,12 @@ public class TourInfo{
 
     public List<TeamTourInfo> teamList;
 
-    public TourInfo(TourInfo info)
+    public TourInfo(TournamentController tour)
     {
-
+        tourName = tour.tourName;
+        teamSelected = tour.teamSelected;
+        teamsAmount = tour.teamsAmount;
+        groupsAmount = tour.groupsAmount;
+        teamList = tour.teamList;
     }
 }

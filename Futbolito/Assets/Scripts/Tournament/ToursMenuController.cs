@@ -44,6 +44,8 @@ public class ToursMenuController : MonoBehaviour {
     /// <param name="tourIndex"></param>
     public void DisplayTeamsOnPanel(int tourIndex)
     {
+        TournamentController._tourCtlr.teamSelected = "";
+
         DeleteTeamsFromPanel();
         SetTeamsPanel(tours[tourIndex].teams.Length);
         tourMapSprite.sprite = tourMaps[tourIndex];
@@ -54,6 +56,7 @@ public class ToursMenuController : MonoBehaviour {
             Button newTeam = Instantiate(teamButton);
             Team team = tour.teams[i];
             newTeam.image.sprite = team.flag;
+            newTeam.GetComponent<TeamSelected>().team = team;
             newTeam.transform.GetChild(0).GetComponent<Text>().text = team.teamName;
             newTeam.transform.SetParent(teamsPanel.transform);
         }

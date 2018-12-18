@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/QuickMatchMenu.unity
     guid: 07136a2f18c26c247b45dc9cdce7f2fd
+  - enabled: 1
+    path: Assets/_Scenes/TourMainMenu.unity
+    guid: 453d60fa3cb11054282adf06f1434e46
   m_configObjects: {}

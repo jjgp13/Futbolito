@@ -829,6 +829,18 @@ MonoBehaviour:
           m_StringArgument: American Cup
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1290742450}
+        m_MethodName: FillTournamentTeamsInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: cc5c151e4931fb34a8d7ef533d7666a4,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Tournament, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &852310687
@@ -975,6 +987,18 @@ MonoBehaviour:
           m_StringArgument: Euro Cup
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1290742450}
+        m_MethodName: FillTournamentTeamsInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 338035a5e6c6ebe47a1b803e5a70add3,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Tournament, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &888506165
@@ -1119,6 +1143,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Asian Cup
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1290742450}
+        m_MethodName: FillTournamentTeamsInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 71e38b1aa8649da44834976c421a35fd,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Tournament, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1611,6 +1647,18 @@ MonoBehaviour:
           m_StringArgument: African Cup
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1290742450}
+        m_MethodName: FillTournamentTeamsInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 477022a6e9ed4a24fb81ff3ad3698781,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Tournament, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1456665884
@@ -1688,7 +1736,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.32549018, g: 0.55862015, b: 0.8117647, a: 0}
+  m_BackGroundColor: {r: 0.49741903, g: 0.5031358, b: 0.509434, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -2093,7 +2141,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1679747776}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1290742450}
+        m_MethodName: StartTournament
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TourMainMenu
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1679747776
@@ -2241,6 +2300,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Gold Cup
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1290742450}
+        m_MethodName: FillTournamentTeamsInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 250b92556c369584b839ba36d99776b2,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Tournament, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -2464,6 +2535,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: World Cup
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1290742450}
+        m_MethodName: FillTournamentTeamsInfo
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 9d2d099d2859f0346afd506f37c6a0e7,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: Tournament, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

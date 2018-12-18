@@ -4,12 +4,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public static class SaveSystem {
 
-    public static void SaveTournament(TourInfo info)
+    public static void SaveTournament(TournamentController info)
     {
 
         BinaryFormatter bin = new BinaryFormatter();
 
-        string path = Application.persistentDataPath + "/tourData.dat";
+        string path = Application.persistentDataPath + "/tour.bin";
         FileStream stream = new FileStream(path, FileMode.Create);
 
         TourInfo tourData = new TourInfo(info);
@@ -21,7 +21,7 @@ public static class SaveSystem {
 
     public static TourInfo LoadTournament()
     {
-        string path = Application.persistentDataPath + "/tourData.dat";
+        string path = Application.persistentDataPath + "/tour.bin";
         if (File.Exists(path))
         {
             BinaryFormatter bin = new BinaryFormatter();

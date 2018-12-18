@@ -1,47 +1,73 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TournamentController : MonoBehaviour {
 
-    public TourInfo tourInfo;
+    public static TournamentController _tourCtlr;
+
+    public string tourName;
+    public string teamSelected;
+    public int teamsAmount;
+    public int groupsAmount;
+    public List<TeamTourInfo> teamList;
+
     private int[] groupsCount = new int[] {4,4,4,4,4,4,4,4};
 
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        
+
         //Si al empezar la escena no encuentra informacion de un torneo. Mostrar pantalla de si desea continuar con la partida previa.
-        if(SaveSystem.LoadTournament() != null)
+        
+        if (SaveSystem.LoadTournament() != null)
         {
-            tourInfo = SaveSystem.LoadTournament();
+            LoadTour();
         }
+
+        _tourCtlr = this;
     }
 
-    public void FillTournamentInfo(string tourName)
+    public void SaveTour()
     {
-        tourInfo.tourName = tourName;
-        Tournament tournament = Resources.Load<Tournament>("Tours/"+tourName);
-        Debug.Log(tournament);
-        tourInfo.teamsAmount = tournament.teams.Length;
-        tourInfo.groupsAmount = tournament.teams.Length / 4;
+        SaveSystem.SaveTournament(this);
+    }
+
+    public void LoadTour()
+    {
+        TourInfo info = SaveSystem.LoadTournament();
+
+        tourName = info.tourName;
+        teamSelected = info.teamSelected;
+        teamsAmount = info.teamsAmount;
+        groupsAmount = info.groupsAmount;
+
+        teamList = info.teamList;
+    }
+
+    public void FillTournamentInfo(string tourNameSelected)
+    {
+        tourName = tourNameSelected;
+        Tournament tournament = Resources.Load<Tournament>("Tours/"+tourNameSelected);
+        teamsAmount = tournament.teams.Length;
+        groupsAmount = tournament.teams.Length / 4;
     }
 
     public void FillTournamentTeamsInfo(Tournament tour)
     {
-        List<TeamTourInfo> teams = new List<TeamTourInfo>();
+        //Cada que se presiona el boton de un torneo. Limpiar los valores.
+        for (int i = 0; i < groupsCount.Length; i++) groupsCount[i] = 4;
+        if(teamList.Count > 0) teamList.Clear();
 
-        for (int i = 0; i < tourInfo.teamsAmount; i++)
+        //Una vez la limpia la lista, volver a llenar la lista de equipos.
+        for (int i = 0; i < teamsAmount; i++)
         {
             Team team = tour.teams[i];
             TeamTourInfo teamTour = new TeamTourInfo(team.name, RandomGroup(),0,0,0,0,0,0);
-            teams.Add(teamTour);
+            teamList.Add(teamTour);
         }
-    }
-
-    public void TeamSelectedInTour(string ts)
-    {
-        tourInfo.teamSelected = ts;
     }
 
     private string RandomGroup()
@@ -49,7 +75,7 @@ public class TournamentController : MonoBehaviour {
         string group = "";
         int num;
 
-        do num = Random.Range(0, tourInfo.groupsAmount + 1);
+        do num = Random.Range(0, groupsAmount);
         while (groupsCount[num] == 0);
 
         groupsCount[num]--;
@@ -82,5 +108,11 @@ public class TournamentController : MonoBehaviour {
                 break;
         }
         return group;
+    }
+
+    public void StartTournament(string sceneName)
+    {
+        SaveTour();
+        SceneManager.LoadScene(sceneName);
     }
 }

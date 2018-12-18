@@ -9,6 +9,11 @@ public class TeamSelected : MonoBehaviour {
 
     public void SelectTeam()
     {
+        //For tournaments
+        GameObject tc = GameObject.Find("TourController");
+        if (tc != null) tc.GetComponent<TournamentController>().teamSelected = team.teamName;
+
+        //Behaviour for outline effect
         if (isSelected) isSelected = false;
         else isSelected = true;
 
@@ -38,4 +43,5 @@ public class TeamSelected : MonoBehaviour {
     {
         return team;
     }
+
 }

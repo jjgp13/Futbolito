@@ -160,14 +160,8 @@ public class MatchController : MonoBehaviour {
 
     public void CheckScore()
     {
-        if (playerScore == 5 || NPCScore == 5)
-        {
-            StartCoroutine(PlayEndMatchAnimation(true));
-        }
-        else
-        {
-            SpawnBall();
-        }
+        if (playerScore == 5 || NPCScore == 5) StartCoroutine(PlayEndMatchAnimation(true));
+        else SpawnBall();
     }
 
     public void SpawnBall()
