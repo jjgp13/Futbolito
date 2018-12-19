@@ -20,13 +20,6 @@ public class TournamentController : MonoBehaviour {
     {
         DontDestroyOnLoad(gameObject);
 
-        //Si al empezar la escena no encuentra informacion de un torneo. Mostrar pantalla de si desea continuar con la partida previa.
-        
-        if (SaveSystem.LoadTournament() != null)
-        {
-            LoadTour();
-        }
-
         _tourCtlr = this;
     }
 
