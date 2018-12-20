@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_Scenes/TourMainMenu.unity
+- path: Assets/_Scenes/Tournament.unity
   isLoaded: 1
   isActive: 1

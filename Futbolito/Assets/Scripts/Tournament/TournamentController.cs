@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class TournamentController : MonoBehaviour {
 
@@ -59,8 +60,11 @@ public class TournamentController : MonoBehaviour {
         {
             Team team = tour.teams[i];
             TeamTourInfo teamTour = new TeamTourInfo(team.name, RandomGroup(),0,0,0,0,0,0);
+            
             teamList.Add(teamTour);
         }
+        List<TeamTourInfo> sortedList = teamList.OrderBy(team => team.group).ToList();
+        teamList = sortedList;
     }
 
     private string RandomGroup()
