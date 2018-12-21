@@ -889,6 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamInfoUI: {fileID: 1539294796589714, guid: 7e768243aca60524eaf3f1e918851e8f, type: 2}
   positionsPanel: {fileID: 266728126}
+  groupText: {fileID: 1365130806}
 --- !u!4 &704717136
 Transform:
   m_ObjectHideFlags: 0
@@ -1288,7 +1289,7 @@ GameObject:
   - component: {fileID: 1365130807}
   - component: {fileID: 1365130806}
   m_Layer: 5
-  m_Name: TeamsRegionText
+  m_Name: GroupText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1472,11 +1473,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 704717135}
     - target: {fileID: 114030956515103908, guid: b6ae72d2bd38f6e41a6f33c1774485d6,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeTeamsIndex
+      value: ChangeGroupInPositionPanel
       objectReference: {fileID: 0}
     - target: {fileID: 114030956515103908, guid: b6ae72d2bd38f6e41a6f33c1774485d6,
         type: 2}
@@ -1894,11 +1895,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 704717135}
     - target: {fileID: 114030956515103908, guid: b6ae72d2bd38f6e41a6f33c1774485d6,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ChangeTeamsIndex
+      value: ChangeGroupInPositionPanel
       objectReference: {fileID: 0}
     - target: {fileID: 114030956515103908, guid: b6ae72d2bd38f6e41a6f33c1774485d6,
         type: 2}

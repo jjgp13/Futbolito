@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf6672f8954862488b332a4db11a355, type: 3}
-  m_Name: Marocco
+  m_Name: United States
   m_EditorClassIdentifier: 
-  teamName: Morocco
-  flag: {fileID: 21300018, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
+  teamName: United States
+  flag: {fileID: 21300074, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
   formationImage: {fileID: 0}
   teamFormation:
     defense: 0
