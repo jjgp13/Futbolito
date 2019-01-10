@@ -887,7 +887,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db000cd6f4279a640b392242579153de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamInfoUI: {fileID: 1539294796589714, guid: 7e768243aca60524eaf3f1e918851e8f, type: 2}
+  teamTourStatsPrefab: {fileID: 1539294796589714, guid: 7e768243aca60524eaf3f1e918851e8f,
+    type: 2}
   positionsPanel: {fileID: 266728126}
   groupText: {fileID: 1365130806}
   teamsInTour: 0

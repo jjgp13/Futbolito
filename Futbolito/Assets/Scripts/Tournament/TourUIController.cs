@@ -6,7 +6,7 @@ using System.Linq;
 
 public class TourUIController : MonoBehaviour {
 
-    public GameObject teamInfoUI;
+    public GameObject teamTourStatsPrefab;
     public GameObject positionsPanel;
     public Text groupText;
 
@@ -26,24 +26,19 @@ public class TourUIController : MonoBehaviour {
         firstTeamActiveInPanel = 0;
         groupText.text = "Group " + tourInfo.teamList[firstTeamActiveInPanel].group;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void SetTeamsPositionPanel(List<TeamTourInfo> teamList)
     {
         for (int i = 0; i < teamsInTour; i++)
         {
-            GameObject teamPosition = teamInfoUI;
+            GameObject teamPosition = teamTourStatsPrefab;
             Team teamInfo = Resources.Load<Team>("Teams/" + teamList[i].name + "/" + teamList[i].name);
             teamPosition.transform.GetChild(0).GetComponent<Image>().sprite = teamInfo.flag;
             teamPosition.transform.GetChild(1).GetComponent<Text>().text = teamList[i].name;
             Instantiate(teamPosition).transform.SetParent(positionsPanel.transform);
             teamPosition.SetActive(false);
         }
-        for (int i = 0; i < 4; i++) positionsPanel.transform.GetChild(i).gameObject.SetActive(true);
+        ActivateTeamsInPanel(0);
     }
 
     public List<TeamTourInfo> OrderTeamPositionList(List<TeamTourInfo> teamList)
@@ -98,6 +93,13 @@ public class TourUIController : MonoBehaviour {
             GameObject team = positionsPanel.transform.GetChild(i).gameObject;
             if (i >= firstTeamActiveInPanel && i < firstTeamActiveInPanel + 4) team.SetActive(true);
             else team.SetActive(false);
+            PaintTeamSelected(team);
         }
+    }
+
+    private void PaintTeamSelected(GameObject team)
+    {
+        Text teamName = team.transform.GetChild(1).GetComponent<Text>();
+        if (teamName.text == tourInfo.teamSelected) teamName.color = Color.yellow;
     }
 }

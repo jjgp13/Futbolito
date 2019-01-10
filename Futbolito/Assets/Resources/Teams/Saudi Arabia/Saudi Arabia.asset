@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf6672f8954862488b332a4db11a355, type: 3}
   m_Name: Saudi Arabia
   m_EditorClassIdentifier: 
-  teamName: Suadi Arabia
+  teamName: Saudi Arabia
   flag: {fileID: 21300006, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
   formationImage: {fileID: 0}
   teamFormation:
