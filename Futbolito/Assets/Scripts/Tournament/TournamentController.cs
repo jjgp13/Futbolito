@@ -14,6 +14,7 @@ public class TournamentController : MonoBehaviour {
     public int teamsAmount;
     public int groupsAmount;
     public List<TeamTourInfo> teamList;
+    public List<MatchTourInfo> matchesList;
 
     private int[] groupsCount = new int[] {4,4,4,4,4,4,4,4};
 
@@ -37,10 +38,13 @@ public class TournamentController : MonoBehaviour {
         teamSelected = info.teamSelected;
         teamsAmount = info.teamsAmount;
         groupsAmount = info.groupsAmount;
-
         teamList = info.teamList;
+        matchesList = info.matches;
     }
-
+    
+    //Este metodo se ejecuta en pantalla de seleccionar torneo.
+    //El boton del torneo que es presionado lleva el string del nombre del torneo, que busca en la carpeta de resources.
+    //Y llena la informacion de este objeto que es el que se guarda
     public void FillTournamentInfo(string tourNameSelected)
     {
         tourName = tourNameSelected;
@@ -49,6 +53,8 @@ public class TournamentController : MonoBehaviour {
         groupsAmount = tournament.teams.Length / 4;
     }
 
+    //Tambien se ejecuta cuando se presiona un boton de un torneo.
+    //Lleva de parametro el scriptable object del torneo donde contiene la info de los equipos.
     public void FillTournamentTeamsInfo(Tournament tour)
     {
         //Cada que se presiona el boton de un torneo. Limpiar los valores.
@@ -59,13 +65,26 @@ public class TournamentController : MonoBehaviour {
         for (int i = 0; i < teamsAmount; i++)
         {
             Team team = tour.teams[i];
+
+            //Se asigna un grupo aleatorio a cada equipo.
             TeamTourInfo teamTour = new TeamTourInfo(team.name, RandomGroup(),0,0,0,0,0,0);
-            
             teamList.Add(teamTour);
         }
+
+        //Se ordena la lista de equipos dado el grupo que se asigno a cada equipo.
         List<TeamTourInfo> sortedList = teamList.OrderBy(team => team.group).ToList();
         teamList = sortedList;
     }
+
+    //Hacer el cruce de los partidos de la fase de grupos.
+    private void CreateTourMatches()
+    {
+        for (int i = 0; i < teamsAmount; i+=4)
+        {
+
+        }
+    }
+
 
     private string RandomGroup()
     {

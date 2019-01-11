@@ -11,6 +11,7 @@ public class TourInfo{
     public int groupsAmount;
 
     public List<TeamTourInfo> teamList;
+    public List<MatchTourInfo> matches;
 
     public TourInfo(TournamentController tour)
     {
@@ -19,5 +20,6 @@ public class TourInfo{
         teamsAmount = tour.teamsAmount;
         groupsAmount = tour.groupsAmount;
         teamList = tour.teamList;
+        matches = tour.matchesList;
     }
 }
