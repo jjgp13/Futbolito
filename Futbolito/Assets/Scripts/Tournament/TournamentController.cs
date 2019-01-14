@@ -74,6 +74,7 @@ public class TournamentController : MonoBehaviour {
         //Se ordena la lista de equipos dado el grupo que se asigno a cada equipo.
         List<TeamTourInfo> sortedList = teamList.OrderBy(team => team.group).ToList();
         teamList = sortedList;
+        CreateTourMatches();
     }
 
     //Hacer el cruce de los partidos de la fase de grupos.
@@ -81,7 +82,21 @@ public class TournamentController : MonoBehaviour {
     {
         for (int i = 0; i < teamsAmount; i+=4)
         {
-
+            int matchesCount = 0;
+            int l = i;
+            int v = i + 1;
+            while (matchesCount < 6)
+            {
+                MatchTourInfo match = new MatchTourInfo(teamList[l], 0, teamList[v], 0);
+                matchesList.Add(match);
+                matchesCount++;
+                v++;
+                if(v == i + 4)
+                {
+                    l++;
+                    v = l + 1;
+                }
+            }
         }
     }
 
