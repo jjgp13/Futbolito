@@ -78,29 +78,37 @@ public class TournamentController : MonoBehaviour {
     }
 
     //Hacer el cruce de los partidos de la fase de grupos.
+    //6 partidos por grupo. 
     private void CreateTourMatches()
     {
+        int[] mNumber = new int[] { 1, 2, 3, 3, 2, 1 };
+        int matchesCount = 0;
         for (int i = 0; i < teamsAmount; i+=4)
         {
-            int matchesCount = 0;
             int l = i;
             int v = i + 1;
             while (matchesCount < 6)
             {
-                MatchTourInfo match = new MatchTourInfo(teamList[l], 0, teamList[v], 0);
+                MatchTourInfo match = new MatchTourInfo(teamList[l], 0, teamList[v], 0, mNumber[matchesCount]);
+
                 matchesList.Add(match);
                 matchesCount++;
                 v++;
+
                 if(v == i + 4)
                 {
                     l++;
                     v = l + 1;
                 }
             }
+            matchesCount = 0;
         }
+        List<MatchTourInfo> sortedList = matchesList.OrderBy(match => match.matchNumber).ToList();
+        matchesList = sortedList;
     }
+    
 
-
+    //Asignar un grupo aleatorio a cada uno de los equipos.
     private string RandomGroup()
     {
         string group = "";
