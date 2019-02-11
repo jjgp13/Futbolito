@@ -4,17 +4,20 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7bf6672f8954862488b332a4db11a355, type: 3}
   m_Name: Republic of Ireland
   m_EditorClassIdentifier: 
-  teamName: Ruplic of Ireland
+  teamName: Republic of Ireland
   flag: {fileID: 21300106, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
-  formation: {fileID: 21300016, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  defense: 3
-  midfield: 5
-  attack: 2
-  spriteSheetName: IrlandaLocal
+  formationImage: {fileID: 21300016, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  teamFormation:
+    defense: 3
+    mid: 5
+    attack: 2
+  firstU: {fileID: 21300000, guid: ad2202afb28ee754d8fcdf1368a02406, type: 3}
+  secondU: {fileID: 21300002, guid: ad2202afb28ee754d8fcdf1368a02406, type: 3}
