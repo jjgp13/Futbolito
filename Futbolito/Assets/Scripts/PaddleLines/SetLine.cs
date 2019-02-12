@@ -21,7 +21,8 @@ public class SetLine : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-
+        //Set line given it's parent
+        //Take uniforms and lineup from team selected
         if (transform.parent.name == "Player")
         {
             teamInfo = Resources.Load<Team>("Teams/" + MatchInfo._matchInfo.playerTeam.teamName + "/" + MatchInfo._matchInfo.playerTeam.teamName);
@@ -36,7 +37,7 @@ public class SetLine : MonoBehaviour {
         
         
         numberPaddles = GetNumberOfPaddles(gameObject.name);
-
+        //Set line given the measures of the screen
         //Get screen width
         screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
         //Spawn pads in line, given the number.
@@ -48,6 +49,11 @@ public class SetLine : MonoBehaviour {
         halfPlayer = pad.transform.localScale.x / 2;
     }
 
+    /// <summary>
+    /// This method distributed the paddles in a line
+    /// </summary>
+    /// <param name="screenWidth">The width of the screen</param>
+    /// <param name="numPaddles">Numbers of paddles of distrubed in this line</param>
     void DevidePaddlesInLine(float screenWidth, int numPaddles)
     {
         float spawnPos = screenWidth / (numPaddles + 1);
@@ -62,6 +68,11 @@ public class SetLine : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Return the numbers of paddles in certain line
+    /// </summary>
+    /// <param name="lineType">Attack, middle or defense, GoalKeeper return 1 by default</param>
+    /// <returns>Number of paddles in this line</returns>
     int GetNumberOfPaddles(string lineType)
     {
         switch (lineType)

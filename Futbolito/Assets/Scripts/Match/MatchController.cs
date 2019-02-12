@@ -3,27 +3,36 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
+/// <summary>
+/// This class is the one that handles all events in GameMatch scene.
+/// </summary>
 public class MatchController : MonoBehaviour {
 
+    //Singleton
     public static MatchController _matchController;
+    
+    //Reference to ball in field
     public GameObject ball;
     public bool gameIsPaused;
 
+    //Variables to hanlde bullet time
     public float slowDownTime;
     public float timesSlower;
     public bool bulletTime;
     private float bulletTimeTimer;
-    private Vector2 ballPosition;
 
+    //Reference to camera and animator (also bullet time)
     public GameObject cam;
     private Animator camAnimator;
 
+    //Reference to teams that are on this match
     public Team playerTeam;
     public Team npcTeam;
 
+    //Reference to the object that handle the initial animation.
     public GameObject intialAnimationObject;
 
+    //Reference to the panels in this match scene
     public GameObject Menu_UI;
     public GameObject pausePanel;
     public GameObject finishPanel;
@@ -39,15 +48,17 @@ public class MatchController : MonoBehaviour {
     public GameObject shooting_UI;
     public GameObject pauseBtn_UI;
 
+    //Variables that manage the time elapsed in the match
     public Text timeText;
     private float timer;
     private bool endMatch;
     public bool ballInGame;
 
+    //Reference to the panel that counts when the ball is inactive and it should be restarted.
     public GameObject timeInactiveBallPanel;
     public Text restartingBallTimeText;
     
-
+    //Variables that handle the score in the match
     private int playerScore;
     public int PlayerScore
     {
@@ -65,29 +76,37 @@ public class MatchController : MonoBehaviour {
         }
     }
 
+    //Singleton, reference to this script and its info.
     private void Awake()
     {
         _matchController = this;
     }
 
+    //Initial state of objects.
     private void Start()
     {
+        //Start initial animation.
         StartCoroutine(InitAnimation());
+
+        //Start score at 0 and game as playing
         playerScore = 0;
         NPCScore = 0;
         gameIsPaused = false;
 
         //Set time
         timer = MatchInfo._matchInfo.matchTime * 60;
-        timeText.text = "TIME";
+        timeText.text = timer.ToString();
         ballInGame = false;
         endMatch = false;
 
-        playerTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().playerTeam;
-        npcTeam = GameObject.Find("MatchInfo").GetComponent<MatchInfo>().comTeam;
-        SetTeamFlags("PlayerFlags", playerTeam.flag);
-        SetTeamFlags("ComFlags", npcTeam.flag);
+        //Reference to player and NPC Game objects to pull info
+        playerTeam = MatchInfo._matchInfo.playerTeam;
+        npcTeam = MatchInfo._matchInfo.comTeam;
+        //Set UI (flags and team names)
+        SetTeamFlags("PlayerFlags", playerTeam.flag, playerTeam.teamName);
+        SetTeamFlags("ComFlags", npcTeam.flag, npcTeam.teamName);
 
+        //Hide UI panels
         pausePanel.SetActive(true);
         finishPanel.SetActive(false);
         Menu_UI.SetActive(false);
@@ -109,7 +128,6 @@ public class MatchController : MonoBehaviour {
             timeText.text = string.Format("{0}:{1}", minutes, seconds);
             
             if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);
-
         }
 
         if (bulletTime)
@@ -141,12 +159,19 @@ public class MatchController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// This method update the score in the current match.
+    /// </summary>
+    /// <param name="golName">Who score?</param>
     public void AdjustScore(string golName)
     {
+        //Play goal sound
         GetComponent<SoundMatchController>().PlayGolSound();
         if (golName == "PlayerGol")
         {
+            //Increase score
             playerScore++;
+            //Change color of Balls in goals UI
             playerScore_UI.transform.GetChild(playerScore-1).GetComponent<Image>().color = Color.white;
         }
         else if (golName == "NPCGol")
@@ -154,16 +179,25 @@ public class MatchController : MonoBehaviour {
             NPCScore++;
             NPCScore_UI.transform.GetChild(NPCScore-1).GetComponent<Image>().color = Color.white;
         }
+        //Update pause panel text
         UpdateUIScore();
+        //Check if score is 5
         CheckScore();
     }
 
+    /// <summary>
+    /// This method checks if score is equal to 5 for everyone
+    /// If not continue spawing balls
+    /// </summary>
     public void CheckScore()
     {
         if (playerScore == 5 || NPCScore == 5) StartCoroutine(PlayEndMatchAnimation(true));
         else SpawnBall();
     }
 
+    /// <summary>
+    /// Instatiate ball in game field
+    /// </summary>
     public void SpawnBall()
     {
         Instantiate(ball, Vector2.zero, Quaternion.identity);
@@ -223,12 +257,27 @@ public class MatchController : MonoBehaviour {
         SetUIState(false);
     }
 
-    public void SetTeamFlags(string tag, Sprite flag)
+    /// <summary>
+    /// This method will search for game objects with the tag given and it will set the flag and the name of the team
+    /// </summary>
+    /// <param name="tag">Objects to search by tag</param>
+    /// <param name="flag">Team flag</param>
+    /// <param name="name">Team name</param>
+    public void SetTeamFlags(string tag, Sprite flag, string name)
     {
         GameObject[] flags = GameObject.FindGameObjectsWithTag(tag);
-        for (int i = 0; i < flags.Length; i++) flags[i].GetComponent<Image>().sprite = flag;
+        for (int i = 0; i < flags.Length; i++)
+        {
+            //Get the image and set the flag
+            flags[i].GetComponent<Image>().sprite = flag;
+            //Get its first child and set its name
+            flags[i].transform.GetChild(0).GetComponent<Text>().text = name;
+        }
     }
 
+    /// <summary>
+    /// This method will resume the match, if the match is in pause state.
+    /// </summary>
     public void Resume()
     {
         Menu_UI.SetActive(false);
@@ -238,6 +287,9 @@ public class MatchController : MonoBehaviour {
         shooting_UI.SetActive(true);
     }
 
+    /// <summary>
+    /// This method will pause the match, if the match is in playing state.
+    /// </summary>
     public void Pause()
     {
         Menu_UI.SetActive(true);
@@ -247,21 +299,12 @@ public class MatchController : MonoBehaviour {
         shooting_UI.SetActive(false);
     }
 
-    public void LoadScene(string sceneName)
-    {
-        if (sceneName == "MainMenu")
-        {
-            Time.timeScale = 1;
-            Destroy(GameObject.Find("MatchInfo"));
-        }
-        SceneManager.LoadScene(sceneName);
-    }
-
     IEnumerator InitAnimation()
     {
         yield return new WaitForSeconds(1);
         intialAnimationObject.SetActive(true);
         yield return new WaitForSeconds(4);
+        intialAnimationObject.SetActive(false);
     }
 
     public void PlayBulletTimeAnimation(Vector2 pos)
@@ -277,5 +320,20 @@ public class MatchController : MonoBehaviour {
         Time.timeScale = 0.5f;
         yield return new WaitForSecondsRealtime(0.1f);
         Time.timeScale = 1;
+    }
+
+    /// <summary>
+    /// This method changes the scene. If you're quiting the game, it will restart the timescale
+    /// and then destroy this game object.
+    /// </summary>
+    /// <param name="sceneName">Name of the scene</param>
+    public void LoadScene(string sceneName)
+    {
+        if (sceneName == "MainMenu")
+        {
+            Time.timeScale = 1;
+            Destroy(GameObject.Find("MatchInfo"));
+        }
+        SceneManager.LoadScene(sceneName);
     }
 }

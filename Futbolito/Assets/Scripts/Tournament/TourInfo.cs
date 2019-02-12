@@ -9,6 +9,7 @@ public class TourInfo{
     public string teamSelected;
     public int teamsAmount;
     public int groupsAmount;
+    public int matchesRound;
 
     public List<TeamTourInfo> teamList;
     public List<MatchTourInfo> matches;
@@ -19,6 +20,7 @@ public class TourInfo{
         teamSelected = tour.teamSelected;
         teamsAmount = tour.teamsAmount;
         groupsAmount = tour.groupsAmount;
+        matchesRound = tour.matchesRound;
         teamList = tour.teamList;
         matches = tour.matchesList;
     }

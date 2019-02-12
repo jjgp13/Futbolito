@@ -4,20 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
+/// <summary>
+/// This class handle all the stuff related to UI in TourMainMenu scene.
+/// </summary>
 public class TourUIController : MonoBehaviour {
 
+    //Reference to the UI prefab that shows the information of a team in the tournament. 
     public GameObject teamTourStatsPrefab;
+    //Reference to the panel that show the teams by group.
     public GameObject positionsPanel;
+    //Reference to the text of the group. 
     public Text groupText;
 
+    //Info of the tournament
     TournamentController tourInfo;
 
-    public int teamsInTour;
-    public int firstTeamActiveInPanel;
+    private int teamsInTour;
+    private int firstTeamActiveInPanel;
 
     private void Awake()
     {
-        tourInfo = GameObject.FindGameObjectWithTag("TourData").GetComponent<TournamentController>();
+        tourInfo = TournamentController._tourCtlr;
     }
 
     // Use this for initialization

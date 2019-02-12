@@ -1,22 +1,47 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class is attached to a game object with the same name.
+/// This will be in charge of set all game objects in GameMatchScene
+/// </summary>
 public class MatchInfo : MonoBehaviour {
 
+    //Type of match
+    public enum MatchType
+    {
+        QuickMatch,
+        TourMatch,
+        OnlineMatch
+    };
+    //Singleton
     public static MatchInfo _matchInfo;
 
+    public MatchType matchType;
+    
+    //Information of the player
     public Team playerTeam;
     public Formation playerLineUp;
     public string playerUniform;
-
+    //Information of the NPC
     public Team comTeam;
     public Formation comLineUp;
     public string comUniform;
 
+    //Match time and difficulty
     public int matchTime;
     public int difficulty;
 
     private void Awake()
     {
         _matchInfo = this;
+    }
+
+    //When this object is starting, it will be assign a MatchType given the scene in which is created.
+    private void Start()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "QuickMatchMenu") matchType = MatchType.QuickMatch;
+        else if (scene.name == "TourMainMenu") matchType = MatchType.TourMatch;
     }
 }

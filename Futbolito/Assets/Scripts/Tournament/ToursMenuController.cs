@@ -4,53 +4,55 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// This class is used in TournamentSelectionScene and it controls actions on this scene related to UI.
+/// </summary>
 public class ToursMenuController : MonoBehaviour {
 
 
-    /// Referencia a los torneos (Scripable objects)
+    //Reference to the scriptable objects that has the information of each tournament
     public Tournament[] tours;
-    //Referencia al panel que contienen las banderas de los equipos
+    //Reference to the panel that contains the teams that participate in each tournament
     public GameObject teamsPanel;
 
-    //Referencia al prefab que contiene la bandera y nombre del equipo.
+    //This prefab contains the flag and the name of the team
     public Button teamButton;
 
-    //Array que contiene los botones de los torneos 
+    //Array that handles the tournament buttons
     public Button[] toursBtns;
-    //Marco vacio y de color para diferencia cuando se selecciona un torneo
+    //Sprite that turn on a the color of the torunament selected.
     public Sprite selectedTourSprite, notSelectedTourSprite;
 
-    //referencias al layout que le da formato a las imagenes de las banderas cuando se selecciona a un equipo
-    public GameObject teamsLayoutObj;
+    //Grid that contains the teams in teamsPanel
     private GridLayoutGroup teamsLayout;
 
-    //Referencia al mapa del fondo que se colorea segun el torneo seleccionado.
+    //Reference to the map that lays on the background of the scene and the sprites of each confederation.
     public Image tourMapSprite;
     public Sprite[] tourMaps;
     
 
     // Use this for initialization
     void Start () {
-        teamsLayout = teamsLayoutObj.GetComponent<GridLayoutGroup>();
+        teamsLayout = teamsPanel.GetComponent<GridLayoutGroup>();
 	}
-
+    
     /// <summary>
-    /// Metodo para desplegar los equipos que participan en el torneo seleccionado.
-    /// En caso de haber ya equipos desplegados, se eliminan.
-    /// Posteriormente, se modifican los margenes del layout que contienen a las banderas de los equipos para hacer caber a los equipos de cada torneo.
-    /// Por ultimo, se itera y se crean los botones de los equipos segun el torneo seleccionado.
-    /// El index indica el torneo seleccionado.
+    /// This method is called by the tournament buttons that are on the scene
+    /// This will display the teams that participate on the tournament selected.
     /// </summary>
-    /// <param name="tourIndex"></param>
+    /// <param name="tourIndex">Indexof the tour selected. tours array</param>
     public void DisplayTeamsOnPanel(int tourIndex)
     {
+        //Delete the team that was previously selected if so.
         TournamentController._tourCtlr.teamSelected = "";
-
+        //Delete the teams that are on already present on the panel
         DeleteTeamsFromPanel();
         SetTeamsPanel(tours[tourIndex].teams.Length);
         tourMapSprite.sprite = tourMaps[tourIndex];
 
+        //Get the info of the tournament selected.
         Tournament tour = tours[tourIndex];
+        //Iterate the teams present on this tournament and instantiate as button.
         for (int i = 0; i < tour.teams.Length; i++)
         {
             Button newTeam = Instantiate(teamButton);
@@ -62,7 +64,9 @@ public class ToursMenuController : MonoBehaviour {
         }
     }
 
-    //Borrar los botones de los equipos del panel.
+    /// <summary>
+    /// This method delete the buttons (teams) of the panel that contains them.
+    /// </summary>
     void DeleteTeamsFromPanel()
     {
         foreach (Transform child in teamsPanel.transform)
@@ -71,7 +75,10 @@ public class ToursMenuController : MonoBehaviour {
         }
     }
 
-    //Al seleccionar algun equipo, un borde aparece alrededor de la bandera.
+    /// <summary>
+    /// This method highlight the torunament selected.
+    /// </summary>
+    /// <param name="index">Index of the tournament (tours array).</param>
     public void ChangeButtonSprite(int index) {
         for (int i = 0; i < toursBtns.Length; i++)
         {
@@ -80,7 +87,10 @@ public class ToursMenuController : MonoBehaviour {
         }
     }
 
-    //Cambiar los margenes del layout para hacer caber todos los equipos participants de cada torneo.
+    /// <summary>
+    /// This method change the properties of the layout given the number of participants in the tour
+    /// </summary>
+    /// <param name="teamsN">Number of teams on the tournament</param>
     void SetTeamsPanel(int teamsN)
     {
         if(teamsN == 16)
@@ -113,6 +123,7 @@ public class ToursMenuController : MonoBehaviour {
         }
     }
 
+    //Change scene
     public void MainMenu(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
