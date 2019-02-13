@@ -14,8 +14,10 @@ public class MatchController : MonoBehaviour {
     //Reference to ball in field
     public GameObject ball;
     public bool gameIsPaused;
+    public bool ballInGame;
 
     //Variables to hanlde bullet time
+    [Header("Variables for bullet time")]
     public float slowDownTime;
     public float timesSlower;
     public bool bulletTime;
@@ -25,12 +27,15 @@ public class MatchController : MonoBehaviour {
     public GameObject cam;
     private Animator camAnimator;
 
+    [Header("Scriptable objects with teams information")]
     //Reference to teams that are on this match
     public Team playerTeam;
     public Team npcTeam;
 
+    [Header("Objects to handle UI")]
     //Reference to the object that handle the initial animation.
     public GameObject intialAnimationObject;
+    public Text matchTypeText;
 
     //Reference to the panels in this match scene
     public GameObject Menu_UI;
@@ -38,7 +43,9 @@ public class MatchController : MonoBehaviour {
     public GameObject finishPanel;
     public Text StatusTitleMenu;
     public Text matchTextScore;
-    public Text finalMatchStatus;
+    public GameObject finalMatchPanel;
+    [Tooltip("Knockout or time out")]
+    public Text finalMatchStatusText;
 
     public GameObject golAnimation_UI;
     public GameObject playerScore_UI;
@@ -52,8 +59,9 @@ public class MatchController : MonoBehaviour {
     public Text timeText;
     private float timer;
     private bool endMatch;
-    public bool ballInGame;
+    
 
+    [Header("Restart ball Panel")]
     //Reference to the panel that counts when the ball is inactive and it should be restarted.
     public GameObject timeInactiveBallPanel;
     public Text restartingBallTimeText;
@@ -80,6 +88,8 @@ public class MatchController : MonoBehaviour {
     private void Awake()
     {
         _matchController = this;
+        //Show action buttons
+        SetUIState(true);
     }
 
     //Initial state of objects.
@@ -102,11 +112,17 @@ public class MatchController : MonoBehaviour {
         //Reference to player and NPC Game objects to pull info
         playerTeam = MatchInfo._matchInfo.playerTeam;
         npcTeam = MatchInfo._matchInfo.comTeam;
+
+        //Active these panels to assign flags
+        golAnimation_UI.SetActive(true);
+        Menu_UI.SetActive(true);
+        
+
         //Set UI (flags and team names)
         SetTeamFlags("PlayerFlags", playerTeam.flag, playerTeam.teamName);
         SetTeamFlags("ComFlags", npcTeam.flag, npcTeam.teamName);
 
-        //Hide UI panels
+        //Hide-show UI panels
         pausePanel.SetActive(true);
         finishPanel.SetActive(false);
         Menu_UI.SetActive(false);
@@ -143,6 +159,7 @@ public class MatchController : MonoBehaviour {
             }
         }
 
+        //This handle the time remaing in match
         if (timer <= 0)
         {
             endMatch = true;
@@ -150,6 +167,7 @@ public class MatchController : MonoBehaviour {
             timeText.GetComponent<Animator>().SetBool("Warning", false);
         }
 
+        //if time has finished start end animation 
         if (endMatch)
         {
             timer = 1;
@@ -191,6 +209,7 @@ public class MatchController : MonoBehaviour {
     /// </summary>
     public void CheckScore()
     {
+        //play end animation with knockout.
         if (playerScore == 5 || NPCScore == 5) StartCoroutine(PlayEndMatchAnimation(true));
         else SpawnBall();
     }
@@ -203,15 +222,27 @@ public class MatchController : MonoBehaviour {
         Instantiate(ball, Vector2.zero, Quaternion.identity);
     }
 
+    /// <summary>
+    /// Play goal animation. Every time a goal is scored.
+    /// </summary>
+    /// <returns>Animation duration</returns>
     public IEnumerator GolAnimation()
     {
         golAnimation_UI.SetActive(true);
+        //Hide Shoot and Hold buttons and pause panel.
         SetUIState(false);
+        //Wait 4 seconds.
         yield return new WaitForSeconds(4f);
+        //Hide Goal animation
         golAnimation_UI.SetActive(false);
+        //If noabady has reached 5 goals show again buttons.
         if(playerScore < 5 && NPCScore < 5) SetUIState(true);
     }
 
+    /// <summary>
+    /// Hide or show shooting, hold and pause button.
+    /// </summary>
+    /// <param name="active">True or false.</param>
     public void SetUIState(bool active)
     {
         holding_UI.SetActive(active);
@@ -219,32 +250,35 @@ public class MatchController : MonoBehaviour {
         pauseBtn_UI.SetActive(active);
     }
 
+    /// <summary>
+    /// Update pause panel score.
+    /// </summary>
     public void UpdateUIScore()
     {
         matchTextScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
 
+    /// <summary>
+    /// Play end match animation.
+    /// </summary>
+    /// <param name="knockout">If a player has reached 5 goals it is consider has knockout</param>
+    /// <returns></returns>
     public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
-
+        //If match time has finished and ball is still in gamefield, stop and destroy.
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Destroy(GameObject.FindGameObjectWithTag("Ball"));
+        
+        //Change text depending on game final status.
+        if (knockout) finalMatchStatusText.text = "Knockout!";
+        else finalMatchStatusText.text = "Time out!";
+        
+        //Activate final match animation.
+        finalMatchPanel.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        finalMatchPanel.gameObject.SetActive(false);
 
-        if (knockout)
-        {
-            finalMatchStatus.text = "Knockout";
-            yield return new WaitForSeconds(4f);
-            finalMatchStatus.gameObject.SetActive(true);
-            yield return new WaitForSeconds(2f);
-            finalMatchStatus.gameObject.SetActive(false);
-        }
-        else
-        {
-            finalMatchStatus.gameObject.SetActive(true);
-            yield return new WaitForSeconds(2f);
-            finalMatchStatus.gameObject.SetActive(false);
-        }
-
+        //Activate final match panel
         Menu_UI.SetActive(true);
         if (playerScore > NPCScore)
             StatusTitleMenu.text = "YOU WIN!";
@@ -252,6 +286,8 @@ public class MatchController : MonoBehaviour {
             StatusTitleMenu.text = "YOU LOSE!";
         else
             StatusTitleMenu.text = "DRAW!";
+
+        //Deactivate pause panel shooting button, holding button.
         pausePanel.SetActive(false);
         finishPanel.SetActive(true);
         SetUIState(false);
@@ -299,14 +335,22 @@ public class MatchController : MonoBehaviour {
         shooting_UI.SetActive(false);
     }
 
+    //Activate inital animation.
     IEnumerator InitAnimation()
     {
-        yield return new WaitForSeconds(1);
+        //Change initial animation text, depending of the match type
+        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.QuickMatch) matchTypeText.text = "Friendly";
+        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.TourMatch) matchTypeText.text = TournamentController._tourCtlr.tourName + "\n Match " + TournamentController._tourCtlr.matchesRound;
+
         intialAnimationObject.SetActive(true);
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2.5f);
         intialAnimationObject.SetActive(false);
+        //Instiatite a ball
+        SpawnBall();
     }
 
+    //Animation for bullet time hit.
+    //Fix
     public void PlayBulletTimeAnimation(Vector2 pos)
     {
         cam.transform.position = new Vector3(pos.x, pos.y, -20);

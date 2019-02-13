@@ -14,9 +14,10 @@ public class MatchInfo : MonoBehaviour {
         TourMatch,
         OnlineMatch
     };
+
     //Singleton
     public static MatchInfo _matchInfo;
-
+    //Type of match to play
     public MatchType matchType;
     
     //Information of the player

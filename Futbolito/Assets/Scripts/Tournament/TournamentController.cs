@@ -16,11 +16,14 @@ public class TournamentController : MonoBehaviour {
     //Tournament info
     public string tourName;
     public string teamSelected;
+    public int matchTime;
+    public int tourLevel;
     public int teamsAmount;
     public int groupsAmount;
     public int matchesRound;
 
     public List<TeamTourInfo> teamList;
+    public Queue<MatchTourInfo> playerMatches;
     public List<MatchTourInfo> matchesList;
 
     //Array that helps to assign randomly a group to each team,
@@ -186,7 +189,13 @@ public class TournamentController : MonoBehaviour {
     /// <param name="sceneName">Name of the scene</param>
     public void StartTournament(string sceneName)
     {
-        SaveTour();
-        SceneManager.LoadScene(sceneName);
+        if (teamSelected != "")
+        {
+            SaveTour();
+            SceneManager.LoadScene(sceneName);
+        } else
+        {
+
+        }        
     }
 }
