@@ -8,7 +8,7 @@ public class MainMenuController : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
-        if (sceneName == "TournamentNew") SceneManager.LoadScene("Tournament");
+        if (sceneName == "TournamentSelectionScene") SceneManager.LoadScene(sceneName);
 
         if (sceneName == "Tournament")
         {

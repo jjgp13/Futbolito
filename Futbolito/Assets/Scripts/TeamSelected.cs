@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TeamSelected : MonoBehaviour {
 
@@ -9,9 +10,14 @@ public class TeamSelected : MonoBehaviour {
 
     public void SelectTeam()
     {
-        //For tournaments
-        GameObject tc = GameObject.Find("TourController");
-        if (tc != null) tc.GetComponent<TournamentController>().teamSelected = team.teamName;
+        Scene currentScene = SceneManager.GetActiveScene();
+        if(currentScene.name == "TournamentSelectionScene")
+        {
+            //For tournaments
+            GameObject tc = GameObject.Find("TourController");
+            if (tc != null) tc.GetComponent<TournamentController>().teamSelected = team.teamName;
+            FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = team.flag;
+        }
 
         //Behaviour for outline effect
         if (isSelected) isSelected = false;
@@ -37,11 +43,6 @@ public class TeamSelected : MonoBehaviour {
             item.GetComponentInParent<TeamSelected>().isSelected = false;
             Destroy(item.gameObject);
         }
-    }
-
-    public Team ReturnTeamSelected()
-    {
-        return team;
     }
 
 }

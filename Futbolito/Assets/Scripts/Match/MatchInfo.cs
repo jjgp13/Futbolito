@@ -31,7 +31,7 @@ public class MatchInfo : MonoBehaviour {
 
     //Match time and difficulty
     public int matchTime;
-    public int difficulty;
+    public int matchLevel;
 
     private void Awake()
     {

@@ -181,21 +181,4 @@ public class TournamentController : MonoBehaviour {
         }
         return group;
     }
-
-    /// <summary>
-    /// Save the info of this tournament and change to Tournament main menu scene.
-    /// Called by start button in tournament scene.
-    /// </summary>
-    /// <param name="sceneName">Name of the scene</param>
-    public void StartTournament(string sceneName)
-    {
-        if (teamSelected != "")
-        {
-            SaveTour();
-            SceneManager.LoadScene(sceneName);
-        } else
-        {
-
-        }        
-    }
 }

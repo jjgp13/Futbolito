@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PanelSelection : MonoBehaviour {
 
@@ -52,7 +53,11 @@ public class PanelSelection : MonoBehaviour {
 
     public void SetTime(int time)
     {
-        MatchInfo._matchInfo.matchTime = time;
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "TournamentSelectionScene")
+            TournamentController._tourCtlr.matchTime = time;
+        else if (currentScene.name == "QuickMatchMenu")
+            MatchInfo._matchInfo.matchTime = time;
     }
 
     public void SetDifficulty(int difficulty)
@@ -60,7 +65,11 @@ public class PanelSelection : MonoBehaviour {
         //1 is easy
         //2 is normal
         //3 is hard
-        MatchInfo._matchInfo.difficulty = difficulty;
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name == "TournamentSelectionScene")
+            TournamentController._tourCtlr.tourLevel = difficulty;
+        else if (currentScene.name == "QuickMatchMenu")
+            MatchInfo._matchInfo.matchLevel = difficulty;
     }
 
     public void SetUniform(string uniform)

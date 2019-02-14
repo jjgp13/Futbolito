@@ -11,7 +11,7 @@ public class NPCStats : MonoBehaviour{
 
     private void Start()
     {
-        int d = MatchInfo._matchInfo.difficulty - 1;
+        int d = MatchInfo._matchInfo.matchLevel - 1;
         switch (d)
         {
             case 1:

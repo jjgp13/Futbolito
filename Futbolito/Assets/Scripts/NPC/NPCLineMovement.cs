@@ -69,7 +69,7 @@ public class NPCLineMovement : MonoBehaviour {
                 break;
         }
 
-        if (MatchInfo._matchInfo.difficulty == 1) speed -= 0.25f;
-        if (MatchInfo._matchInfo.difficulty == 3) speed += 0.25f;
+        if (MatchInfo._matchInfo.matchLevel == 1) speed -= 0.25f;
+        if (MatchInfo._matchInfo.matchLevel == 3) speed += 0.25f;
     }
 }

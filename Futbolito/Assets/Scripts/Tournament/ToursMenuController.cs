@@ -9,6 +9,8 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class ToursMenuController : MonoBehaviour {
 
+    //Get data 
+    public TournamentController tcInfo;
 
     //Reference to the scriptable objects that has the information of each tournament
     public Tournament[] tours;
@@ -29,13 +31,19 @@ public class ToursMenuController : MonoBehaviour {
     //Reference to the map that lays on the background of the scene and the sprites of each confederation.
     public Image tourMapSprite;
     public Sprite[] tourMaps;
+
+    //Reference to team that has been selected.
+    public Image teamSelectedFlag;
+
+    //Reference panel not team selected.
+    public GameObject notTeamSelectedPanel;
     
 
     // Use this for initialization
     void Start () {
         teamsLayout = teamsPanel.GetComponent<GridLayoutGroup>();
 	}
-    
+
     /// <summary>
     /// This method is called by the tournament buttons that are on the scene
     /// This will display the teams that participate on the tournament selected.
@@ -126,6 +134,34 @@ public class ToursMenuController : MonoBehaviour {
     //Change scene
     public void MainMenu(string sceneName)
     {
+        Destroy(GameObject.Find("TourController"));
         SceneManager.LoadScene(sceneName);
+    }
+
+    /// <summary>
+    /// Save the info of this tournament and change to Tournament main menu scene.
+    /// Called by start button in tournament scene.
+    /// </summary>
+    /// <param name="sceneName">Name of the scene</param>
+    public void StartTournament(string sceneName)
+    {
+        if (tcInfo.teamSelected != "")
+        {
+            tcInfo.SaveTour();
+            SceneManager.LoadScene(sceneName);
+        }
+        else
+        {
+            notTeamSelectedPanel.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Deactive game object that is passing 
+    /// </summary>
+    /// <param name="obj">Game object that is going to be deactivate</param>
+    public void DeactivePanel(GameObject obj)
+    {
+        obj.SetActive(false);
     }
 }

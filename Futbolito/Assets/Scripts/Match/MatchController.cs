@@ -56,6 +56,8 @@ public class MatchController : MonoBehaviour {
     public GameObject pauseBtn_UI;
 
     //Variables that manage the time elapsed in the match
+    [Header("Time panel")]
+    public GameObject timePanel;
     public Text timeText;
     private float timer;
     private bool endMatch;
@@ -261,7 +263,7 @@ public class MatchController : MonoBehaviour {
     /// <summary>
     /// Play end match animation.
     /// </summary>
-    /// <param name="knockout">If a player has reached 5 goals it is consider has knockout</param>
+    /// <param name="knockout">If a player has reTimeached 5 goals it is consider has knockout</param>
     /// <returns></returns>
     public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
@@ -345,6 +347,7 @@ public class MatchController : MonoBehaviour {
         intialAnimationObject.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         intialAnimationObject.SetActive(false);
+        timePanel.SetActive(true);
         //Instiatite a ball
         SpawnBall();
     }

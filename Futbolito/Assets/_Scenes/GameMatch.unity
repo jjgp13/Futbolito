@@ -616,6 +616,7 @@ MonoBehaviour:
   holding_UI: {fileID: 1145803507}
   shooting_UI: {fileID: 505406827}
   pauseBtn_UI: {fileID: 2029119031}
+  timePanel: {fileID: 567637963}
   timeText: {fileID: 2113908357}
   timeInactiveBallPanel: {fileID: 1613789017}
   restartingBallTimeText: {fileID: 1439293803}

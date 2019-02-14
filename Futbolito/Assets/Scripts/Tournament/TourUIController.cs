@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class handle all the stuff related to UI in TourMainMenu scene.
@@ -108,5 +109,12 @@ public class TourUIController : MonoBehaviour {
     {
         Text teamName = team.transform.GetChild(1).GetComponent<Text>();
         if (teamName.text == tourInfo.teamSelected) teamName.color = Color.yellow;
+    }
+
+    public void ChangeScene(string sceneName)
+    {
+        Destroy(FindObjectOfType<TournamentController>());
+        Destroy(FindObjectOfType<MatchInfo>());
+        SceneManager.LoadScene(sceneName);
     }
 }
