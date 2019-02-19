@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class QuickMatchMenuController : MonoBehaviour {
 
     //This game ob
-    public MatchInfo matchInfo;
+    private MatchInfo matchInfo;
 
     //Reference to panel that handles teams
     public GameObject teamsPanel;
@@ -35,9 +35,9 @@ public class QuickMatchMenuController : MonoBehaviour {
     public Sprite flagOutline;
     
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        DontDestroyOnLoad(matchInfo);
+        matchInfo = MatchInfo._matchInfo;
     }
 
 

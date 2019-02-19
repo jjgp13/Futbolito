@@ -106,8 +106,8 @@ public class MatchController : MonoBehaviour {
         gameIsPaused = false;
 
         //Set time
-        timer = MatchInfo._matchInfo.matchTime * 60;
-        timeText.text = timer.ToString();
+        timer = MatchInfo._matchInfo.matchTime * 59;
+        timeText.text = string.Format("{0}:00", MatchInfo._matchInfo.matchTime.ToString()); 
         ballInGame = false;
         endMatch = false;
 
@@ -142,7 +142,7 @@ public class MatchController : MonoBehaviour {
             timer -= Time.deltaTime;
 
             string minutes = Mathf.Floor(timer / 60).ToString("00");
-            string seconds = (timer % 60).ToString("00");
+            string seconds = (timer % 59).ToString("00");
             timeText.text = string.Format("{0}:{1}", minutes, seconds);
             
             if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);

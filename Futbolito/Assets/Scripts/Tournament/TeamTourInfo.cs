@@ -1,24 +1,32 @@
-﻿[System.Serializable]
+﻿/// <summary>
+/// This class is serialized and save inside tournament information.
+/// </summary>
+
+[System.Serializable]
 public class TeamTourInfo{
 
-    public string name;
-    public string group;
-    public int w;
-    public int d;
-    public int l;
-    public int gf;
-    public int gc;
-    public int p;
+    public string teamName;
+    public string teamGroup;
+    public int victories;
+    public int knockoutVictories;
+    public int draws;
+    public int defeats;
+    public int knockoutDefeats;
+    public int goalsScored;
+    public int goalsReceived;
+    public int points;
 
-    public TeamTourInfo(string teamName, string teamGroup, int winnigs, int draws, int losses, int goalsScored, int goalsRecieved, int points)
+    public TeamTourInfo(string _teamName, string _teamGroup, int _victories, int _knockoutVictories, int _draws, int _defeats, int _knockoutDefeats, int _goalsScored, int _goalsRecieved, int _points)
     {
-        name = teamName;
-        group = teamGroup;
-        w = winnigs;
-        d = draws;
-        l = losses;
-        gf = goalsScored;
-        gc = goalsRecieved;
-        p = points;
+        teamName = _teamName;
+        teamGroup = _teamGroup;
+        victories = _victories;
+        knockoutVictories = _knockoutVictories;
+        draws = _draws;
+        defeats = _defeats;
+        knockoutDefeats = _knockoutDefeats;
+        goalsScored = _goalsScored;
+        goalsReceived = _goalsRecieved;
+        points = _points;
     }
 }

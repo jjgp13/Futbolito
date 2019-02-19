@@ -4,16 +4,21 @@ using UnityEngine.SceneManagement;
 
 public class TeamSelected : MonoBehaviour {
 
+    /// <summary>
+    /// Prefab of button selection team.
+    /// </summary>
     public Team team;
     public Image flagOutline;
     public bool isSelected = false;
 
     public void SelectTeam()
     {
+        //Get scene and depending on that it will act different.
         Scene currentScene = SceneManager.GetActiveScene();
-        if(currentScene.name == "TournamentSelectionScene")
+
+        //When a selection team button appears in tournament selection scene.
+        if (currentScene.name == "TournamentSelectionScene")
         {
-            //For tournaments
             GameObject tc = GameObject.Find("TourController");
             if (tc != null) tc.GetComponent<TournamentController>().teamSelected = team.teamName;
             FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = team.flag;
@@ -23,6 +28,7 @@ public class TeamSelected : MonoBehaviour {
         if (isSelected) isSelected = false;
         else isSelected = true;
 
+        //Create the outline when is selected.
         if(isSelected)
         {
             DeletePreviousSelected();

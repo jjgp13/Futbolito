@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// This class is serialized and save. When a new tournament is created.
+/// </summary>
 [System.Serializable]
 public class TourInfo{
 
@@ -14,7 +18,7 @@ public class TourInfo{
     public int matchesRound;
 
     public List<TeamTourInfo> teamList;
-    public Queue<MatchTourInfo> playerMatches;
+    public List<MatchTourInfo> playerMatches;
     public List<MatchTourInfo> matches;
 
     public TourInfo(TournamentController tour)

@@ -102,39 +102,43 @@ public class ToursMenuController : MonoBehaviour {
     void SetTeamsPanel(int teamsN)
     {
         if(teamsN == 16)
-        {
-            teamsLayout.padding = new RectOffset(20, 20, 20, 20);
-            teamsLayout.cellSize = new Vector2(128, 104);
-            teamsLayout.spacing = new Vector2(55, 15);
+        {   
+            teamsLayout.cellSize = new Vector2(192, 162);
+            teamsLayout.spacing = new Vector2(-5, -43);
             teamsLayout.startAxis = GridLayoutGroup.Axis.Vertical;
+            teamsLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            teamsLayout.constraintCount = 4;
         }
         else if (teamsN == 12)
-        {
-            teamsLayout.padding = new RectOffset(20, 20, 20, 20);
-            teamsLayout.cellSize = new Vector2(128, 104);
-            teamsLayout.spacing = new Vector2(130, 15);
+        {   
+            teamsLayout.cellSize = new Vector2(208, 172);
+            teamsLayout.spacing = new Vector2(-25, 0);
             teamsLayout.startAxis = GridLayoutGroup.Axis.Vertical;
+            teamsLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            teamsLayout.constraintCount = 4;
         }
         else if (teamsN == 24)
         {
-            teamsLayout.padding = new RectOffset(20, 20, 20, 20);
-            teamsLayout.cellSize = new Vector2(104, 80);
-            teamsLayout.spacing = new Vector2(11, 45);
+            teamsLayout.cellSize = new Vector2(146, 116);
+            teamsLayout.spacing = new Vector2(-28, 5);
             teamsLayout.startAxis = GridLayoutGroup.Axis.Vertical;
+            teamsLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            teamsLayout.constraintCount = 6;
         }
         else
         {
-            teamsLayout.padding = new RectOffset(5,5,20,20);
-            teamsLayout.cellSize = new Vector2(80, 56);
-            teamsLayout.spacing = new Vector2(10, 70);
+            teamsLayout.cellSize = new Vector2(120, 96);
+            teamsLayout.spacing = new Vector2(-35, 30);
             teamsLayout.startAxis = GridLayoutGroup.Axis.Horizontal;
+            teamsLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+            teamsLayout.constraintCount = 8;
         }
     }
 
     //Change scene
     public void MainMenu(string sceneName)
     {
-        Destroy(GameObject.Find("TourController"));
+        Destroy(FindObjectOfType<TournamentController>().gameObject);
         SceneManager.LoadScene(sceneName);
     }
 
@@ -145,6 +149,14 @@ public class ToursMenuController : MonoBehaviour {
     /// <param name="sceneName">Name of the scene</param>
     public void StartTournament(string sceneName)
     {
+        //Get matches of the player.
+        for (int i = 0; i < tcInfo.matchesList.Count; i++)
+        {
+            //if the match created has the team selected, add match to player matches.
+            if (tcInfo.matchesList[i].localTeam.teamName == tcInfo.teamSelected || tcInfo.matchesList[i].visitTeam.teamName == tcInfo.teamSelected)
+                tcInfo.playerMatches.Add(tcInfo.matchesList[i]);
+        }
+
         if (tcInfo.teamSelected != "")
         {
             tcInfo.SaveTour();

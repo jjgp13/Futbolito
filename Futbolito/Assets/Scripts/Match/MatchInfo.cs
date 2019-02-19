@@ -36,6 +36,7 @@ public class MatchInfo : MonoBehaviour {
     private void Awake()
     {
         _matchInfo = this;
+        DontDestroyOnLoad(this);
     }
 
     //When this object is starting, it will be assign a MatchType given the scene in which is created.

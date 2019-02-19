@@ -6,7 +6,7 @@ using System.Linq;
 
 
 /// <summary>
-/// This class will handle the information realted to the tournament that is being played.
+/// This class will handle the information related to the tournament that is being played.
 /// Also this class is the one that is saved and loaded in order to recover the tournament.
 /// </summary>
 public class TournamentController : MonoBehaviour {
@@ -23,7 +23,7 @@ public class TournamentController : MonoBehaviour {
     public int matchesRound;
 
     public List<TeamTourInfo> teamList;
-    public Queue<MatchTourInfo> playerMatches;
+    public List<MatchTourInfo> playerMatches;
     public List<MatchTourInfo> matchesList;
 
     //Array that helps to assign randomly a group to each team,
@@ -70,7 +70,10 @@ public class TournamentController : MonoBehaviour {
         Tournament tournament = Resources.Load<Tournament>("Tours/"+tourNameSelected);
         teamsAmount = tournament.teams.Length;
         groupsAmount = tournament.teams.Length / 4;
-        matchesRound = 1;
+        //For the playerMatches list, but shows 1 to the user
+        matchesRound = 0;
+        matchTime = 2;
+        tourLevel = 2;
     }
 
     /// <summary>
@@ -91,12 +94,12 @@ public class TournamentController : MonoBehaviour {
 
             //Create the team's info for this tournament.
             //Assign a random group in the tour and add it to the list.
-            TeamTourInfo teamTour = new TeamTourInfo(team.name, RandomGroup(),0,0,0,0,0,0);
+            TeamTourInfo teamTour = new TeamTourInfo(team.name, RandomGroup(),0,0,0,0,0,0,0,0);
             teamList.Add(teamTour);
         }
 
         //Order the team's list by group
-        List<TeamTourInfo> sortedList = teamList.OrderBy(team => team.group).ToList();
+        List<TeamTourInfo> sortedList = teamList.OrderBy(team => team.teamGroup).ToList();
         teamList = sortedList;
         //Create the matches of the group phase of the tournament.
         CreateTourMatches();

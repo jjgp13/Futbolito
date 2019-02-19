@@ -34,7 +34,6 @@ public static class SaveSystem {
         }
         else
         {
-            Debug.LogError("File not found in " + path);
             return null;
         }
     }

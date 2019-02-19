@@ -1,17 +1,21 @@
-﻿[System.Serializable]
+﻿/// <summary>
+/// This class is serialized and saved inside the tournament controller info.
+/// </summary>
+
+[System.Serializable]
 public class MatchTourInfo{
 
-    public TeamTourInfo teamL;
+    public TeamTourInfo localTeam;
     public int localGoals;
-    public TeamTourInfo teamV;
+    public TeamTourInfo visitTeam;
     public int visitGoals;
     public int matchNumber;
 
     public MatchTourInfo(TeamTourInfo local_team, int local_goals, TeamTourInfo visit_team, int visit_goals, int match_number)
     {
-        teamL = local_team;
+        localTeam = local_team;
         localGoals = local_goals;
-        teamV = visit_team;
+        visitTeam = visit_team;
         visitGoals = visit_goals;
         matchNumber = match_number;
     }

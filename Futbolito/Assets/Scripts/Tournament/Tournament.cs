@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Scriptable Object with tournament information.
+/// </summary>
 [CreateAssetMenu(fileName = "New Tournament", menuName = "Tournament")]
 public class Tournament : ScriptableObject {
 
