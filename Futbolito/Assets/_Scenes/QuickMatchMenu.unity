@@ -11078,20 +11078,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: MatchInfo
       objectReference: {fileID: 0}
+    - target: {fileID: 7965151182848152149, guid: 6c4f45f2f493e9f4fa894322e1f4fd47,
+        type: 3}
+      propertyPath: m_TagString
+      value: MatchData
+      objectReference: {fileID: 0}
     - target: {fileID: 7965151182848152150, guid: 6c4f45f2f493e9f4fa894322e1f4fd47,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 157.11816
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7965151182848152150, guid: 6c4f45f2f493e9f4fa894322e1f4fd47,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 334.64963
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7965151182848152150, guid: 6c4f45f2f493e9f4fa894322e1f4fd47,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7965151182848152150, guid: 6c4f45f2f493e9f4fa894322e1f4fd47,
         type: 3}

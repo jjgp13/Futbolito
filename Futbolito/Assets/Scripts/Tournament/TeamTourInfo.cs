@@ -29,4 +29,18 @@ public class TeamTourInfo{
         goalsReceived = _goalsRecieved;
         points = _points;
     }
+
+    public TeamTourInfo(TeamTourInfo info)
+    {
+        teamName = info.teamName;
+        teamGroup = info.teamGroup;
+        victories = info.victories;
+        knockoutVictories = info.knockoutVictories;
+        draws = info.draws;
+        defeats = info.defeats;
+        knockoutDefeats = info.knockoutDefeats;
+        goalsScored = info.goalsScored;
+        goalsReceived = info.goalsReceived;
+        points = info.points;
+    }
 }

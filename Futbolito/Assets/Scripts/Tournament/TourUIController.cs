@@ -13,7 +13,7 @@ public class TourUIController : MonoBehaviour {
     //Info of the tournament
     private TournamentController tourInfo;
     //Info of the next match
-    private MatchInfo _matchInfo;
+    private MatchInfo matchInfo;
 
     [Header("Main menu Panel")]
     [Tooltip("Reference to the UI prefab that shows the information of a team in the tournament. ")]
@@ -36,9 +36,6 @@ public class TourUIController : MonoBehaviour {
     //0 is local, 1 is visit
     private Team[] teamsForMatch = new Team[2];
 
-    //Reference to prefab for MatchInfo gameobject.
-    public GameObject matchInfo;
-
     //Reference to animator
     public Animator canvasAnimator;
 
@@ -46,6 +43,7 @@ public class TourUIController : MonoBehaviour {
     public Text roundText;
 
     public Image playerFlag;
+    public Image playerFormationImage;
     public Image playerFirstUniform;
     public Image playerSecondUniform;
 
@@ -61,7 +59,7 @@ public class TourUIController : MonoBehaviour {
     private void Awake()
     {
         tourInfo = TournamentController._tourCtlr;
-        _matchInfo = MatchInfo._matchInfo;
+        matchInfo = GameObject.Find("MatchInfo").GetComponent<MatchInfo>();
     }
 
     // Use this for initialization
@@ -71,7 +69,7 @@ public class TourUIController : MonoBehaviour {
         //Visit team info
         teamsForMatch[1] = GetTeamInformation(tourInfo.playerMatches[tourInfo.matchesRound].visitTeam.teamName);
         //Set flags
-        SetFlagsForNextMatch();
+        SetInformationForNextMatch();
 
         //Get teams amount and index group of team selected.
         teamsInTour = tourInfo.teamsAmount;
@@ -84,7 +82,8 @@ public class TourUIController : MonoBehaviour {
 
 
         groupText.text = "Group " + tourInfo.teamList[indexGroupOfteamSelected].teamGroup;
-        roundText.text = "Round " + tourInfo.matchesRound.ToString();
+        int roundMatch = tourInfo.matchesRound + 1;
+        roundText.text = "Round " + roundMatch.ToString();
     }
 
     /// <summary>
@@ -236,26 +235,83 @@ public class TourUIController : MonoBehaviour {
     }
 
     /// <summary>
-    /// Set flags in tournament main menu 
+    /// Set ui panel with next match information and fill MatchInfo object for next match.
     /// </summary>
-    private void SetFlagsForNextMatch()
+    private void SetInformationForNextMatch()
     {
-        //set local
-        localTeamFlag.sprite = teamsForMatch[0].flag;
-        localTeamFlag.transform.GetChild(1).GetComponent<Text>().text = teamsForMatch[0].teamName;
-        playerFlag.sprite = teamsForMatch[0].flag;
-        playerFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[0].teamName;
+        //Set UI
+        int player, npc;
+        if (teamsForMatch[0].teamName == tourInfo.teamSelected) {
+            player = 0;
+            npc = 1;
+        }
+        else {
+            player = 1;
+            npc = 0;
+        }
 
-        //Set visit
-        visitTeamFlag.sprite = teamsForMatch[1].flag;
-        visitTeamFlag.transform.GetChild(1).GetComponent<Text>().text = teamsForMatch[1].teamName;
-        npcFlag.sprite = teamsForMatch[1].flag;
-        npcFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[1].teamName;
-    }
+        //Set flags given index
+        localTeamFlag.sprite = teamsForMatch[player].flag;
+        localTeamFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[player].teamName;
+        playerFlag.sprite = teamsForMatch[player].flag;
+        playerFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[player].teamName;
+        matchInfo.playerTeam = teamsForMatch[player];
 
-    public void SetNextMatch()
-    {
+        visitTeamFlag.sprite = teamsForMatch[npc].flag;
+        visitTeamFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[npc].teamName;
+        npcFlag.sprite = teamsForMatch[npc].flag;
+        npcFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[npc].teamName;
+        matchInfo.comTeam = teamsForMatch[npc];
+
+
+
+        //Set uniforms
+        //Show both for player
+        //Local by defaut
+        matchInfo.playerUniform = "Local";
+        playerFirstUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[player].firstU;
+        playerSecondUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[player].secondU;
+
+        //Set a random one to npc
+        if (Random.Range(0, 101) < 50)
+        {
+            npcUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[npc].firstU;
+            matchInfo.comUniform = "Local";
+        }
+        else
+        {
+            npcUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[npc].secondU;
+            matchInfo.comUniform = "Visita";
+        }
+
+        //Set npc formation, by defualt.
+        playerFormationImage.sprite = teamsForMatch[player].formationImage;
+        matchInfo.playerLineUp = teamsForMatch[player].teamFormation;
+
+        npcFormation.text = "Formation " + teamsForMatch[npc].teamFormation.defense.ToString() + "-" +
+            teamsForMatch[npc].teamFormation.mid.ToString() + "-" +
+            teamsForMatch[npc].teamFormation.attack.ToString();
+
+        matchInfo.comLineUp = teamsForMatch[npc].teamFormation;
+
+        //Set time and level
+        matchTimeText.text = "Match time: " + tourInfo.matchTime.ToString() + " min";
+
+        switch (tourInfo.tourLevel)
+        {
+            case 1:
+                matchLevelText.text = "Difficulty: Easy";
+                break;
+            case 2:
+                matchLevelText.text = "Difficulty: Normal";
+                break;
+            case 3:
+                matchLevelText.text = "Difficulty: Hard";
+                break;
+        }
         
+        matchInfo.matchTime = tourInfo.matchTime;
+        matchInfo.matchLevel = tourInfo.tourLevel;
     }
 
     public void ChangePanelAnimation(bool state)
@@ -265,8 +321,19 @@ public class TourUIController : MonoBehaviour {
 
     public void ChangeScene(string sceneName)
     {
-        Destroy(FindObjectOfType<TournamentController>().gameObject);
-        Destroy(FindObjectOfType<MatchInfo>().gameObject);
-        SceneManager.LoadScene(sceneName);
+        if(sceneName == "MainMenu")
+        {
+            //Save tournament data
+            tourInfo.SaveTour();
+            //Delete object that contains the data.
+            Destroy(FindObjectOfType<TournamentController>().gameObject);
+            Destroy(FindObjectOfType<MatchInfo>().gameObject);
+            SceneManager.LoadScene(sceneName);
+        }
+        
+        if(sceneName == "GameMatch")
+        {
+            SceneManager.LoadScene(sceneName);
+        }
     }
 }

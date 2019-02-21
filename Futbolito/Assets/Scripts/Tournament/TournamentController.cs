@@ -50,11 +50,14 @@ public class TournamentController : MonoBehaviour {
 
         tourName = info.tourName;
         teamSelected = info.teamSelected;
+        matchTime = info.matchTime;
+        tourLevel = info.tourLevel;
         teamsAmount = info.teamsAmount;
         groupsAmount = info.groupsAmount;
         matchesRound = info.matchesRound;
 
         teamList = info.teamList;
+        playerMatches = info.playerMatches;
         matchesList = info.matches;
     }
 
@@ -140,6 +143,106 @@ public class TournamentController : MonoBehaviour {
         matchesList = sortedList;
     }
     
+    public void GetPlayerMatches()
+    {
+        playerMatches.Clear();
+        //Get matches of the player.
+        for (int i = 0; i < matchesList.Count; i++)
+        {
+            //if the match created has the team selected, add match to player matches.
+            if (matchesList[i].localTeam.teamName == teamSelected || matchesList[i].visitTeam.teamName == teamSelected)
+            {
+                MatchTourInfo match = new MatchTourInfo(matchesList[i]);
+                playerMatches.Add(match);
+            }
+        }
+    }
+
+    private MatchTourInfo SimulateMatch(MatchTourInfo match)
+    {
+        int localGoals = Random.Range(0, 6);
+        int visitGoals;
+
+        if (localGoals == 5)
+            visitGoals = Random.Range(0, 5);
+        else
+            visitGoals = Random.Range(0, 6);
+
+        match.localGoals = localGoals;
+        match.visitGoals = visitGoals;
+        return new MatchTourInfo(match);
+    }
+
+    private void UpdateTeamInformation(MatchTourInfo match)
+    {
+        //Local in 0 and visit in 1
+        int localTeamIndex = GetTeamIndex(match.localTeam.teamName);
+        int visitTeamIndex = GetTeamIndex(match.visitTeam.teamName);
+
+        //Update goals
+        teamList[localTeamIndex].goalsScored += match.localGoals;
+        teamList[localTeamIndex].goalsReceived += match.visitGoals;
+
+        teamList[visitTeamIndex].goalsScored += match.visitGoals;
+        teamList[visitTeamIndex].goalsReceived += match.localGoals;
+
+        //Update Victories, defeats, draws and points
+        if (match.localGoals > match.visitGoals)
+        {
+            teamList[localTeamIndex].victories++;
+            teamList[localTeamIndex].points += 3;
+            teamList[visitTeamIndex].defeats++;
+        } else if (match.localGoals < match.visitGoals)
+        {
+            teamList[localTeamIndex].defeats++;
+            teamList[visitTeamIndex].victories++;
+            teamList[visitTeamIndex].points += 3;
+        }
+        else
+        {
+            teamList[localTeamIndex].draws++;
+            teamList[localTeamIndex].points++;
+            teamList[visitTeamIndex].draws++;
+            teamList[visitTeamIndex].points++;
+        }
+
+        //Update knockout victories and defeats.
+        if(match.localGoals == 5)
+        {
+            teamList[localTeamIndex].knockoutVictories++;
+            teamList[visitTeamIndex].knockoutDefeats++;
+        }
+        if (match.visitGoals == 5)
+        {
+            teamList[localTeamIndex].knockoutDefeats++;
+            teamList[visitTeamIndex].knockoutVictories++;
+        }
+    }
+
+    private int GetTeamIndex(string team)
+    {
+        for (int i = 0; i < teamList.Count; i++)
+        {
+            if (team == teamList[i].teamName) return i;
+        }
+        return 0;
+    }
+
+
+
+    public void SimulateRoundOfMatches(int round)
+    {
+        for (int i = 0; i < matchesList.Count; i++)
+        {
+            if (matchesList[i].matchNumber == round && matchesList[i].localTeam.teamName != teamSelected && matchesList[i].visitTeam.teamName != teamSelected)
+            {
+                matchesList[i] = SimulateMatch(matchesList[i]);
+                UpdateTeamInformation(matchesList[i]);
+            }
+        }
+
+        matchesRound++;
+    }
 
     /// <summary>
     /// This method assigns a group to each team.

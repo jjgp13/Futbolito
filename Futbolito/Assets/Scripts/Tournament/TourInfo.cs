@@ -31,6 +31,7 @@ public class TourInfo{
         groupsAmount = tour.groupsAmount;
         matchesRound = tour.matchesRound;
         teamList = tour.teamList;
+        playerMatches = tour.playerMatches;
         matches = tour.matchesList;
     }
 }

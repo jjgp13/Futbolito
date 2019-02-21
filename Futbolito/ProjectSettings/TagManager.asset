@@ -17,6 +17,7 @@ TagManager:
   - TourData
   - PlayerName
   - ComName
+  - MatchData
   layers:
   - Default
   - TransparentFX

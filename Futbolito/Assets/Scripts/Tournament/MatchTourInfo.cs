@@ -19,4 +19,13 @@ public class MatchTourInfo{
         visitGoals = visit_goals;
         matchNumber = match_number;
     }
+
+    public MatchTourInfo(MatchTourInfo info)
+    {
+        localTeam = info.localTeam;
+        localGoals = info.localGoals;
+        visitTeam = info.visitTeam;
+        visitGoals = info.visitGoals;
+        matchNumber = info.matchNumber;
+    }
 }

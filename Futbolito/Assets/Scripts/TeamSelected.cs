@@ -19,8 +19,12 @@ public class TeamSelected : MonoBehaviour {
         //When a selection team button appears in tournament selection scene.
         if (currentScene.name == "TournamentSelectionScene")
         {
-            GameObject tc = GameObject.Find("TourController");
-            if (tc != null) tc.GetComponent<TournamentController>().teamSelected = team.teamName;
+            TournamentController tc = TournamentController._tourCtlr;
+            if (tc != null)
+            {
+                tc.teamSelected = team.teamName;
+                tc.GetPlayerMatches();
+            }
             FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = team.flag;
         }
 

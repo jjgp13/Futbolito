@@ -41,8 +41,7 @@ public class MainMenuController : MonoBehaviour {
         //This will create the Tournament info object to load Tournament main menu scene with the info.
         if(sceneName == "TourMainMenu")
         {
-            TournamentController tourObject = TourController.GetComponent<TournamentController>();
-            tourObject.LoadTour();
+            TourController.GetComponent<TournamentController>().LoadTour();
             Instantiate(TourController);
             SceneManager.LoadScene(sceneName);
         }

@@ -32,25 +32,34 @@ public class MatchController : MonoBehaviour {
     public Team playerTeam;
     public Team npcTeam;
 
-    [Header("Objects to handle UI")]
+    [Header("Initial animation UI objects")]
     //Reference to the object that handle the initial animation.
     public GameObject intialAnimationObject;
     public Text matchTypeText;
 
-    //Reference to the panels in this match scene
-    public GameObject Menu_UI;
-    public GameObject pausePanel;
-    public GameObject finishPanel;
-    public Text StatusTitleMenu;
-    public Text matchTextScore;
+    [Header("Pause panel objects")]
+    public GameObject mainPausePanel;
+    //Paused, Victory, tie, defeat
+    public Text matchStatus;
+    public Text matchType;
+    public Text matchScore;
+
+    public GameObject pauseMatchPanelOptions;
+    public Text timeLeftOnPausePanel;
+    public GameObject finishQuickMatchPanelOptions;
+    public GameObject finishTourMatchPanelOptions;
+    
+
+    [Header("Final match animation objects")]
     public GameObject finalMatchPanel;
-    [Tooltip("Knockout or time out")]
     public Text finalMatchStatusText;
 
+    [Header("Goal Animation objects")]
     public GameObject golAnimation_UI;
     public GameObject playerScore_UI;
     public GameObject NPCScore_UI;
 
+    [Header("Player UI buttons")]
     public GameObject holding_UI;
     public GameObject shooting_UI;
     public GameObject pauseBtn_UI;
@@ -61,6 +70,8 @@ public class MatchController : MonoBehaviour {
     public Text timeText;
     private float timer;
     private bool endMatch;
+
+    private int roundMatch;
     
 
     [Header("Restart ball Panel")]
@@ -97,6 +108,8 @@ public class MatchController : MonoBehaviour {
     //Initial state of objects.
     private void Start()
     {
+        
+
         //Start initial animation.
         StartCoroutine(InitAnimation());
 
@@ -117,7 +130,7 @@ public class MatchController : MonoBehaviour {
 
         //Active these panels to assign flags
         golAnimation_UI.SetActive(true);
-        Menu_UI.SetActive(true);
+        mainPausePanel.SetActive(true);
         
 
         //Set UI (flags and team names)
@@ -125,9 +138,9 @@ public class MatchController : MonoBehaviour {
         SetTeamFlags("ComFlags", npcTeam.flag, npcTeam.teamName);
 
         //Hide-show UI panels
-        pausePanel.SetActive(true);
-        finishPanel.SetActive(false);
-        Menu_UI.SetActive(false);
+        pauseMatchPanelOptions.SetActive(true);
+        finishQuickMatchPanelOptions.SetActive(false);
+        mainPausePanel.SetActive(false);
         golAnimation_UI.SetActive(false);
 
         camAnimator = cam.GetComponent<Animator>();
@@ -142,7 +155,7 @@ public class MatchController : MonoBehaviour {
             timer -= Time.deltaTime;
 
             string minutes = Mathf.Floor(timer / 60).ToString("00");
-            string seconds = (timer % 59).ToString("00");
+            string seconds = (timer % 60).ToString("00");
             timeText.text = string.Format("{0}:{1}", minutes, seconds);
             
             if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);
@@ -257,7 +270,7 @@ public class MatchController : MonoBehaviour {
     /// </summary>
     public void UpdateUIScore()
     {
-        matchTextScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
+        matchScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
     }
 
     /// <summary>
@@ -281,18 +294,29 @@ public class MatchController : MonoBehaviour {
         finalMatchPanel.gameObject.SetActive(false);
 
         //Activate final match panel
-        Menu_UI.SetActive(true);
+        mainPausePanel.SetActive(true);
+        //Change final match status
         if (playerScore > NPCScore)
-            StatusTitleMenu.text = "YOU WIN!";
+        {
+            matchStatus.text = "VICTORY!";
+            matchStatus.color = Color.yellow;
+        }
         else if (playerScore < NPCScore)
-            StatusTitleMenu.text = "YOU LOSE!";
+        {
+            matchStatus.text = "DEFEAT";
+            matchStatus.color = Color.red;
+        }  
         else
-            StatusTitleMenu.text = "DRAW!";
+            matchStatus.text = "TIE";
 
         //Deactivate pause panel shooting button, holding button.
-        pausePanel.SetActive(false);
-        finishPanel.SetActive(true);
         SetUIState(false);
+        //Deactivate pause options
+        pauseMatchPanelOptions.SetActive(false);
+        //Activate differents options depending of match's type.
+        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.QuickMatch) finishQuickMatchPanelOptions.SetActive(true);
+        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.TourMatch) finishTourMatchPanelOptions.SetActive(true);
+        
     }
 
     /// <summary>
@@ -318,9 +342,10 @@ public class MatchController : MonoBehaviour {
     /// </summary>
     public void Resume()
     {
-        Menu_UI.SetActive(false);
+        mainPausePanel.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
+        timePanel.SetActive(true);
         holding_UI.SetActive(true);
         shooting_UI.SetActive(true);
     }
@@ -330,7 +355,9 @@ public class MatchController : MonoBehaviour {
     /// </summary>
     public void Pause()
     {
-        Menu_UI.SetActive(true);
+        mainPausePanel.SetActive(true);
+        timeLeftOnPausePanel.text = "Time left: \n" + timeText.text + " min";
+        timePanel.SetActive(false);
         Time.timeScale = 0f;
         gameIsPaused = true;
         holding_UI.SetActive(false);
@@ -341,8 +368,17 @@ public class MatchController : MonoBehaviour {
     IEnumerator InitAnimation()
     {
         //Change initial animation text, depending of the match type
-        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.QuickMatch) matchTypeText.text = "Friendly";
-        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.TourMatch) matchTypeText.text = TournamentController._tourCtlr.tourName + "\n Match " + TournamentController._tourCtlr.matchesRound;
+        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.QuickMatch)
+        {
+            matchTypeText.text = "Friendly";
+            matchType.text = matchTypeText.text;
+        }
+        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.TourMatch)
+        {
+            int roundMatch = TournamentController._tourCtlr.matchesRound + 1;
+            matchTypeText.text = TournamentController._tourCtlr.tourName + "\n Match " + roundMatch.ToString();
+            matchType.text = matchTypeText.text;
+        }
 
         intialAnimationObject.SetActive(true);
         yield return new WaitForSeconds(2.5f);
@@ -376,11 +412,24 @@ public class MatchController : MonoBehaviour {
     /// <param name="sceneName">Name of the scene</param>
     public void LoadScene(string sceneName)
     {
-        if (sceneName == "MainMenu")
+        Time.timeScale = 1;
+        if (sceneName == "MainMenu" || sceneName == "QuickMatchMenu")
         {
-            Time.timeScale = 1;
-            Destroy(GameObject.Find("MatchInfo"));
+            Destroy(GameObject.FindGameObjectWithTag("MatchData"));
+            Destroy(GameObject.FindGameObjectWithTag("TourData"));
         }
+
+        /*if(sceneName == "QuickMatchMenu")
+        {
+            Destroy(GameObject.FindGameObjectWithTag("MatchData"));
+        }*/
+
+        if(sceneName == "TourMainMenu")
+        {
+            //El bueno
+            TournamentController._tourCtlr.SimulateRoundOfMatches(TournamentController._tourCtlr.matchesRound);
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 }

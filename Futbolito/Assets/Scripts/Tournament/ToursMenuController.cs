@@ -149,23 +149,12 @@ public class ToursMenuController : MonoBehaviour {
     /// <param name="sceneName">Name of the scene</param>
     public void StartTournament(string sceneName)
     {
-        //Get matches of the player.
-        for (int i = 0; i < tcInfo.matchesList.Count; i++)
-        {
-            //if the match created has the team selected, add match to player matches.
-            if (tcInfo.matchesList[i].localTeam.teamName == tcInfo.teamSelected || tcInfo.matchesList[i].visitTeam.teamName == tcInfo.teamSelected)
-                tcInfo.playerMatches.Add(tcInfo.matchesList[i]);
-        }
-
         if (tcInfo.teamSelected != "")
         {
             tcInfo.SaveTour();
             SceneManager.LoadScene(sceneName);
         }
-        else
-        {
-            notTeamSelectedPanel.SetActive(true);
-        }
+        else notTeamSelectedPanel.SetActive(true);
     }
 
     /// <summary>
