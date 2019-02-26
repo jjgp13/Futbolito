@@ -23,7 +23,7 @@ public class TeamSelected : MonoBehaviour {
             if (tc != null)
             {
                 tc.teamSelected = team.teamName;
-                tc.GetPlayerMatches();
+                tc.GetPlayerMatchesInGroupPhase();
             }
             FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = team.flag;
         }

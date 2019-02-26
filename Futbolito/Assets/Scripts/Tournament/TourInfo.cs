@@ -16,10 +16,15 @@ public class TourInfo{
     public int teamsAmount;
     public int groupsAmount;
     public int matchesRound;
+    public int teamsForKnockoutStage;
 
     public List<TeamTourInfo> teamList;
     public List<MatchTourInfo> playerMatches;
-    public List<MatchTourInfo> matches;
+    public List<MatchTourInfo> groupPhaseMatches;
+
+    public List<TeamTourInfo> teamsForFinals;
+    public List<MatchTourInfo> leftKeyFinalMatches;
+    public List<MatchTourInfo> rightKeyFinalMatches;
 
     public TourInfo(TournamentController tour)
     {
@@ -30,8 +35,14 @@ public class TourInfo{
         teamsAmount = tour.teamsAmount;
         groupsAmount = tour.groupsAmount;
         matchesRound = tour.matchesRound;
+        teamsForKnockoutStage = tour.teamsForKnockoutStage;
+
         teamList = tour.teamList;
         playerMatches = tour.playerMatches;
-        matches = tour.matchesList;
+        groupPhaseMatches = tour.groupPhaseMatches;
+
+        teamsForFinals = tour.teamsForFinals;
+        leftKeyFinalMatches = tour.leftKeyFinalMatches;
+        rightKeyFinalMatches = tour.rightKeyFinalMatches;
     }
 }

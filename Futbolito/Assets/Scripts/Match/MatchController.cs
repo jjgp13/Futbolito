@@ -419,15 +419,12 @@ public class MatchController : MonoBehaviour {
             Destroy(GameObject.FindGameObjectWithTag("TourData"));
         }
 
-        /*if(sceneName == "QuickMatchMenu")
-        {
-            Destroy(GameObject.FindGameObjectWithTag("MatchData"));
-        }*/
-
         if(sceneName == "TourMainMenu")
         {
             //El bueno
+            Destroy(GameObject.FindGameObjectWithTag("MatchData"));
             TournamentController._tourCtlr.SimulateRoundOfMatches(TournamentController._tourCtlr.matchesRound);
+            TournamentController._tourCtlr.SaveTour();
         }
 
         SceneManager.LoadScene(sceneName);

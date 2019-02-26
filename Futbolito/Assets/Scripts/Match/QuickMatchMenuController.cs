@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class QuickMatchMenuController : MonoBehaviour {
 
-    //This game ob
-    private MatchInfo matchInfo;
+    
 
     //Reference to panel that handles teams
     public GameObject teamsPanel;
@@ -33,13 +32,6 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     public GameObject clearTeamSelectionButton;
     public Sprite flagOutline;
-    
-    // Use this for initialization
-    void Awake()
-    {
-        matchInfo = MatchInfo._matchInfo;
-    }
-
 
     public void SelectedConf(string region)
     {

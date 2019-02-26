@@ -14,6 +14,7 @@ public class TeamTourInfo{
     public int knockoutDefeats;
     public int goalsScored;
     public int goalsReceived;
+    public int goalDifference;
     public int points;
 
     public TeamTourInfo(string _teamName, string _teamGroup, int _victories, int _knockoutVictories, int _draws, int _defeats, int _knockoutDefeats, int _goalsScored, int _goalsRecieved, int _points)
@@ -27,6 +28,7 @@ public class TeamTourInfo{
         knockoutDefeats = _knockoutDefeats;
         goalsScored = _goalsScored;
         goalsReceived = _goalsRecieved;
+        goalDifference = _goalsScored - _goalsRecieved;
         points = _points;
     }
 
@@ -41,6 +43,7 @@ public class TeamTourInfo{
         knockoutDefeats = info.knockoutDefeats;
         goalsScored = info.goalsScored;
         goalsReceived = info.goalsReceived;
+        goalDifference = info.goalsScored - info.goalsReceived;
         points = info.points;
     }
 }

@@ -37,7 +37,10 @@ public class ToursMenuController : MonoBehaviour {
 
     //Reference panel not team selected.
     public GameObject notTeamSelectedPanel;
-    
+
+    //Reference to time and level panel
+    public GameObject timePanel;
+    public GameObject levelPanel;
 
     // Use this for initialization
     void Start () {
@@ -55,6 +58,9 @@ public class ToursMenuController : MonoBehaviour {
         TournamentController._tourCtlr.teamSelected = "";
         //Delete the teams that are on already present on the panel
         DeleteTeamsFromPanel();
+        ResetTimeLevelPanel();
+        teamSelectedFlag.sprite = null;
+
         SetTeamsPanel(tours[tourIndex].teams.Length);
         tourMapSprite.sprite = tourMaps[tourIndex];
 
@@ -164,5 +170,19 @@ public class ToursMenuController : MonoBehaviour {
     public void DeactivePanel(GameObject obj)
     {
         obj.SetActive(false);
+    }
+
+    /// <summary>
+    /// Reset Ui elements in tournament menu. Will color the normal settings (2 min, level: normal)
+    /// </summary>
+    void ResetTimeLevelPanel()
+    {
+        timePanel.transform.GetChild(1).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().pressedSprite;
+        timePanel.transform.GetChild(0).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().notPressedSprite;
+        timePanel.transform.GetChild(2).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().notPressedSprite;
+
+        levelPanel.transform.GetChild(1).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().pressedSprite;
+        levelPanel.transform.GetChild(0).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().notPressedSprite;
+        levelPanel.transform.GetChild(2).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().notPressedSprite;
     }
 }

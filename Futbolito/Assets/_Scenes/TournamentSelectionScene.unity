@@ -2523,6 +2523,8 @@ MonoBehaviour:
   - {fileID: 21300012, guid: e2f3e206cda687548b75df5f28426419, type: 3}
   teamSelectedFlag: {fileID: 1186104248}
   notTeamSelectedPanel: {fileID: 1294284574}
+  timePanel: {fileID: 1426876121}
+  levelPanel: {fileID: 1210641427}
 --- !u!1 &1186104246
 GameObject:
   m_ObjectHideFlags: 0
