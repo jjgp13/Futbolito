@@ -15,6 +15,13 @@ public class TourUIController : MonoBehaviour {
     //Info of the next match
     private MatchInfo matchInfo;
 
+    //Auxiliar to change teams in positions panel
+    private int teamsInTour;
+    private int indexGroupOfteamSelected;
+    //Information of the teams for the next match
+    //0 is local, 1 is visit
+    private Team[] teamsForMatch = new Team[2];
+
     [Header("Main menu Panel")]
     [Tooltip("Reference to the UI prefab that shows the information of a team in the tournament. ")]
     public GameObject teamTourStatsPrefab;
@@ -24,18 +31,17 @@ public class TourUIController : MonoBehaviour {
     //Reference to the text of the group. 
     public Text groupText;
 
-    //Auxiliar to change teams in positions panel
-    private int teamsInTour;
-    private int indexGroupOfteamSelected;
+    //Reference to buttons. Hide them when tour state is GameOver.
+    public Button resultsButton;
+    public Button groupsFinalsButton;
+    public Text nextMatchText;
+    public Text vsGameOverText;
+    public Button nextMatchButton;
 
     //Reference to flags of the next match.
     public Image localTeamFlag;
     public Image visitTeamFlag;
-
-    //Information of the teams for the next match
-    //0 is local, 1 is visit
-    private Team[] teamsForMatch = new Team[2];
-
+    
     //Reference to animator
     public Animator canvasAnimator;
 
@@ -70,6 +76,13 @@ public class TourUIController : MonoBehaviour {
     public Image tourCupImage;
     public Sprite round16Structure;
     public Sprite round8Strucure;
+    //GameObject that handles the finals
+    public GameObject finals;
+    public GameObject[] roundOf16;
+    public GameObject[] quarterFinals;
+    public GameObject[] semiFinals;
+    public GameObject final;
+
     
 
     //Singleton
@@ -81,23 +94,29 @@ public class TourUIController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (tourInfo.teamsAmount == 32 || tourInfo.teamsAmount == 24)
-            tourFinalsStructure.sprite = round16Structure;
-        else
-            tourFinalsStructure.sprite = round8Strucure;
 
-        Tournament tourCup = Resources.Load<Tournament>("Tours/" + tourInfo.tourName);
-        tourCupImage.sprite = tourCup.cupImage;
+        //Groups stage
+        if (tourInfo.matchesRound < 3)
+            SetInformationForNextMatch();
 
-        //Local team info
-        teamsForMatch[0] = GetTeamInformation(tourInfo.playerMatches[tourInfo.matchesRound].localTeam.teamName);
-        //Visit team info
-        teamsForMatch[1] = GetTeamInformation(tourInfo.playerMatches[tourInfo.matchesRound].visitTeam.teamName);
+        //For finals
+        if (tourInfo.matchesRound == 3)
+        {
+            tourInfo.GetFinalTeams(tourInfo.teamsForKnockoutStage);
+            if (tourInfo.IsPlayerInFinals())
+            {
+                tourInfo.SetKnockoutStageMatches();
+                SetInformationForNextMatch();
 
-        //Set flags
-        SetInformationForNextMatch();
+            } else
+                SetGameOverState();
+        }
+
         //Set results panel
         SetResultsPanel();
+
+        //Set finals panel
+        SetFinalsPanel();
 
         //Get teams amount and index group of team selected.
         teamsInTour = tourInfo.teamsAmount;
@@ -113,6 +132,24 @@ public class TourUIController : MonoBehaviour {
         int roundMatch = tourInfo.matchesRound + 1;
         roundText.text = "Round " + roundMatch.ToString();
 
+    }
+
+    /// <summary>
+    /// Once groups stage is over, if player's team won't classified to knockout stage,
+    /// Tour state is game over.
+    /// Hide buttons for next match
+    /// </summary>
+    private void SetGameOverState()
+    {
+
+        //Hide flags and next match button.
+        nextMatchText.gameObject.SetActive(false);
+        localTeamFlag.gameObject.SetActive(false);
+        visitTeamFlag.gameObject.SetActive(false);
+        nextMatchButton.gameObject.SetActive(false);
+
+        //Change vsGameOver txt
+        vsGameOverText.text = "Game Over";
     }
 
     /// <summary>
@@ -176,56 +213,75 @@ public class TourUIController : MonoBehaviour {
     /// </summary>
     private void SetResultsPanel()
     {
-        int i = 0;
-        while (tourInfo.groupPhaseMatches[i].played)
+        GridLayoutGroup layoutGroup = contentResulstPanel.GetComponent<GridLayoutGroup>();
+        switch (tourInfo.teamsAmount)
         {
-            if(i == 0)
+            case 32:
+                layoutGroup.constraintCount = 17;
+                break;
+            case 16:
+                layoutGroup.constraintCount = 9;
+                break;
+            case 12:
+                layoutGroup.constraintCount = 7;
+                break;
+            case 24:
+                layoutGroup.constraintCount = 13;
+                break;
+        }
+        int i = 0;
+        while ( i < tourInfo.teamsAmount)
+        {
+            if (tourInfo.groupPhaseMatches[i].played)
             {
-                Text txt = Instantiate(roundTextPrefab);
-                txt.text = "Round 1";
-                txt.gameObject.transform.SetParent(contentResulstPanel);
-            }
+                if (i == 0)
+                {
+                    Text txt = Instantiate(roundTextPrefab);
+                    txt.text = "Round 1";
+                    txt.gameObject.transform.SetParent(contentResulstPanel);
+                }
 
-            if(i > 0 && tourInfo.groupPhaseMatches[i].matchNumber != tourInfo.groupPhaseMatches[i - 1].matchNumber)
-            {
-                Text txt = Instantiate(roundTextPrefab);
-                int r = tourInfo.groupPhaseMatches[i].matchNumber + 1;
-                txt.text = "Round " + r;
-                txt.gameObject.transform.SetParent(contentResulstPanel);
-            }
-            
-            GameObject mR = matchResultPrefab;
-            //Get local team
-            Team teamInfo = Resources.Load<Team>("Teams/" + tourInfo.groupPhaseMatches[i].localTeam.teamName + "/" + tourInfo.groupPhaseMatches[i].localTeam.teamName);
-            //Set local team flag
-            mR.transform.GetChild(0).GetComponent<Image>().sprite = teamInfo.flag;
-            //Set local name
-            mR.transform.GetChild(1).GetComponent<Text>().text = teamInfo.teamName;
-            //Set local goals
-            mR.transform.GetChild(2).GetComponent<Text>().text = tourInfo.groupPhaseMatches[i].localGoals.ToString();
+                if (i > 0 && tourInfo.groupPhaseMatches[i].matchNumber != tourInfo.groupPhaseMatches[i - 1].matchNumber)
+                {
+                    Text txt = Instantiate(roundTextPrefab);
+                    int r = tourInfo.groupPhaseMatches[i].matchNumber + 1;
+                    txt.text = "Round " + r;
+                    txt.gameObject.transform.SetParent(contentResulstPanel);
+                }
 
-            //Set knockoutText
-            if (tourInfo.groupPhaseMatches[i].localGoals == 5 || tourInfo.groupPhaseMatches[i].visitGoals == 5)
-                mR.transform.GetChild(4).GetComponent<Text>().text = "Knockout";
-            else
-                mR.transform.GetChild(4).GetComponent<Text>().text = "";
+                GameObject mR = matchResultPrefab;
+                //Get local team
+                Team teamInfo = Resources.Load<Team>("Teams/" + tourInfo.groupPhaseMatches[i].localTeam.teamName + "/" + tourInfo.groupPhaseMatches[i].localTeam.teamName);
+                //Set local team flag
+                mR.transform.GetChild(0).GetComponent<Image>().sprite = teamInfo.flag;
+                //Set local name
+                mR.transform.GetChild(1).GetComponent<Text>().text = teamInfo.teamName;
+                //Set local goals
+                mR.transform.GetChild(2).GetComponent<Text>().text = tourInfo.groupPhaseMatches[i].localGoals.ToString();
 
-            //Get visit team
-            teamInfo = Resources.Load<Team>("Teams/" + tourInfo.groupPhaseMatches[i].visitTeam.teamName + "/" + tourInfo.groupPhaseMatches[i].visitTeam.teamName);
-            //Set visit team flag
-            mR.transform.GetChild(7).GetComponent<Image>().sprite = teamInfo.flag;
-            //Set visit name
-            mR.transform.GetChild(6).GetComponent<Text>().text = teamInfo.teamName;
-            //Set visit goals
-            mR.transform.GetChild(5).GetComponent<Text>().text = tourInfo.groupPhaseMatches[i].visitGoals.ToString();
+                //Set knockoutText
+                if (tourInfo.groupPhaseMatches[i].localGoals == 5 || tourInfo.groupPhaseMatches[i].visitGoals == 5)
+                    mR.transform.GetChild(4).GetComponent<Text>().text = "Knockout";
+                else
+                    mR.transform.GetChild(4).GetComponent<Text>().text = "";
 
-            //Instiate the object as child of content's results panel 
-            Instantiate(mR).transform.SetParent(contentResulstPanel);
+                //Get visit team
+                teamInfo = Resources.Load<Team>("Teams/" + tourInfo.groupPhaseMatches[i].visitTeam.teamName + "/" + tourInfo.groupPhaseMatches[i].visitTeam.teamName);
+                //Set visit team flag
+                mR.transform.GetChild(7).GetComponent<Image>().sprite = teamInfo.flag;
+                //Set visit name
+                mR.transform.GetChild(6).GetComponent<Text>().text = teamInfo.teamName;
+                //Set visit goals
+                mR.transform.GetChild(5).GetComponent<Text>().text = tourInfo.groupPhaseMatches[i].visitGoals.ToString();
 
-            //Increase the size of the content's panel
-           // contentResulstPanel.rect = new Rect()
+                //Instiate the object as child of content's results panel 
+                Instantiate(mR).transform.SetParent(contentResulstPanel);
 
-            i++;
+                //Increase the size of the content's panel
+                // contentResulstPanel.rect = new Rect()
+
+                i++;
+            } else break;
         };
 
         //No results yet
@@ -234,6 +290,112 @@ public class TourUIController : MonoBehaviour {
             Text txt = Instantiate(roundTextPrefab);
             txt.text = "No results";
             txt.gameObject.transform.SetParent(contentResulstPanel);
+        }
+    }
+
+    /// <summary>
+    /// Show and control UI for knockout stage
+    /// </summary>
+    private void SetFinalsPanel()
+    {
+        //Set cup image
+        Tournament tourCup = Resources.Load<Tournament>("Tours/" + tourInfo.tourName);
+        tourCupImage.sprite = tourCup.cupImage;
+
+
+        //Set structure image for finals
+        if (tourInfo.teamsForKnockoutStage == 16)
+        {
+            tourFinalsStructure.sprite = round16Structure;
+            int length = 0;
+            //Rouund of 16
+            if (tourInfo.matchesRound == 3)
+            {
+                SetFlagsInFinals(roundOf16[0], tourInfo.leftKeyFinalMatches, 0);
+                SetFlagsInFinals(roundOf16[1], tourInfo.rightKeyFinalMatches, 0);
+                length = 2;
+            }
+            //Quarter finals
+            else if (tourInfo.matchesRound == 4)
+            {
+                SetFlagsInFinals(quarterFinals[0], tourInfo.leftKeyFinalMatches, 4);
+                SetFlagsInFinals(quarterFinals[1], tourInfo.rightKeyFinalMatches, 4);
+                length = 4;
+            }
+            //Semifinlas
+            else if (tourInfo.matchesRound == 5)
+            {
+                SetFlagsInFinals(semiFinals[0], tourInfo.leftKeyFinalMatches, 6);
+                SetFlagsInFinals(semiFinals[1], tourInfo.rightKeyFinalMatches, 6);
+                length = 6;
+            }
+            //Final
+            else if (tourInfo.matchesRound == 6) length = 7;
+
+            //Activate UI
+            for (int i = 0; i < length; i++)
+                final.transform.GetChild(i).gameObject.SetActive(true);
+
+        }
+        if (tourInfo.teamsForKnockoutStage == 8)
+        {
+            tourFinalsStructure.sprite = round8Strucure;
+            int length = 0;
+            //Quarter finals
+            if (tourInfo.matchesRound == 3)
+            {
+                SetFlagsInFinals(quarterFinals[0], tourInfo.leftKeyFinalMatches, 0);
+                SetFlagsInFinals(quarterFinals[1], tourInfo.rightKeyFinalMatches, 0);
+                length = 2;
+            }
+            //Semifinlas
+            else if (tourInfo.matchesRound == 4)
+            {
+                SetFlagsInFinals(semiFinals[0], tourInfo.leftKeyFinalMatches, 4);
+                SetFlagsInFinals(semiFinals[1], tourInfo.rightKeyFinalMatches, 4);
+                length = 4;
+            }
+            //Final
+            else if (tourInfo.matchesRound == 6) length = 5;
+
+            //Activate UI
+            for (int i = 2; i < length; i++)
+                final.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
+
+    /// <summary>
+    /// Get the list of final matches and set the ui depending on the stage.
+    /// Given that left and right final matches list will contain matches for all finals, those matches will
+    /// be added at the end of the list
+    /// </summary>
+    /// <param name="stageFinalsUI">UI object that contains the matches and its flags</param>
+    /// <param name="list">list of final matches</param>
+    /// <param name="jump">Jump in matches</param>
+    private void SetFlagsInFinals(GameObject stageFinalsUI, List<MatchTourInfo> list, int jump)
+    {
+        Team teamInfo;
+        MatchTourInfo match;
+        Image localFlag, visitFlag;
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            match = list[i];
+            localFlag = stageFinalsUI.transform.GetChild(i).transform.GetChild(0).GetComponent<Image>();
+            visitFlag = stageFinalsUI.transform.GetChild(i).transform.GetChild(1).GetComponent<Image>();
+
+            //Local
+            teamInfo = GetTeamInformation(match.localTeam.teamName);
+            localFlag.sprite = teamInfo.flag;
+            //Visit
+            teamInfo = GetTeamInformation(match.visitTeam.teamName);
+            visitFlag.sprite = teamInfo.flag;
+            if (match.played)
+            {
+                string winner = tourInfo.GetMatchWinner(match);
+                if (winner == "local") localFlag.gameObject.SetActive(false);
+                if (winner == "visit") visitFlag.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -371,6 +533,12 @@ public class TourUIController : MonoBehaviour {
     /// </summary>
     private void SetInformationForNextMatch()
     {
+
+        //Local team info
+        teamsForMatch[0] = GetTeamInformation(tourInfo.playerMatches[tourInfo.matchesRound].localTeam.teamName);
+        //Visit team info
+        teamsForMatch[1] = GetTeamInformation(tourInfo.playerMatches[tourInfo.matchesRound].visitTeam.teamName);
+
         //Set UI
         int player, npc;
         if (teamsForMatch[0].teamName == tourInfo.teamSelected) {

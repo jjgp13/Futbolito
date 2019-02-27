@@ -234,6 +234,41 @@ public class TournamentController : MonoBehaviour {
     }
 
     /// <summary>
+    /// Simulate a npc match but cannot be a draw in the match
+    /// For final matches.
+    /// </summary>
+    /// <param name="match">Npc's match with no info</param>
+    /// <returns>Npc's match with new result</returns>
+    private MatchTourInfo SimulateMatchNoDraws(MatchTourInfo match)
+    {
+        int localGoals = 0;
+        int visitGoals = 0;
+        while (localGoals == visitGoals)
+        {
+            localGoals = Random.Range(0, 6);
+            visitGoals = Random.Range(0, 6);
+        }
+
+        match.localGoals = localGoals;
+        match.visitGoals = visitGoals;
+        match.played = true;
+        return new MatchTourInfo(match);
+    }
+
+    /// <summary>
+    /// Return a winner of a match comparing scores.
+    /// </summary>
+    /// <param name="match">Match which want to be evaluate</param>
+    /// <returns>String with name of the winner</returns>
+    public string GetMatchWinner(MatchTourInfo match)
+    {
+        if (match.localGoals > match.visitGoals)
+            return "local";
+        else
+            return "visit";
+    }
+
+    /// <summary>
     /// Get result from a match and look for teams that have played and update team tour information.
     /// </summary>
     /// <param name="match">Match with result information</param>
@@ -325,13 +360,28 @@ public class TournamentController : MonoBehaviour {
             }
         }
         matchesRound++;
-        //For finals
-        if (matchesRound == 3)
+        
+    }
+
+    /// <summary>
+    /// Itarate over list of finals matches and get a result.
+    /// Create new matches for stage and add them at the end of final matches lists
+    /// </summary>
+    /// <param name="round">Match round</param>
+    public void SimulateRoundOfMatchesInKnockOutStage(int round)
+    {
+        for (int i = 0; i < leftKeyFinalMatches.Count; i++)
         {
-            GetFinalTeams(teamsForKnockoutStage);
-            if (IsPlayerInFinals())
-                SetKnockoutStageMatches();
+            MatchTourInfo leftMatch = leftKeyFinalMatches[i];
+            if (!leftMatch.played) leftMatch = SimulateMatchNoDraws(leftMatch);
+
+            MatchTourInfo righMatch = rightKeyFinalMatches[i];
+            if (!righMatch.played) righMatch = SimulateMatchNoDraws(righMatch);
+
         }
+        //Create next Matches
+
+        matchesRound++;
     }
 
     public void SetKnockoutStageMatches()
@@ -348,11 +398,11 @@ public class TournamentController : MonoBehaviour {
                 break;
             //Gold Cup
             case 12:
-                
+                CreateFinalMatchesFor12Teams();
                 break;
             //Euro cup
             case 24:
-                
+                CreateFinalMatchesFor24Teams();
                 break;
         }
         
@@ -362,7 +412,7 @@ public class TournamentController : MonoBehaviour {
     /// Check if team selected is in knockout stage
     /// </summary>
     /// <returns>True if it is, false if not</returns>
-    private bool IsPlayerInFinals()
+    public bool IsPlayerInFinals()
     {
         foreach (var team in teamsForFinals)
             if (team.teamName == teamSelected) return true;
@@ -390,6 +440,22 @@ public class TournamentController : MonoBehaviour {
     }
 
     /// <summary>
+    /// Create finals for gold cup
+    /// </summary>
+    private void CreateFinalMatchesFor12Teams()
+    {
+
+    }
+
+    /// <summary>
+    /// Create finals for EuroCup
+    /// </summary>
+    private void CreateFinalMatchesFor24Teams()
+    {
+
+    }
+
+    /// <summary>
     /// Checks if a match has the player team, if so adds it to player's list matches 
     /// </summary>
     /// <param name="match">Match to check</param>
@@ -403,7 +469,7 @@ public class TournamentController : MonoBehaviour {
     /// Iterate over players list 
     /// </summary>
     /// <param name="finalTeams"></param>
-    private void GetFinalTeams(int finalTeams)
+    public void GetFinalTeams(int finalTeams)
     {
         //If necesary
         Queue<TeamTourInfo> thirdPlaces = new Queue<TeamTourInfo>();
