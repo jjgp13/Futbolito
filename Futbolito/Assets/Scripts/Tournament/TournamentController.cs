@@ -60,12 +60,15 @@ public class TournamentController : MonoBehaviour {
         teamsAmount = info.teamsAmount;
         groupsAmount = info.groupsAmount;
         matchesRound = info.matchesRound;
+        teamsForKnockoutStage = info.teamsForKnockoutStage;
 
         teamList = info.teamList;
         playerMatches = info.playerMatches;
         groupPhaseMatches = info.groupPhaseMatches;
 
         teamsForFinals = info.teamsForFinals;
+        leftKeyFinalMatches = info.leftKeyFinalMatches;
+        rightKeyFinalMatches = info.rightKeyFinalMatches;
 
     }
 
@@ -185,7 +188,7 @@ public class TournamentController : MonoBehaviour {
         playerMatches.Clear();
         //Itarate over group matches list and get player matches
         for (int i = 0; i < groupPhaseMatches.Count; i++)
-            IsPlayerMatch(groupPhaseMatches[i]);
+            if(IsPlayerMatch(groupPhaseMatches[i])) playerMatches.Add(groupPhaseMatches[i]);
         
     }
 
@@ -260,7 +263,15 @@ public class TournamentController : MonoBehaviour {
     /// </summary>
     /// <param name="match">Match which want to be evaluate</param>
     /// <returns>String with name of the winner</returns>
-    public string GetMatchWinner(MatchTourInfo match)
+    public TeamTourInfo GetMatchWinnerTeamInfo(MatchTourInfo match)
+    {
+        if (match.localGoals > match.visitGoals)
+            return match.localTeam;
+        else
+            return match.visitTeam;
+    }
+
+    public string GetMatchWinnerString(MatchTourInfo match)
     {
         if (match.localGoals > match.visitGoals)
             return "local";
@@ -345,13 +356,13 @@ public class TournamentController : MonoBehaviour {
             if (round == groupPhaseMatches[i].matchNumber)
             {
                 //NPC match
-                if (groupPhaseMatches[i].localTeam.teamName != teamSelected && groupPhaseMatches[i].visitTeam.teamName != teamSelected)
+                if (!IsPlayerMatch(groupPhaseMatches[i]))
                 {
                     groupPhaseMatches[i] = SimulateMatch(groupPhaseMatches[i]);
                     UpdateTeamInformation(groupPhaseMatches[i]);
                 }
                 //PlayerMatch
-                if (groupPhaseMatches[i].localTeam.teamName == teamSelected || groupPhaseMatches[i].visitTeam.teamName == teamSelected)
+                if (IsPlayerMatch(groupPhaseMatches[i]))
                 {
                     playerMatches[round] = GetPlayerMatchResult(playerMatches[round]);
                     groupPhaseMatches[i] = GetPlayerMatchResult(groupPhaseMatches[i]);
@@ -360,7 +371,12 @@ public class TournamentController : MonoBehaviour {
             }
         }
         matchesRound++;
-        
+
+        if (matchesRound == 3)
+        {
+            GetFinalTeams(teamsForKnockoutStage);
+            SetKnockoutStageMatches();
+        }
     }
 
     /// <summary>
@@ -373,17 +389,59 @@ public class TournamentController : MonoBehaviour {
         for (int i = 0; i < leftKeyFinalMatches.Count; i++)
         {
             MatchTourInfo leftMatch = leftKeyFinalMatches[i];
-            if (!leftMatch.played) leftMatch = SimulateMatchNoDraws(leftMatch);
 
-            MatchTourInfo righMatch = rightKeyFinalMatches[i];
-            if (!righMatch.played) righMatch = SimulateMatchNoDraws(righMatch);
+            if (leftMatch.matchNumber == round)
+            {
+                if (!IsPlayerMatch(leftMatch))
+                {
+                    if (!leftMatch.played) leftMatch = SimulateMatchNoDraws(leftMatch);
+                }
+                else
+                {
+                    playerMatches[round] = GetPlayerMatchResult(playerMatches[round]);
+                    leftMatch = GetPlayerMatchResult(leftMatch);
+                }
+            }
+            
 
+            MatchTourInfo rightMatch = rightKeyFinalMatches[i];
+            if(rightMatch.matchNumber == round)
+            {
+                if (!IsPlayerMatch(rightMatch))
+                {
+                    if (!rightMatch.played) rightMatch = SimulateMatchNoDraws(rightMatch);
+                }
+                else
+                {
+                    playerMatches[round] = GetPlayerMatchResult(playerMatches[round]);
+                    rightMatch = GetPlayerMatchResult(rightMatch);
+                }
+            }
         }
-        //Create next Matches
-
         matchesRound++;
+
+        //Create next Matches
+        int beforeAddMatches = leftKeyFinalMatches.Count;
+        for (int i = 0; i < beforeAddMatches; i+=2)
+        {
+            TeamTourInfo winnerOne = GetMatchWinnerTeamInfo(leftKeyFinalMatches[i]);
+            TeamTourInfo winnerTwo = GetMatchWinnerTeamInfo(leftKeyFinalMatches[i + 1]);
+            MatchTourInfo newMatch = new MatchTourInfo(winnerOne, 0, winnerTwo, 0, round, false);
+            leftKeyFinalMatches.Add(newMatch);
+            if(IsPlayerMatch(newMatch)) playerMatches.Add(newMatch);
+
+            winnerOne = GetMatchWinnerTeamInfo(rightKeyFinalMatches[i]);
+            winnerTwo = GetMatchWinnerTeamInfo(rightKeyFinalMatches[i + 1]);
+            newMatch = new MatchTourInfo(winnerOne, 0, winnerTwo, 0, round, false);
+            rightKeyFinalMatches.Add(newMatch);
+            if (IsPlayerMatch(newMatch)) playerMatches.Add(newMatch);
+        }
+        
     }
 
+    /// <summary>
+    /// Create finals matches given the tournament and the number of the teams in.
+    /// </summary>
     public void SetKnockoutStageMatches()
     {
         switch (teamsAmount)
@@ -414,8 +472,28 @@ public class TournamentController : MonoBehaviour {
     /// <returns>True if it is, false if not</returns>
     public bool IsPlayerInFinals()
     {
-        foreach (var team in teamsForFinals)
-            if (team.teamName == teamSelected) return true;
+        if(matchesRound == 3)
+        {
+            foreach (var team in teamsForFinals)
+                if (team.teamName == teamSelected) return true;
+        }
+
+        if(matchesRound > 3)
+        {
+            for (int i = 0; i < leftKeyFinalMatches.Count; i++)
+            {
+                MatchTourInfo match = leftKeyFinalMatches[i];
+                if(match.matchNumber == matchesRound-1)
+                {
+                    if (match.played)
+                        if (GetMatchWinnerTeamInfo(match).teamName == teamSelected) return true;
+
+                    match = rightKeyFinalMatches[i];
+                    if (match.played)
+                        if (GetMatchWinnerTeamInfo(match).teamName == teamSelected) return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -430,12 +508,12 @@ public class TournamentController : MonoBehaviour {
             //Left key
             MatchTourInfo match = new MatchTourInfo(teamsForFinals[i], 0, teamsForFinals[i + 3], 0, 3, false);
             leftKeyFinalMatches.Add(match);
-            IsPlayerMatch(match);
+            if(IsPlayerMatch(match)) playerMatches.Add(match);
 
             //Right key
             match = new MatchTourInfo(teamsForFinals[i + 1], 0, teamsForFinals[i + 2], 0, 3, false);
             rightKeyFinalMatches.Add(match);
-            IsPlayerMatch(match);
+            if(IsPlayerMatch(match)) playerMatches.Add(match);
         }
     }
 
@@ -459,10 +537,11 @@ public class TournamentController : MonoBehaviour {
     /// Checks if a match has the player team, if so adds it to player's list matches 
     /// </summary>
     /// <param name="match">Match to check</param>
-    private void IsPlayerMatch(MatchTourInfo match)
+    private bool IsPlayerMatch(MatchTourInfo match)
     {
-        if (match.localTeam.teamName == teamSelected || match.visitTeam.teamName == teamSelected)
-            playerMatches.Add(match);
+        if (match.localTeam.teamName == teamSelected || match.visitTeam.teamName == teamSelected) return true;
+        else return false;
+        
     }
 
     /// <summary>
