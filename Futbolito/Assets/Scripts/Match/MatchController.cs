@@ -425,9 +425,9 @@ public class MatchController : MonoBehaviour {
             Destroy(GameObject.FindGameObjectWithTag("MatchData"));
 
             if (TournamentController._tourCtlr.matchesRound < 3)
-                TournamentController._tourCtlr.SimulateRoundOfMatches(TournamentController._tourCtlr.matchesRound);
+                TournamentController._tourCtlr.SimulateRoundOfMatches();
             else
-                TournamentController._tourCtlr.SimulateRoundOfMatchesInKnockOutStage(TournamentController._tourCtlr.matchesRound);
+                TournamentController._tourCtlr.SimulateRoundOfMatchesInKnockOutStage();
 
             TournamentController._tourCtlr.SaveTour();
         }

@@ -49,6 +49,7 @@ public class TourUIController : MonoBehaviour {
     public Text groupFinalsButtonText;
 
     [Header("Next match panel settings")]
+    public GameObject mainPanel;
     public Text roundText;
 
     public Image playerFlag;
@@ -79,7 +80,14 @@ public class TourUIController : MonoBehaviour {
     //GameObject that handles the finals
     public Transform leftKeyFinals;
     public Transform rightKeyFinals;
-    public Transform final;
+    public GameObject final;
+
+    [Header("Group/Final panel references")]
+    public GameObject championPanel;
+    public Text cupNameText;
+    public Image cupImage;
+    public Image teamSelectedImage;
+    public Text teamSelectedText;
 
     //Singleton
     private void Awake()
@@ -111,11 +119,21 @@ public class TourUIController : MonoBehaviour {
             else SetGameOverState();
         }
 
-        //Set results panel
-        SetResultsPanel();
+        if (tourInfo.finalMatch.played)
+        {
+            if (tourInfo.GetMatchWinnerTeamInfo(tourInfo.finalMatch).teamName == tourInfo.teamSelected)
+                SetChampionPanel();
+            else
+                SetGameOverState();
+        }
+        else
+        {
+            //Set results panel
+            SetResultsPanel();
+            //Set finals panel
+            SetFinalsPanel();
+        }
 
-        //Set finals panel
-        SetFinalsPanel();
 
         //Get teams amount and index group of team selected.
         teamsInTour = tourInfo.teamsAmount;
@@ -145,6 +163,16 @@ public class TourUIController : MonoBehaviour {
 
         //Change vsGameOver txt
         vsGameOverText.text = "Game Over";
+    }
+
+    private void SetChampionPanel()
+    {
+        mainPanel.SetActive(false);
+        championPanel.SetActive(true);
+        cupNameText.text = tourInfo.tourName;
+        cupImage.sprite = Resources.Load<Tournament>("Tours/" + tourInfo.tourName).cupImage;
+        teamSelectedImage.sprite = GetTeamInformation(tourInfo.teamSelected).flag;
+        teamSelectedText.text = tourInfo.teamSelected;
     }
 
     /// <summary>
@@ -297,7 +325,7 @@ public class TourUIController : MonoBehaviour {
         Tournament tourCup = Resources.Load<Tournament>("Tours/" + tourInfo.tourName);
         tourCupImage.sprite = tourCup.cupImage;
 
-        int index, limit, matchInfoIndex;
+        int index, limit = 0, matchListIndex = 0;
         if (tourInfo.teamsForKnockoutStage == 16)
         {
             index = 0;
@@ -305,22 +333,27 @@ public class TourUIController : MonoBehaviour {
             if (tourInfo.matchesRound == 3)
             {
                 limit = 1;
-                matchInfoIndex = 0;
+                tourFinalsRound.text = "Round of 16";
+                roundText.text = "Round of 16";
             }
             else if (tourInfo.matchesRound == 4)
             {
                 limit = 2;
-                matchInfoIndex = 4;
+                tourFinalsRound.text = "Quarter finals";
+                roundText.text = "Quarter finals";
             }
             else if (tourInfo.matchesRound == 5)
             {
                 limit = 3;
-                matchInfoIndex = 6;
+                tourFinalsRound.text = "Semi-finals";
+                roundText.text = "Semi-finals";
             }
-            else
+            else if(tourInfo.matchesRound == 6)
             {
-                limit = 4;
-                matchInfoIndex = 7;
+                limit = 3;
+                tourFinalsRound.text = "FINAL";
+                roundText.text = "FINAL";
+                SetFinalUI();
             }
         }
         else
@@ -330,17 +363,21 @@ public class TourUIController : MonoBehaviour {
             if (tourInfo.matchesRound == 3)
             {
                 limit = 2;
-                matchInfoIndex = 2;
+                tourFinalsRound.text = "Quarter finals";
+                roundText.text = "Quarter finals";
             }
             else if (tourInfo.matchesRound == 4)
             {
                 limit = 3;
-                matchInfoIndex = 3;
+                tourFinalsRound.text = "Semi-finals";
+                roundText.text = "Semi-finals";
             }
-            else
+            else if (tourInfo.matchesRound == 5)
             {
-                limit = 4;
-                matchInfoIndex = 4;
+                limit = 3;
+                tourFinalsRound.text = "FINAL";
+                roundText.text = "FINAL";
+                SetFinalUI();
             }
         }
             
@@ -360,12 +397,11 @@ public class TourUIController : MonoBehaviour {
                 {
                    //////////////////////////////////////////// //Left key UI
                     Transform matchUI = leftMatchUI.GetChild(j).transform;
-                    MatchTourInfo match = tourInfo.leftKeyFinalMatches[matchInfoIndex];
+                    MatchTourInfo match = tourInfo.leftKeyFinalMatches[matchListIndex];
 
                     Image localFlag = matchUI.GetChild(0).GetComponent<Image>();
                     Image visitFlag = matchUI.GetChild(1).GetComponent<Image>();
                     
-
                     localFlag.sprite = GetTeamInformation(match.localTeam.teamName).flag;
                     visitFlag.sprite = GetTeamInformation(match.visitTeam.teamName).flag;
 
@@ -377,16 +413,14 @@ public class TourUIController : MonoBehaviour {
                         }
                         else
                         {
-                            localFlag.gameObject.SetActive(false);
-                            visitFlag.gameObject.SetActive(true);
+                            localFlag.gameObject.SetActive(true);
+                            visitFlag.gameObject.SetActive(false);
                         }
                     }
-
-
-
+                    
                     ///////////////////////////Right key UI
                     matchUI = rightMatchUI.GetChild(j).transform;
-                    match = tourInfo.rightKeyFinalMatches[matchInfoIndex];
+                    match = tourInfo.rightKeyFinalMatches[matchListIndex];
 
                     localFlag = matchUI.GetChild(0).GetComponent<Image>();
                     visitFlag = matchUI.GetChild(1).GetComponent<Image>();
@@ -404,15 +438,22 @@ public class TourUIController : MonoBehaviour {
                         }
                         else
                         {
-                            localFlag.gameObject.SetActive(false);
-                            visitFlag.gameObject.SetActive(true);
+                            localFlag.gameObject.SetActive(true);
+                            visitFlag.gameObject.SetActive(false);
                         }
                     }
 
-                    matchInfoIndex++;
+                    matchListIndex++;
                 }
             }
         }
+    }
+
+    private void SetFinalUI()
+    {
+        final.SetActive(true);
+        final.transform.GetChild(0).GetComponent<Image>().sprite = GetTeamInformation(tourInfo.finalMatch.localTeam.teamName).flag;
+        final.transform.GetChild(1).GetComponent<Image>().sprite = GetTeamInformation(tourInfo.finalMatch.visitTeam.teamName).flag;
     }
     
     /// <summary>
@@ -655,7 +696,7 @@ public class TourUIController : MonoBehaviour {
     /// <param name="sceneName">Name of the scene</param>
     public void ChangeScene(string sceneName)
     {
-        if(sceneName == "MainMenu")
+        if(sceneName == "MainMenu" || sceneName == "TournamentSelectionScene")
         {
             //Save tournament data
             tourInfo.SaveTour();
@@ -669,6 +710,9 @@ public class TourUIController : MonoBehaviour {
         {
             SceneManager.LoadScene(sceneName);
         }
+
+        SceneManager.LoadScene(sceneName);
+
     }
 
     /// <summary>

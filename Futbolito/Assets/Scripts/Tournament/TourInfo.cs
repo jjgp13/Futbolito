@@ -26,6 +26,8 @@ public class TourInfo{
     public List<MatchTourInfo> leftKeyFinalMatches;
     public List<MatchTourInfo> rightKeyFinalMatches;
 
+    public MatchTourInfo finalMatch;
+
     public TourInfo(TournamentController tour)
     {
         tourName = tour.tourName;
@@ -44,5 +46,7 @@ public class TourInfo{
         teamsForFinals = tour.teamsForFinals;
         leftKeyFinalMatches = tour.leftKeyFinalMatches;
         rightKeyFinalMatches = tour.rightKeyFinalMatches;
+
+        finalMatch = tour.finalMatch;
     }
 }

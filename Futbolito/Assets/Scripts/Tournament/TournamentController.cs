@@ -31,6 +31,8 @@ public class TournamentController : MonoBehaviour {
     public List<MatchTourInfo> leftKeyFinalMatches;
     public List<MatchTourInfo> rightKeyFinalMatches;
 
+    public MatchTourInfo finalMatch;
+
     //Array that helps to assign randomly a group to each team,
     private int[] groupsCount = new int[] {4,4,4,4,4,4,4,4};
 
@@ -70,6 +72,7 @@ public class TournamentController : MonoBehaviour {
         leftKeyFinalMatches = info.leftKeyFinalMatches;
         rightKeyFinalMatches = info.rightKeyFinalMatches;
 
+        finalMatch = info.finalMatch;
     }
 
     /// <summary>
@@ -149,7 +152,6 @@ public class TournamentController : MonoBehaviour {
     /// </summary>
     private void CreateGroupPhaseMatches()
     {
-        
         //pattern to assign a number of match in the group
         int[] mNumber = new int[] { 0, 1, 2, 2, 1, 0 };
         int matchesCount = 0;
@@ -189,7 +191,6 @@ public class TournamentController : MonoBehaviour {
         //Itarate over group matches list and get player matches
         for (int i = 0; i < groupPhaseMatches.Count; i++)
             if(IsPlayerMatch(groupPhaseMatches[i])) playerMatches.Add(groupPhaseMatches[i]);
-        
     }
 
     /// <summary>
@@ -349,11 +350,11 @@ public class TournamentController : MonoBehaviour {
     /// At the end, increase the round of the tournament.
     /// </summary>
     /// <param name="round">Playing round</param>
-    public void SimulateRoundOfMatches(int round)
+    public void SimulateRoundOfMatches()
     {
         for (int i = 0; i < groupPhaseMatches.Count; i++)
         {
-            if (round == groupPhaseMatches[i].matchNumber)
+            if (matchesRound == groupPhaseMatches[i].matchNumber)
             {
                 //NPC match
                 if (!IsPlayerMatch(groupPhaseMatches[i]))
@@ -364,7 +365,7 @@ public class TournamentController : MonoBehaviour {
                 //PlayerMatch
                 if (IsPlayerMatch(groupPhaseMatches[i]))
                 {
-                    playerMatches[round] = GetPlayerMatchResult(playerMatches[round]);
+                    playerMatches[matchesRound] = GetPlayerMatchResult(playerMatches[matchesRound]);
                     groupPhaseMatches[i] = GetPlayerMatchResult(groupPhaseMatches[i]);
                     UpdateTeamInformation(groupPhaseMatches[i]);
                 }
@@ -384,13 +385,13 @@ public class TournamentController : MonoBehaviour {
     /// Create new matches for stage and add them at the end of final matches lists
     /// </summary>
     /// <param name="round">Match round</param>
-    public void SimulateRoundOfMatchesInKnockOutStage(int round)
+    public void SimulateRoundOfMatchesInKnockOutStage()
     {
+        //Simulate matches of one round
         for (int i = 0; i < leftKeyFinalMatches.Count; i++)
         {
             MatchTourInfo leftMatch = leftKeyFinalMatches[i];
-
-            if (leftMatch.matchNumber == round)
+            if (leftMatch.matchNumber == matchesRound)
             {
                 if (!IsPlayerMatch(leftMatch))
                 {
@@ -398,14 +399,13 @@ public class TournamentController : MonoBehaviour {
                 }
                 else
                 {
-                    playerMatches[round] = GetPlayerMatchResult(playerMatches[round]);
+                    playerMatches[matchesRound] = GetPlayerMatchResult(playerMatches[matchesRound]);
                     leftMatch = GetPlayerMatchResult(leftMatch);
                 }
             }
             
-
             MatchTourInfo rightMatch = rightKeyFinalMatches[i];
-            if(rightMatch.matchNumber == round)
+            if(rightMatch.matchNumber == matchesRound)
             {
                 if (!IsPlayerMatch(rightMatch))
                 {
@@ -413,30 +413,82 @@ public class TournamentController : MonoBehaviour {
                 }
                 else
                 {
-                    playerMatches[round] = GetPlayerMatchResult(playerMatches[round]);
+                    playerMatches[matchesRound] = GetPlayerMatchResult(playerMatches[matchesRound]);
                     rightMatch = GetPlayerMatchResult(rightMatch);
                 }
             }
         }
         matchesRound++;
 
-        //Create next Matches
-        int beforeAddMatches = leftKeyFinalMatches.Count;
-        for (int i = 0; i < beforeAddMatches; i+=2)
+        //Create next matches
+        if(teamsForKnockoutStage == 16)
         {
-            TeamTourInfo winnerOne = GetMatchWinnerTeamInfo(leftKeyFinalMatches[i]);
-            TeamTourInfo winnerTwo = GetMatchWinnerTeamInfo(leftKeyFinalMatches[i + 1]);
-            MatchTourInfo newMatch = new MatchTourInfo(winnerOne, 0, winnerTwo, 0, round, false);
-            leftKeyFinalMatches.Add(newMatch);
-            if(IsPlayerMatch(newMatch)) playerMatches.Add(newMatch);
-
-            winnerOne = GetMatchWinnerTeamInfo(rightKeyFinalMatches[i]);
-            winnerTwo = GetMatchWinnerTeamInfo(rightKeyFinalMatches[i + 1]);
-            newMatch = new MatchTourInfo(winnerOne, 0, winnerTwo, 0, round, false);
-            rightKeyFinalMatches.Add(newMatch);
-            if (IsPlayerMatch(newMatch)) playerMatches.Add(newMatch);
+            switch (matchesRound)
+            {
+                //Create QuarteFinals
+                case 4:
+                    CreateNextRoundInFinals(0, 4);
+                    break;
+                //Create semifinals
+                case 5:
+                    CreateNextRoundInFinals(4, 6);
+                    break;
+                case 6:
+                    CreateFinalMatch();
+                    break;
+            }
         }
-        
+        else
+        {
+            switch (matchesRound)
+            {
+                //Create semifinals
+                case 4:
+                    CreateNextRoundInFinals(0, 2);
+                    break;
+                case 5:
+                    CreateFinalMatch();
+                    break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Get winner of both key and create final match
+    /// </summary>
+    private void CreateFinalMatch()
+    {
+        TeamTourInfo leftKeyWinner = GetMatchWinnerTeamInfo(leftKeyFinalMatches[leftKeyFinalMatches.Count-1]);
+        TeamTourInfo rightKeyWinner = GetMatchWinnerTeamInfo(rightKeyFinalMatches[rightKeyFinalMatches.Count - 1]);
+        MatchTourInfo final = new MatchTourInfo(leftKeyWinner, 0, rightKeyWinner, 0, matchesRound, false);
+        finalMatch = final;
+        if (IsPlayerMatch(final)) playerMatches.Add(final);
+    }
+    
+    /// <summary>
+    /// Create matches for next final round
+    /// </summary>
+    /// <param name="startIndex">From which match is goinf to take winner</param>
+    /// <param name="endIndex">Where list of winner end</param>
+    private void CreateNextRoundInFinals(int startIndex, int endIndex)
+    {
+        List<TeamTourInfo> winnersLeftKey = new List<TeamTourInfo>();
+        List<TeamTourInfo> winnersRightKey = new List<TeamTourInfo>();
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            winnersLeftKey.Add(GetMatchWinnerTeamInfo(leftKeyFinalMatches[i]));
+            winnersRightKey.Add(GetMatchWinnerTeamInfo(rightKeyFinalMatches[i]));
+        }
+        for (int i = 0; i < winnersLeftKey.Count; i+=2)
+        {
+            MatchTourInfo leftmatch = new MatchTourInfo(winnersLeftKey[i], 0, winnersLeftKey[i + 1], 0, matchesRound, false);
+            leftKeyFinalMatches.Add(leftmatch);
+            if (IsPlayerMatch(leftmatch)) playerMatches.Add(leftmatch);
+
+            MatchTourInfo rightMatch = new MatchTourInfo(winnersRightKey[i], 0, winnersRightKey[i + 1], 0, matchesRound, false);
+            rightKeyFinalMatches.Add(rightMatch);
+            if (IsPlayerMatch(rightMatch)) playerMatches.Add(rightMatch);
+        }
     }
 
     /// <summary>
@@ -506,14 +558,14 @@ public class TournamentController : MonoBehaviour {
         for (int i = 0; i < teamsForFinals.Count; i += 4)
         {
             //Left key
-            MatchTourInfo match = new MatchTourInfo(teamsForFinals[i], 0, teamsForFinals[i + 3], 0, 3, false);
-            leftKeyFinalMatches.Add(match);
-            if(IsPlayerMatch(match)) playerMatches.Add(match);
+            MatchTourInfo leftMatch = new MatchTourInfo(teamsForFinals[i], 0, teamsForFinals[i + 3], 0, 3, false);
+            leftKeyFinalMatches.Add(leftMatch);
+            if(IsPlayerMatch(leftMatch)) playerMatches.Add(leftMatch);
 
             //Right key
-            match = new MatchTourInfo(teamsForFinals[i + 1], 0, teamsForFinals[i + 2], 0, 3, false);
-            rightKeyFinalMatches.Add(match);
-            if(IsPlayerMatch(match)) playerMatches.Add(match);
+            MatchTourInfo rightMatch = new MatchTourInfo(teamsForFinals[i + 1], 0, teamsForFinals[i + 2], 0, 3, false);
+            rightKeyFinalMatches.Add(rightMatch);
+            if(IsPlayerMatch(rightMatch)) playerMatches.Add(rightMatch);
         }
     }
 
@@ -541,7 +593,6 @@ public class TournamentController : MonoBehaviour {
     {
         if (match.localTeam.teamName == teamSelected || match.visitTeam.teamName == teamSelected) return true;
         else return false;
-        
     }
 
     /// <summary>
@@ -589,7 +640,7 @@ public class TournamentController : MonoBehaviour {
     /// </summary>
     /// <param name="team">Name of the team</param>
     /// <returns>Team's information Scriptable object.</returns>
-    private Team LoadTeamInformation(string team)
+    public Team LoadTeamInformation(string team)
     {
         Team teamInfo = Resources.Load<Team>("Teams/" + team + "/" + team);
         return teamInfo;
