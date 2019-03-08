@@ -29,8 +29,8 @@ public class MatchController : MonoBehaviour {
 
     [Header("Scriptable objects with teams information")]
     //Reference to teams that are on this match
-    public Team playerTeam;
-    public Team npcTeam;
+    public Team leftTeam;
+    public Team rightTeam;
 
     [Header("Initial animation UI objects")]
     //Reference to the object that handle the initial animation.
@@ -44,8 +44,7 @@ public class MatchController : MonoBehaviour {
     public Text matchType;
     public Text matchScore;
 
-    public GameObject pauseMatchPanelOptions;
-    public Text timeLeftOnPausePanel;
+    public GameObject pauseMatchPanelOptions; 
     public GameObject finishQuickMatchPanelOptions;
     public GameObject finishTourMatchPanelOptions;
     
@@ -56,8 +55,8 @@ public class MatchController : MonoBehaviour {
 
     [Header("Goal Animation objects")]
     public GameObject golAnimation_UI;
-    public GameObject playerScore_UI;
-    public GameObject NPCScore_UI;
+    public GameObject leftTeamScore_UI;
+    public GameObject rightTeamScore_UI;
 
     [Header("Player UI buttons")]
     public GameObject holding_UI;
@@ -80,22 +79,9 @@ public class MatchController : MonoBehaviour {
     public Text restartingBallTimeText;
     
     //Variables that handle the score in the match
-    private int playerScore;
-    public int PlayerScore
-    {
-        get
-        {
-            return playerScore;
-        }
-    }
-    private int NPCScore;
-    public int NPC_Score
-    {
-        get
-        {
-            return NPCScore;
-        }
-    }
+    public int LeftTeamScore { get; set; }
+    public int RightTeamScore { get; set; }
+
 
     //Singleton, reference to this script and its info.
     private void Awake()
@@ -114,8 +100,8 @@ public class MatchController : MonoBehaviour {
         StartCoroutine(InitAnimation());
 
         //Start score at 0 and game as playing
-        playerScore = 0;
-        NPCScore = 0;
+        LeftTeamScore = 0;
+        RightTeamScore = 0;
         gameIsPaused = false;
 
         //Set time
@@ -125,8 +111,8 @@ public class MatchController : MonoBehaviour {
         endMatch = false;
 
         //Reference to player and NPC Game objects to pull info
-        playerTeam = MatchInfo._matchInfo.playerTeam;
-        npcTeam = MatchInfo._matchInfo.comTeam;
+        leftTeam = MatchInfo._matchInfo.leftTeam;
+        rightTeam = MatchInfo._matchInfo.rightTeam;
 
         //Active these panels to assign flags
         golAnimation_UI.SetActive(true);
@@ -134,8 +120,8 @@ public class MatchController : MonoBehaviour {
         
 
         //Set UI (flags and team names)
-        SetTeamFlags("PlayerFlags", playerTeam.flag, playerTeam.teamName);
-        SetTeamFlags("ComFlags", npcTeam.flag, npcTeam.teamName);
+        SetTeamFlags("LeftTeamFlags", leftTeam.flag, leftTeam.teamName);
+        SetTeamFlags("RightTeamFlags", rightTeam.flag, rightTeam.teamName);
 
         //Hide-show UI panels
         pauseMatchPanelOptions.SetActive(true);
@@ -200,17 +186,19 @@ public class MatchController : MonoBehaviour {
     {
         //Play goal sound
         GetComponent<SoundMatchController>().PlayGolSound();
-        if (golName == "PlayerGol")
+        if (golName == "RightGoalTrigger")
         {
             //Increase score
-            playerScore++;
+            LeftTeamScore++;
             //Change color of Balls in goals UI
-            playerScore_UI.transform.GetChild(playerScore-1).GetComponent<Image>().color = Color.white;
+            Animator anim = leftTeamScore_UI.transform.GetChild(LeftTeamScore).GetComponent<Animator>();
+            anim.SetTrigger("Goal");
         }
-        else if (golName == "NPCGol")
+        else if (golName == "LeftGoalTrigger")
         {
-            NPCScore++;
-            NPCScore_UI.transform.GetChild(NPCScore-1).GetComponent<Image>().color = Color.white;
+            RightTeamScore++;
+            Animator anim = rightTeamScore_UI.transform.GetChild(RightTeamScore).GetComponent<Animator>();
+            anim.SetTrigger("Goal");
         }
         //Update pause panel text
         UpdateUIScore();
@@ -225,7 +213,7 @@ public class MatchController : MonoBehaviour {
     public void CheckScore()
     {
         //play end animation with knockout.
-        if (playerScore == 5 || NPCScore == 5) StartCoroutine(PlayEndMatchAnimation(true));
+        if (LeftTeamScore == 5 || RightTeamScore == 5) StartCoroutine(PlayEndMatchAnimation(true));
         else SpawnBall();
     }
 
@@ -251,7 +239,7 @@ public class MatchController : MonoBehaviour {
         //Hide Goal animation
         golAnimation_UI.SetActive(false);
         //If noabady has reached 5 goals show again buttons.
-        if(playerScore < 5 && NPCScore < 5) SetUIState(true);
+        if(LeftTeamScore < 5 && RightTeamScore < 5) SetUIState(true);
     }
 
     /// <summary>
@@ -270,7 +258,7 @@ public class MatchController : MonoBehaviour {
     /// </summary>
     public void UpdateUIScore()
     {
-        matchScore.text = playerScore.ToString() + "-" + NPCScore.ToString();
+        matchScore.text = LeftTeamScore.ToString() + "-" + RightTeamScore.ToString();
     }
 
     /// <summary>
@@ -300,12 +288,12 @@ public class MatchController : MonoBehaviour {
         //Activate final match panel
         mainPausePanel.SetActive(true);
         //Change final match status
-        if (playerScore > NPCScore)
+        if (LeftTeamScore > RightTeamScore)
         {
             matchStatus.text = "VICTORY!";
             matchStatus.color = Color.yellow;
         }
-        else if (playerScore < NPCScore)
+        else if (LeftTeamScore < RightTeamScore)
         {
             matchStatus.text = "DEFEAT";
             matchStatus.color = Color.red;
@@ -360,7 +348,6 @@ public class MatchController : MonoBehaviour {
     public void Pause()
     {
         mainPausePanel.SetActive(true);
-        timeLeftOnPausePanel.text = "Time left: \n" + timeText.text + " min";
         timePanel.SetActive(false);
         Time.timeScale = 0f;
         gameIsPaused = true;
@@ -384,6 +371,8 @@ public class MatchController : MonoBehaviour {
         yield return new WaitForSeconds(2.5f);
         intialAnimationObject.SetActive(false);
         timePanel.SetActive(true);
+        leftTeamScore_UI.SetActive(true);
+        rightTeamScore_UI.SetActive(true);
         //Instiatite a ball
         SpawnBall();
     }

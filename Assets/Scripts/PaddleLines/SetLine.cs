@@ -16,35 +16,35 @@ public class SetLine : MonoBehaviour {
     //Screen width
     float screenHalfWidthInWorldUnits;
     //Movement limit
-    public float xLimit;
+    public float yLimit;
     public float halfPlayer;
 
     // Use this for initialization
     void Awake () {
         //Set line given it's parent
         //Take uniforms and lineup from team selected
-        if (transform.parent.name == "Player")
+        if (transform.parent.name == "LeftTeam")
         {
-            teamInfo = Resources.Load<Team>("Teams/" + MatchInfo._matchInfo.playerTeam.teamName + "/" + MatchInfo._matchInfo.playerTeam.teamName);
-            teamUniform = MatchInfo._matchInfo.playerUniform;
-            teamFormation = MatchInfo._matchInfo.playerLineUp;
-        } else if(transform.parent.name == "NPC")
+            teamInfo = MatchInfo._matchInfo.leftTeam;
+            teamUniform = MatchInfo._matchInfo.leftTeamUniform;
+            teamFormation = MatchInfo._matchInfo.leftTeamLineUp;
+        } else if(transform.parent.name == "RightTeam")
         {
-            teamInfo = Resources.Load<Team>("Teams/" + MatchInfo._matchInfo.comTeam.teamName + "/" + MatchInfo._matchInfo.comTeam.teamName);
-            teamUniform = MatchInfo._matchInfo.comUniform;
-            teamFormation = MatchInfo._matchInfo.comLineUp;
+            teamInfo = MatchInfo._matchInfo.rightTeam;
+            teamUniform = MatchInfo._matchInfo.rightTeamUniform;
+            teamFormation = MatchInfo._matchInfo.rightTeamLineUp;
         }
         
         
         numberPaddles = GetNumberOfPaddles(gameObject.name);
         //Set line given the measures of the screen
         //Get screen width
-        screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
+        screenHalfWidthInWorldUnits = Camera.main.orthographicSize;
         //Spawn pads in line, given the number.
         DevidePaddlesInLine(screenHalfWidthInWorldUnits * 2, numberPaddles);
         //Get x maximum movement in the line, given the number of paddles
-        xLimit = ((screenHalfWidthInWorldUnits * 2) / (numberPaddles + 1)) - 0.3f;
-        if (numberPaddles == 1 && gameObject.name == "GKLine") xLimit = 1.75f;
+        yLimit = ((screenHalfWidthInWorldUnits * 2) / (numberPaddles + 1)) - 1f;
+        if (numberPaddles == 1 && gameObject.name == "GKLine") yLimit = 1.90f;
         //Get size of the paddle.
         halfPlayer = pad.transform.localScale.x / 2;
     }
@@ -54,14 +54,14 @@ public class SetLine : MonoBehaviour {
     /// </summary>
     /// <param name="screenWidth">The width of the screen</param>
     /// <param name="numPaddles">Numbers of paddles of distrubed in this line</param>
-    void DevidePaddlesInLine(float screenWidth, int numPaddles)
+    void DevidePaddlesInLine(float screenHeight, int numPaddles)
     {
-        float spawnPos = screenWidth / (numPaddles + 1);
-        float iniPos = -screenWidth / 2;
+        float spawnPos = screenHeight / (numPaddles + 1);
+        float iniPos = -screenHeight / 2;
         for (int i = 0; i < numberPaddles; i++)
         {
             iniPos += spawnPos;
-            GameObject newPaddle = Instantiate(pad, new Vector2(iniPos, transform.position.y), Quaternion.identity);
+            GameObject newPaddle = Instantiate(pad, new Vector2(transform.position.x, iniPos), pad.transform.rotation);
             newPaddle.GetComponent<SetAnimations>().teamPicked = teamInfo.teamName;
             newPaddle.GetComponent<SetAnimations>().uniform = teamUniform;
             newPaddle.transform.parent = transform;

@@ -9,8 +9,14 @@ public class LineMovement : MonoBehaviour {
     public float velocity;
     public bool isActive;
     private int paddlesInLine;
+    private Vector3 phoneIniAcc, accDifference;
 
-	void Start () {
+    private void Awake()
+    {
+        phoneIniAcc = Input.acceleration;
+    }
+
+    void Start () {
         //Set speed of line
         paddlesInLine = GetComponent<SetLine>().numberPaddles;
         SetSpeed(paddlesInLine);
@@ -22,14 +28,15 @@ public class LineMovement : MonoBehaviour {
 	void LateUpdate () {
         if (isActive)
         {
-            float xMov = Input.acceleration.x;
+            accDifference = phoneIniAcc - Input.acceleration;
+            float yMov = accDifference.y;
             
-            velocity = xMov * speed;
-            transform.Translate(Vector2.right * velocity * Time.deltaTime);
-            if (transform.position.x < -GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer)
-                transform.position = new Vector2(-GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer, transform.position.y);
-            if (transform.position.x > GetComponent<SetLine>().xLimit - GetComponent<SetLine>().halfPlayer)
-                transform.position = new Vector2(GetComponent<SetLine>().xLimit - GetComponent<SetLine>().halfPlayer, transform.position.y);
+            velocity = yMov * speed;
+            transform.Translate(-Vector3.up * velocity * Time.deltaTime); 
+            if (transform.position.y < -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer)
+                transform.position = new Vector2(transform.position.x, -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer);
+            if (transform.position.y > GetComponent<SetLine>().yLimit - GetComponent<SetLine>().halfPlayer)
+                transform.position = new Vector2(transform.position.x, GetComponent<SetLine>().yLimit - GetComponent<SetLine>().halfPlayer);
         }
     }
 
@@ -38,19 +45,19 @@ public class LineMovement : MonoBehaviour {
         switch (numPlayerInLine)
         {
             case 1:
-                speed = 20f;
-                break;
-            case 2:
                 speed = 17.5f;
                 break;
-            case 3:
+            case 2:
                 speed = 15f;
                 break;
-            case 4:
+            case 3:
                 speed = 12.5f;
                 break;
-            case 5:
+            case 4:
                 speed = 10f;
+                break;
+            case 5:
+                speed = 7.5f;
                 break;
         }
     }

@@ -35,13 +35,13 @@ public class NPCLineMovement : MonoBehaviour {
                 }
             }
 
-            if (ball.transform.position.x > nearChild.transform.position.x) transform.Translate(Vector2.right * speed * Time.deltaTime);
-            if (ball.transform.position.x < nearChild.transform.position.x) transform.Translate(Vector2.right * -speed * Time.deltaTime);
+            if (ball.transform.position.y > nearChild.transform.position.y) transform.Translate(Vector2.up * speed * Time.deltaTime);
+            if (ball.transform.position.y < nearChild.transform.position.y) transform.Translate(Vector2.up * -speed * Time.deltaTime);
 
-            if (transform.position.x < -GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer)
-                transform.position = new Vector2(-GetComponent<SetLine>().xLimit + GetComponent<SetLine>().halfPlayer, transform.position.y);
-            if (transform.position.x > GetComponent<SetLine>().xLimit - GetComponent<SetLine>().halfPlayer)
-                transform.position = new Vector2(GetComponent<SetLine>().xLimit - GetComponent<SetLine>().halfPlayer, transform.position.y);
+            if (transform.position.y < -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer)
+                transform.position = new Vector2(transform.position.x, -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer);
+            if (transform.position.y > GetComponent<SetLine>().yLimit - GetComponent<SetLine>().halfPlayer)
+                transform.position = new Vector2(transform.position.x, GetComponent<SetLine>().yLimit - GetComponent<SetLine>().halfPlayer);
         }
 
         if (ball == null) ball = GameObject.FindGameObjectWithTag("Ball");

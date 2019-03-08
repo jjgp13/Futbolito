@@ -202,13 +202,13 @@ public class TournamentController : MonoBehaviour {
     {
         if (match.localTeam.teamName == teamSelected)
         {
-            match.localGoals = MatchController._matchController.PlayerScore;
-            match.visitGoals = MatchController._matchController.NPC_Score;
+            match.localGoals = MatchController._matchController.LeftTeamScore;
+            match.visitGoals = MatchController._matchController.RightTeamScore;
         }
         else
         {
-            match.localGoals = MatchController._matchController.NPC_Score;
-            match.visitGoals = MatchController._matchController.PlayerScore;
+            match.localGoals = MatchController._matchController.RightTeamScore;
+            match.visitGoals = MatchController._matchController.LeftTeamScore;
         }
 
         match.played = true;

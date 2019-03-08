@@ -155,18 +155,18 @@ public class QuickMatchMenuController : MonoBehaviour {
     /// <param name="btnInfo"></param>
     void ReturnTeamSelected(TeamSelected btnInfo)
     {
-        if (MatchInfo._matchInfo.playerTeam == null)
+        if (MatchInfo._matchInfo.leftTeam == null)
         {
             //Set info needed for Match scene
-            MatchInfo._matchInfo.playerTeam = btnInfo.team;
+            MatchInfo._matchInfo.leftTeam = btnInfo.team;
             
-            MatchInfo._matchInfo.playerLineUp.defense = btnInfo.team.teamFormation.defense;
-            MatchInfo._matchInfo.playerLineUp.mid = btnInfo.team.teamFormation.mid;
-            MatchInfo._matchInfo.playerLineUp.attack = btnInfo.team.teamFormation.attack;
-            MatchInfo._matchInfo.playerUniform = "Local";
+            MatchInfo._matchInfo.leftTeamLineUp.defense = btnInfo.team.teamFormation.defense;
+            MatchInfo._matchInfo.leftTeamLineUp.mid = btnInfo.team.teamFormation.mid;
+            MatchInfo._matchInfo.leftTeamLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.leftTeamUniform = "Local";
 
             //Set UI given team selected
-            SetFlags("PlayerFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            SetFlags("LeftTeamFlags", btnInfo.team.flag, btnInfo.team.teamName);
             SetUI(playerUI, btnInfo.team);
             //Activate clear selection button
             clearTeamSelectionButton.SetActive(true);
@@ -174,14 +174,14 @@ public class QuickMatchMenuController : MonoBehaviour {
         else
         {
             //Set info needed for Match scene
-            MatchInfo._matchInfo.comTeam = btnInfo.team;
-            MatchInfo._matchInfo.comLineUp.defense = btnInfo.team.teamFormation.defense;
-            MatchInfo._matchInfo.comLineUp.mid = btnInfo.team.teamFormation.mid;
-            MatchInfo._matchInfo.comLineUp.attack = btnInfo.team.teamFormation.attack;
-            MatchInfo._matchInfo.comUniform = "Local";
+            MatchInfo._matchInfo.rightTeam = btnInfo.team;
+            MatchInfo._matchInfo.rightTeamLineUp.defense = btnInfo.team.teamFormation.defense;
+            MatchInfo._matchInfo.rightTeamLineUp.mid = btnInfo.team.teamFormation.mid;
+            MatchInfo._matchInfo.rightTeamLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.rightTeamUniform = "Local";
 
             //Set UI given team selected
-            SetFlags("ComFlags", btnInfo.team.flag, btnInfo.team.teamName);
+            SetFlags("RightTeamFlags", btnInfo.team.flag, btnInfo.team.teamName);
             SetUI(comUI, btnInfo.team);
         }
     }
@@ -190,19 +190,19 @@ public class QuickMatchMenuController : MonoBehaviour {
     public void ClearTeamSelection()
     {
         clearTeamSelectionButton.SetActive(false);
-        MatchInfo._matchInfo.playerTeam = null;
-        MatchInfo._matchInfo.comTeam = null;
-        SetFlags("PlayerFlags", flagOutline, "");
-        SetFlags("ComFlags", flagOutline, "");
+        MatchInfo._matchInfo.leftTeam = null;
+        MatchInfo._matchInfo.rightTeam = null;
+        SetFlags("LeftTeamFlags", flagOutline, "");
+        SetFlags("RightTeamFlags", flagOutline, "");
     }
 
     //On click MatchSettings button it will show the match settings panel
     public void MatchSettingMenuAnimation(bool state)
     {
-        if(MatchInfo._matchInfo.playerTeam == null || MatchInfo._matchInfo.comTeam == null) notTeamSelectedPanel.SetActive(true);
+        if(MatchInfo._matchInfo.leftTeam == null || MatchInfo._matchInfo.rightTeam == null) notTeamSelectedPanel.SetActive(true);
         else
         {
-            Animator anim = matchSettingMenu.GetComponent<Animator>();
+            Animator anim = GetComponent<Animator>();
             anim.SetBool("Show", state);
             MatchInfo._matchInfo.matchTime = 2;
             MatchInfo._matchInfo.matchLevel = 2;

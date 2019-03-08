@@ -21,13 +21,13 @@ public class MatchInfo : MonoBehaviour {
     public MatchType matchType;
     
     //Information of the player
-    public Team playerTeam;
-    public Formation playerLineUp;
-    public string playerUniform;
+    public Team leftTeam;
+    public Formation leftTeamLineUp;
+    public string leftTeamUniform;
     //Information of the NPC
-    public Team comTeam;
-    public Formation comLineUp;
-    public string comUniform;
+    public Team rightTeam;
+    public Formation rightTeamLineUp;
+    public string rightTeamUniform;
 
     //Match time and difficulty
     public int matchTime;

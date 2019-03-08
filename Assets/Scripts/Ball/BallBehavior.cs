@@ -101,10 +101,11 @@ public class BallBehavior : MonoBehaviour {
                 Instantiate(energyParticles, transform.position, Quaternion.identity);
             }
             if (hitForce < 1) hitForce = 1;
-            float xVel = Mathf.Abs(transform.position.x - obj.transform.position.x) * 2;
-            if (transform.position.x < obj.transform.position.x) xVel = -xVel;
+            float yVel = Mathf.Abs(transform.position.x - obj.transform.position.x) * hitForce;
+            if (transform.position.x < obj.transform.position.x) yVel = -yVel;
             //StartCoroutine(MatchController._matchController.BallHittedEffect());
-            BallHitted(new Vector2(xVel, hitForce));
+            ContactPoint2D point2D = other.GetContact(0);
+            BallHitted(new Vector2(hitForce, yVel), point2D.point);
             Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
             Instantiate(ballHit, pos, Quaternion.identity);
         }
@@ -114,26 +115,27 @@ public class BallBehavior : MonoBehaviour {
     {
         GameObject obj = other.gameObject;
         float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
-        float xPaddlePos = obj.transform.position.x;
-        float xBallPos = transform.position.x;
-        float xVel;
+        float yPaddlePos = obj.transform.position.y;
+        float yBallPos = transform.position.y;
+        float yVel;
 
         if (obj.GetComponent<NPCStats>().isShooting)
         {
-            xVel = Mathf.Abs(xBallPos - xPaddlePos) * shootSpeed;
-            if (xBallPos < xPaddlePos) xVel = -xVel;
-            float yVel = -shootSpeed;
+            yVel = Mathf.Abs(yBallPos - yPaddlePos) * shootSpeed;
+            if (yBallPos < yPaddlePos) yVel = -yVel;
+            float xVel = -shootSpeed;
             //Add force
-            BallHitted(new Vector2(xVel, yVel));
             Vector3 pos = new Vector3(other.GetContact(0).point.x, other.GetContact(0).point.y);
+            BallHitted(new Vector2(xVel, yVel), pos);
+            
             Instantiate(ballHit, pos, Quaternion.identity);
         }
     }
 
-    public void BallHitted(Vector2 force)
+    public void BallHitted(Vector2 force, Vector2 hitPostion)
     {
         soundC.PlaySound(soundC.paddleHit);
-        rb.AddForce(force, ForceMode2D.Impulse);
+        rb.AddForceAtPosition(force, hitPostion,ForceMode2D.Impulse);
     }
     
 }

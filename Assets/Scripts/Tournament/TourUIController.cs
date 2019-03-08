@@ -615,20 +615,20 @@ public class TourUIController : MonoBehaviour {
         localTeamFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[player].teamName;
         playerFlag.sprite = teamsForMatch[player].flag;
         playerFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[player].teamName;
-        matchInfo.playerTeam = teamsForMatch[player];
+        matchInfo.leftTeam = teamsForMatch[player];
 
         visitTeamFlag.sprite = teamsForMatch[npc].flag;
         visitTeamFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[npc].teamName;
         npcFlag.sprite = teamsForMatch[npc].flag;
         npcFlag.transform.GetChild(0).GetComponent<Text>().text = teamsForMatch[npc].teamName;
-        matchInfo.comTeam = teamsForMatch[npc];
+        matchInfo.rightTeam = teamsForMatch[npc];
 
 
 
         //Set uniforms
         //Show both for player
         //Local by defaut
-        matchInfo.playerUniform = "Local";
+        matchInfo.leftTeamUniform = "Local";
         playerFirstUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[player].firstU;
         playerSecondUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[player].secondU;
 
@@ -636,23 +636,23 @@ public class TourUIController : MonoBehaviour {
         if (Random.Range(0, 101) < 50)
         {
             npcUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[npc].firstU;
-            matchInfo.comUniform = "Local";
+            matchInfo.rightTeamUniform = "Local";
         }
         else
         {
             npcUniform.transform.GetChild(0).GetComponent<Image>().sprite = teamsForMatch[npc].secondU;
-            matchInfo.comUniform = "Visita";
+            matchInfo.rightTeamUniform = "Visita";
         }
 
         //Set npc formation, by defualt.
         playerFormationImage.sprite = teamsForMatch[player].formationImage;
-        matchInfo.playerLineUp = teamsForMatch[player].teamFormation;
+        matchInfo.leftTeamLineUp = teamsForMatch[player].teamFormation;
 
         npcFormation.text = "Formation " + teamsForMatch[npc].teamFormation.defense.ToString() + "-" +
             teamsForMatch[npc].teamFormation.mid.ToString() + "-" +
             teamsForMatch[npc].teamFormation.attack.ToString();
 
-        matchInfo.comLineUp = teamsForMatch[npc].teamFormation;
+        matchInfo.rightTeamLineUp = teamsForMatch[npc].teamFormation;
 
         //Set time and level
         matchTimeText.text = "Match time: " + tourInfo.matchTime.ToString() + " min";
@@ -713,9 +713,7 @@ public class TourUIController : MonoBehaviour {
         {
             SceneManager.LoadScene(sceneName);
         }
-
         SceneManager.LoadScene(sceneName);
-
     }
 
     /// <summary>

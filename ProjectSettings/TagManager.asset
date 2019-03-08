@@ -9,15 +9,15 @@ TagManager:
   - PlayerPaddle
   - NPCPaddle
   - GoalTrigger
-  - PlayerFlags
   - FlagOutline
-  - ComFlags
-  - PlayerUniforms
-  - ComUniforms
   - TourData
   - PlayerName
   - ComName
   - MatchData
+  - LeftTeamFlags
+  - RightTeamFlags
+  - LeftTeamUniforms
+  - RightTeamUniforms
   layers:
   - Default
   - TransparentFX

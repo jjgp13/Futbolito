@@ -47,8 +47,8 @@ public class PanelSelection : MonoBehaviour {
         line.mid = int.Parse(lineByline[1]);
         line.attack = int.Parse(lineByline[2]);
 
-        if (grandParent == "PlayerUI") MatchInfo._matchInfo.playerLineUp = line;
-        else if (grandParent == "ComUI") MatchInfo._matchInfo.comLineUp = line;
+        if (grandParent == "LeftTeam") MatchInfo._matchInfo.leftTeamLineUp = line;
+        else if (grandParent == "RightTeam") MatchInfo._matchInfo.rightTeamLineUp = line;
     }
 
     public void SetTime(int time)
@@ -75,7 +75,7 @@ public class PanelSelection : MonoBehaviour {
     public void SetUniform(string uniform)
     {
         string grandParent = transform.parent.gameObject.name;
-        if (grandParent == "PlayerUI") MatchInfo._matchInfo.playerUniform = uniform;
-        else if (grandParent == "ComUI") MatchInfo._matchInfo.comUniform = uniform;
+        if (grandParent == "LeftTeam") MatchInfo._matchInfo.leftTeamUniform = uniform;
+        else if (grandParent == "RightTeam") MatchInfo._matchInfo.rightTeamUniform = uniform;
     }
 }
