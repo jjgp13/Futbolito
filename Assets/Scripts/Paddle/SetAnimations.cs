@@ -23,7 +23,6 @@ public class SetAnimations : MonoBehaviour {
     {
         // Get and cache the sprite renderer for this game object
         spriteRenderer = GetComponent<SpriteRenderer>();
-
         LoadSpriteSheet();
     }
 

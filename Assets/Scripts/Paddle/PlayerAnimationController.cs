@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlayerAnimationController : MonoBehaviour {
 
     public Animator animatorController;
-    public float magneticForce;
+    public float attractionForce;
 
     public ParticleSystem attractBall;
     public ParticleSystem chargingShoot;
@@ -15,7 +15,7 @@ public class PlayerAnimationController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         if (gameObject.GetComponentInParent<LineMovement>().isActive)
         {
             if (ShootButton._shootButton.isShooting)
@@ -44,7 +44,7 @@ public class PlayerAnimationController : MonoBehaviour {
             {
                 if(HoldButton._holdButton.availableTime > 0 && !HoldButton._holdButton.empty)
                 {
-                    GetComponent<PointEffector2D>().forceMagnitude = magneticForce;
+                    GetComponent<PointEffector2D>().forceMagnitude = attractionForce;
                     if(!attractBall.isPlaying)
                         attractBall.Play();
                 }

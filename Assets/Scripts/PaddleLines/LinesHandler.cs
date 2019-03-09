@@ -26,8 +26,8 @@ public class LinesHandler : MonoBehaviour {
         //Get reference to each line
         for (int i = 0; i < transform.childCount; i++) lines[i] = transform.GetChild(i).gameObject;
 
-        if (playerSide == PlayerSide.LeftPlayer) SetLinesActiveLimits(-8.25f, -2.25f, 3.75f);
-        if (playerSide == PlayerSide.RightPlayer) SetLinesActiveLimits(8.25f, 2.25f, -3.75f);
+        if (playerSide == PlayerSide.LeftPlayer) SetLinesActiveLimits(-8f, -3f, 3f);
+        if (playerSide == PlayerSide.RightPlayer) SetLinesActiveLimits(8f, 3f, -3f);
 
     }
 

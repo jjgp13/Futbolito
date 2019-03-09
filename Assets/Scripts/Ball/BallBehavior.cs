@@ -101,8 +101,8 @@ public class BallBehavior : MonoBehaviour {
                 Instantiate(energyParticles, transform.position, Quaternion.identity);
             }
             if (hitForce < 1) hitForce = 1;
-            float yVel = Mathf.Abs(transform.position.x - obj.transform.position.x) * hitForce;
-            if (transform.position.x < obj.transform.position.x) yVel = -yVel;
+            float yVel = (Mathf.Abs(transform.position.y - obj.transform.position.y) * hitForce * 1.75f);
+            if (transform.position.y < obj.transform.position.y) yVel = -yVel;
             //StartCoroutine(MatchController._matchController.BallHittedEffect());
             ContactPoint2D point2D = other.GetContact(0);
             BallHitted(new Vector2(hitForce, yVel), point2D.point);
@@ -114,14 +114,15 @@ public class BallBehavior : MonoBehaviour {
     void NPCHitBall(Collision2D other)
     {
         GameObject obj = other.gameObject;
-        float shootSpeed = obj.GetComponent<NPCStats>().shootSpeed;
+        NPCStats level = obj.transform.parent.parent.GetComponent<NPCStats>();
+        float shootSpeed = level.shootSpeed;
         float yPaddlePos = obj.transform.position.y;
         float yBallPos = transform.position.y;
         float yVel;
-
-        if (obj.GetComponent<NPCStats>().isShooting)
+        
+        if (obj.GetComponent<Animator>().GetBool("Shoot"))
         {
-            yVel = Mathf.Abs(yBallPos - yPaddlePos) * shootSpeed;
+            yVel = (Mathf.Abs(yBallPos - yPaddlePos) * shootSpeed * 1.75f);
             if (yBallPos < yPaddlePos) yVel = -yVel;
             float xVel = -shootSpeed;
             //Add force

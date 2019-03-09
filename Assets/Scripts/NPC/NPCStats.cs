@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class NPCStats : MonoBehaviour{
 
-    public bool isShooting;
     public float shootSpeed;
+    public float attractionForce;
 
-    public float[] shootSpeeds;
+    private readonly float[] shootSpeeds =  new float[3] {0.25f, 0.5f, 0.75f };
+    private readonly float[] attractionForces = new float[3] { -0.1f, -0.1f, -0.15f };
 
     private void Start()
     {
@@ -16,12 +17,15 @@ public class NPCStats : MonoBehaviour{
         {
             case 1:
                 shootSpeed = shootSpeeds[d];
+                attractionForce = attractionForces[d];
                 break;
             case 2:
                 shootSpeed = shootSpeeds[d];
+                attractionForce = attractionForces[d];
                 break;
             case 3:
                 shootSpeed = shootSpeeds[d];
+                attractionForce = attractionForces[d];
                 break;
         }
     }

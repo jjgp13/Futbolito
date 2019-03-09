@@ -34,8 +34,7 @@ public class SetLine : MonoBehaviour {
             teamUniform = MatchInfo._matchInfo.rightTeamUniform;
             teamFormation = MatchInfo._matchInfo.rightTeamLineUp;
         }
-        
-        
+
         numberPaddles = GetNumberOfPaddles(gameObject.name);
         //Set line given the measures of the screen
         //Get screen width
@@ -44,7 +43,7 @@ public class SetLine : MonoBehaviour {
         DevidePaddlesInLine(screenHalfWidthInWorldUnits * 2, numberPaddles);
         //Get x maximum movement in the line, given the number of paddles
         yLimit = ((screenHalfWidthInWorldUnits * 2) / (numberPaddles + 1)) - 1f;
-        if (numberPaddles == 1 && gameObject.name == "GKLine") yLimit = 1.90f;
+        if (numberPaddles == 1 && gameObject.name == "GKLine") yLimit = 2.25f;
         //Get size of the paddle.
         halfPlayer = pad.transform.localScale.x / 2;
     }

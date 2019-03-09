@@ -89,7 +89,12 @@ public class MatchController : MonoBehaviour {
         _matchController = this;
         //Show action buttons
         SetUIState(true);
+
+        //Reference to player and NPC Game objects to pull info
+        leftTeam = MatchInfo._matchInfo.leftTeam;
+        rightTeam = MatchInfo._matchInfo.rightTeam;
     }
+
 
     //Initial state of objects.
     private void Start()
@@ -110,9 +115,6 @@ public class MatchController : MonoBehaviour {
         ballInGame = false;
         endMatch = false;
 
-        //Reference to player and NPC Game objects to pull info
-        leftTeam = MatchInfo._matchInfo.leftTeam;
-        rightTeam = MatchInfo._matchInfo.rightTeam;
 
         //Active these panels to assign flags
         golAnimation_UI.SetActive(true);

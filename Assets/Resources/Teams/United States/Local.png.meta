@@ -7,8 +7,8 @@ TextureImporter:
     21300004: Shoot2
     21300006: Shoot3
     21300008: Shoot_1B
-    21300010: Local_5
-    21300012: Shoot_2B
+    21300010: Shoot_2B
+    21300012: Shoot_3B
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -213,7 +213,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Local_5
+      name: Shoot_2B
       rect:
         serializedVersion: 2
         x: 160
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shoot_2B
+      name: Shoot_3B
       rect:
         serializedVersion: 2
         x: 288
