@@ -142,9 +142,10 @@ public class ToursMenuController : MonoBehaviour {
     }
 
     //Change scene
-    public void MainMenu(string sceneName)
+    public void ChangeScene(string sceneName)
     {
         Destroy(FindObjectOfType<TournamentController>().gameObject);
+        if (sceneName == "MainMenu") Destroy(GameObject.FindGameObjectWithTag("PlayerDataObject"));
         SceneManager.LoadScene(sceneName);
     }
 

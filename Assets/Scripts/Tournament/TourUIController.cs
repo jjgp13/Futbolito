@@ -701,6 +701,7 @@ public class TourUIController : MonoBehaviour {
     {
         if(sceneName == "MainMenu" || sceneName == "TournamentSelectionScene")
         {
+            if (sceneName == "MainMenu") Destroy(GameObject.FindGameObjectWithTag("PlayerDataObject"));
             //Save tournament data
             tourInfo.SaveTour();
             //Delete object that contains the data.

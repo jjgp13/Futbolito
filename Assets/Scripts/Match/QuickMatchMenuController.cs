@@ -233,7 +233,11 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     public void ChangeScene(string sceneName)
     {
-        if(sceneName == "MainMenu") Destroy(GameObject.Find("MatchInfo"));
+        if (sceneName == "MainMenu")
+        {
+            Destroy(GameObject.Find("MatchInfo"));
+            Destroy(GameObject.FindGameObjectWithTag("PlayerDataObject"));
+        }
         SceneManager.LoadScene(sceneName);
     }
 

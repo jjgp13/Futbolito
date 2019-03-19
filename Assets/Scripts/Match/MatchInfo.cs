@@ -19,6 +19,9 @@ public class MatchInfo : MonoBehaviour {
     public static MatchInfo _matchInfo;
     //Type of match to play
     public MatchType matchType;
+    public Sprite ballSelected;
+    public Sprite grassSelected;
+    public Sprite tableSelected;
     
     //Information of the player
     public Team leftTeam;

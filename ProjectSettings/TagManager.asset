@@ -18,6 +18,7 @@ TagManager:
   - RightTeamFlags
   - LeftTeamUniforms
   - RightTeamUniforms
+  - PlayerDataObject
   layers:
   - Default
   - TransparentFX

@@ -192,6 +192,7 @@ public class MatchController : MonoBehaviour {
         {
             //Increase score
             LeftTeamScore++;
+            PlayerDataController.playerData.goalsScored++;
             //Change color of Balls in goals UI
             Animator anim = leftTeamScore_UI.transform.GetChild(LeftTeamScore).GetComponent<Animator>();
             anim.SetTrigger("Goal");
@@ -199,6 +200,7 @@ public class MatchController : MonoBehaviour {
         else if (golName == "LeftGoalTrigger")
         {
             RightTeamScore++;
+            PlayerDataController.playerData.goalsAgainst++;
             Animator anim = rightTeamScore_UI.transform.GetChild(RightTeamScore).GetComponent<Animator>();
             anim.SetTrigger("Goal");
         }
@@ -215,8 +217,21 @@ public class MatchController : MonoBehaviour {
     public void CheckScore()
     {
         //play end animation with knockout.
-        if (LeftTeamScore == 5 || RightTeamScore == 5) StartCoroutine(PlayEndMatchAnimation(true));
-        else SpawnBall();
+        if (LeftTeamScore == 5)
+        {
+            StartCoroutine(PlayEndMatchAnimation(true));
+            PlayerDataController.playerData.knockoutVictories++;
+            return;
+        }
+
+        if (RightTeamScore == 5)
+        {
+            StartCoroutine(PlayEndMatchAnimation(true));
+            PlayerDataController.playerData.knockoutDefeats++;
+            return;
+        }
+
+        SpawnBall();
     }
 
     /// <summary>
@@ -270,6 +285,21 @@ public class MatchController : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
+        PlayerDataController.playerData.totalMatches++;
+        switch(MatchInfo._matchInfo.matchLevel)
+        {
+            case 1:
+                PlayerDataController.playerData.easyLevelMatches++;
+                break;
+            case 2:
+                PlayerDataController.playerData.normalLevelMatches++;
+                break;
+            case 3:
+                PlayerDataController.playerData.hardLevelMatches++;
+                break;
+        }
+
+
         //If match time has finished and ball is still in gamefield, stop and destroy.
         ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         Destroy(GameObject.FindGameObjectWithTag("Ball"));
@@ -294,14 +324,26 @@ public class MatchController : MonoBehaviour {
         {
             matchStatus.text = "VICTORY!";
             matchStatus.color = Color.yellow;
+
+            PlayerDataController.playerData.victories++;
+            PlayerDataController.playerData.GetPlayerCoins("Victory", MatchInfo._matchInfo.matchLevel);
         }
         else if (LeftTeamScore < RightTeamScore)
         {
             matchStatus.text = "DEFEAT";
             matchStatus.color = Color.red;
-        }  
+            
+            PlayerDataController.playerData.defeats++;
+            PlayerDataController.playerData.GetPlayerCoins("Defeat", MatchInfo._matchInfo.matchLevel);
+        }
         else
+        {
             matchStatus.text = "TIE";
+
+            PlayerDataController.playerData.ties++;
+            PlayerDataController.playerData.GetPlayerCoins("Tie", MatchInfo._matchInfo.matchLevel);
+        }
+            
 
         //Deactivate pause panel shooting button, holding button.
         SetUIState(false);
@@ -310,8 +352,28 @@ public class MatchController : MonoBehaviour {
         //Activate differents options depending of match's type.
         if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.QuickMatch) finishQuickMatchPanelOptions.SetActive(true);
         if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.TourMatch) finishTourMatchPanelOptions.SetActive(true);
+
         
+        //Players info
+        //Increment player data for team used and formation used
+        PlayerDataController.playerData.IncrementDictionaryElement(leftTeam.teamName, PlayerDataController.playerData.timesTeamSelected);
+
+        string usedLineUp = MatchInfo._matchInfo.leftTeamLineUp.defense.ToString() + "-" +
+            MatchInfo._matchInfo.leftTeamLineUp.mid.ToString() + "-" +
+            MatchInfo._matchInfo.leftTeamLineUp.attack.ToString();
+        PlayerDataController.playerData.IncrementDictionaryElement(usedLineUp, PlayerDataController.playerData.timesFormationSelected);
+
+        //Set team most used and formation most used
+        string teamMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesTeamSelected);
+        PlayerDataController.playerData.teamMostUsed = teamMostUsed;
+
+        string lineUpMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesFormationSelected);
+        PlayerDataController.playerData.mostFormationUsed = lineUpMostUsed;
+        
+        //Save player's data
+        PlayerDataController.playerData.SavePlayerInfo();
     }
+    
 
     /// <summary>
     /// This method will search for game objects with the tag given and it will set the flag and the name of the team
@@ -464,6 +526,7 @@ public class MatchController : MonoBehaviour {
         Time.timeScale = 1;
         if (sceneName == "MainMenu" || sceneName == "QuickMatchMenu")
         {
+            if(sceneName == "MainMenu") Destroy(GameObject.FindGameObjectWithTag("PlayerDataObject"));
             Destroy(GameObject.FindGameObjectWithTag("MatchData"));
             Destroy(GameObject.FindGameObjectWithTag("TourData"));
         }

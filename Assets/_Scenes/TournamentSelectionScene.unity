@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.26666668}
+  m_Color: {r: 0, g: 0.69125175, b: 1, a: 0.26666668}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -909,7 +909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1354,7 +1354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -4514,22 +4514,22 @@ PrefabInstance:
     - target: {fileID: 224524445930239506, guid: 349c8366b30dc0f428e3d5c26d93003c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1.5999756
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224524445930239506, guid: 349c8366b30dc0f428e3d5c26d93003c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -7.2999268
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224524445930239506, guid: 349c8366b30dc0f428e3d5c26d93003c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 64
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224524445930239506, guid: 349c8366b30dc0f428e3d5c26d93003c,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 64
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 224524445930239506, guid: 349c8366b30dc0f428e3d5c26d93003c,
         type: 3}
@@ -4566,6 +4566,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1151516273}
+    - target: {fileID: 114108088053700000, guid: 349c8366b30dc0f428e3d5c26d93003c,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ChangeScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261094597647612984, guid: 349c8366b30dc0f428e3d5c26d93003c,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300402, guid: f6f95df4975278d4285d503f532f94e9,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 349c8366b30dc0f428e3d5c26d93003c, type: 3}
 --- !u!1 &1974291030

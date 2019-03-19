@@ -22,15 +22,14 @@ public class TournamentController : MonoBehaviour {
     public int groupsAmount;
     public int matchesRound;
     public int teamsForKnockoutStage;
-
     public List<TeamTourInfo> teamList;
     public List<MatchTourInfo> playerMatches;
     public List<MatchTourInfo> groupPhaseMatches;
+
     //Information for finals
     public List<TeamTourInfo> teamsForFinals;
     public List<MatchTourInfo> leftKeyFinalMatches;
     public List<MatchTourInfo> rightKeyFinalMatches;
-
     public MatchTourInfo finalMatch;
 
     //Array that helps to assign randomly a group to each team,

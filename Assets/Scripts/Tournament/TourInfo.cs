@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using System.Collections.Generic;
 
 /// <summary>
 /// This class is serialized and save. When a new tournament is created.

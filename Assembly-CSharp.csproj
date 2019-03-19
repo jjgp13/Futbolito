@@ -86,6 +86,9 @@
     <Compile Include="Assets\Scripts\PaddleLines\LinesHandler.cs" />
     <Compile Include="Assets\Scripts\PaddleLines\SetLine.cs" />
     <Compile Include="Assets\Scripts\PanelSelection.cs" />
+    <Compile Include="Assets\Scripts\PlayerData\PlayerData.cs" />
+    <Compile Include="Assets\Scripts\PlayerData\PlayerDataController.cs" />
+    <Compile Include="Assets\Scripts\PlayerData\ShopItem.cs" />
     <Compile Include="Assets\Scripts\SaveSystem.cs" />
     <Compile Include="Assets\Scripts\SelectionMenu\Team.cs" />
     <Compile Include="Assets\Scripts\TeamSelected.cs" />
