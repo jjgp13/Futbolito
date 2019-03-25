@@ -3,20 +3,20 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour {
-
-    //Reference to animator that controls panel that appears if the are an existing tournament.
-    public Animator tourExisting;
     
     //Reference to the prefab that contains the tournament info script.
     public GameObject TourController;
-
-
+    //Reference to animator that controls panel that appears if the are an existing tournament.
+    private Animator mainMenuAnimator;
+    
     [Header("Reference to shop panel")]
+    //To make buy animation
+    public Animator shopPanelAnimator;
     public Text playerCoins;
     public Text itemName;
     public Image itemImage;
-    public Text itemPrice;
-    private int itemPriceNumber;
+    public Text itemPriceText;
+    private int itemPrice;
 
     [Header("Reference to stats player panel")]
     public Text playerTotalMatches;
@@ -34,6 +34,11 @@ public class MainMenuController : MonoBehaviour {
     public Text playerMostUsedTeamText;
     public Text playerFormationText;
     public Image playerFormationImage;
+
+    private void Awake()
+    {
+        mainMenuAnimator = GetComponent<Animator>();
+    }
 
     private void Start()
     {
@@ -55,19 +60,15 @@ public class MainMenuController : MonoBehaviour {
         //If no data, go directly to the tournamnet selection scene.
         if (sceneName == "Tournament")
         {
-            //if (SaveSystem.LoadTournament() != null)
-            //    tourExisting.SetTrigger("TourExistingIn");
-            //else
-            //    SceneManager.LoadScene("TournamentSelectionScene");
+            if (SaveSystem.LoadTournament() != null)
+                mainMenuAnimator.SetBool("ExistingTour", true);
+            else
+                SceneManager.LoadScene("TournamentSelectionScene");
         }
 
         //Called by Quick Match button. Load directly Quick match scene.
         if (sceneName == "QuickMatchMenu") SceneManager.LoadScene(sceneName);
-
-        //Called by back button in Continue Tournament panel.
-        //It will desapear this panel.
-        if (sceneName == "") tourExisting.SetTrigger("TourExistingOut");
-
+        
         //Called by continue button in Continue tournament panel.
         //This will create the Tournament info object to load Tournament main menu scene with the info.
         if(sceneName == "TourMainMenu")
@@ -84,12 +85,17 @@ public class MainMenuController : MonoBehaviour {
         else panel.SetActive(true);
     }
 
+    public void HideTourExistingPanel()
+    {
+        mainMenuAnimator.SetBool("ExisitingTour", false);
+    }
+
     public void SetItemToBuy(ShopItem item)
     {
         itemName.text = item.itemName;
         itemImage.sprite = item.itemImage;
-        itemPrice.text = "$ " + item.itemPrice.ToString();
-        itemPriceNumber = item.itemPrice;
+        itemPriceText.text = "$ " + item.itemPrice.ToString();
+        itemPrice = item.itemPrice;
     }
 
     public void SetItemImageSize(string item)
@@ -146,12 +152,35 @@ public class MainMenuController : MonoBehaviour {
     public void BuyItem()
     {
         //You have enough money
-        if(PlayerDataController.playerData.playerCoins >= itemPriceNumber)
+        if(PlayerDataController.playerData.playerCoins >= itemPrice)
         {
-            Debug.Log("Comprado");
+            //Change status on players data dictionary
+            PlayerDataController.playerData.shopItems[itemName.text] = true;
+            //Decrease amount of coins
+            PlayerDataController.playerData.playerCoins -= itemPrice;
+            //Play bought animation
+            shopPanelAnimator.SetTrigger("Buy");
+            playerCoins.text = PlayerDataController.playerData.playerCoins.ToString();
+            //Set shop items list again
+            SetShopItems();
+
+            //Save player data
+            SaveSystem.SavePlayerData(PlayerDataController.playerData);
         }
         else {
-            Debug.Log("No tienes suficiente dinero");
+            //Play noth enough money animaiton
+            shopPanelAnimator.SetTrigger("NoMoney");
         }
     }
+
+    private void SetShopItems()
+    {
+        foreach (var item in PlayerDataController.playerData.shopItems)
+        {
+            GameObject itemButton = GameObject.Find(item.Key);
+            if (item.Value) itemButton.GetComponent<Button>().interactable = true;
+            else itemButton.GetComponent<Button>().interactable = false;
+        }
+    }
+
 }

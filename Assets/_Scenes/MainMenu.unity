@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 32529878}
   - component: {fileID: 32529877}
   m_Layer: 5
-  m_Name: IraqSecond
+  m_Name: Iraq
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 56361440}
   - component: {fileID: 56361439}
   m_Layer: 5
-  m_Name: PanamaSecond
+  m_Name: Panama
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -759,7 +759,7 @@ GameObject:
   - component: {fileID: 60554184}
   - component: {fileID: 60554183}
   m_Layer: 5
-  m_Name: MartiniqueSecond
+  m_Name: Martinique
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -900,7 +900,7 @@ GameObject:
   - component: {fileID: 73243265}
   - component: {fileID: 73243264}
   m_Layer: 5
-  m_Name: NigeriaSecond
+  m_Name: Nigeria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1041,7 +1041,7 @@ GameObject:
   - component: {fileID: 80364108}
   - component: {fileID: 80364107}
   m_Layer: 5
-  m_Name: IvoryCoastSecond
+  m_Name: Ivory Coast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 87784000}
   - component: {fileID: 87783999}
   m_Layer: 5
-  m_Name: RussiaSecond
+  m_Name: Russia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1402,7 +1402,7 @@ GameObject:
   - component: {fileID: 96125241}
   - component: {fileID: 96125240}
   m_Layer: 5
-  m_Name: UzbekistanSecond
+  m_Name: Uzbekistan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1885,7 +1885,7 @@ GameObject:
   - component: {fileID: 149274306}
   - component: {fileID: 149274305}
   m_Layer: 5
-  m_Name: GabonSecond
+  m_Name: Gabon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2222,7 +2222,7 @@ GameObject:
   - component: {fileID: 158884707}
   - component: {fileID: 158884706}
   m_Layer: 5
-  m_Name: NicaraguaSecond
+  m_Name: Nicaragua
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3699,7 +3699,7 @@ GameObject:
   - component: {fileID: 245399155}
   - component: {fileID: 245399154}
   m_Layer: 5
-  m_Name: ArgentinaSecond
+  m_Name: Argentina
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4174,7 +4174,7 @@ GameObject:
   - component: {fileID: 267479115}
   - component: {fileID: 267479114}
   m_Layer: 5
-  m_Name: EnglandSecond
+  m_Name: England
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4315,7 +4315,7 @@ GameObject:
   - component: {fileID: 281369104}
   - component: {fileID: 281369103}
   m_Layer: 5
-  m_Name: NorthKoreaSecond
+  m_Name: North Korea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4535,7 +4535,7 @@ GameObject:
   - component: {fileID: 298948514}
   - component: {fileID: 298948513}
   m_Layer: 5
-  m_Name: DeepBlue
+  m_Name: Deep Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4755,7 +4755,7 @@ GameObject:
   - component: {fileID: 312203622}
   - component: {fileID: 312203621}
   m_Layer: 5
-  m_Name: QatarSecond
+  m_Name: Qatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5091,7 +5091,7 @@ GameObject:
   - component: {fileID: 338592323}
   - component: {fileID: 338592322}
   m_Layer: 5
-  m_Name: SaudiArabiaSecond
+  m_Name: Saudi Arabia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5548,7 +5548,7 @@ GameObject:
   - component: {fileID: 358864159}
   - component: {fileID: 358864158}
   m_Layer: 5
-  m_Name: SwedenSecond
+  m_Name: Sweden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5921,7 +5921,7 @@ GameObject:
   - component: {fileID: 375582945}
   - component: {fileID: 375582944}
   m_Layer: 5
-  m_Name: BoliviaSecond
+  m_Name: Bolivia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6062,7 +6062,7 @@ GameObject:
   - component: {fileID: 376340788}
   - component: {fileID: 376340787}
   m_Layer: 5
-  m_Name: GuineaSecond
+  m_Name: Guinea-Bissau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6282,7 +6282,7 @@ GameObject:
   - component: {fileID: 404371616}
   - component: {fileID: 404371615}
   m_Layer: 5
-  m_Name: OmanSecond
+  m_Name: Oman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6564,7 +6564,7 @@ GameObject:
   - component: {fileID: 419664441}
   - component: {fileID: 419664440}
   m_Layer: 5
-  m_Name: Pattern7
+  m_Name: Pattern 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6863,7 +6863,7 @@ GameObject:
   - component: {fileID: 441596144}
   - component: {fileID: 441596143}
   m_Layer: 5
-  m_Name: EgyptSecond
+  m_Name: Egypt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7083,7 +7083,7 @@ GameObject:
   - component: {fileID: 452181684}
   - component: {fileID: 452181683}
   m_Layer: 5
-  m_Name: RomaniaSecond
+  m_Name: Romania
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7224,7 +7224,7 @@ GameObject:
   - component: {fileID: 453211130}
   - component: {fileID: 453211129}
   m_Layer: 5
-  m_Name: TunisiaSecond
+  m_Name: Tunisia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7483,7 +7483,7 @@ GameObject:
   - component: {fileID: 477998334}
   - component: {fileID: 477998333}
   m_Layer: 5
-  m_Name: ZimbabweSecond
+  m_Name: Zimbabwe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7801,7 +7801,7 @@ RectTransform:
   m_Children:
   - {fileID: 1499051750}
   m_Father: {fileID: 717551258}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -7849,8 +7849,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1489904989}
-        m_MethodName: LoadScene
-        m_Mode: 5
+        m_MethodName: HideTourExistingPanel
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8612,7 +8612,7 @@ GameObject:
   - component: {fileID: 545206520}
   - component: {fileID: 545206519}
   m_Layer: 5
-  m_Name: PolandSecond
+  m_Name: Poland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8832,7 +8832,7 @@ GameObject:
   - component: {fileID: 551359196}
   - component: {fileID: 551359195}
   m_Layer: 5
-  m_Name: UruguaySecond
+  m_Name: Uruguay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9679,7 +9679,7 @@ GameObject:
   - component: {fileID: 626860238}
   - component: {fileID: 626860237}
   m_Layer: 5
-  m_Name: GhanaSecond
+  m_Name: Ghana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9820,7 +9820,7 @@ GameObject:
   - component: {fileID: 635959219}
   - component: {fileID: 635959218}
   m_Layer: 5
-  m_Name: BurkinaFasoSecond
+  m_Name: Burkina Faso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10040,7 +10040,7 @@ GameObject:
   - component: {fileID: 636657607}
   - component: {fileID: 636657606}
   m_Layer: 5
-  m_Name: CostaRicaSecond
+  m_Name: Costa Rica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10260,7 +10260,7 @@ GameObject:
   - component: {fileID: 650731328}
   - component: {fileID: 650731327}
   m_Layer: 5
-  m_Name: SpainSecond
+  m_Name: Spain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10480,7 +10480,7 @@ GameObject:
   - component: {fileID: 670011946}
   - component: {fileID: 670011945}
   m_Layer: 5
-  m_Name: FranceSecond
+  m_Name: France
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10858,7 +10858,7 @@ GameObject:
   - component: {fileID: 693805431}
   - component: {fileID: 693805430}
   m_Layer: 5
-  m_Name: Pattern3
+  m_Name: Pattern 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10999,7 +10999,7 @@ GameObject:
   - component: {fileID: 694583693}
   - component: {fileID: 694583692}
   m_Layer: 5
-  m_Name: BelgiumSecond
+  m_Name: Belgium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11140,7 +11140,7 @@ GameObject:
   - component: {fileID: 702865180}
   - component: {fileID: 702865179}
   m_Layer: 5
-  m_Name: CanadaSecond
+  m_Name: Canada
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11586,8 +11586,9 @@ GameObject:
   - component: {fileID: 717551258}
   - component: {fileID: 717551260}
   - component: {fileID: 717551259}
+  - component: {fileID: 717551261}
   m_Layer: 5
-  m_Name: PanelExistingTour
+  m_Name: ExistingTourPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11604,10 +11605,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 490493019}
   - {fileID: 1107864711}
   - {fileID: 1287391297}
   - {fileID: 1695659689}
-  - {fileID: 490493019}
   m_Father: {fileID: 37050754}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11653,6 +11654,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717551257}
   m_CullTransparentMesh: 0
+--- !u!225 &717551261
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717551257}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &720273119
 GameObject:
   m_ObjectHideFlags: 0
@@ -11903,7 +11916,7 @@ GameObject:
   - component: {fileID: 741482839}
   - component: {fileID: 741482838}
   m_Layer: 5
-  m_Name: RepublicIrelandSecond
+  m_Name: Republic of Ireland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12861,7 +12874,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 827942064}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -13636,7 +13649,7 @@ GameObject:
   - component: {fileID: 861670569}
   - component: {fileID: 861670568}
   m_Layer: 5
-  m_Name: JordanSecond
+  m_Name: Jordan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14279,7 +14292,7 @@ GameObject:
   - component: {fileID: 875671018}
   - component: {fileID: 875671017}
   m_Layer: 5
-  m_Name: PortugalSecond
+  m_Name: Portugal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14420,7 +14433,7 @@ GameObject:
   - component: {fileID: 882056760}
   - component: {fileID: 882056759}
   m_Layer: 5
-  m_Name: DRCongoSecond
+  m_Name: DR Congo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14561,7 +14574,7 @@ GameObject:
   - component: {fileID: 887089221}
   - component: {fileID: 887089220}
   m_Layer: 5
-  m_Name: ElSalvadorSecond
+  m_Name: El Salvador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15267,7 +15280,7 @@ GameObject:
   - component: {fileID: 914230193}
   - component: {fileID: 914230192}
   m_Layer: 5
-  m_Name: ParaguaySecond
+  m_Name: Paraguay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16085,7 +16098,7 @@ GameObject:
   - component: {fileID: 956063228}
   - component: {fileID: 956063227}
   m_Layer: 5
-  m_Name: UgandaSecond
+  m_Name: Uganda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16305,7 +16318,7 @@ GameObject:
   - component: {fileID: 959782394}
   - component: {fileID: 959782393}
   m_Layer: 5
-  m_Name: KuwaitSecond
+  m_Name: Kuwait
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16740,7 +16753,7 @@ GameObject:
   - component: {fileID: 972864582}
   - component: {fileID: 972864581}
   m_Layer: 5
-  m_Name: EcuadorSecond
+  m_Name: Ecuador
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16960,7 +16973,7 @@ GameObject:
   - component: {fileID: 980708007}
   - component: {fileID: 980708006}
   m_Layer: 5
-  m_Name: TogoSecond
+  m_Name: Togo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17325,7 +17338,7 @@ GameObject:
   - component: {fileID: 1029387746}
   - component: {fileID: 1029387745}
   m_Layer: 5
-  m_Name: Pattern6
+  m_Name: Pattern 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17663,7 +17676,7 @@ GameObject:
   - component: {fileID: 1039763341}
   - component: {fileID: 1039763340}
   m_Layer: 5
-  m_Name: UkraineSecond
+  m_Name: Ukraine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17883,7 +17896,7 @@ GameObject:
   - component: {fileID: 1051620111}
   - component: {fileID: 1051620110}
   m_Layer: 5
-  m_Name: MoroccoSecond
+  m_Name: Morocco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18531,7 +18544,7 @@ GameObject:
   - component: {fileID: 1075264535}
   - component: {fileID: 1075264534}
   m_Layer: 5
-  m_Name: UAESecond
+  m_Name: United Arab Emirates
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18746,7 +18759,7 @@ GameObject:
   - component: {fileID: 1082752711}
   - component: {fileID: 1082752710}
   m_Layer: 5
-  m_Name: AustriaSecond
+  m_Name: Austria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19045,7 +19058,7 @@ GameObject:
   - component: {fileID: 1089197439}
   - component: {fileID: 1089197438}
   m_Layer: 5
-  m_Name: JapanSecond
+  m_Name: Japan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19361,7 +19374,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 717551258}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -19660,7 +19673,7 @@ GameObject:
   - component: {fileID: 1119950961}
   - component: {fileID: 1119950960}
   m_Layer: 5
-  m_Name: CroatiaSecond
+  m_Name: Croatia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19801,7 +19814,7 @@ GameObject:
   - component: {fileID: 1125608934}
   - component: {fileID: 1125608933}
   m_Layer: 5
-  m_Name: JamaicaSecond
+  m_Name: Jamaica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20237,7 +20250,7 @@ GameObject:
   - component: {fileID: 1147762371}
   - component: {fileID: 1147762370}
   m_Layer: 5
-  m_Name: AlbaniaSecond
+  m_Name: Albania
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20457,7 +20470,7 @@ GameObject:
   - component: {fileID: 1154849567}
   - component: {fileID: 1154849566}
   m_Layer: 5
-  m_Name: HaitiSecond
+  m_Name: Haiti
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21551,7 +21564,7 @@ GameObject:
   - component: {fileID: 1260107799}
   - component: {fileID: 1260107798}
   m_Layer: 5
-  m_Name: IranSecond
+  m_Name: Iran
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21771,7 +21784,7 @@ GameObject:
   - component: {fileID: 1273838939}
   - component: {fileID: 1273838938}
   m_Layer: 5
-  m_Name: ColombiaSecond
+  m_Name: Colombia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21932,7 +21945,7 @@ RectTransform:
   m_Children:
   - {fileID: 1033366954}
   m_Father: {fileID: 717551258}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -22050,7 +22063,7 @@ GameObject:
   - component: {fileID: 1293388274}
   - component: {fileID: 1293388273}
   m_Layer: 5
-  m_Name: Pattern5
+  m_Name: Pattern 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22428,7 +22441,7 @@ GameObject:
   - component: {fileID: 1361238378}
   - component: {fileID: 1361238377}
   m_Layer: 5
-  m_Name: CurazaoSecond
+  m_Name: Curazao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24411,13 +24424,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c95dfda2631e9043b5527635691766c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tourExisting: {fileID: 0}
   TourController: {fileID: 1971628299727056, guid: fe2ba05c2e306d54d926ff070a786b6b,
     type: 3}
+  shopPanelAnimator: {fileID: 827942068}
   playerCoins: {fileID: 346334332}
   itemName: {fileID: 1565721727}
   itemImage: {fileID: 1441859120}
-  itemPrice: {fileID: 978572995}
+  itemPriceText: {fileID: 978572995}
   playerTotalMatches: {fileID: 1563678842}
   playerVictories: {fileID: 1413269242}
   playerTies: {fileID: 1739412797}
@@ -24613,7 +24626,7 @@ GameObject:
   - component: {fileID: 1517870118}
   - component: {fileID: 1517870117}
   m_Layer: 5
-  m_Name: ItalySecond
+  m_Name: Italy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25030,7 +25043,7 @@ GameObject:
   - component: {fileID: 1530763536}
   - component: {fileID: 1530763535}
   m_Layer: 5
-  m_Name: Pattern4
+  m_Name: Pattern 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25171,7 +25184,7 @@ GameObject:
   - component: {fileID: 1537939399}
   - component: {fileID: 1537939398}
   m_Layer: 5
-  m_Name: SenegalSecond
+  m_Name: Senegal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26455,7 +26468,7 @@ GameObject:
   - component: {fileID: 1627809798}
   - component: {fileID: 1627809797}
   m_Layer: 5
-  m_Name: AlgeriaSecond
+  m_Name: Algeria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27065,7 +27078,7 @@ GameObject:
   - component: {fileID: 1649116963}
   - component: {fileID: 1649116962}
   m_Layer: 5
-  m_Name: PeruSecond
+  m_Name: Peru
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27206,7 +27219,7 @@ GameObject:
   - component: {fileID: 1649411162}
   - component: {fileID: 1649411161}
   m_Layer: 5
-  m_Name: KoreaRepublicSecond
+  m_Name: Korea Republic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27347,7 +27360,7 @@ GameObject:
   - component: {fileID: 1651363707}
   - component: {fileID: 1651363706}
   m_Layer: 5
-  m_Name: PalestineSecond
+  m_Name: Palestine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28242,7 +28255,7 @@ RectTransform:
   m_Children:
   - {fileID: 797194199}
   m_Father: {fileID: 717551258}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -28775,7 +28788,7 @@ GameObject:
   - component: {fileID: 1723660048}
   - component: {fileID: 1723660047}
   m_Layer: 5
-  m_Name: Pattern8
+  m_Name: Pattern 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28916,7 +28929,7 @@ GameObject:
   - component: {fileID: 1737309332}
   - component: {fileID: 1737309331}
   m_Layer: 5
-  m_Name: HondurasSecond
+  m_Name: Honduras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30225,7 +30238,7 @@ GameObject:
   - component: {fileID: 1818497026}
   - component: {fileID: 1818497025}
   m_Layer: 5
-  m_Name: BahrainSecond
+  m_Name: Bahrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30445,7 +30458,7 @@ GameObject:
   - component: {fileID: 1834446593}
   - component: {fileID: 1834446592}
   m_Layer: 5
-  m_Name: SlovakiaSecond
+  m_Name: Slovakia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30586,7 +30599,7 @@ GameObject:
   - component: {fileID: 1839219675}
   - component: {fileID: 1839219674}
   m_Layer: 5
-  m_Name: AustraliaSecond
+  m_Name: Australia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30727,7 +30740,7 @@ GameObject:
   - component: {fileID: 1843104600}
   - component: {fileID: 1843104599}
   m_Layer: 5
-  m_Name: MexicoSecond
+  m_Name: Mexico
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31088,7 +31101,7 @@ GameObject:
   - component: {fileID: 1893050292}
   - component: {fileID: 1893050291}
   m_Layer: 5
-  m_Name: VenezuelaSecond
+  m_Name: Venezuela
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31638,7 +31651,7 @@ GameObject:
   - component: {fileID: 1925087576}
   - component: {fileID: 1925087575}
   m_Layer: 5
-  m_Name: CameroonSecond
+  m_Name: Cameroon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31779,7 +31792,7 @@ GameObject:
   - component: {fileID: 1927114858}
   - component: {fileID: 1927114857}
   m_Layer: 5
-  m_Name: WalesSecond
+  m_Name: Wales
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31920,7 +31933,7 @@ GameObject:
   - component: {fileID: 1934646048}
   - component: {fileID: 1934646047}
   m_Layer: 5
-  m_Name: SerbiaSecond
+  m_Name: Serbia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32061,7 +32074,7 @@ GameObject:
   - component: {fileID: 1942892986}
   - component: {fileID: 1942892985}
   m_Layer: 5
-  m_Name: BrazilSecond
+  m_Name: Brazil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32918,7 +32931,7 @@ GameObject:
   - component: {fileID: 2000505717}
   - component: {fileID: 2000505716}
   m_Layer: 5
-  m_Name: NorthernIrelandSecond
+  m_Name: Northern Ireland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33138,7 +33151,7 @@ GameObject:
   - component: {fileID: 2004622874}
   - component: {fileID: 2004622873}
   m_Layer: 5
-  m_Name: SwitzerlandSecond
+  m_Name: Switzerland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33499,7 +33512,7 @@ GameObject:
   - component: {fileID: 2034089043}
   - component: {fileID: 2034089042}
   m_Layer: 5
-  m_Name: GermanySecond
+  m_Name: Germany
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33798,7 +33811,7 @@ GameObject:
   - component: {fileID: 2039038825}
   - component: {fileID: 2039038824}
   m_Layer: 5
-  m_Name: FrenchGuianaSecond
+  m_Name: French Guiana
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33939,7 +33952,7 @@ GameObject:
   - component: {fileID: 2040724633}
   - component: {fileID: 2040724632}
   m_Layer: 5
-  m_Name: CzechRepublicSecond
+  m_Name: Czech Republic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34209,7 +34222,7 @@ GameObject:
   - component: {fileID: 2061891012}
   - component: {fileID: 2061891011}
   m_Layer: 5
-  m_Name: UnitedStatesSecond
+  m_Name: United States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34350,7 +34363,7 @@ GameObject:
   - component: {fileID: 2064519157}
   - component: {fileID: 2064519156}
   m_Layer: 5
-  m_Name: MaliSecond
+  m_Name: Mali
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34570,7 +34583,7 @@ GameObject:
   - component: {fileID: 2067828763}
   - component: {fileID: 2067828762}
   m_Layer: 5
-  m_Name: TurkeySecond
+  m_Name: Turkey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34869,7 +34882,7 @@ GameObject:
   - component: {fileID: 2082248634}
   - component: {fileID: 2082248633}
   m_Layer: 5
-  m_Name: ChinaSecond
+  m_Name: China
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35159,7 +35172,7 @@ GameObject:
   - component: {fileID: 2091594309}
   - component: {fileID: 2091594308}
   m_Layer: 5
-  m_Name: ChileSecond
+  m_Name: Chile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35379,7 +35392,7 @@ GameObject:
   - component: {fileID: 2100464641}
   - component: {fileID: 2100464640}
   m_Layer: 5
-  m_Name: IcelandSecond
+  m_Name: Iceland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35836,7 +35849,7 @@ GameObject:
   - component: {fileID: 2110547867}
   - component: {fileID: 2110547866}
   m_Layer: 5
-  m_Name: HungarySecond
+  m_Name: Hungary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36324,7 +36337,7 @@ GameObject:
   - component: {fileID: 2133705241}
   - component: {fileID: 2133705240}
   m_Layer: 5
-  m_Name: Pattern2
+  m_Name: Pattern 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36465,7 +36478,7 @@ GameObject:
   - component: {fileID: 2140446185}
   - component: {fileID: 2140446184}
   m_Layer: 5
-  m_Name: DenmarkSecond
+  m_Name: Denmark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
