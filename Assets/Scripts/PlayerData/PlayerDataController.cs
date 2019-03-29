@@ -22,8 +22,8 @@ public class PlayerDataController : MonoBehaviour
     public int hardLevelMatches;
     public string teamMostUsed;
     public string mostFormationUsed;
-    public Dictionary<string, int> timesTeamSelected;
-    public Dictionary<string, int> timesFormationSelected;
+    public Dictionary<string, int> timesTeamSelected = new Dictionary<string, int>();
+    public Dictionary<string, int> timesFormationSelected = new Dictionary<string, int>();
 
     //Player shop info
     public int playerCoins;
@@ -33,6 +33,15 @@ public class PlayerDataController : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         playerData = this;
+    }
+
+    /// <summary>
+    /// The game object that handles this info will be available from beginning
+    /// And across all game scenes;
+    /// </summary>
+    void Start()
+    {
+        LoadPlayerData();
     }
 
     public void SavePlayerInfo()
@@ -46,6 +55,7 @@ public class PlayerDataController : MonoBehaviour
 
         if(data != null)
         {
+            //Player stats
             totalMatches = data.totalMatches;
             victories = data.victories;
             ties = data.ties;
@@ -59,7 +69,9 @@ public class PlayerDataController : MonoBehaviour
             hardLevelMatches = data.hardLevelMatches;
             teamMostUsed = data.teamMostUsed;
             mostFormationUsed = data.mostFormationUsed;
-
+            timesTeamSelected = data.timesTeamSelected;
+            timesFormationSelected = data.timesFormationSelected;
+            //For shop
             playerCoins = data.coins;
             shopItems = data.shopItems;
         }
@@ -68,19 +80,10 @@ public class PlayerDataController : MonoBehaviour
             CreatePlayerDataFromBeginning();
         }
     }
-
-    /// <summary>
-    /// The game object that handles this info will be available from beginning
-    /// And across all game scenes;
-    /// </summary>
-    void Start()
-    {
-        LoadPlayerData();
-    }
     
 
     /// <summary>
-    /// If player has no date yet. Create from zero and save
+    /// If player has no data yet. Create from zero and save
     /// </summary>
     private void CreatePlayerDataFromBeginning()
     {
@@ -102,10 +105,10 @@ public class PlayerDataController : MonoBehaviour
         Dictionary<string, int> formationKeys = new Dictionary<string, int>();
 
         //Fill Teams dictionary
-        Team[] teams = Resources.FindObjectsOfTypeAll<Team>();
+        Team[] teams = Resources.LoadAll("Teams", typeof(Team)).Cast<Team>().ToArray();
         foreach (var team in teams) teamKeys.Add(team.teamName, 0);
         timesTeamSelected = teamKeys;
-        
+
         //Set dictionary with formations
         formationKeys.Add("4-4-2", 0);
         formationKeys.Add("4-3-3", 0);
@@ -122,18 +125,28 @@ public class PlayerDataController : MonoBehaviour
         playerCoins = 0;
 
         Dictionary<string, bool> shopTemp = new Dictionary<string, bool>();
-        ShopItem[] items = Resources.FindObjectsOfTypeAll<ShopItem>();
+        ShopItem[] items = Resources.LoadAll("", typeof(ShopItem)).Cast<ShopItem>().ToArray();
         foreach (var item in items) shopTemp.Add(item.itemName, false);
         shopItems = shopTemp;
 
         SavePlayerInfo();
     }
 
+    /// <summary>
+    /// To handle player stats. If an action is triggered. Increment the key of the dictionary with player's information.
+    /// </summary>
+    /// <param name="key">Key to increment</param>
+    /// <param name="temp">Dictionary in which key is present.</param>
     public void IncrementDictionaryElement(string key, Dictionary<string, int> temp)
     {
         temp[key]++;
     }
 
+    /// <summary>
+    /// Order a dictonary and get first element
+    /// </summary>
+    /// <param name="dic">Dictionary to order</param>
+    /// <returns>Sring with firs key element alphabetic ordered</returns>
     public string GetFirstElementFromDictionaries(Dictionary<string, int> dic)
     {
         Dictionary<string, int> temp = dic;
@@ -141,6 +154,11 @@ public class PlayerDataController : MonoBehaviour
         return temp.Keys.First();
     }
 
+    /// <summary>
+    /// Calculate how many coint get a player given the result and the match level
+    /// </summary>
+    /// <param name="result">Match result(Victory, Defeat, Tie)</param>
+    /// <param name="level">Match level (Easy=1, Normal=2, Hard=3)</param>
     public void GetPlayerCoins(string result, int level)
     {
         switch (result)

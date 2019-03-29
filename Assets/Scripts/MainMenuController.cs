@@ -1,17 +1,19 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class MainMenuController : MonoBehaviour {
     
     //Reference to the prefab that contains the tournament info script.
     public GameObject TourController;
     //Reference to animator that controls panel that appears if the are an existing tournament.
-    private Animator mainMenuAnimator;
+    public  Animator mainMenuAnimator;
     
     [Header("Reference to shop panel")]
     //To make buy animation
     public Animator shopPanelAnimator;
+    public Animator coinsAnimator;
     public Text playerCoins;
     public Text itemName;
     public Image itemImage;
@@ -34,16 +36,16 @@ public class MainMenuController : MonoBehaviour {
     public Text playerMostUsedTeamText;
     public Text playerFormationText;
     public Image playerFormationImage;
-
-    private void Awake()
-    {
-        mainMenuAnimator = GetComponent<Animator>();
-    }
-
+    
     private void Start()
     {
         playerCoins.text = PlayerDataController.playerData.playerCoins.ToString();
         SetPlayerStats();
+    }
+
+    private void Update()
+    {
+        Debug.Log(string.Format("X:{0} Y:{1} ",Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
     }
 
     /// <summary>
@@ -79,17 +81,29 @@ public class MainMenuController : MonoBehaviour {
         }
     }
     
+    /// <summary>
+    /// called by option panel.
+    /// Show or hide.
+    /// </summary>
+    /// <param name="panel"></param>
     public void ShowPanel(GameObject panel)
     {
         if (panel.activeSelf) panel.SetActive(false);
         else panel.SetActive(true);
     }
 
+    /// <summary>
+    /// If there's tour data and player wants to hide continue tour panel
+    /// </summary>
     public void HideTourExistingPanel()
     {
         mainMenuAnimator.SetBool("ExisitingTour", false);
     }
 
+    /// <summary>
+    /// When a item button is pressed, set image, name and price in central panel.
+    /// </summary>
+    /// <param name="item"></param>
     public void SetItemToBuy(ShopItem item)
     {
         itemName.text = item.itemName;
@@ -98,6 +112,10 @@ public class MainMenuController : MonoBehaviour {
         itemPrice = item.itemPrice;
     }
 
+    /// <summary>
+    /// Set main image size in shop panel when a shop item is pressed.
+    /// </summary>
+    /// <param name="item"></param>
     public void SetItemImageSize(string item)
     {
         switch (item)
@@ -117,6 +135,9 @@ public class MainMenuController : MonoBehaviour {
         }
     }
     
+    /// <summary>
+    /// Set player stats when main menu is loaded.
+    /// </summary>
     public void SetPlayerStats()
     {
         PlayerDataController pData = PlayerDataController.playerData;
@@ -149,6 +170,9 @@ public class MainMenuController : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Called from the buy button in shop panel.
+    /// </summary>
     public void BuyItem()
     {
         //You have enough money
@@ -159,7 +183,7 @@ public class MainMenuController : MonoBehaviour {
             //Decrease amount of coins
             PlayerDataController.playerData.playerCoins -= itemPrice;
             //Play bought animation
-            shopPanelAnimator.SetTrigger("Buy");
+            coinsAnimator.SetTrigger("Sell");
             playerCoins.text = PlayerDataController.playerData.playerCoins.ToString();
             //Set shop items list again
             SetShopItems();
@@ -169,16 +193,25 @@ public class MainMenuController : MonoBehaviour {
         }
         else {
             //Play noth enough money animaiton
-            shopPanelAnimator.SetTrigger("NoMoney");
+            coinsAnimator.SetTrigger("NoMoney");
         }
     }
 
+    IEnumerator DecreasePlayerCoins()
+    {
+        yield return new WaitForSeconds(0.1f);
+    }
+
+    /// <summary>
+    /// Set shop panel given the items that player has already bougth
+    /// </summary>
     private void SetShopItems()
     {
         foreach (var item in PlayerDataController.playerData.shopItems)
         {
             GameObject itemButton = GameObject.Find(item.Key);
-            if (item.Value) itemButton.GetComponent<Button>().interactable = true;
+            //if item is buy set button as not interectable.
+            if (!item.Value) itemButton.GetComponent<Button>().interactable = true;
             else itemButton.GetComponent<Button>().interactable = false;
         }
     }
