@@ -3,14 +3,33 @@ using UnityEngine.UI;
 
 public class PlayerAnimationController : MonoBehaviour {
 
+    public LinesHandler linesHandler;
+    private string shootButton;
+    private string attractButton;
+
     public Animator animatorController;
+    public float shootForce;
     public float attractionForce;
+
+    float shootHoldingTime = 0;
+    float attractHoldingTime = 0;
 
     public ParticleSystem attractBall;
     public ParticleSystem chargingShoot;
 
     private void Start()
     {
+        linesHandler = transform.parent.GetComponentInParent<LinesHandler>();
+        if(linesHandler.numberOfPlayers == 1)
+        {
+            shootButton = linesHandler.shootButtonDefender;
+            attractButton = linesHandler.attractButtonDefender;
+        }
+        else
+        {
+            //Controls for two players
+            //Think
+        }
         attractBall.Stop();
     }
 
@@ -18,17 +37,20 @@ public class PlayerAnimationController : MonoBehaviour {
     void FixedUpdate () {
         if (gameObject.GetComponentInParent<LineMovement>().isActive)
         {
-            if (ShootButton._shootButton.isShooting)
+
+            if (Input.GetButton(shootButton))
             {
+                shootHoldingTime += Time.deltaTime;
                 if(!chargingShoot.isPlaying) chargingShoot.Play();
                 var emission = chargingShoot.emission;
-                emission.rateOverTime = ShootButton._shootButton.holdingTime * 50f;
+                emission.rateOverTime = shootHoldingTime * 50f;
 
                 animatorController.SetBool("touching", true);
-                animatorController.SetFloat("timeTouching", ShootButton._shootButton.holdingTime);
+                animatorController.SetFloat("timeTouching", shootHoldingTime);
             }
             else
             {
+                shootHoldingTime = 0;
                 if (chargingShoot.isPlaying)
                 {
                     chargingShoot.Stop();
@@ -37,12 +59,13 @@ public class PlayerAnimationController : MonoBehaviour {
                 }
 
                 animatorController.SetBool("touching", false);
-                animatorController.SetFloat("timeTouching", ShootButton._shootButton.holdingTime);
+                animatorController.SetFloat("timeTouching", shootHoldingTime);
             }
 
-            if (HoldButton._holdButton.isHolding)
+            if (Input.GetButton(attractButton))
             {
-                if(HoldButton._holdButton.availableTime > 0 && !HoldButton._holdButton.empty)
+                attractHoldingTime += Time.deltaTime;
+                if(attractHoldingTime > 0)
                 {
                     GetComponent<PointEffector2D>().forceMagnitude = attractionForce;
                     if(!attractBall.isPlaying)
@@ -51,22 +74,22 @@ public class PlayerAnimationController : MonoBehaviour {
             }
             else
             {
+                attractHoldingTime = 0;
                 GetComponent<PointEffector2D>().forceMagnitude = 0;
                 attractBall.Stop();
             }
         }
+
         else
         {
+            shootHoldingTime = 0;
+            attractHoldingTime = 0;
             if (attractBall.isPlaying) attractBall.Stop();
             if (chargingShoot.isPlaying) chargingShoot.Stop();
             animatorController.SetBool("touching", false);
             animatorController.SetFloat("timeTouching", 0);
         }
     }
-
-    public void ResetShootForce()
-    {
-        ShootButton._shootButton.shootForce = 0;
-    }
+    
 
 }

@@ -9,14 +9,20 @@ public class LineMovement : MonoBehaviour {
     public float velocity;
     public bool isActive;
     private int paddlesInLine;
-    private Vector3 phoneIniAcc, accDifference;
-
-    private void Awake()
-    {
-        phoneIniAcc = Input.acceleration;
-    }
+    private string move;
+    
 
     void Start () {
+        //Set who moves this line given the controllers map;
+        if(gameObject.GetComponentInParent<LinesHandler>().numberOfPlayers == 1)
+        {
+            move = gameObject.GetComponentInParent<LinesHandler>().moveLineDefender;
+        }
+        else
+        {
+            //Two controllers
+        }
+
         //Set speed of line
         paddlesInLine = GetComponent<SetLine>().numberPaddles;
         SetSpeed(paddlesInLine);
@@ -28,11 +34,11 @@ public class LineMovement : MonoBehaviour {
 	void LateUpdate () {
         if (isActive)
         {
-            accDifference = phoneIniAcc - Input.acceleration;
-            float yMov = accDifference.y;
+            //Get Left joystick Up/Down movement
+            float yMov = -Input.GetAxis(move);
             
             velocity = yMov * speed;
-            transform.Translate(-Vector3.up * velocity * Time.deltaTime); 
+            transform.Translate(Vector3.up * velocity * Time.deltaTime); 
             if (transform.position.y < -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer)
                 transform.position = new Vector2(transform.position.x, -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer);
             if (transform.position.y > GetComponent<SetLine>().yLimit - GetComponent<SetLine>().halfPlayer)
@@ -45,19 +51,19 @@ public class LineMovement : MonoBehaviour {
         switch (numPlayerInLine)
         {
             case 1:
-                speed = 17.5f;
+                speed = 8f;
                 break;
             case 2:
-                speed = 15f;
+                speed = 6.5f;
                 break;
             case 3:
-                speed = 12.5f;
+                speed = 4f;
                 break;
             case 4:
-                speed = 10f;
+                speed = 2.5f;
                 break;
             case 5:
-                speed = 7.5f;
+                speed = 1f;
                 break;
         }
     }

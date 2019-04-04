@@ -23,11 +23,6 @@ public class GolController : MonoBehaviour {
             if (gameObject.tag == "GoalTrigger")
                 MatchController._matchController.AdjustScore(gameObject.name);
 
-
-            HoldButton._holdButton.isHolding = false;
-            HoldButton._holdButton.btnReference.interactable = true;
-            ShootButton._shootButton.isShooting = false;
-
             StartCoroutine(MatchController._matchController.GolAnimation());
 
             Instantiate(GolExplosionAnimation, other.gameObject.transform.position, Quaternion.identity);

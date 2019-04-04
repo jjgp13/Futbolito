@@ -23,10 +23,6 @@ public class MatchController : MonoBehaviour {
     public bool bulletTime;
     private float bulletTimeTimer;
 
-    //Reference to camera and animator (also bullet time)
-    public GameObject cam;
-    private Animator camAnimator;
-
     [Header("Scriptable objects with teams information")]
     //Reference to teams that are on this match
     public Team leftTeam;
@@ -58,11 +54,6 @@ public class MatchController : MonoBehaviour {
     public GameObject leftTeamScore_UI;
     public GameObject rightTeamScore_UI;
 
-    [Header("Player UI buttons")]
-    public GameObject holding_UI;
-    public GameObject shooting_UI;
-    public GameObject pauseBtn_UI;
-
     //Variables that manage the time elapsed in the match
     [Header("Time panel")]
     public GameObject timePanel;
@@ -87,8 +78,6 @@ public class MatchController : MonoBehaviour {
     private void Awake()
     {
         _matchController = this;
-        //Show action buttons
-        SetUIState(true);
 
         //Reference to player and NPC Game objects to pull info
         leftTeam = MatchInfo._matchInfo.leftTeam;
@@ -131,7 +120,7 @@ public class MatchController : MonoBehaviour {
         mainPausePanel.SetActive(false);
         golAnimation_UI.SetActive(false);
 
-        camAnimator = cam.GetComponent<Animator>();
+        
         bulletTime = false;
         bulletTimeTimer = 0;
     }
@@ -154,11 +143,9 @@ public class MatchController : MonoBehaviour {
             bulletTimeTimer += Time.unscaledDeltaTime;
             if(bulletTimeTimer > slowDownTime)
             {
-                cam.transform.position = new Vector3(0, 0, -20);
                 Time.timeScale = 1f;
                 bulletTime = false;
                 bulletTimeTimer = 0;
-                camAnimator.SetBool("BulletTime", false);
             }
         }
 
@@ -249,25 +236,10 @@ public class MatchController : MonoBehaviour {
     public IEnumerator GolAnimation()
     {
         golAnimation_UI.SetActive(true);
-        //Hide Shoot and Hold buttons and pause panel.
-        SetUIState(false);
         //Wait 4 seconds.
         yield return new WaitForSeconds(4f);
         //Hide Goal animation
         golAnimation_UI.SetActive(false);
-        //If noabady has reached 5 goals show again buttons.
-        if(LeftTeamScore < 5 && RightTeamScore < 5) SetUIState(true);
-    }
-
-    /// <summary>
-    /// Hide or show shooting, hold and pause button.
-    /// </summary>
-    /// <param name="active">True or false.</param>
-    public void SetUIState(bool active)
-    {
-        holding_UI.SetActive(active);
-        shooting_UI.SetActive(active);
-        pauseBtn_UI.SetActive(active);
     }
 
     /// <summary>
@@ -343,15 +315,11 @@ public class MatchController : MonoBehaviour {
             PlayerDataController.playerData.ties++;
             PlayerDataController.playerData.GetPlayerCoins("Tie", MatchInfo._matchInfo.matchLevel);
         }
-            
-
-        //Deactivate pause panel shooting button, holding button.
-        SetUIState(false);
         //Deactivate pause options
         pauseMatchPanelOptions.SetActive(false);
         //Activate differents options depending of match's type.
-        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.QuickMatch) finishQuickMatchPanelOptions.SetActive(true);
-        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.TourMatch) finishTourMatchPanelOptions.SetActive(true);
+        if (MatchInfo._matchInfo.matchType == MatchType.QuickMatch) finishQuickMatchPanelOptions.SetActive(true);
+        if (MatchInfo._matchInfo.matchType == MatchType.TourMatch) finishTourMatchPanelOptions.SetActive(true);
 
         
         //Players info
@@ -402,8 +370,6 @@ public class MatchController : MonoBehaviour {
         Time.timeScale = 1f;
         gameIsPaused = false;
         timePanel.SetActive(true);
-        holding_UI.SetActive(true);
-        shooting_UI.SetActive(true);
     }
 
     /// <summary>
@@ -415,20 +381,18 @@ public class MatchController : MonoBehaviour {
         timePanel.SetActive(false);
         Time.timeScale = 0f;
         gameIsPaused = true;
-        holding_UI.SetActive(false);
-        shooting_UI.SetActive(false);
     }
 
     //Activate inital animation.
     IEnumerator InitAnimation()
     {
         //Change initial animation text, depending of the match type
-        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.QuickMatch)
+        if (MatchInfo._matchInfo.matchType == MatchType.QuickMatch)
         {
             matchTypeText.text = "Friendly";
             matchType.text = matchTypeText.text;
         }
-        if (MatchInfo._matchInfo.matchType == MatchInfo.MatchType.TourMatch)
+        if (MatchInfo._matchInfo.matchType == MatchType.TourMatch)
             SetInitalMatchTypeGivenTournament(TournamentController._tourCtlr.matchesRound, TournamentController._tourCtlr.teamsForKnockoutStage);
 
         intialAnimationObject.SetActive(true);
@@ -503,10 +467,8 @@ public class MatchController : MonoBehaviour {
     //Fix
     public void PlayBulletTimeAnimation(Vector2 pos)
     {
-        cam.transform.position = new Vector3(pos.x, pos.y, -20);
         Time.timeScale = 0.02f;
         bulletTime = true;
-        camAnimator.SetBool("BulletTime", true);
     }
 
     public IEnumerator BallHittedEffect()

@@ -91,7 +91,7 @@ public class BallBehavior : MonoBehaviour {
 
     void PlayerHitBall(Collision2D other)
     {
-        float hitForce = ShootButton._shootButton.shootForce;
+        float hitForce = other.gameObject.GetComponent<PlayerAnimationController>().shootForce;
         GameObject obj = other.gameObject;
         if (hitForce != 0)
         {
