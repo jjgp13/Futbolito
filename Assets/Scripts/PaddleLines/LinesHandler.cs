@@ -73,9 +73,6 @@ public class LinesHandler : MonoBehaviour {
 
     private void Start()
     {
-        //Get number of controllers for this team
-        if (gameObject.name == "LeftTeam") numberOfPlayers = MatchInfo._matchInfo.leftControllers;
-        if (gameObject.name == "RightTeam") numberOfPlayers = MatchInfo._matchInfo.rightControllers;
         
         //Set buttons given players
         MapButtonsToPlayer();

@@ -14,24 +14,29 @@ public enum MatchType
 /// This will be in charge of set all game objects in GameMatchScene
 /// </summary>
 public class MatchInfo : MonoBehaviour {
-    
+
     //Singleton
     public static MatchInfo _matchInfo;
     
     //Left team information
+    [Header("Left team information")]
     public Team leftTeam;
-    public int leftControllers;
+    public int defenderLeftController;
+    public int attackerLeftController;
     public Formation leftTeamLineUp;
     public string leftTeamUniform;
-    
+
     //Right team information
+    [Header("Right team information")]
     public Team rightTeam;
-    public int rightControllers;
+    public int defenderRightController;
+    public int attackerRightController;
     public Formation rightTeamLineUp;
     public string rightTeamUniform;
 
     //Match settings information
     //Type of match to play
+    [Header("Match settings information")]
     public MatchType matchType;
     public Sprite ballSelected;
     public Sprite grassSelected;
