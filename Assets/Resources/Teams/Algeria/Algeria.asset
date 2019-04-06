@@ -4,7 +4,8 @@
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12,6 +13,7 @@ MonoBehaviour:
   m_Name: Algeria
   m_EditorClassIdentifier: 
   teamName: Algeria
+  region: Africa
   flag: {fileID: 21300120, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
   formationImage: {fileID: 21300004, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
   teamFormation:

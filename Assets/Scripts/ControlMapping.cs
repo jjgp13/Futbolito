@@ -1,7 +1,7 @@
 ﻿
 
 
-
+[System.Serializable]
 public class ControlMapping
 {
     public string xAxis;

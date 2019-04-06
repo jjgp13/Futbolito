@@ -5,57 +5,140 @@ using UnityEngine.UI;
 
 public class SelectionTeamsController : MonoBehaviour
 {
-    //Reference to panel that handles teams
-    public GameObject teamsPanel;
+    [Header("Teams flag button prefab")]
     public Button teamButton;
 
-    //Reference to continent buttons and data for teams.
-    public Button[] confBtns;
-    public Team[] americanTeams;
-    public Team[] europeTeams;
-    public Team[] africanTeams;
-    public Team[] asianTeams;
+    [Header("Left Team UI")]
+    public GameObject leftTeamsPanel;
+    public Text leftRegionSelected;
+    public GameObject leftTeamFlag;
+    private bool isLeftTeamSelected;
+    private int leftRegionIndex;
 
-    public Image mapRegion;
-    public Text teamsRegion;
+    [Header("Right Team UI")]
+    public GameObject rightTeamsPanel;
+    public Text rightRegionSelected;
+    public GameObject rightTeamFlag;
+    private bool isRightTeamSelected;
+    private int rightRegionIndex;
 
-    public Button buttonLeft, buttonRight;
+    [Header("Map image")]
+    public Image mapImage;
+    public Sprite[] mapSprites;
+
+    //America: 0, Europe: 1, Africa:2, Asia:4
+    private List<Team> americanTeams = new List<Team>();
+    private List<Team> europeanTeams = new List<Team>();
+    private List<Team> africanTeams = new List<Team>();
+    private List<Team> asianTeams = new List<Team>();
+
     int begin, end;
-
-    public Button setMatchBtn;
-    public GameObject matchSettingMenu;
-    public GameObject playerUI, comUI;
-    public GameObject notTeamSelectedPanel;
 
     public GameObject clearTeamSelectionButton;
     public Sprite flagOutline;
 
-    public void SelectedConf(string region)
+    private void Awake()
     {
-        teamsRegion.text = region;
+        //None of the teams have been selected when panel is presenting
+        isLeftTeamSelected = false;
+        isRightTeamSelected = false;
+        //Left team starting showing american region teams
+        leftRegionIndex = 0;
+        //Right team starting showing asia region teams
+        rightRegionIndex = 3;
+        //Load all teams and fill each region team list
+        FillTeamRegions();
+    }
+
+    private void Start()
+    {
+        //Fill left and right panels with button flags
+        FillTeamsPanel(americanTeams, leftTeamsPanel);
+        FillTeamsPanel(asianTeams, rightTeamsPanel);
+    }
+
+    private void Update()
+    {
+        if (QuickMatchMenuController.controller.selectionTeamPanel)
+        {
+            if (LeftButtonPressed(QuickMatchMenuController.controller.leftControls))
+            {
+                if (leftRegionIndex == 0)
+                {
+                    leftRegionIndex = 3;
+                    SelectedConf(leftRegionIndex, leftTeamsPanel);
+                }
+                else
+                {
+                    leftRegionIndex--;
+                    SelectedConf(leftRegionIndex, leftTeamsPanel);
+                }
+            }
+        }
+        
+    }
+
+    private bool LeftButtonPressed( List<ControlMapping> teamControl)
+    {
+        if (Input.GetButton(teamControl[0].leftButton) || Input.GetButton(teamControl[1].leftButton))
+            return true;
+        else
+            return false;
+    }
+
+
+    /// <summary>
+    /// This method will load all teams from resources folder and separete them by region.
+    /// </summary>
+    private void FillTeamRegions()
+    {
+        Team[] allTeams = Resources.LoadAll<Team>("Teams");
+        foreach (Team team in allTeams)
+        {
+            switch (team.region)
+            {
+                case "America":
+                    americanTeams.Add(team);
+                    break;
+                case "Africa":
+                    africanTeams.Add(team);
+                    break;
+                case "Europe":
+                    europeanTeams.Add(team);
+                    break;
+                case "Asia":
+                    asianTeams.Add(team);
+                    break;
+            }
+        }
+    }
+
+    public void SelectedConf(int region, GameObject teamsPanel)
+    {
+        //teamsRegion.text = region;
         switch (region)
         {
-            case "America":
-                FillTeamsPanel(americanTeams);
+            case 0:
+                FillTeamsPanel(americanTeams, teamsPanel);
                 break;
-            case "Europe":
-                FillTeamsPanel(europeTeams);
+            case 1:
+                FillTeamsPanel(europeanTeams, teamsPanel);
                 break;
-            case "Africa":
-                FillTeamsPanel(africanTeams);
+            case 2:
+                FillTeamsPanel(africanTeams, teamsPanel);
                 break;
-            case "Asia":
-                FillTeamsPanel(asianTeams);
+            case 3:
+                FillTeamsPanel(asianTeams, teamsPanel);
                 break;
         }
     }
 
-    void FillTeamsPanel(Team[] teams)
+    void FillTeamsPanel(List<Team> teams, GameObject teamsPanel)
     {
         begin = 0;
-        end = 6;
-        DeleteTeamsFromPanel();
-        for (int i = 0; i < teams.Length; i++)
+        end = teams.Count;
+        DeleteTeamsFromPanel(teamsPanel);
+        for (int i = 0; i < teams.Count; i++)
         {
             Button newTeam = Instantiate(teamButton);
             newTeam.onClick.AddListener(delegate { ReturnTeamSelected(newTeam.GetComponent<TeamSelected>()); });
@@ -63,12 +146,11 @@ public class SelectionTeamsController : MonoBehaviour
             newTeam.image.sprite = teams[i].flag;
             newTeam.transform.GetChild(0).GetComponent<Text>().text = teams[i].teamName;
             newTeam.transform.SetParent(teamsPanel.transform);
-            if (i >= 0 && i < 6) newTeam.gameObject.SetActive(true);
-            else newTeam.gameObject.SetActive(false);
+            if (i >= begin && i < end) newTeam.gameObject.SetActive(true);
         }
     }
 
-    void DeleteTeamsFromPanel()
+    void DeleteTeamsFromPanel(GameObject teamsPanel)
     {
         foreach (Transform child in teamsPanel.transform)
         {
@@ -76,7 +158,7 @@ public class SelectionTeamsController : MonoBehaviour
         }
     }
 
-    void ChangeTeamsInPanel(int bIndex, int eIndex)
+    void ChangeTeamsInPanel(int bIndex, int eIndex, GameObject teamsPanel)
     {
         for (int i = 0; i < teamsPanel.transform.childCount; i++)
         {
@@ -91,9 +173,9 @@ public class SelectionTeamsController : MonoBehaviour
         }
     }
 
-    public void ChangeTeamsIndex(string side)
+    public void ChangeTeamsIndex(string side, GameObject teamsPanel)
     {
-        DeselectPreviousTeams();
+        DeselectPreviousTeams(teamsPanel);
         if (teamsPanel.transform.childCount > 0)
         {
             if (side == "left")
@@ -108,7 +190,7 @@ public class SelectionTeamsController : MonoBehaviour
                     end = begin;
                     begin -= 6;
                 }
-                ChangeTeamsInPanel(begin, end);
+                ChangeTeamsInPanel(begin, end, teamsPanel);
             }
 
             if (side == "right")
@@ -123,12 +205,12 @@ public class SelectionTeamsController : MonoBehaviour
                     begin = end;
                     end += 6;
                 }
-                ChangeTeamsInPanel(begin, end);
+                ChangeTeamsInPanel(begin, end, teamsPanel);
             }
         }
     }
 
-    void DeselectPreviousTeams()
+    void DeselectPreviousTeams(GameObject teamsPanel)
     {
         for (int i = 0; i < teamsPanel.transform.childCount; i++)
         {
@@ -141,9 +223,29 @@ public class SelectionTeamsController : MonoBehaviour
         }
     }
 
-    public void ChangeMapSprite(Sprite mapSprite)
+    public void ChangeMapSprite(Sprite mapSprite, int leftIndex, int rightIndex)
     {
-        mapRegion.sprite = mapSprite;
+        switch (leftIndex)
+        {
+            //Left team in america region
+            case 0:
+                if(rightIndex == 0)
+                {
+
+                }
+                break;
+            //Left team in europe region
+            case 1:
+                break;
+            //Left team in africa region
+            case 2:
+                break;
+            //Left team in europe region
+            case 3:
+                break;
+        }
+        if (leftIndex == 0 || rightIndex == 0) 
+        mapImage.sprite = mapSprite;
     }
 
     /// <summary>
@@ -163,11 +265,6 @@ public class SelectionTeamsController : MonoBehaviour
             MatchInfo._matchInfo.leftTeamLineUp.attack = btnInfo.team.teamFormation.attack;
             MatchInfo._matchInfo.leftTeamUniform = "Local";
 
-            //Set UI given team selected
-            SetFlags("LeftTeamFlags", btnInfo.team.flag, btnInfo.team.teamName);
-            SetUI(playerUI, btnInfo.team);
-            //Activate clear selection button
-            clearTeamSelectionButton.SetActive(true);
         }
         else
         {
@@ -177,60 +274,6 @@ public class SelectionTeamsController : MonoBehaviour
             MatchInfo._matchInfo.rightTeamLineUp.mid = btnInfo.team.teamFormation.mid;
             MatchInfo._matchInfo.rightTeamLineUp.attack = btnInfo.team.teamFormation.attack;
             MatchInfo._matchInfo.rightTeamUniform = "Local";
-
-            //Set UI given team selected
-            SetFlags("RightTeamFlags", btnInfo.team.flag, btnInfo.team.teamName);
-            SetUI(comUI, btnInfo.team);
         }
-    }
-
-    //Clear teams selected (Button)
-    public void ClearTeamSelection()
-    {
-        clearTeamSelectionButton.SetActive(false);
-        MatchInfo._matchInfo.leftTeam = null;
-        MatchInfo._matchInfo.rightTeam = null;
-        SetFlags("LeftTeamFlags", flagOutline, "");
-        SetFlags("RightTeamFlags", flagOutline, "");
-    }
-
-    //On click MatchSettings button it will show the match settings panel
-    public void MatchSettingMenuAnimation(bool state)
-    {
-        if (MatchInfo._matchInfo.leftTeam == null || MatchInfo._matchInfo.rightTeam == null) notTeamSelectedPanel.SetActive(true);
-        else
-        {
-            Animator anim = GetComponent<Animator>();
-            anim.SetBool("Show", state);
-            MatchInfo._matchInfo.matchTime = 2;
-            MatchInfo._matchInfo.matchLevel = 2;
-        }
-    }
-
-    //On click Team button this will set the UI flags in main panel and match settings panel
-    void SetFlags(string tag, Sprite flag, string teamName)
-    {
-        GameObject[] flags = GameObject.FindGameObjectsWithTag(tag);
-        foreach (var item in flags)
-        {
-            item.GetComponent<Image>().sprite = flag;
-            item.transform.GetChild(1).GetComponent<Text>().text = teamName;
-        }
-    }
-
-    void SetUI(GameObject parent, Team team)
-    {
-        //Set Uniforms
-        Image local = parent.transform.Find("Uniforms/LocalU/Uniforme").GetComponent<Image>();
-        Image visit = parent.transform.Find("Uniforms/VisitU/Uniforme").GetComponent<Image>();
-        local.sprite = team.firstU;
-        visit.sprite = team.secondU;
-        //Set lineup image
-        parent.transform.Find("FormationImage").GetComponent<Image>().sprite = team.formationImage;
-    }
-    
-    public void HidePanel(GameObject panel)
-    {
-        panel.SetActive(false);
     }
 }

@@ -24,38 +24,38 @@ public class MatchControllerConfiguration : MonoBehaviour
     /// </summary>
     private bool[] isPlayerActive = new bool[4] { false, false, false, false};
     private string[] playerPositon = new string[4] { "Middle", "Middle", "Middle", "Middle" };
-    
-    public List<int> leftTeamControllers = new List<int>();
-    public List<int> rightTeamControllers = new List<int>();
-    
+
 
     // Update is called once per frame
     void Update()
     {
-        //Check to activate
-        if(Input.GetButtonDown("Shoot_Button_P1")) 
-            CheckInputToActivatePlayers(isPlayerActive[0], p1Ball, 0);
-        if (Input.GetButtonDown("Shoot_Button_P2")) 
-            CheckInputToActivatePlayers(isPlayerActive[1], p2Ball, 1);
-        if (Input.GetButtonDown("Shoot_Button_P3")) 
-            CheckInputToActivatePlayers(isPlayerActive[3], p3Ball, 2);
-        if (Input.GetButtonDown("Shoot_Button_P4")) 
-            CheckInputToActivatePlayers(isPlayerActive[4], p4Ball, 3);
+        if (QuickMatchMenuController.controller.controllersPanel)
+        {
+            //Check to activate
+            if (Input.GetButtonDown("Shoot_Button_P1"))
+                CheckInputToActivatePlayers(isPlayerActive[0], p1Ball, 0);
+            if (Input.GetButtonDown("Shoot_Button_P2"))
+                CheckInputToActivatePlayers(isPlayerActive[1], p2Ball, 1);
+            if (Input.GetButtonDown("Shoot_Button_P3"))
+                CheckInputToActivatePlayers(isPlayerActive[3], p3Ball, 2);
+            if (Input.GetButtonDown("Shoot_Button_P4"))
+                CheckInputToActivatePlayers(isPlayerActive[4], p4Ball, 3);
 
-        //Check to change position
-        if (Input.GetButtonDown("Left_Button_P1")) CheckInputToChooseTeamSide(isPlayerActive[0], "Left", playerPositon[0], p1Ball, 0);
-        if (Input.GetButtonDown("Right_Button_P1")) CheckInputToChooseTeamSide(isPlayerActive[0], "Right", playerPositon[0], p1Ball, 0);
+            //Check to change position
+            if (Input.GetButtonDown("Left_Button_P1")) CheckInputToChooseTeamSide(isPlayerActive[0], "Left", playerPositon[0], p1Ball, 0);
+            if (Input.GetButtonDown("Right_Button_P1")) CheckInputToChooseTeamSide(isPlayerActive[0], "Right", playerPositon[0], p1Ball, 0);
 
-        if (Input.GetButtonDown("Left_Button_P2")) CheckInputToChooseTeamSide(isPlayerActive[1], "Left", playerPositon[1], p2Ball, 1);
-        if (Input.GetButtonDown("Right_Button_P2")) CheckInputToChooseTeamSide(isPlayerActive[1], "Right", playerPositon[1], p2Ball, 1);
+            if (Input.GetButtonDown("Left_Button_P2")) CheckInputToChooseTeamSide(isPlayerActive[1], "Left", playerPositon[1], p2Ball, 1);
+            if (Input.GetButtonDown("Right_Button_P2")) CheckInputToChooseTeamSide(isPlayerActive[1], "Right", playerPositon[1], p2Ball, 1);
 
-        if (Input.GetButtonDown("Left_Button_P3")) CheckInputToChooseTeamSide(isPlayerActive[2], "Left", playerPositon[2], p3Ball, 2);
-        if (Input.GetButtonDown("Right_Button_P3")) CheckInputToChooseTeamSide(isPlayerActive[2], "Right", playerPositon[2], p3Ball, 2);
+            if (Input.GetButtonDown("Left_Button_P3")) CheckInputToChooseTeamSide(isPlayerActive[2], "Left", playerPositon[2], p3Ball, 2);
+            if (Input.GetButtonDown("Right_Button_P3")) CheckInputToChooseTeamSide(isPlayerActive[2], "Right", playerPositon[2], p3Ball, 2);
 
-        if (Input.GetButtonDown("Left_Button_P4")) CheckInputToChooseTeamSide(isPlayerActive[3], "Left", playerPositon[3], p4Ball, 3);
-        if (Input.GetButtonDown("Right_Button_P4")) CheckInputToChooseTeamSide(isPlayerActive[3], "Right", playerPositon[3], p4Ball, 3);
-        SetControlsInMatchInfo();
-        SetMatchType();
+            if (Input.GetButtonDown("Left_Button_P4")) CheckInputToChooseTeamSide(isPlayerActive[3], "Left", playerPositon[3], p4Ball, 3);
+            if (Input.GetButtonDown("Right_Button_P4")) CheckInputToChooseTeamSide(isPlayerActive[3], "Right", playerPositon[3], p4Ball, 3);
+            //SetControlsInMatchInfo();
+            SetMatchType();
+        }
     }
     /// <summary>
     /// When player press Down Button, his ball is activate and now it can select a team
@@ -70,8 +70,8 @@ public class MatchControllerConfiguration : MonoBehaviour
             playerBall.color = new Color(1f, 1f, 1f, 1f);
             isPlayerActive[playerNumber] = true;
         }
-        
     }
+
 
     /// <summary>
     /// When player press left or right button, it can change to left or right team.
@@ -92,29 +92,29 @@ public class MatchControllerConfiguration : MonoBehaviour
                     //Wants to play on left team
                     if (buttonPressed == "Left")
                     {
-                        if(leftTeamControllers.Count == 0){
+                        if(QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 0){
                             defenderleftTeamImages.sprite = playerColor.sprite;
                             attackerleftTeamImages.sprite = playerColor.sprite;
-                            leftTeamControllers.Add(playerNumber);
-                            leftTeamControllers.Add(playerNumber);
-                        } else if(leftTeamControllers.Count == 2){
+                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.Add(playerNumber);
+                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.Add(playerNumber);
+                        } else if(QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 2){
                             attackerleftTeamImages.sprite = playerColor.sprite;
-                            leftTeamControllers.RemoveAt(1);
-                            leftTeamControllers.Add(playerNumber);
+                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.RemoveAt(1);
+                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.Add(playerNumber);
                         }
                     }
                     //Wants to play right team
                     if (buttonPressed == "Right")
                     {
-                        if (rightTeamControllers.Count == 0){
+                        if (QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0){
                             defenderRightTeamImages.sprite = playerColor.sprite;
                             attackerRightTeamImages.sprite = playerColor.sprite;
-                            rightTeamControllers.Add(playerNumber);
-                            rightTeamControllers.Add(playerNumber);
-                        }else if (rightTeamControllers.Count == 2){
+                            QuickMatchMenuController.controller.controlNumbersForRightTeam.Add(playerNumber);
+                            QuickMatchMenuController.controller.controlNumbersForRightTeam.Add(playerNumber);
+                        }else if (QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 2){
                             attackerRightTeamImages.sprite = playerColor.sprite;
-                            rightTeamControllers.RemoveAt(1);
-                            rightTeamControllers.Add(playerNumber);
+                            QuickMatchMenuController.controller.controlNumbersForRightTeam.RemoveAt(1);
+                            QuickMatchMenuController.controller.controlNumbersForRightTeam.Add(playerNumber);
                         }
                     }
                     playerColor.color = new Color(1f, 1f, 1f, 0.5f);
@@ -123,23 +123,23 @@ public class MatchControllerConfiguration : MonoBehaviour
                 case "Left":    //Player is in left team, only can go to middle
                     if (buttonPressed == "Right")
                     {
-                        if (SamePlayer(leftTeamControllers))
+                        if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForLeftTeam))
                         {
-                            leftTeamControllers.RemoveAll(i => i == playerNumber);
+                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.RemoveAll(i => i == playerNumber);
                             defenderleftTeamImages.sprite = comCircleImage;
                             attackerleftTeamImages.sprite = comCircleImage;
                         }
                         else
                         {
                             //Defender wants go to midle
-                            if(playerNumber == leftTeamControllers[0])
+                            if(playerNumber == QuickMatchMenuController.controller.controlNumbersForLeftTeam[0])
                             {
-                                leftTeamControllers[0] = leftTeamControllers[1];
+                                QuickMatchMenuController.controller.controlNumbersForLeftTeam[0] = QuickMatchMenuController.controller.controlNumbersForLeftTeam[1];
                                 defenderleftTeamImages.sprite = attackerleftTeamImages.sprite;
                             }//Attacker wants go to middle
                             else
                             {
-                                leftTeamControllers[1] = leftTeamControllers[0];
+                                QuickMatchMenuController.controller.controlNumbersForLeftTeam[1] = QuickMatchMenuController.controller.controlNumbersForLeftTeam[0];
                                 attackerleftTeamImages.sprite = defenderleftTeamImages.sprite;
                             }
                         }
@@ -149,24 +149,22 @@ public class MatchControllerConfiguration : MonoBehaviour
                     break;
                 case "Right":   //Player is in right team, only can go to middle
                     if (buttonPressed == "Left"){
-                        if (SamePlayer(rightTeamControllers)){
-                            rightTeamControllers.RemoveAll(i => i == playerNumber);
+                        if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForRightTeam)){
+                            QuickMatchMenuController.controller.controlNumbersForRightTeam.RemoveAll(i => i == playerNumber);
                             defenderRightTeamImages.sprite = comCircleImage;
                             attackerRightTeamImages.sprite = comCircleImage;
-                            playerColor.color = new Color(1f, 1f, 1f, 1f);
-                            playerPositon[playerNumber] = "Middle";
                         }
                         else
                         {
                             //Defender wants go to midle
-                            if (playerNumber == rightTeamControllers[0])
+                            if (playerNumber == QuickMatchMenuController.controller.controlNumbersForRightTeam[0])
                             {
-                                rightTeamControllers[0] = rightTeamControllers[1];
+                                QuickMatchMenuController.controller.controlNumbersForRightTeam[0] = QuickMatchMenuController.controller.controlNumbersForRightTeam[1];
                                 defenderRightTeamImages.sprite = attackerRightTeamImages.sprite;
                             }//Attacker wants go to middle
                             else
                             {
-                                rightTeamControllers[1] = rightTeamControllers[0];
+                                QuickMatchMenuController.controller.controlNumbersForRightTeam[1] = QuickMatchMenuController.controller.controlNumbersForRightTeam[0];
                                 attackerRightTeamImages.sprite = defenderRightTeamImages.sprite;
                             }
                         }
@@ -183,23 +181,23 @@ public class MatchControllerConfiguration : MonoBehaviour
     /// </summary>
     private void SetMatchType()
     {
-        if(leftTeamControllers.Count == 0 && rightTeamControllers.Count == 0)
+        if(QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0)
             matchType.text = "COM VS COM";
 
-        if (leftTeamControllers.Count == 2 && rightTeamControllers.Count == 0)
-            if(SamePlayer(leftTeamControllers))
+        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 2 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0)
+            if(SamePlayer(QuickMatchMenuController.controller.controlNumbersForLeftTeam))
                 matchType.text = "1P VS COM";
             else
                 matchType.text = "2P VS COM";
 
-        if (leftTeamControllers.Count == 0 && rightTeamControllers.Count == 2)
-            if (SamePlayer(rightTeamControllers))
+        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 2)
+            if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForRightTeam))
                 matchType.text = "COM VS 1P";
             else
                 matchType.text = "COM VS 2P";
 
-        if (leftTeamControllers.Count == 2 && rightTeamControllers.Count == 2)
-            if (SamePlayer(leftTeamControllers) && SamePlayer(rightTeamControllers))
+        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 2 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 2)
+            if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForLeftTeam) && SamePlayer(QuickMatchMenuController.controller.controlNumbersForRightTeam))
                 matchType.text = "1P VS 1P";
             else
                 matchType.text = "2P VS 2P";
@@ -223,9 +221,9 @@ public class MatchControllerConfiguration : MonoBehaviour
     /// </summary>
     private void SetControlsInMatchInfo()
     {
-        MatchInfo._matchInfo.defenderLeftController = leftTeamControllers[0];
-        MatchInfo._matchInfo.attackerLeftController = leftTeamControllers[1];
-        MatchInfo._matchInfo.defenderRightController = rightTeamControllers[0];
-        MatchInfo._matchInfo.attackerRightController = rightTeamControllers[1];
+        MatchInfo._matchInfo.defenderLeftController = QuickMatchMenuController.controller.controlNumbersForLeftTeam[0];
+        MatchInfo._matchInfo.attackerLeftController = QuickMatchMenuController.controller.controlNumbersForLeftTeam[1];
+        MatchInfo._matchInfo.defenderRightController = QuickMatchMenuController.controller.controlNumbersForRightTeam[0];
+        MatchInfo._matchInfo.attackerRightController = QuickMatchMenuController.controller.controlNumbersForRightTeam[1];
     }
 }

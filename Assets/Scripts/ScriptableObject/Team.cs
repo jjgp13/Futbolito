@@ -10,6 +10,7 @@ public class Formation
 public class Team : ScriptableObject {
 
     public string teamName;
+    public string region;
     public Sprite flag;
 
     public Sprite formationImage;
