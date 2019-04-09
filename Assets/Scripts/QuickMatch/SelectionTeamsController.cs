@@ -61,30 +61,53 @@ public class SelectionTeamsController : MonoBehaviour
     {
         if (QuickMatchMenuController.controller.selectionTeamPanel)
         {
-            if (LeftButtonPressed(QuickMatchMenuController.controller.leftControls))
+            if(QuickMatchMenuController.controller.leftControls.Count > 0)
             {
-                if (leftRegionIndex == 0)
+                //////Left team controller input
+                //Left button
+                if (Input.GetButtonDown(QuickMatchMenuController.controller.leftControls[0].leftButton))
                 {
-                    leftRegionIndex = 3;
+                    if (leftRegionIndex == 0) leftRegionIndex = 3;
+                    else leftRegionIndex--;
                     SelectedConf(leftRegionIndex, leftTeamsPanel);
+                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
                 }
-                else
+                //Right button    
+                if (Input.GetButtonDown(QuickMatchMenuController.controller.leftControls[0].rightButton))
                 {
-                    leftRegionIndex--;
+                    if (leftRegionIndex == 3) leftRegionIndex = 0;
+                    else leftRegionIndex++;
                     SelectedConf(leftRegionIndex, leftTeamsPanel);
+                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
                 }
             }
+
+            if (QuickMatchMenuController.controller.rightControls.Count > 0)
+            {
+                //////Right team controller input
+                //Left button
+                if (Input.GetButtonDown(QuickMatchMenuController.controller.rightControls[0].leftButton))
+                {
+                    if (rightRegionIndex == 0) rightRegionIndex = 3;
+                    else rightRegionIndex--;
+                    SelectedConf(rightRegionIndex, rightTeamsPanel);
+                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                }
+                //Right button
+                if (Input.GetButtonDown(QuickMatchMenuController.controller.rightControls[0].rightButton))
+                {
+                    if (rightRegionIndex == 3) rightRegionIndex = 0;
+                    else rightRegionIndex++;
+                    SelectedConf(rightRegionIndex, rightTeamsPanel);
+                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                }
+
+            }
+
         }
         
     }
-
-    private bool LeftButtonPressed( List<ControlMapping> teamControl)
-    {
-        if (Input.GetButton(teamControl[0].leftButton) || Input.GetButton(teamControl[1].leftButton))
-            return true;
-        else
-            return false;
-    }
+  
 
 
     /// <summary>
@@ -136,7 +159,7 @@ public class SelectionTeamsController : MonoBehaviour
     void FillTeamsPanel(List<Team> teams, GameObject teamsPanel)
     {
         begin = 0;
-        end = teams.Count;
+        end = 6;
         DeleteTeamsFromPanel(teamsPanel);
         for (int i = 0; i < teams.Count; i++)
         {
@@ -147,8 +170,11 @@ public class SelectionTeamsController : MonoBehaviour
             newTeam.transform.GetChild(0).GetComponent<Text>().text = teams[i].teamName;
             newTeam.transform.SetParent(teamsPanel.transform);
             if (i >= begin && i < end) newTeam.gameObject.SetActive(true);
+            else newTeam.gameObject.SetActive(false);
         }
+        teamsPanel.transform.GetChild(0).GetComponent<Button>().Select();
     }
+    
 
     void DeleteTeamsFromPanel(GameObject teamsPanel)
     {
@@ -223,29 +249,58 @@ public class SelectionTeamsController : MonoBehaviour
         }
     }
 
-    public void ChangeMapSprite(Sprite mapSprite, int leftIndex, int rightIndex)
+    /// <summary>
+    /// Return sprite with regions selected given left and right index
+    /// </summary>
+    /// <param name="leftIndex">Left team region index</param>
+    /// <param name="rightIndex">Right team region index</param>
+    /// <returns>Sprite with map region selected</returns>
+    public Sprite ChangeMapSprite(int leftIndex, int rightIndex)
     {
         switch (leftIndex)
         {
             //Left team in america region
             case 0:
-                if(rightIndex == 0)
+                switch (rightIndex)
                 {
-
+                    case 0: return mapSprites[5]; 
+                    case 1: return mapSprites[8];
+                    case 2: return mapSprites[6];
+                    case 3: return mapSprites[7];
                 }
                 break;
             //Left team in europe region
             case 1:
+                switch (rightIndex)
+                {
+                    case 0: return mapSprites[11];
+                    case 1: return mapSprites[13];
+                    case 2: return mapSprites[4];
+                    case 3: return mapSprites[14];
+                }
                 break;
             //Left team in africa region
             case 2:
+                switch (rightIndex)
+                {
+                    case 0: return mapSprites[9];
+                    case 1: return mapSprites[2];
+                    case 2: return mapSprites[0];
+                    case 3: return mapSprites[1];
+                }
                 break;
-            //Left team in europe region
+            //Left team in asia region
             case 3:
+                switch (rightIndex)
+                {
+                    case 0: return mapSprites[10];                        
+                    case 1: return mapSprites[15];
+                    case 2: return mapSprites[3];
+                    case 3: return mapSprites[12];
+                }
                 break;
         }
-        if (leftIndex == 0 || rightIndex == 0) 
-        mapImage.sprite = mapSprite;
+        return mapSprites[7];
     }
 
     /// <summary>
