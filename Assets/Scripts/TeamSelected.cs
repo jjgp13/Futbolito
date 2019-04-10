@@ -13,6 +13,7 @@ public class TeamSelected : MonoBehaviour {
 
     public void SelectTeam()
     {
+        GetComponent<Button>().interactable = false;
         //Get scene and depending on that it will act different.
         Scene currentScene = SceneManager.GetActiveScene();
 

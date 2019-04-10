@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class SelectionTeamsController : MonoBehaviour
 {
@@ -10,14 +11,19 @@ public class SelectionTeamsController : MonoBehaviour
 
     [Header("Left Team UI")]
     public GameObject leftTeamsPanel;
-    public Text leftRegionSelected;
+    public EventSystem leftTeamSystem;
+    public StandaloneInputModule leftInputModule;
+    
+    public Text leftRegionText;
     public GameObject leftTeamFlag;
     private bool isLeftTeamSelected;
     private int leftRegionIndex;
 
     [Header("Right Team UI")]
     public GameObject rightTeamsPanel;
-    public Text rightRegionSelected;
+    public EventSystem rightTeamSystem;
+    public StandaloneInputModule rightInputModule;
+    public Text rightRegionText;
     public GameObject rightTeamFlag;
     private bool isRightTeamSelected;
     private int rightRegionIndex;
@@ -39,6 +45,7 @@ public class SelectionTeamsController : MonoBehaviour
 
     private void Awake()
     {
+        
         //None of the teams have been selected when panel is presenting
         isLeftTeamSelected = false;
         isRightTeamSelected = false;
@@ -52,9 +59,10 @@ public class SelectionTeamsController : MonoBehaviour
 
     private void Start()
     {
+        leftTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
         //Fill left and right panels with button flags
-        FillTeamsPanel(americanTeams, leftTeamsPanel);
-        FillTeamsPanel(asianTeams, rightTeamsPanel);
+        //FillTeamsPanel(americanTeams, leftTeamsPanel);
+        //FillTeamsPanel(asianTeams, rightTeamsPanel);
     }
 
     private void Update()
@@ -69,7 +77,7 @@ public class SelectionTeamsController : MonoBehaviour
                 {
                     if (leftRegionIndex == 0) leftRegionIndex = 3;
                     else leftRegionIndex--;
-                    SelectedConf(leftRegionIndex, leftTeamsPanel);
+                    SelectedConf(leftRegionIndex, leftTeamsPanel, leftRegionText);
                     mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
                 }
                 //Right button    
@@ -77,7 +85,7 @@ public class SelectionTeamsController : MonoBehaviour
                 {
                     if (leftRegionIndex == 3) leftRegionIndex = 0;
                     else leftRegionIndex++;
-                    SelectedConf(leftRegionIndex, leftTeamsPanel);
+                    SelectedConf(leftRegionIndex, leftTeamsPanel, leftRegionText);
                     mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
                 }
             }
@@ -90,7 +98,7 @@ public class SelectionTeamsController : MonoBehaviour
                 {
                     if (rightRegionIndex == 0) rightRegionIndex = 3;
                     else rightRegionIndex--;
-                    SelectedConf(rightRegionIndex, rightTeamsPanel);
+                    SelectedConf(rightRegionIndex, rightTeamsPanel, rightRegionText);
                     mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
                 }
                 //Right button
@@ -98,7 +106,7 @@ public class SelectionTeamsController : MonoBehaviour
                 {
                     if (rightRegionIndex == 3) rightRegionIndex = 0;
                     else rightRegionIndex++;
-                    SelectedConf(rightRegionIndex, rightTeamsPanel);
+                    SelectedConf(rightRegionIndex, rightTeamsPanel, rightRegionText);
                     mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
                 }
 
@@ -136,22 +144,26 @@ public class SelectionTeamsController : MonoBehaviour
         }
     }
 
-    public void SelectedConf(int region, GameObject teamsPanel)
+    public void SelectedConf(int region, GameObject teamsPanel, Text regionText)
     {
         //teamsRegion.text = region;
         switch (region)
         {
             case 0:
                 FillTeamsPanel(americanTeams, teamsPanel);
+                regionText.text = "America";
                 break;
             case 1:
                 FillTeamsPanel(europeanTeams, teamsPanel);
+                regionText.text = "Europe";
                 break;
             case 2:
                 FillTeamsPanel(africanTeams, teamsPanel);
+                regionText.text = "Africa";
                 break;
             case 3:
                 FillTeamsPanel(asianTeams, teamsPanel);
+                regionText.text = "Asia";
                 break;
         }
     }
