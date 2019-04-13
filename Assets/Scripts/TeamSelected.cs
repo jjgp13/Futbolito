@@ -1,15 +1,43 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class TeamSelected : MonoBehaviour {
+public class TeamSelected : MonoBehaviour, ISelectHandler {
 
     /// <summary>
     /// Prefab of button selection team.
     /// </summary>
-    public Team team;
+    public Team teamInfo;
     public Image flagOutline;
     public bool isSelected = false;
+    private Button buttonComponent;
+    //Left team or right team
+    private string sidePanel;
+
+    private void Awake()
+    {
+        buttonComponent = GetComponent<Button>();
+        sidePanel = transform.parent.name;
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        ((ISelectHandler)buttonComponent).OnSelect(eventData);
+        if (sidePanel == "LeftTeam") SetTeamFlags("LeftTeamFlags");
+        if (sidePanel == "RightTeam") SetTeamFlags("RightTeamFlags");
+    }
+
+    private void SetTeamFlags(string side)
+    {
+        GameObject[] flags = GameObject.FindGameObjectsWithTag(side);
+        foreach (GameObject flag in flags)
+        {
+            flag.GetComponent<Image>().sprite = teamInfo.flag;
+            flag.transform.GetChild(0).GetComponent<Text>().text = teamInfo.teamName;
+        }
+    }
+
 
     public void SelectTeam()
     {
@@ -23,10 +51,10 @@ public class TeamSelected : MonoBehaviour {
             TournamentController tc = TournamentController._tourCtlr;
             if (tc != null)
             {
-                tc.teamSelected = team.teamName;
+                tc.teamSelected = teamInfo.teamName;
                 tc.GetPlayerMatchesInGroupPhase();
             }
-            FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = team.flag;
+            FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = teamInfo.flag;
         }
 
         //Behaviour for outline effect
@@ -56,4 +84,5 @@ public class TeamSelected : MonoBehaviour {
         }
     }
 
+    
 }

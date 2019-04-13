@@ -2,35 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class SelectionTeamsController : MonoBehaviour
 {
     [Header("Teams flag button prefab")]
     public Button teamButton;
-
+    
     [Header("Left Team UI")]
     public GameObject leftTeamsPanel;
-    public EventSystem leftTeamSystem;
-    public StandaloneInputModule leftInputModule;
-    
     public Text leftRegionText;
     public GameObject leftTeamFlag;
-    private bool isLeftTeamSelected;
     private int leftRegionIndex;
 
     [Header("Right Team UI")]
     public GameObject rightTeamsPanel;
-    public EventSystem rightTeamSystem;
-    public StandaloneInputModule rightInputModule;
     public Text rightRegionText;
     public GameObject rightTeamFlag;
-    private bool isRightTeamSelected;
     private int rightRegionIndex;
 
     [Header("Map image")]
     public Image mapImage;
     public Sprite[] mapSprites;
+
+    [Header("Canvas groups (Left team and right team)")]
+    public CanvasGroup leftCanvas;
+    public CanvasGroup rightCanvas;
 
     //America: 0, Europe: 1, Africa:2, Asia:4
     private List<Team> americanTeams = new List<Team>();
@@ -40,15 +36,8 @@ public class SelectionTeamsController : MonoBehaviour
 
     int begin, end;
 
-    public GameObject clearTeamSelectionButton;
-    public Sprite flagOutline;
-
     private void Awake()
     {
-        
-        //None of the teams have been selected when panel is presenting
-        isLeftTeamSelected = false;
-        isRightTeamSelected = false;
         //Left team starting showing american region teams
         leftRegionIndex = 0;
         //Right team starting showing asia region teams
@@ -59,10 +48,11 @@ public class SelectionTeamsController : MonoBehaviour
 
     private void Start()
     {
-        leftTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
         //Fill left and right panels with button flags
-        //FillTeamsPanel(americanTeams, leftTeamsPanel);
-        //FillTeamsPanel(asianTeams, rightTeamsPanel);
+        FillTeamsPanel(americanTeams, leftTeamsPanel);
+        FillTeamsPanel(asianTeams, rightTeamsPanel);
+        //Select first button in left teams panel
+        leftTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
     }
 
     private void Update()
@@ -172,27 +162,14 @@ public class SelectionTeamsController : MonoBehaviour
     {
         begin = 0;
         end = 6;
-        DeleteTeamsFromPanel(teamsPanel);
-        for (int i = 0; i < teams.Count; i++)
+        for (int i = 0; i < 6; i++)
         {
-            Button newTeam = Instantiate(teamButton);
+            Button newTeam = teamsPanel.transform.GetChild(i).gameObject.GetComponent<Button>();
             newTeam.onClick.AddListener(delegate { ReturnTeamSelected(newTeam.GetComponent<TeamSelected>()); });
-            newTeam.GetComponent<TeamSelected>().team = teams[i];
+            newTeam.GetComponent<TeamSelected>().teamInfo = teams[i];
             newTeam.image.sprite = teams[i].flag;
             newTeam.transform.GetChild(0).GetComponent<Text>().text = teams[i].teamName;
             newTeam.transform.SetParent(teamsPanel.transform);
-            if (i >= begin && i < end) newTeam.gameObject.SetActive(true);
-            else newTeam.gameObject.SetActive(false);
-        }
-        teamsPanel.transform.GetChild(0).GetComponent<Button>().Select();
-    }
-    
-
-    void DeleteTeamsFromPanel(GameObject teamsPanel)
-    {
-        foreach (Transform child in teamsPanel.transform)
-        {
-            Destroy(child.gameObject);
         }
     }
 
@@ -325,21 +302,23 @@ public class SelectionTeamsController : MonoBehaviour
         if (MatchInfo._matchInfo.leftTeam == null)
         {
             //Set info needed for Match scene
-            MatchInfo._matchInfo.leftTeam = btnInfo.team;
-
-            MatchInfo._matchInfo.leftTeamLineUp.defense = btnInfo.team.teamFormation.defense;
-            MatchInfo._matchInfo.leftTeamLineUp.mid = btnInfo.team.teamFormation.mid;
-            MatchInfo._matchInfo.leftTeamLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.leftTeam = btnInfo.teamInfo;
+            MatchInfo._matchInfo.leftTeamLineUp.defense = btnInfo.teamInfo.teamFormation.defense;
+            MatchInfo._matchInfo.leftTeamLineUp.mid = btnInfo.teamInfo.teamFormation.mid;
+            MatchInfo._matchInfo.leftTeamLineUp.attack = btnInfo.teamInfo.teamFormation.attack;
             MatchInfo._matchInfo.leftTeamUniform = "Local";
-
+            //Focus on right team selection
+            leftCanvas.alpha = 0.5f;
+            rightCanvas.alpha = 1f;
+            rightTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
         }
         else
         {
             //Set info needed for Match scene
-            MatchInfo._matchInfo.rightTeam = btnInfo.team;
-            MatchInfo._matchInfo.rightTeamLineUp.defense = btnInfo.team.teamFormation.defense;
-            MatchInfo._matchInfo.rightTeamLineUp.mid = btnInfo.team.teamFormation.mid;
-            MatchInfo._matchInfo.rightTeamLineUp.attack = btnInfo.team.teamFormation.attack;
+            MatchInfo._matchInfo.rightTeam = btnInfo.teamInfo;
+            MatchInfo._matchInfo.rightTeamLineUp.defense = btnInfo.teamInfo.teamFormation.defense;
+            MatchInfo._matchInfo.rightTeamLineUp.mid = btnInfo.teamInfo.teamFormation.mid;
+            MatchInfo._matchInfo.rightTeamLineUp.attack = btnInfo.teamInfo.teamFormation.attack;
             MatchInfo._matchInfo.rightTeamUniform = "Local";
         }
     }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
 //Type of match
@@ -21,16 +22,16 @@ public class MatchInfo : MonoBehaviour {
     //Left team information
     [Header("Left team information")]
     public Team leftTeam;
-    public int defenderLeftController;
-    public int attackerLeftController;
+    public int leftControlsAssigned;
+    public List<ControlMapping> leftControllers = new List<ControlMapping>();
     public Formation leftTeamLineUp;
     public string leftTeamUniform;
 
     //Right team information
     [Header("Right team information")]
     public Team rightTeam;
-    public int defenderRightController;
-    public int attackerRightController;
+    public int rightControlsAssigned;
+    public List<ControlMapping> rightControllers = new List<ControlMapping>();
     public Formation rightTeamLineUp;
     public string rightTeamUniform;
 

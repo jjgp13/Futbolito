@@ -3,38 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class QuickMatchMenuController : MonoBehaviour {
 
     public static QuickMatchMenuController controller;
+    
+    [Header("Event System Reference")]
+    public GameObject eventSystem;
+    public StandaloneInputModule inputModule;
 
+    [Header("Panel transition animator")]
     public Animator anim;
+
+    [Header("Contrllers assigned to each team")]
+    //0 defender and 1 attacker
     public List<int> controlNumbersForLeftTeam = new List<int>();
     public List<int> controlNumbersForRightTeam = new List<int>();
     public List<ControlMapping> leftControls = new List<ControlMapping>();
     public List<ControlMapping> rightControls = new List<ControlMapping>();
 
-    /// <summary>
-    /// To check which panel is active
-    /// </summary>
+    [Header("Check which panel is showed in scene")]
     public bool controllersPanel;
     public bool selectionTeamPanel;
     public bool settingsPanel;
-    //0 defender and 1 attacker
+
+    [Header("First elements selected")]
+    public Button firstTeam;
+    public Button uniform;
 
     private void Awake()
     {
         if (controller == null) controller = this;
         else if (controller != this) Destroy(gameObject);
         anim = GetComponent<Animator>();
-    }
 
-    private void Start()
-    {
         controllersPanel = true;
         selectionTeamPanel = false;
         settingsPanel = false;
+        
     }
+    
 
     private void Update()
     {
@@ -47,18 +56,42 @@ public class QuickMatchMenuController : MonoBehaviour {
             
             if(controlNumbersForLeftTeam.Count > 0 || controlNumbersForRightTeam.Count > 0)
             {
-                //Debug.Log("Controls Created");
                 SetControlls(controlNumbersForLeftTeam, leftControls);
                 SetControlls(controlNumbersForRightTeam, rightControls);
                 //Change to next panel
                 controllersPanel = false;
                 selectionTeamPanel = true;
+                anim.SetTrigger("TeamSelection");
+                //Assign controls to match info
+                AssignControlsToMachInfoObject();
+
+                //Activate event system and set controls first for left team
+                eventSystem.SetActive(true);
             }
             else
             {
                 //Change to Team selection panel
                 Debug.Log("No controls assigned");
-            }   
+            }
+        }
+
+        //If anyone press start, set controls 
+        if (Input.GetButtonDown("Start_Button") && selectionTeamPanel)
+        {
+            if (MatchInfo._matchInfo.leftTeam != null && MatchInfo._matchInfo.rightTeam != null)
+            {
+                SetControlls(controlNumbersForLeftTeam, leftControls);
+                SetControlls(controlNumbersForRightTeam, rightControls);
+                //Change to next panel
+                selectionTeamPanel = false;
+                settingsPanel = true;
+                anim.SetTrigger("TeamOptions");
+            }
+            else
+            {
+                //Change to Team selection panel
+                Debug.Log("Select teams");
+            }
         }
     }
 
@@ -83,9 +116,35 @@ public class QuickMatchMenuController : MonoBehaviour {
         
     }
 
-    public void ChangeToNextPanel()
+    public void AssignControlsToMachInfoObject()
     {
+        if(leftControls.Count > 0)
+        {
+            MatchInfo._matchInfo.leftControlsAssigned = leftControls.Count;
+            MatchInfo._matchInfo.leftControllers = leftControls;
 
+            inputModule.horizontalAxis = leftControls[0].xAxis;
+            inputModule.verticalAxis = leftControls[0].yAxis;
+            inputModule.submitButton = leftControls[0].shootButton;
+            inputModule.cancelButton = leftControls[0].attractButton;
+        }
+        
+        if(rightControls.Count > 0)
+        {
+
+            inputModule.horizontalAxis = rightControls[0].xAxis;
+            inputModule.verticalAxis = rightControls[0].yAxis;
+            inputModule.submitButton = rightControls[0].shootButton;
+            inputModule.cancelButton = rightControls[0].attractButton;
+            MatchInfo._matchInfo.rightControlsAssigned = rightControls.Count;
+            MatchInfo._matchInfo.rightControllers = rightControls;            
+        }
+    }
+
+    public void ChangeToNextPanel(string panel)
+    {
+        if (panel == "SelectionPanel") firstTeam.Select();
+        if (panel == "OptionsPanel") uniform.Select();
     }
 
 

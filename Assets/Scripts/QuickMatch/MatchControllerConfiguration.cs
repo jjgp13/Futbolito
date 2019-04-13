@@ -214,16 +214,5 @@ public class MatchControllerConfiguration : MonoBehaviour
         if (arr[0] == arr[1]) return true;
         return false;
     }
-
-    /// <summary>
-    /// Set controller in match info
-    /// Match info will carry the info to match scene to map controls in paddles lines
-    /// </summary>
-    private void SetControlsInMatchInfo()
-    {
-        MatchInfo._matchInfo.defenderLeftController = QuickMatchMenuController.controller.controlNumbersForLeftTeam[0];
-        MatchInfo._matchInfo.attackerLeftController = QuickMatchMenuController.controller.controlNumbersForLeftTeam[1];
-        MatchInfo._matchInfo.defenderRightController = QuickMatchMenuController.controller.controlNumbersForRightTeam[0];
-        MatchInfo._matchInfo.attackerRightController = QuickMatchMenuController.controller.controlNumbersForRightTeam[1];
-    }
+    
 }
