@@ -49,8 +49,8 @@ public class SelectionTeamsController : MonoBehaviour
     private void Start()
     {
         //Fill left and right panels with button flags
-        FillTeamsPanel(americanTeams, leftTeamsPanel);
-        FillTeamsPanel(asianTeams, rightTeamsPanel);
+        FillTeamsPanel(americanTeams, leftTeamsPanel, 0, 6);
+        FillTeamsPanel(asianTeams, rightTeamsPanel, 0,6);
         //Select first button in left teams panel
         leftTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
     }
@@ -134,35 +134,38 @@ public class SelectionTeamsController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Change panel teams when region is selected
+    /// </summary>
+    /// <param name="region">Region selected (0:America, 1:Europe, 2:Africa, 3:Asia)</param>
+    /// <param name="teamsPanel">Left Team or Right Team</param>
+    /// <param name="regionText">Reference to Text box above teams panel</param>
     public void SelectedConf(int region, GameObject teamsPanel, Text regionText)
     {
-        //teamsRegion.text = region;
         switch (region)
         {
             case 0:
-                FillTeamsPanel(americanTeams, teamsPanel);
+                FillTeamsPanel(americanTeams, teamsPanel, 0,6);
                 regionText.text = "America";
                 break;
             case 1:
-                FillTeamsPanel(europeanTeams, teamsPanel);
+                FillTeamsPanel(europeanTeams, teamsPanel, 0, 6);
                 regionText.text = "Europe";
                 break;
             case 2:
-                FillTeamsPanel(africanTeams, teamsPanel);
+                FillTeamsPanel(africanTeams, teamsPanel, 0, 6);
                 regionText.text = "Africa";
                 break;
             case 3:
-                FillTeamsPanel(asianTeams, teamsPanel);
+                FillTeamsPanel(asianTeams, teamsPanel, 0, 6);
                 regionText.text = "Asia";
                 break;
         }
     }
 
-    void FillTeamsPanel(List<Team> teams, GameObject teamsPanel)
+    void FillTeamsPanel(List<Team> teams, GameObject teamsPanel, int begin, int end)
     {
-        begin = 0;
-        end = 6;
-        for (int i = 0; i < 6; i++)
+        for (int i = begin; i < end; i++)
         {
             Button newTeam = teamsPanel.transform.GetChild(i).gameObject.GetComponent<Button>();
             newTeam.onClick.AddListener(delegate { ReturnTeamSelected(newTeam.GetComponent<TeamSelected>()); });
@@ -311,6 +314,8 @@ public class SelectionTeamsController : MonoBehaviour
             leftCanvas.alpha = 0.5f;
             rightCanvas.alpha = 1f;
             rightTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
+            //Change controls to player that has right team
+            QuickMatchMenuController.controller.SwitchUIControls();
         }
         else
         {
@@ -320,6 +325,7 @@ public class SelectionTeamsController : MonoBehaviour
             MatchInfo._matchInfo.rightTeamLineUp.mid = btnInfo.teamInfo.teamFormation.mid;
             MatchInfo._matchInfo.rightTeamLineUp.attack = btnInfo.teamInfo.teamFormation.attack;
             MatchInfo._matchInfo.rightTeamUniform = "Local";
+            QuickMatchMenuController.controller.SwitchUIControls();
         }
     }
 }

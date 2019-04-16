@@ -24,10 +24,22 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
     public void OnSelect(BaseEventData eventData)
     {
         ((ISelectHandler)buttonComponent).OnSelect(eventData);
-        if (sidePanel == "LeftTeam") SetTeamFlags("LeftTeamFlags");
-        if (sidePanel == "RightTeam") SetTeamFlags("RightTeamFlags");
+        if (sidePanel == "LeftTeam")
+        {
+            SetTeamFlags("LeftTeamFlags");
+            SetTeamUniforms(sidePanel);
+        }
+        if (sidePanel == "RightTeam")
+        {
+            SetTeamFlags("RightTeamFlags");
+            SetTeamUniforms(sidePanel);
+        }
     }
 
+    /// <summary>
+    /// Find flags in scene and fill them with team information
+    /// </summary>
+    /// <param name="side">For which team side is selecting</param>
     private void SetTeamFlags(string side)
     {
         GameObject[] flags = GameObject.FindGameObjectsWithTag(side);
@@ -35,6 +47,21 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
         {
             flag.GetComponent<Image>().sprite = teamInfo.flag;
             flag.transform.GetChild(0).GetComponent<Text>().text = teamInfo.teamName;
+        }
+    }
+
+    private void SetTeamUniforms(string side)
+    {
+        if (side == "LeftTeam")
+        {
+            GameObject.Find("LeftTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
+            GameObject.Find("LeftTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
+        }
+
+        if (side == "RightTeam")
+        {
+            GameObject.Find("RightTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
+            GameObject.Find("RightTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
         }
     }
 

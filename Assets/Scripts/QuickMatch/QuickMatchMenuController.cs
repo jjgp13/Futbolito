@@ -128,16 +128,35 @@ public class QuickMatchMenuController : MonoBehaviour {
             inputModule.submitButton = leftControls[0].shootButton;
             inputModule.cancelButton = leftControls[0].attractButton;
         }
-        
-        if(rightControls.Count > 0)
+        else 
         {
-
             inputModule.horizontalAxis = rightControls[0].xAxis;
             inputModule.verticalAxis = rightControls[0].yAxis;
             inputModule.submitButton = rightControls[0].shootButton;
             inputModule.cancelButton = rightControls[0].attractButton;
             MatchInfo._matchInfo.rightControlsAssigned = rightControls.Count;
-            MatchInfo._matchInfo.rightControllers = rightControls;            
+            MatchInfo._matchInfo.rightControllers = rightControls;
+        }
+    }
+
+    public void SwitchUIControls()
+    {
+        if(rightControls.Count > 0 && leftControls.Count > 0)
+        {
+            if(inputModule.submitButton == leftControls[0].shootButton)
+            {
+                inputModule.horizontalAxis = rightControls[0].xAxis;
+                inputModule.verticalAxis = rightControls[0].yAxis;
+                inputModule.submitButton = rightControls[0].shootButton;
+                inputModule.cancelButton = rightControls[0].attractButton;
+            }
+            else
+            {
+                inputModule.horizontalAxis = leftControls[0].xAxis;
+                inputModule.verticalAxis = leftControls[0].yAxis;
+                inputModule.submitButton = leftControls[0].shootButton;
+                inputModule.cancelButton = leftControls[0].attractButton;
+            }
         }
     }
 
