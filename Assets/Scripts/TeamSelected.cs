@@ -18,6 +18,11 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
     private void Awake()
     {
         buttonComponent = GetComponent<Button>();
+        
+    }
+
+    private void Start()
+    {
         sidePanel = transform.parent.name;
     }
 

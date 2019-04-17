@@ -13,12 +13,16 @@ public class SelectionTeamsController : MonoBehaviour
     public Text leftRegionText;
     public GameObject leftTeamFlag;
     private int leftRegionIndex;
+    private int leftBeginPanelIndex;
+    private int leftEndPanelIndex;
 
     [Header("Right Team UI")]
     public GameObject rightTeamsPanel;
     public Text rightRegionText;
     public GameObject rightTeamFlag;
     private int rightRegionIndex;
+    private int rightBeginPanelIndex;
+    private int rightEndPanelIndex;
 
     [Header("Map image")]
     public Image mapImage;
@@ -34,14 +38,16 @@ public class SelectionTeamsController : MonoBehaviour
     private List<Team> africanTeams = new List<Team>();
     private List<Team> asianTeams = new List<Team>();
 
-    int begin, end;
-
     private void Awake()
     {
         //Left team starting showing american region teams
         leftRegionIndex = 0;
+        leftBeginPanelIndex = 0;
+        leftEndPanelIndex = 6;
         //Right team starting showing asia region teams
         rightRegionIndex = 3;
+        rightBeginPanelIndex = 0;
+        rightEndPanelIndex = 6;
         //Load all teams and fill each region team list
         FillTeamRegions();
     }
@@ -49,8 +55,8 @@ public class SelectionTeamsController : MonoBehaviour
     private void Start()
     {
         //Fill left and right panels with button flags
-        FillTeamsPanel(americanTeams, leftTeamsPanel, 0, 6);
-        FillTeamsPanel(asianTeams, rightTeamsPanel, 0,6);
+        FillTeamsPanel(americanTeams, leftTeamsPanel, 0);
+        FillTeamsPanel(asianTeams, rightTeamsPanel, 0);
         //Select first button in left teams panel
         leftTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
     }
@@ -145,101 +151,68 @@ public class SelectionTeamsController : MonoBehaviour
         switch (region)
         {
             case 0:
-                FillTeamsPanel(americanTeams, teamsPanel, 0,6);
+                FillTeamsPanel(americanTeams, teamsPanel, 0);
                 regionText.text = "America";
                 break;
             case 1:
-                FillTeamsPanel(europeanTeams, teamsPanel, 0, 6);
+                FillTeamsPanel(europeanTeams, teamsPanel, 0);
                 regionText.text = "Europe";
                 break;
             case 2:
-                FillTeamsPanel(africanTeams, teamsPanel, 0, 6);
+                FillTeamsPanel(africanTeams, teamsPanel, 0);
                 regionText.text = "Africa";
                 break;
             case 3:
-                FillTeamsPanel(asianTeams, teamsPanel, 0, 6);
+                FillTeamsPanel(asianTeams, teamsPanel, 0);
                 regionText.text = "Asia";
                 break;
         }
     }
 
-    void FillTeamsPanel(List<Team> teams, GameObject teamsPanel, int begin, int end)
+    void FillTeamsPanel(List<Team> teams, GameObject teamsPanel, int firstTeam)
     {
-        for (int i = begin; i < end; i++)
+        int teamIndex = firstTeam;
+        for (int i = 0; i < 6; i++)
         {
             Button newTeam = teamsPanel.transform.GetChild(i).gameObject.GetComponent<Button>();
             newTeam.onClick.AddListener(delegate { ReturnTeamSelected(newTeam.GetComponent<TeamSelected>()); });
-            newTeam.GetComponent<TeamSelected>().teamInfo = teams[i];
-            newTeam.image.sprite = teams[i].flag;
-            newTeam.transform.GetChild(0).GetComponent<Text>().text = teams[i].teamName;
+            newTeam.GetComponent<TeamSelected>().teamInfo = teams[teamIndex];
+            newTeam.image.sprite = teams[teamIndex].flag;
+            newTeam.transform.GetChild(0).GetComponent<Text>().text = teams[teamIndex].teamName;
             newTeam.transform.SetParent(teamsPanel.transform);
+            teamIndex++;
         }
     }
 
-    void ChangeTeamsInPanel(int bIndex, int eIndex, GameObject teamsPanel)
+
+    public void ChangeTeamsIndex(string side)
     {
-        for (int i = 0; i < teamsPanel.transform.childCount; i++)
+        if(side == "left")
         {
-            if (i >= bIndex && i < eIndex)
+            if(leftEndPanelIndex + 6 < GetListRegionSelectedTeamsCount(leftRegionIndex).Count)
             {
-                teamsPanel.transform.GetChild(i).gameObject.SetActive(true);
+                leftBeginPanelIndex += 6;
             }
             else
             {
-                teamsPanel.transform.GetChild(i).gameObject.SetActive(false);
+
             }
+            FillTeamsPanel(GetListRegionSelectedTeamsCount(leftRegionIndex), leftTeamsPanel, leftBeginPanelIndex);
         }
     }
 
-    public void ChangeTeamsIndex(string side, GameObject teamsPanel)
+    private List<Team> GetListRegionSelectedTeamsCount(int region)
     {
-        DeselectPreviousTeams(teamsPanel);
-        if (teamsPanel.transform.childCount > 0)
+        switch (region)
         {
-            if (side == "left")
-            {
-                if (begin - 6 < 0)
-                {
-                    begin = 0;
-                    end = begin + 6;
-                }
-                else
-                {
-                    end = begin;
-                    begin -= 6;
-                }
-                ChangeTeamsInPanel(begin, end, teamsPanel);
-            }
-
-            if (side == "right")
-            {
-                if (end + 6 > teamsPanel.transform.childCount)
-                {
-                    end = teamsPanel.transform.childCount;
-                    begin = end - 6;
-                }
-                else
-                {
-                    begin = end;
-                    end += 6;
-                }
-                ChangeTeamsInPanel(begin, end, teamsPanel);
-            }
+            case 0: return americanTeams;
+            case 1: return europeanTeams;
+            case 2: return africanTeams;
+            case 3: return asianTeams;
         }
+        return americanTeams;
     }
 
-    void DeselectPreviousTeams(GameObject teamsPanel)
-    {
-        for (int i = 0; i < teamsPanel.transform.childCount; i++)
-        {
-            TeamSelected teamSelected = teamsPanel.transform.GetChild(i).GetComponent<TeamSelected>();
-            if (teamSelected.isSelected)
-            {
-                teamSelected.isSelected = false;
-                teamSelected.DeletePreviousSelected();
-            }
-        }
-    }
 
     /// <summary>
     /// Return sprite with regions selected given left and right index
