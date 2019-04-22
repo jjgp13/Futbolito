@@ -47,7 +47,27 @@ public class QuickMatchMenuController : MonoBehaviour {
 
     private void Update()
     {
-        //If anyone press start, set controls 
+        //If anyone press start, on selection teams panel
+        if (Input.GetButtonDown("Start_Button") && selectionTeamPanel)
+        {
+            //Check if teams have been assigned, if not send a message.
+            if (MatchInfo._matchInfo.leftTeam != null && MatchInfo._matchInfo.rightTeam != null)
+            {
+                SetControlls(controlNumbersForLeftTeam, leftControls);
+                SetControlls(controlNumbersForRightTeam, rightControls);
+                //Change to next panel
+                selectionTeamPanel = false;
+                settingsPanel = true;
+                anim.SetTrigger("TeamOptions");
+            }
+            else
+            {
+                //Change to Team selection panel
+                Debug.Log("Select teams");
+            }
+        }
+
+        //If anyone press start, on controlls panel
         if (Input.GetButtonDown("Start_Button") && controllersPanel)
         {
             //Clear list of controls, if player wants to change configuration
@@ -75,24 +95,7 @@ public class QuickMatchMenuController : MonoBehaviour {
             }
         }
 
-        //If anyone press start, set controls 
-        if (Input.GetButtonDown("Start_Button") && selectionTeamPanel)
-        {
-            if (MatchInfo._matchInfo.leftTeam != null && MatchInfo._matchInfo.rightTeam != null)
-            {
-                SetControlls(controlNumbersForLeftTeam, leftControls);
-                SetControlls(controlNumbersForRightTeam, rightControls);
-                //Change to next panel
-                selectionTeamPanel = false;
-                settingsPanel = true;
-                anim.SetTrigger("TeamOptions");
-            }
-            else
-            {
-                //Change to Team selection panel
-                Debug.Log("Select teams");
-            }
-        }
+        
     }
 
     /// <summary>
@@ -150,7 +153,7 @@ public class QuickMatchMenuController : MonoBehaviour {
                 inputModule.submitButton = rightControls[0].shootButton;
                 inputModule.cancelButton = rightControls[0].attractButton;
             }
-            else
+            if (inputModule.submitButton == rightControls[0].shootButton)
             {
                 inputModule.horizontalAxis = leftControls[0].xAxis;
                 inputModule.verticalAxis = leftControls[0].yAxis;

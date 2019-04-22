@@ -14,7 +14,6 @@ public class SelectionTeamsController : MonoBehaviour
     public GameObject leftTeamFlag;
     private int leftRegionIndex;
     private int leftBeginPanelIndex;
-    private int leftEndPanelIndex;
 
     [Header("Right Team UI")]
     public GameObject rightTeamsPanel;
@@ -22,7 +21,6 @@ public class SelectionTeamsController : MonoBehaviour
     public GameObject rightTeamFlag;
     private int rightRegionIndex;
     private int rightBeginPanelIndex;
-    private int rightEndPanelIndex;
 
     [Header("Map image")]
     public Image mapImage;
@@ -43,11 +41,11 @@ public class SelectionTeamsController : MonoBehaviour
         //Left team starting showing american region teams
         leftRegionIndex = 0;
         leftBeginPanelIndex = 0;
-        leftEndPanelIndex = 6;
+
         //Right team starting showing asia region teams
         rightRegionIndex = 3;
         rightBeginPanelIndex = 0;
-        rightEndPanelIndex = 6;
+
         //Load all teams and fill each region team list
         FillTeamRegions();
     }
@@ -169,38 +167,63 @@ public class SelectionTeamsController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This method populate the teams panel.
+    /// Since panel only shows 6 teams. it needs a index to know from which team in team list is going to show
+    /// </summary>
+    /// <param name="teams">Teams continent</param>
+    /// <param name="teamsPanel">Left or right team panel</param>
+    /// <param name="firstTeam">Index of the team list from which is start to showing</param>
     void FillTeamsPanel(List<Team> teams, GameObject teamsPanel, int firstTeam)
     {
         int teamIndex = firstTeam;
         for (int i = 0; i < 6; i++)
         {
             Button newTeam = teamsPanel.transform.GetChild(i).gameObject.GetComponent<Button>();
-            newTeam.onClick.AddListener(delegate { ReturnTeamSelected(newTeam.GetComponent<TeamSelected>()); });
-            newTeam.GetComponent<TeamSelected>().teamInfo = teams[teamIndex];
-            newTeam.image.sprite = teams[teamIndex].flag;
-            newTeam.transform.GetChild(0).GetComponent<Text>().text = teams[teamIndex].teamName;
-            newTeam.transform.SetParent(teamsPanel.transform);
-            teamIndex++;
+            //If the index is greater than the list of teams, hide those buttons on the panel
+            if (teamIndex < teams.Count) {
+                newTeam.gameObject.SetActive(true);
+                newTeam.onClick.AddListener(delegate { ReturnTeamSelected(newTeam.GetComponent<TeamSelected>()); });
+                newTeam.GetComponent<TeamSelected>().teamInfo = teams[teamIndex];
+                newTeam.image.sprite = teams[teamIndex].flag;
+                newTeam.transform.GetChild(0).GetComponent<Text>().text = teams[teamIndex].teamName;
+                teamIndex++;
+            }
+            else newTeam.gameObject.SetActive(false);
         }
     }
 
-
+    /// <summary>
+    /// This method is attached to the "More teams" button above the panel flags.
+    /// Parameter indicate for which panel is going to swtich the teams
+    /// </summary>
+    /// <param name="side">Left or right team panel</param>
     public void ChangeTeamsIndex(string side)
     {
         if(side == "left")
         {
-            if(leftEndPanelIndex + 6 < GetListRegionSelectedTeamsCount(leftRegionIndex).Count)
-            {
+            if(leftBeginPanelIndex + 6 < GetListRegionSelectedTeamsCount(leftRegionIndex).Count)
                 leftBeginPanelIndex += 6;
-            }
             else
-            {
-
-            }
+                leftBeginPanelIndex = 0;
             FillTeamsPanel(GetListRegionSelectedTeamsCount(leftRegionIndex), leftTeamsPanel, leftBeginPanelIndex);
+        }
+        if(side == "right")
+        {
+            if (rightBeginPanelIndex + 6 < GetListRegionSelectedTeamsCount(rightRegionIndex).Count)
+                rightBeginPanelIndex += 6;
+            else
+                rightBeginPanelIndex = 0;
+            FillTeamsPanel(GetListRegionSelectedTeamsCount(rightRegionIndex), rightTeamsPanel, rightBeginPanelIndex);
         }
     }
 
+
+    /// <summary>
+    /// Return the list of the teams given the index of each side
+    /// </summary>
+    /// <param name="region">Index of the list (0: America, 1:Europe, 2:Africa, 3:Asia)</param>
+    /// <returns>List with teams of that continent</returns>
     private List<Team> GetListRegionSelectedTeamsCount(int region)
     {
         switch (region)
@@ -284,7 +307,7 @@ public class SelectionTeamsController : MonoBehaviour
             MatchInfo._matchInfo.leftTeamLineUp.attack = btnInfo.teamInfo.teamFormation.attack;
             MatchInfo._matchInfo.leftTeamUniform = "Local";
             //Focus on right team selection
-            leftCanvas.alpha = 0.5f;
+            leftCanvas.alpha = 0.75f;
             rightCanvas.alpha = 1f;
             rightTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
             //Change controls to player that has right team
@@ -298,6 +321,7 @@ public class SelectionTeamsController : MonoBehaviour
             MatchInfo._matchInfo.rightTeamLineUp.mid = btnInfo.teamInfo.teamFormation.mid;
             MatchInfo._matchInfo.rightTeamLineUp.attack = btnInfo.teamInfo.teamFormation.attack;
             MatchInfo._matchInfo.rightTeamUniform = "Local";
+            rightCanvas.alpha = 0.75f;
             QuickMatchMenuController.controller.SwitchUIControls();
         }
     }
