@@ -12,6 +12,8 @@ public class QuickMatchMenuController : MonoBehaviour {
     [Header("Event System Reference")]
     public GameObject eventSystem;
     public StandaloneInputModule inputModule;
+    public string leftButtonString;
+    public string rightButtonString;
 
     [Header("Panel transition animator")]
     public Animator anim;
@@ -24,9 +26,9 @@ public class QuickMatchMenuController : MonoBehaviour {
     public List<ControlMapping> rightControls = new List<ControlMapping>();
 
     [Header("Check which panel is showed in scene")]
-    public bool controllersPanel;
-    public bool selectionTeamPanel;
-    public bool settingsPanel;
+    public bool isControllerPanelActive;
+    public bool isSelectionTeamPanelActive;
+    public bool isSettingsPanelActive;
 
     [Header("First elements selected")]
     public Button firstTeam;
@@ -38,9 +40,9 @@ public class QuickMatchMenuController : MonoBehaviour {
         else if (controller != this) Destroy(gameObject);
         anim = GetComponent<Animator>();
 
-        controllersPanel = true;
-        selectionTeamPanel = false;
-        settingsPanel = false;
+        isControllerPanelActive = true;
+        isSelectionTeamPanelActive = false;
+        isSettingsPanelActive = false;
         
     }
     
@@ -48,7 +50,7 @@ public class QuickMatchMenuController : MonoBehaviour {
     private void Update()
     {
         //If anyone press start, on selection teams panel
-        if (Input.GetButtonDown("Start_Button") && selectionTeamPanel)
+        if (Input.GetButtonDown("Start_Button") && isSelectionTeamPanelActive)
         {
             //Check if teams have been assigned, if not send a message.
             if (MatchInfo._matchInfo.leftTeam != null && MatchInfo._matchInfo.rightTeam != null)
@@ -56,9 +58,10 @@ public class QuickMatchMenuController : MonoBehaviour {
                 SetControlls(controlNumbersForLeftTeam, leftControls);
                 SetControlls(controlNumbersForRightTeam, rightControls);
                 //Change to next panel
-                selectionTeamPanel = false;
-                settingsPanel = true;
+                isSelectionTeamPanelActive = false;
+                isSettingsPanelActive = true;
                 anim.SetTrigger("TeamOptions");
+                uniform.Select();
             }
             else
             {
@@ -68,7 +71,7 @@ public class QuickMatchMenuController : MonoBehaviour {
         }
 
         //If anyone press start, on controlls panel
-        if (Input.GetButtonDown("Start_Button") && controllersPanel)
+        if (Input.GetButtonDown("Start_Button") && isControllerPanelActive)
         {
             //Clear list of controls, if player wants to change configuration
             leftControls.Clear();
@@ -79,8 +82,8 @@ public class QuickMatchMenuController : MonoBehaviour {
                 SetControlls(controlNumbersForLeftTeam, leftControls);
                 SetControlls(controlNumbersForRightTeam, rightControls);
                 //Change to next panel
-                controllersPanel = false;
-                selectionTeamPanel = true;
+                isControllerPanelActive = false;
+                isSelectionTeamPanelActive = true;
                 anim.SetTrigger("TeamSelection");
                 //Assign controls to match info
                 AssignControlsToMachInfoObject();
@@ -119,8 +122,13 @@ public class QuickMatchMenuController : MonoBehaviour {
         
     }
 
+    /// <summary>
+    /// Match info object will handle which controlls are assigned to each team
+    /// And to each line (if there are two players for each team)
+    /// </summary>
     public void AssignControlsToMachInfoObject()
     {
+        //If left controls are assigned to one player. Give the UI control to left team player
         if(leftControls.Count > 0)
         {
             MatchInfo._matchInfo.leftControlsAssigned = leftControls.Count;
@@ -130,20 +138,31 @@ public class QuickMatchMenuController : MonoBehaviour {
             inputModule.verticalAxis = leftControls[0].yAxis;
             inputModule.submitButton = leftControls[0].shootButton;
             inputModule.cancelButton = leftControls[0].attractButton;
+
+            leftButtonString = leftControls[0].leftButton;
+            rightButtonString = leftControls[0].rightButton;
         }
-        else 
+        else //otherwise give UI control to right team player.
         {
+            MatchInfo._matchInfo.rightControlsAssigned = rightControls.Count;
+            MatchInfo._matchInfo.rightControllers = rightControls;
+
             inputModule.horizontalAxis = rightControls[0].xAxis;
             inputModule.verticalAxis = rightControls[0].yAxis;
             inputModule.submitButton = rightControls[0].shootButton;
             inputModule.cancelButton = rightControls[0].attractButton;
-            MatchInfo._matchInfo.rightControlsAssigned = rightControls.Count;
-            MatchInfo._matchInfo.rightControllers = rightControls;
+            leftButtonString = rightControls[0].leftButton;
+            rightButtonString = rightControls[0].rightButton;
         }
     }
 
+    /// <summary>
+    /// Change the control of UI to the other player.
+    /// If there is just one player agains computer, it should not change the ui controls
+    /// </summary>
     public void SwitchUIControls()
     {
+        //If there are a player for each side, control ui should be switched.
         if(rightControls.Count > 0 && leftControls.Count > 0)
         {
             if(inputModule.submitButton == leftControls[0].shootButton)
@@ -152,6 +171,8 @@ public class QuickMatchMenuController : MonoBehaviour {
                 inputModule.verticalAxis = rightControls[0].yAxis;
                 inputModule.submitButton = rightControls[0].shootButton;
                 inputModule.cancelButton = rightControls[0].attractButton;
+                leftButtonString = rightControls[0].leftButton;
+                rightButtonString = rightControls[0].rightButton;
             }
             if (inputModule.submitButton == rightControls[0].shootButton)
             {
@@ -159,6 +180,8 @@ public class QuickMatchMenuController : MonoBehaviour {
                 inputModule.verticalAxis = leftControls[0].yAxis;
                 inputModule.submitButton = leftControls[0].shootButton;
                 inputModule.cancelButton = leftControls[0].attractButton;
+                leftButtonString = leftControls[0].leftButton;
+                rightButtonString = leftControls[0].rightButton;
             }
         }
     }

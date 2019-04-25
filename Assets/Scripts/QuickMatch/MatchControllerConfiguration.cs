@@ -29,7 +29,7 @@ public class MatchControllerConfiguration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (QuickMatchMenuController.controller.controllersPanel)
+        if (QuickMatchMenuController.controller.isControllerPanelActive)
         {
             //Check to activate
             if (Input.GetButtonDown("Shoot_Button_P1"))
@@ -41,7 +41,7 @@ public class MatchControllerConfiguration : MonoBehaviour
             if (Input.GetButtonDown("Shoot_Button_P4"))
                 CheckInputToActivatePlayers(isPlayerActive[4], p4Ball, 3);
 
-            //Check to change position
+            //Check if left or right button is pressed to change team side selection
             if (Input.GetButtonDown("Left_Button_P1")) CheckInputToChooseTeamSide(isPlayerActive[0], "Left", playerPositon[0], p1Ball, 0);
             if (Input.GetButtonDown("Right_Button_P1")) CheckInputToChooseTeamSide(isPlayerActive[0], "Right", playerPositon[0], p1Ball, 0);
 

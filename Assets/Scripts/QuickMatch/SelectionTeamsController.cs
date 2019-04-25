@@ -61,26 +61,44 @@ public class SelectionTeamsController : MonoBehaviour
 
     private void Update()
     {
-        if (QuickMatchMenuController.controller.selectionTeamPanel)
+        //Check if selection team panel is active
+        if (QuickMatchMenuController.controller.isSelectionTeamPanelActive)
         {
             if(QuickMatchMenuController.controller.leftControls.Count > 0)
             {
                 //////Left team controller input
                 //Left button
-                if (Input.GetButtonDown(QuickMatchMenuController.controller.leftControls[0].leftButton))
+                if (Input.GetButtonDown(QuickMatchMenuController.controller.leftButtonString))
                 {
-                    if (leftRegionIndex == 0) leftRegionIndex = 3;
-                    else leftRegionIndex--;
-                    SelectedConf(leftRegionIndex, leftTeamsPanel, leftRegionText);
-                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                    if(MatchInfo._matchInfo.leftTeam == null)
+                    {
+                        if (leftRegionIndex == 0) leftRegionIndex = 3;
+                        else leftRegionIndex--;
+                        SelectedConf(leftRegionIndex, leftTeamsPanel, leftRegionText);
+                        mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                    } else
+                    {
+                        if (rightRegionIndex == 0) rightRegionIndex = 3;
+                        else rightRegionIndex--;
+                        SelectedConf(rightRegionIndex, rightTeamsPanel, rightRegionText);
+                        mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                    }
                 }
-                //Right button    
-                if (Input.GetButtonDown(QuickMatchMenuController.controller.leftControls[0].rightButton))
+                //Right button
+                if (Input.GetButtonDown(QuickMatchMenuController.controller.rightButtonString))
                 {
-                    if (leftRegionIndex == 3) leftRegionIndex = 0;
-                    else leftRegionIndex++;
-                    SelectedConf(leftRegionIndex, leftTeamsPanel, leftRegionText);
-                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                    if (MatchInfo._matchInfo.leftTeam == null)
+                    {
+                        if (leftRegionIndex == 3) leftRegionIndex = 0;
+                        else leftRegionIndex++;
+                        SelectedConf(leftRegionIndex, leftTeamsPanel, leftRegionText);
+                        mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                    } else {
+                        if (rightRegionIndex == 3) rightRegionIndex = 0;
+                        else rightRegionIndex++;
+                        SelectedConf(rightRegionIndex, rightTeamsPanel, rightRegionText);
+                        mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                    }
                 }
             }
 
@@ -90,10 +108,8 @@ public class SelectionTeamsController : MonoBehaviour
                 //Left button
                 if (Input.GetButtonDown(QuickMatchMenuController.controller.rightControls[0].leftButton))
                 {
-                    if (rightRegionIndex == 0) rightRegionIndex = 3;
-                    else rightRegionIndex--;
-                    SelectedConf(rightRegionIndex, rightTeamsPanel, rightRegionText);
-                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
+                    
+                    
                 }
                 //Right button
                 if (Input.GetButtonDown(QuickMatchMenuController.controller.rightControls[0].rightButton))
@@ -103,9 +119,7 @@ public class SelectionTeamsController : MonoBehaviour
                     SelectedConf(rightRegionIndex, rightTeamsPanel, rightRegionText);
                     mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
                 }
-
             }
-
         }
         
     }
