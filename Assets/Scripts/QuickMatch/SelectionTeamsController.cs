@@ -101,25 +101,6 @@ public class SelectionTeamsController : MonoBehaviour
                     }
                 }
             }
-
-            if (QuickMatchMenuController.controller.rightControls.Count > 0)
-            {
-                //////Right team controller input
-                //Left button
-                if (Input.GetButtonDown(QuickMatchMenuController.controller.rightControls[0].leftButton))
-                {
-                    
-                    
-                }
-                //Right button
-                if (Input.GetButtonDown(QuickMatchMenuController.controller.rightControls[0].rightButton))
-                {
-                    if (rightRegionIndex == 3) rightRegionIndex = 0;
-                    else rightRegionIndex++;
-                    SelectedConf(rightRegionIndex, rightTeamsPanel, rightRegionText);
-                    mapImage.sprite = ChangeMapSprite(leftRegionIndex, rightRegionIndex);
-                }
-            }
         }
         
     }

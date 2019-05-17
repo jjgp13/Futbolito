@@ -40,6 +40,7 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
         }
     }
 
+
     /// <summary>
     /// Find flags in scene and fill them with team information
     /// </summary>
@@ -54,6 +55,10 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
         }
     }
 
+    /// <summary>
+    /// Given the team selected. Change the uniforms.
+    /// </summary>
+    /// <param name="side">Team side (left or right)</param>
     private void SetTeamUniforms(string side)
     {
         if (side == "LeftTeam")
