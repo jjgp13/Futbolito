@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Ball\ParticlesBehavior.cs" />
     <Compile Include="Assets\Scripts\ControlMapping.cs" />
     <Compile Include="Assets\Scripts\DestroyObject.cs" />
+    <Compile Include="Assets\Scripts\LineUpButton.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
     <Compile Include="Assets\Scripts\Match\GolController.cs" />
     <Compile Include="Assets\Scripts\Match\MatchController.cs" />
@@ -83,7 +84,6 @@
     <Compile Include="Assets\Scripts\PaddleLines\LineSelection.cs" />
     <Compile Include="Assets\Scripts\PaddleLines\LinesHandler.cs" />
     <Compile Include="Assets\Scripts\PaddleLines\SetLine.cs" />
-    <Compile Include="Assets\Scripts\PanelSelection.cs" />
     <Compile Include="Assets\Scripts\PlayerData\PlayerData.cs" />
     <Compile Include="Assets\Scripts\PlayerData\PlayerDataController.cs" />
     <Compile Include="Assets\Scripts\QuickMatch\MatchControllerConfiguration.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\Tournament\TournamentController.cs" />
     <Compile Include="Assets\Scripts\Tournament\ToursMenuController.cs" />
     <Compile Include="Assets\Scripts\Tournament\TourUIController.cs" />
+    <Compile Include="Assets\Scripts\UniformButton.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

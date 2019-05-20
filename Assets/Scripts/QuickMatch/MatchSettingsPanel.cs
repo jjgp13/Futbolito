@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class MatchSettingsPanel : MonoBehaviour
 {
+    [Header("References to UI settings elements")]
+    public Image matchBall;
+    public Image matchGrass;
+    public Image matchTable;
+    public Text matchTime;
+    public Text matchLevel;
 
-    public void ChangeButtonColorWhenSelected(Button uniformButton)
-    {
-        string parent = uniformButton.transform.parent.name;
-        if (parent == "LeftTeam") uniformButton.GetComponent<Image>().color = Color.blue;
-        else uniformButton.GetComponent<Image>().color = Color.red;
-        uniformButton.interactable = false;
-    }
+    [Header("Referenes to Settings Panels")]
+    public GameObject mainPanel;
+    public GameObject ballsPanel;
+    public GameObject grassPanel;
+    public GameObject tablesPanel;
+    public GameObject timesPanel;
+    public GameObject levelsPanel;
 
-    public void FocusOnFormationButton(Button firstButtonSelected)
-    {
-        firstButtonSelected.Select();
-    }
 }

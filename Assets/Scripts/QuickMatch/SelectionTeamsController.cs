@@ -302,8 +302,6 @@ public class SelectionTeamsController : MonoBehaviour
             MatchInfo._matchInfo.leftTeamLineUp.attack = btnInfo.teamInfo.teamFormation.attack;
             MatchInfo._matchInfo.leftTeamUniform = "Local";
             //Focus on right team selection
-            leftCanvas.alpha = 0.75f;
-            rightCanvas.alpha = 1f;
             rightTeamsPanel.transform.GetChild(0).gameObject.GetComponent<Button>().Select();
             //Change controls to player that has right team
             QuickMatchMenuController.controller.SwitchUIControls();
@@ -316,7 +314,6 @@ public class SelectionTeamsController : MonoBehaviour
             MatchInfo._matchInfo.rightTeamLineUp.mid = btnInfo.teamInfo.teamFormation.mid;
             MatchInfo._matchInfo.rightTeamLineUp.attack = btnInfo.teamInfo.teamFormation.attack;
             MatchInfo._matchInfo.rightTeamUniform = "Local";
-            rightCanvas.alpha = 0.75f;
             QuickMatchMenuController.controller.SwitchUIControls();
         }
     }
