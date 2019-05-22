@@ -12,22 +12,9 @@ public class NPCStats : MonoBehaviour{
 
     private void Start()
     {
-        int d = MatchInfo._matchInfo.matchLevel - 1;
-        switch (d)
-        {
-            case 1:
-                shootSpeed = shootSpeeds[d];
-                attractionForce = attractionForces[d];
-                break;
-            case 2:
-                shootSpeed = shootSpeeds[d];
-                attractionForce = attractionForces[d];
-                break;
-            case 3:
-                shootSpeed = shootSpeeds[d];
-                attractionForce = attractionForces[d];
-                break;
-        }
+        int level = MatchInfo._matchInfo.matchLevel - 1;
+        shootSpeed = shootSpeeds[level];
+        attractionForce = attractionForces[level];
     }
 
 }
