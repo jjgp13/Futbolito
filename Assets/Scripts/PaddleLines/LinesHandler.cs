@@ -26,37 +26,21 @@ public enum TeamSide
 
 public class LinesHandler : MonoBehaviour {
 
-    [Header("Player info given numbers of players, player side and control type")]
-    [Tooltip("Number of player that handles this team")]
-    [Range(1,2)]
-    public int numberOfPlayers = 1;
-    //Default controller to map strings for buttons
-    public PlayerNumber defenderPlayer;
-    public string changeLineLeftButtonDefender;
-    public string changeLineRightButtonDefender;
-    public string moveLineDefender;
-    public string shootButtonDefender;
-    public string attractButtonDefender;
-    //Second controller for this team
-    public PlayerNumber attackerPlayer;
-    public string changeLineLeftButtonAttacker;
-    public string changeLineRightButtonAttacker;
-    public string moveLineAttacker;
-    public string shootButtonAttacker;
-    public string attractButtonAttacker;
-
-
-
-    //Type of Control
-    /// <summary>
-    /// If automatic is picked. Lines will active automatic given ball position.
-    /// if manual is picked. Active lines change given player's input.
-    /// </summary>
+    [Header("Player side")]
+    //Left or Right player
+    public TeamSide teamSide;
     public ControlType controlType;
     private int lineIndex;
 
-    //Left or Right player
-    public TeamSide playerSide;
+    [Header("Player on this team")]
+    public int numberOfPlayers;
+
+    //Default controller to map strings for buttons
+    [Header("Defender controlls")]
+    public ControlMapping defenseButtons;
+    [Header("Attacker controlls")]
+    public ControlMapping attackerButtons;
+    
     private readonly float[] linesActiveBallLimit = new float[3];
 
     //Reference to the active ball
@@ -65,17 +49,19 @@ public class LinesHandler : MonoBehaviour {
     [Header("Reference to child gameobjects (lines and indicators)")]
     //Reference to lines
     public GameObject[] lines = new GameObject[4];
-
     //reference to indicators to see which line is active
     public SpriteRenderer[] linesIndicators = new SpriteRenderer[4];
     public Sprite inactiveLineSprite;
     public Sprite activeLineSprite;
 
+    private void Awake()
+    {
+        AssignControlls(teamSide);
+    }
+
+
     private void Start()
     {
-        
-        //Set buttons given players
-        MapButtonsToPlayer();
 
         if(numberOfPlayers == 1)
         {
@@ -85,8 +71,8 @@ public class LinesHandler : MonoBehaviour {
                 ball = GameObject.FindGameObjectWithTag("Ball");
                 //Get reference to each line
 
-                if (playerSide == TeamSide.LeftTeam) SetLinesActiveLimits(-8f, -3f, 3f);
-                if (playerSide == TeamSide.RightTeam) SetLinesActiveLimits(8f, 3f, -3f);
+                if (teamSide == TeamSide.LeftTeam) SetLinesActiveLimits(-8f, -3f, 3f);
+                if (teamSide == TeamSide.RightTeam) SetLinesActiveLimits(8f, 3f, -3f);
             }
 
             if (controlType == ControlType.Manual)
@@ -112,8 +98,8 @@ public class LinesHandler : MonoBehaviour {
                 //If there's a ball in the field, get the two nearest behind ball
                 if (ball != null)
                 {
-                    if (playerSide == TeamSide.LeftTeam) GetClosetsLinesLeftSide();
-                    if (playerSide == TeamSide.RightTeam) GetClosetsLinesRightSide();
+                    if (teamSide == TeamSide.LeftTeam) GetClosetsLinesLeftSide();
+                    if (teamSide == TeamSide.RightTeam) GetClosetsLinesRightSide();
                 }//If not get the reference to the ball
                 else ball = GameObject.FindGameObjectWithTag("Ball");
             }
@@ -121,10 +107,10 @@ public class LinesHandler : MonoBehaviour {
             if (controlType == ControlType.Manual && numberOfPlayers == 1)
             {
                 //Change lines to left
-                if (Input.GetButtonDown(changeLineLeftButtonDefender))
+                if (Input.GetButtonDown(defenseButtons.leftButton))
                     if (lineIndex > 0) lineIndex--;
                 //Change lines to right
-                if (Input.GetButtonDown(changeLineRightButtonDefender))
+                if (Input.GetButtonDown(defenseButtons.rightButton))
                     if (lineIndex < 2) lineIndex++;
                 //Active line given index
                 ManualActiveLines(lineIndex);
@@ -218,51 +204,38 @@ public class LinesHandler : MonoBehaviour {
         }
     }
 
-    private void MapButtonsToPlayer()
+    private void AssignControlls(TeamSide side)
     {
-        if(numberOfPlayers == 1)
+        int controlsCount;
+        List<ControlMapping> controlList;
+        if (side == TeamSide.LeftTeam)
         {
-            switch (defenderPlayer)
-            {
-                case PlayerNumber.Player1:
-                    moveLineDefender = "Left_Joystick_Vertical_P1";
-                    changeLineLeftButtonDefender = "Left_Button_P1";
-                    changeLineRightButtonDefender = "Right_Button_P1";
-                    shootButtonDefender = "Shoot_Button_P1";
-                    attractButtonDefender = "Attract_Ball_Button_P1";
-                    break;
-                case PlayerNumber.Player2:
-                    moveLineDefender = "Left_Joystick_Vertical_P2";
-                    changeLineLeftButtonDefender = "Left_Button_P2";
-                    changeLineRightButtonDefender = "Right_Button_P2";
-                    shootButtonDefender = "Shoot_Button_P2";
-                    attractButtonDefender = "Attract_Ball_Button_P2";
-                    break;
-                case PlayerNumber.Player3:
-                    moveLineDefender = "Left_Joystick_Vertical_P3";
-                    changeLineLeftButtonDefender = "Left_Button_P3";
-                    changeLineRightButtonDefender = "Right_Button_P3";
-                    shootButtonDefender = "Shoot_Button_P3";
-                    attractButtonDefender = "Attract_Ball_Button_P3";
-                    break;
-                case PlayerNumber.Player4:
-                    moveLineDefender = "Left_Joystick_Vertical_P4";
-                    changeLineLeftButtonDefender = "Left_Button_P4";
-                    changeLineRightButtonDefender = "Right_Button_P4";
-                    shootButtonDefender = "Shoot_Button_P4";
-                    attractButtonDefender = "Attract_Ball_Button_P4";
-                    break;
-                case PlayerNumber.COM:
-                    break;
-                default:
-                    moveLineDefender = "Left_Joystick_Vertical_P1";
-                    changeLineLeftButtonDefender = "Left_Button_P1";
-                    changeLineRightButtonDefender = "Right_Button_P1";
-                    shootButtonDefender = "Shoot_Button_P1";
-                    attractButtonDefender = "Attract_Ball_Button_P1";
-                    break;
-            }
+            controlsCount = MatchInfo._matchInfo.leftControlsAssigned.Count;
+            controlList = MatchInfo._matchInfo.leftControllers;
         }
-        
+        else
+        {
+            controlsCount = MatchInfo._matchInfo.rightControlsAssigned.Count;
+            controlList = MatchInfo._matchInfo.rightControllers;
+        }
+
+        //No players for this team, Activate NPC's
+        if (controlsCount == 0)
+        {
+            //Lines are automatic
+            controlType = ControlType.Automatic;
+            GetComponent<NPCStats>().enabled = true;
+        }
+        else
+        {
+            //Lines are manual
+            GetComponent<NPCStats>().enabled = false;
+            defenseButtons = controlList[0];
+            attackerButtons = controlList[0];
+            if (controlsCount == 2) attackerButtons = controlList[1];
+        }
+
+        //Set the number of player on this team Side
+        numberOfPlayers = controlsCount;
     }
 }

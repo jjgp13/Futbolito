@@ -1066,7 +1066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300000, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &91189946
 GameObject:
   m_ObjectHideFlags: 0
@@ -3133,7 +3133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300002, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &307583143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5747,7 +5747,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300012, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &480675464
 GameObject:
   m_ObjectHideFlags: 0
@@ -7333,7 +7333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300010, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!114 &595802052 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114413646425419436, guid: b313a75c82a8787408c6d612433864a4,
@@ -8806,7 +8806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300008, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &727400631
 GameObject:
   m_ObjectHideFlags: 0
@@ -9385,7 +9385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300006, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &774940195
 GameObject:
   m_ObjectHideFlags: 0
@@ -10888,7 +10888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300016, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &923318312
 GameObject:
   m_ObjectHideFlags: 0
@@ -13530,7 +13530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300014, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &1230494307
 GameObject:
   m_ObjectHideFlags: 0
@@ -15327,7 +15327,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   formationImage: {fileID: 1106492762}
   formationSprite: {fileID: 21300004, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
-  nextButton: {fileID: 0}
+  nextButton: {fileID: 1107477211}
 --- !u!1 &1467484332
 GameObject:
   m_ObjectHideFlags: 0

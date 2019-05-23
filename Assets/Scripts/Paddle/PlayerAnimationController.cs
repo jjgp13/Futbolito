@@ -22,8 +22,8 @@ public class PlayerAnimationController : MonoBehaviour {
         linesHandler = transform.parent.GetComponentInParent<LinesHandler>();
         if(linesHandler.numberOfPlayers == 1)
         {
-            shootButton = linesHandler.shootButtonDefender;
-            attractButton = linesHandler.attractButtonDefender;
+            shootButton = linesHandler.defenseButtons.shootButton;
+            attractButton = linesHandler.defenseButtons.attractButton;
         }
         else
         {

@@ -16,7 +16,7 @@ public class LineMovement : MonoBehaviour {
         //Set who moves this line given the controllers map;
         if(gameObject.GetComponentInParent<LinesHandler>().numberOfPlayers == 1)
         {
-            move = gameObject.GetComponentInParent<LinesHandler>().moveLineDefender;
+            move = gameObject.GetComponentInParent<LinesHandler>().defenseButtons.yAxis;
         }
         else
         {
@@ -35,7 +35,7 @@ public class LineMovement : MonoBehaviour {
         if (isActive)
         {
             //Get Left joystick Up/Down movement
-            float yMov = -Input.GetAxis(move);
+            float yMov = Input.GetAxis(move);
             
             velocity = yMov * speed;
             transform.Translate(Vector3.up * velocity * Time.deltaTime); 

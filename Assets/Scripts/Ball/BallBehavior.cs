@@ -23,6 +23,10 @@ public class BallBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        //Set sprite of the ball selected
+        GetComponent<SpriteRenderer>().sprite = MatchInfo._matchInfo.ballSelected;
+        
+        //Get Rigibody
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(MatchController._matchController.GetComponent<SoundMatchController>().PlayKO());
         Invoke("AddInitialVelocity", timeToWaitToStart);
@@ -31,7 +35,6 @@ public class BallBehavior : MonoBehaviour {
         kickOff = false;
 
         soundC = GetComponent<BallSoundsController>();
-        
     }
 
     private void FixedUpdate()

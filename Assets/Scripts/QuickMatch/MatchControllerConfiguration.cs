@@ -96,10 +96,8 @@ public class MatchControllerConfiguration : MonoBehaviour
                             defenderleftTeamImages.sprite = playerColor.sprite;
                             attackerleftTeamImages.sprite = playerColor.sprite;
                             QuickMatchMenuController.controller.controlNumbersForLeftTeam.Add(playerNumber);
-                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.Add(playerNumber);
-                        } else if(QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 2){
+                        } else if(QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 1){
                             attackerleftTeamImages.sprite = playerColor.sprite;
-                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.RemoveAt(1);
                             QuickMatchMenuController.controller.controlNumbersForLeftTeam.Add(playerNumber);
                         }
                     }
@@ -109,11 +107,9 @@ public class MatchControllerConfiguration : MonoBehaviour
                         if (QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0){
                             defenderRightTeamImages.sprite = playerColor.sprite;
                             attackerRightTeamImages.sprite = playerColor.sprite;
-                            QuickMatchMenuController.controller.controlNumbersForRightTeam.Add(playerNumber);
-                            QuickMatchMenuController.controller.controlNumbersForRightTeam.Add(playerNumber);
-                        }else if (QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 2){
+                            QuickMatchMenuController.controller.controlNumbersForRightTeam.Add(playerNumber);                            
+                        }else if (QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 1){
                             attackerRightTeamImages.sprite = playerColor.sprite;
-                            QuickMatchMenuController.controller.controlNumbersForRightTeam.RemoveAt(1);
                             QuickMatchMenuController.controller.controlNumbersForRightTeam.Add(playerNumber);
                         }
                     }
@@ -123,9 +119,9 @@ public class MatchControllerConfiguration : MonoBehaviour
                 case "Left":    //Player is in left team, only can go to middle
                     if (buttonPressed == "Right")
                     {
-                        if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForLeftTeam))
+                        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 1)
                         {
-                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.RemoveAll(i => i == playerNumber);
+                            QuickMatchMenuController.controller.controlNumbersForLeftTeam.Clear();
                             defenderleftTeamImages.sprite = comCircleImage;
                             attackerleftTeamImages.sprite = comCircleImage;
                         }
@@ -134,12 +130,12 @@ public class MatchControllerConfiguration : MonoBehaviour
                             //Defender wants go to midle
                             if(playerNumber == QuickMatchMenuController.controller.controlNumbersForLeftTeam[0])
                             {
-                                QuickMatchMenuController.controller.controlNumbersForLeftTeam[0] = QuickMatchMenuController.controller.controlNumbersForLeftTeam[1];
+                                QuickMatchMenuController.controller.controlNumbersForLeftTeam.RemoveAt(0);
                                 defenderleftTeamImages.sprite = attackerleftTeamImages.sprite;
                             }//Attacker wants go to middle
                             else
                             {
-                                QuickMatchMenuController.controller.controlNumbersForLeftTeam[1] = QuickMatchMenuController.controller.controlNumbersForLeftTeam[0];
+                                QuickMatchMenuController.controller.controlNumbersForLeftTeam.RemoveAt(1);
                                 attackerleftTeamImages.sprite = defenderleftTeamImages.sprite;
                             }
                         }
@@ -149,8 +145,8 @@ public class MatchControllerConfiguration : MonoBehaviour
                     break;
                 case "Right":   //Player is in right team, only can go to middle
                     if (buttonPressed == "Left"){
-                        if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForRightTeam)){
-                            QuickMatchMenuController.controller.controlNumbersForRightTeam.RemoveAll(i => i == playerNumber);
+                        if (QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 1){
+                            QuickMatchMenuController.controller.controlNumbersForRightTeam.Clear();
                             defenderRightTeamImages.sprite = comCircleImage;
                             attackerRightTeamImages.sprite = comCircleImage;
                         }
@@ -159,12 +155,12 @@ public class MatchControllerConfiguration : MonoBehaviour
                             //Defender wants go to midle
                             if (playerNumber == QuickMatchMenuController.controller.controlNumbersForRightTeam[0])
                             {
-                                QuickMatchMenuController.controller.controlNumbersForRightTeam[0] = QuickMatchMenuController.controller.controlNumbersForRightTeam[1];
+                                QuickMatchMenuController.controller.controlNumbersForRightTeam.RemoveAt(0);
                                 defenderRightTeamImages.sprite = attackerRightTeamImages.sprite;
                             }//Attacker wants go to middle
                             else
                             {
-                                QuickMatchMenuController.controller.controlNumbersForRightTeam[1] = QuickMatchMenuController.controller.controlNumbersForRightTeam[0];
+                                QuickMatchMenuController.controller.controlNumbersForRightTeam.RemoveAt(1);
                                 attackerRightTeamImages.sprite = defenderRightTeamImages.sprite;
                             }
                         }
@@ -184,35 +180,24 @@ public class MatchControllerConfiguration : MonoBehaviour
         if(QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0)
             matchType.text = "COM VS COM";
 
-        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 2 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0)
-            if(SamePlayer(QuickMatchMenuController.controller.controlNumbersForLeftTeam))
+        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count > 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0)
+            if(QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 1)
                 matchType.text = "1P VS COM";
             else
                 matchType.text = "2P VS COM";
 
-        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 2)
-            if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForRightTeam))
+        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count > 0)
+            if (QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 1)
                 matchType.text = "COM VS 1P";
             else
                 matchType.text = "COM VS 2P";
 
-        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 2 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 2)
-            if (SamePlayer(QuickMatchMenuController.controller.controlNumbersForLeftTeam) && SamePlayer(QuickMatchMenuController.controller.controlNumbersForRightTeam))
+        if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count > 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count > 0)
+            if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 1 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0)
                 matchType.text = "1P VS 1P";
             else
                 matchType.text = "2P VS 2P";
     }
 
-    /// <summary>
-    /// Check if a team has same player assigned for both defender and attacker
-    /// </summary>
-    /// <param name="q">Queue with players numbers</param>
-    /// <returns>true if is the same player for both, false if there are two players</returns>
-    bool SamePlayer(List<int> q)
-    {
-        int[] arr = q.ToArray();
-        if (arr[0] == arr[1]) return true;
-        return false;
-    }
     
 }

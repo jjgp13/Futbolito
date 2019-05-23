@@ -22,7 +22,7 @@ public class MatchInfo : MonoBehaviour {
     //Left team information
     [Header("Left team information")]
     public Team leftTeam;
-    public int leftControlsAssigned;
+    public List<int> leftControlsAssigned;
     public List<ControlMapping> leftControllers = new List<ControlMapping>();
     public Formation leftTeamLineUp;
     public string leftTeamUniform;
@@ -30,7 +30,7 @@ public class MatchInfo : MonoBehaviour {
     //Right team information
     [Header("Right team information")]
     public Team rightTeam;
-    public int rightControlsAssigned;
+    public List<int> rightControlsAssigned;
     public List<ControlMapping> rightControllers = new List<ControlMapping>();
     public Formation rightTeamLineUp;
     public string rightTeamUniform;

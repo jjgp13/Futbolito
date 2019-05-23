@@ -55,8 +55,6 @@ public class QuickMatchMenuController : MonoBehaviour {
             //Check if teams have been assigned, if not send a message.
             if (MatchInfo._matchInfo.leftTeam != null && MatchInfo._matchInfo.rightTeam != null)
             {
-                SetControlls(controlNumbersForLeftTeam, leftControls);
-                SetControlls(controlNumbersForRightTeam, rightControls);
                 //Change to next panel
                 isSelectionTeamPanelActive = false;
                 isSettingsPanelActive = true;
@@ -119,7 +117,6 @@ public class QuickMatchMenuController : MonoBehaviour {
             ControlMapping control = new ControlMapping(xAxis, yAxis, shoot, attractBall, left, right);
             teamSide.Add(control);
         }
-        
     }
 
     /// <summary>
@@ -131,7 +128,7 @@ public class QuickMatchMenuController : MonoBehaviour {
         //If left controls are assigned to one player. Give the UI control to left team player
         if(leftControls.Count > 0)
         {
-            MatchInfo._matchInfo.leftControlsAssigned = leftControls.Count;
+            MatchInfo._matchInfo.leftControlsAssigned = controlNumbersForLeftTeam;
             MatchInfo._matchInfo.leftControllers = leftControls;
 
             inputModule.horizontalAxis = leftControls[0].xAxis;
@@ -144,7 +141,7 @@ public class QuickMatchMenuController : MonoBehaviour {
         }
         else //otherwise give UI control to right team player.
         {
-            MatchInfo._matchInfo.rightControlsAssigned = rightControls.Count;
+            MatchInfo._matchInfo.rightControlsAssigned = controlNumbersForRightTeam;
             MatchInfo._matchInfo.rightControllers = rightControls;
 
             inputModule.horizontalAxis = rightControls[0].xAxis;
