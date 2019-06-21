@@ -62,8 +62,9 @@ public class LinesHandler : MonoBehaviour {
 
     private void Start()
     {
-
-        if(numberOfPlayers == 1)
+        //When game start, check the number of controlls in each team
+        //If the team is not handle by AI, check type of controls select
+        if(numberOfPlayers >= 1)
         {
             if (controlType == ControlType.Automatic)
             {
@@ -83,7 +84,7 @@ public class LinesHandler : MonoBehaviour {
         }
         else
         {
-            ActivateLines(new bool[] { true, true, true, true });
+            ActivateLines(new bool[] { false, true, true, false });
         }
         
     }
@@ -91,7 +92,7 @@ public class LinesHandler : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate ()
     {
-        if(numberOfPlayers == 1)
+        if(numberOfPlayers >= 1)
         {
             if (controlType == ControlType.Automatic)
             {
@@ -115,6 +116,17 @@ public class LinesHandler : MonoBehaviour {
                 //Active line given index
                 ManualActiveLines(lineIndex);
             }
+        }
+        //if lines are controlled by AI change lines automatic
+        else
+        {
+            //If there's a ball in the field, get the two nearest behind ball
+            if (ball != null)
+            {
+                if (teamSide == TeamSide.LeftTeam) GetClosetsLinesLeftSide();
+                if (teamSide == TeamSide.RightTeam) GetClosetsLinesRightSide();
+            }//If not get the reference to the ball
+            else ball = GameObject.FindGameObjectWithTag("Ball");
         }
         
     }
