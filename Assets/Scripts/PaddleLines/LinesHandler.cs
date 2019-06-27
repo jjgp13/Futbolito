@@ -32,7 +32,7 @@ public class LinesHandler : MonoBehaviour {
     public ControlType controlType;
     private int lineIndex;
 
-    [Header("Player on this team")]
+    [Header("Player's count on this team")]
     public int numberOfPlayers;
 
     //Default controller to map strings for buttons
@@ -62,74 +62,55 @@ public class LinesHandler : MonoBehaviour {
 
     private void Start()
     {
+        //Get the active ball
+        ball = GameObject.FindGameObjectWithTag("Ball");
         //When game start, check the number of controlls in each team
         //If the team is not handle by AI, check type of controls select
-        if(numberOfPlayers >= 1)
-        {
-            if (controlType == ControlType.Automatic)
-            {
-                //Get the active ball
-                ball = GameObject.FindGameObjectWithTag("Ball");
-                //Get reference to each line
+        if (teamSide == TeamSide.LeftTeam) SetLinesActiveLimits(-8.3f, -3f, 3f);
+        if (teamSide == TeamSide.RightTeam) SetLinesActiveLimits(8.3f, 3f, -3f);
 
-                if (teamSide == TeamSide.LeftTeam) SetLinesActiveLimits(-8f, -3f, 3f);
-                if (teamSide == TeamSide.RightTeam) SetLinesActiveLimits(8f, 3f, -3f);
-            }
-
-            if (controlType == ControlType.Manual)
-            {
-                lineIndex = 1;
-                ActivateLines(new bool[] { false, true, true, false });
-            }
-        }
-        else
+        if (controlType == ControlType.Manual)
         {
+            lineIndex = 1;
             ActivateLines(new bool[] { false, true, true, false });
         }
-        
     }
 
     // Update is called once per frame
     void FixedUpdate ()
     {
-        if(numberOfPlayers >= 1)
-        {
-            if (controlType == ControlType.Automatic)
-            {
-                //If there's a ball in the field, get the two nearest behind ball
-                if (ball != null)
-                {
-                    if (teamSide == TeamSide.LeftTeam) GetClosetsLinesLeftSide();
-                    if (teamSide == TeamSide.RightTeam) GetClosetsLinesRightSide();
-                }//If not get the reference to the ball
-                else ball = GameObject.FindGameObjectWithTag("Ball");
-            }
-
-            if (controlType == ControlType.Manual && numberOfPlayers == 1)
-            {
-                //Change lines to left
-                if (Input.GetButtonDown(defenseButtons.leftButton))
-                    if (lineIndex > 0) lineIndex--;
-                //Change lines to right
-                if (Input.GetButtonDown(defenseButtons.rightButton))
-                    if (lineIndex < 2) lineIndex++;
-                //Active line given index
-                ManualActiveLines(lineIndex);
-            }
-        }
-        //if lines are controlled by AI change lines automatic
-        else
-        {
-            //If there's a ball in the field, get the two nearest behind ball
-            if (ball != null)
-            {
-                if (teamSide == TeamSide.LeftTeam) GetClosetsLinesLeftSide();
-                if (teamSide == TeamSide.RightTeam) GetClosetsLinesRightSide();
-            }//If not get the reference to the ball
-            else ball = GameObject.FindGameObjectWithTag("Ball");
-        }
-        
+        if (controlType == ControlType.Automatic) AutomaticControls();
+        //Manual controlls
+        //Still implementing
+        //if (controlType == ControlType.Manual) ManualControls()
     }
+
+    private void AutomaticControls()
+    {
+        //If there's a ball in the field, get the two nearest behind ball
+        if (ball != null)
+        {
+            if (teamSide == TeamSide.LeftTeam) GetClosetsLinesLeftSide();
+            if (teamSide == TeamSide.RightTeam) GetClosetsLinesRightSide();
+        }//If not get the reference to the ball
+        else ball = GameObject.FindGameObjectWithTag("Ball");
+    }
+
+    private void ManualControls(int playersInTeam)
+    {
+        if(playersInTeam == 1)
+        {
+            //Change lines to left
+            if (Input.GetButtonDown(defenseButtons.leftButton))
+                if (lineIndex > 0) lineIndex--;
+            //Change lines to right
+            if (Input.GetButtonDown(defenseButtons.rightButton))
+                if (lineIndex < 2) lineIndex++;
+            //Active line given index
+            ManualActiveLines(lineIndex);
+        }
+    }
+
 
     /// <summary>
     /// Given ball x position in field, active lines
@@ -137,27 +118,37 @@ public class LinesHandler : MonoBehaviour {
     private void GetClosetsLinesLeftSide()
     {
         float ballPos = ball.transform.position.x;
+        bool[] linesConfiguation;
+
         if (ballPos < linesActiveBallLimit[0])
-            ActivateLines(new bool[] {true, false, false, false});
+            linesConfiguation = new bool[] { true, false, false, false };
         else if (ballPos < linesActiveBallLimit[1])
-            ActivateLines(new bool[] { true, true, false, false });
+            linesConfiguation = new bool[] { true, true, false, false };
         else if (ballPos > linesActiveBallLimit[2])
-            ActivateLines(new bool[] { false, false, true, true});
+            linesConfiguation = new bool[] { false, false, true, true };
         else
-            ActivateLines(new bool[] { false, true, true, false });
+            linesConfiguation = new bool[] { false, true, true, false };
+
+        ActivateLines(linesConfiguation);
+        ChangeLineIndicator(linesConfiguation);
     }
 
     private void GetClosetsLinesRightSide()
     {
         float ballPos = ball.transform.position.x;
+        bool[] linesConfiguation;
+
         if (ballPos > linesActiveBallLimit[0])
-            ActivateLines(new bool[] { true, false, false, false });
+            linesConfiguation = new bool[] { true, false, false, false };
         else if (ballPos > linesActiveBallLimit[1])
-            ActivateLines(new bool[] { true, true, false, false });
+            linesConfiguation = new bool[] { true, true, false, false };
         else if (ballPos < linesActiveBallLimit[2])
-            ActivateLines(new bool[] { false, false, true, true });
+            linesConfiguation = new bool[] { false, false, true, true };
         else
-            ActivateLines(new bool[] { false, true, true, false });
+            linesConfiguation = new bool[] { false, true, true, false };
+
+        ActivateLines(linesConfiguation);
+        ChangeLineIndicator(linesConfiguation);
     }
 
     /// <summary>
@@ -231,23 +222,22 @@ public class LinesHandler : MonoBehaviour {
             controlList = MatchInfo._matchInfo.rightControllers;
         }
 
-        //No players for this team, Activate NPC's
-        if (controlsCount == 0)
-        {
-            //Lines are automatic
-            controlType = ControlType.Automatic;
-            GetComponent<NPCStats>().enabled = true;
-        }
-        else
-        {
-            //Lines are manual
-            GetComponent<NPCStats>().enabled = false;
-            defenseButtons = controlList[0];
-            attackerButtons = controlList[0];
-            if (controlsCount == 2) attackerButtons = controlList[1];
-        }
+        //Assign control strings to global variables.
+        defenseButtons = controlList[0];
+        attackerButtons = controlList[0];
+        //If there are 2 players on same team, assign second control to attacker's line.
+        if (controlsCount == 2) attackerButtons = controlList[1];
 
         //Set the number of player on this team Side
         numberOfPlayers = controlsCount;
+    }
+
+    private void ChangeLineIndicator(bool[] lines)
+    {
+        for (int i = 0; i < lines.Length; i++)
+        {
+            if (lines[i])
+                linesIndicators[i].sprite = activeLineSprite;
+        }
     }
 }

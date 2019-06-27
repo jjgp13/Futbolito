@@ -212,14 +212,14 @@ public class MatchController : MonoBehaviour {
         if (LeftTeamScore == 5)
         {
             StartCoroutine(PlayEndMatchAnimation(true));
-            PlayerDataController.playerData.knockoutVictories++;
+            //PlayerDataController.playerData.knockoutVictories++;
             return;
         }
 
         if (RightTeamScore == 5)
         {
             StartCoroutine(PlayEndMatchAnimation(true));
-            PlayerDataController.playerData.knockoutDefeats++;
+            //PlayerDataController.playerData.knockoutDefeats++;
             return;
         }
 
@@ -262,19 +262,19 @@ public class MatchController : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
-        PlayerDataController.playerData.totalMatches++;
-        switch(MatchInfo._matchInfo.matchLevel)
-        {
-            case 1:
-                PlayerDataController.playerData.easyLevelMatches++;
-                break;
-            case 2:
-                PlayerDataController.playerData.normalLevelMatches++;
-                break;
-            case 3:
-                PlayerDataController.playerData.hardLevelMatches++;
-                break;
-        }
+        //PlayerDataController.playerData.totalMatches++;
+        //switch(MatchInfo._matchInfo.matchLevel)
+        //{
+        //    case 1:
+        //        PlayerDataController.playerData.easyLevelMatches++;
+        //        break;
+        //    case 2:
+        //        PlayerDataController.playerData.normalLevelMatches++;
+        //        break;
+        //    case 3:
+        //        PlayerDataController.playerData.hardLevelMatches++;
+        //        break;
+        //}
 
 
         //If match time has finished and ball is still in gamefield, stop and destroy.
@@ -302,23 +302,23 @@ public class MatchController : MonoBehaviour {
             matchStatus.text = "VICTORY!";
             matchStatus.color = Color.yellow;
 
-            PlayerDataController.playerData.victories++;
-            PlayerDataController.playerData.GetPlayerCoins("Victory", MatchInfo._matchInfo.matchLevel);
+            //PlayerDataController.playerData.victories++;
+            //PlayerDataController.playerData.GetPlayerCoins("Victory", MatchInfo._matchInfo.matchLevel);
         }
         else if (LeftTeamScore < RightTeamScore)
         {
             matchStatus.text = "DEFEAT";
             matchStatus.color = Color.red;
             
-            PlayerDataController.playerData.defeats++;
-            PlayerDataController.playerData.GetPlayerCoins("Defeat", MatchInfo._matchInfo.matchLevel);
+            //PlayerDataController.playerData.defeats++;
+            //PlayerDataController.playerData.GetPlayerCoins("Defeat", MatchInfo._matchInfo.matchLevel);
         }
         else
         {
             matchStatus.text = "TIE";
 
-            PlayerDataController.playerData.ties++;
-            PlayerDataController.playerData.GetPlayerCoins("Tie", MatchInfo._matchInfo.matchLevel);
+            //PlayerDataController.playerData.ties++;
+            //PlayerDataController.playerData.GetPlayerCoins("Tie", MatchInfo._matchInfo.matchLevel);
         }
         //Deactivate pause options
         pauseMatchPanelOptions.SetActive(false);
@@ -329,22 +329,22 @@ public class MatchController : MonoBehaviour {
         
         //Players info
         //Increment player data for team used and formation used
-        PlayerDataController.playerData.IncrementDictionaryElement(leftTeam.teamName, PlayerDataController.playerData.timesTeamSelected);
+        //PlayerDataController.playerData.IncrementDictionaryElement(leftTeam.teamName, PlayerDataController.playerData.timesTeamSelected);
 
         string usedLineUp = MatchInfo._matchInfo.leftTeamLineUp.defense.ToString() + "-" +
             MatchInfo._matchInfo.leftTeamLineUp.mid.ToString() + "-" +
             MatchInfo._matchInfo.leftTeamLineUp.attack.ToString();
-        PlayerDataController.playerData.IncrementDictionaryElement(usedLineUp, PlayerDataController.playerData.timesFormationSelected);
+        //PlayerDataController.playerData.IncrementDictionaryElement(usedLineUp, PlayerDataController.playerData.timesFormationSelected);
 
         //Set team most used and formation most used
-        string teamMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesTeamSelected);
-        PlayerDataController.playerData.teamMostUsed = teamMostUsed;
+        //string teamMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesTeamSelected);
+        //PlayerDataController.playerData.teamMostUsed = teamMostUsed;
 
-        string lineUpMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesFormationSelected);
-        PlayerDataController.playerData.mostFormationUsed = lineUpMostUsed;
+        //string lineUpMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesFormationSelected);
+        //PlayerDataController.playerData.mostFormationUsed = lineUpMostUsed;
         
         //Save player's data
-        PlayerDataController.playerData.SavePlayerInfo();
+        //PlayerDataController.playerData.SavePlayerInfo();
     }
     
 

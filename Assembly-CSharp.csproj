@@ -75,9 +75,10 @@
     <Compile Include="Assets\Scripts\Match\MatchInfo.cs" />
     <Compile Include="Assets\Scripts\Match\SetPlayfield.cs" />
     <Compile Include="Assets\Scripts\Match\SoundMatchController.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPCHitBall.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCLineMovement.cs" />
+    <Compile Include="Assets\Scripts\NPC\NPCLinesHandler.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCShootController.cs" />
-    <Compile Include="Assets\Scripts\NPC\NPCStats.cs" />
     <Compile Include="Assets\Scripts\Paddle\PlayerAnimationController.cs" />
     <Compile Include="Assets\Scripts\Paddle\SetAnimations.cs" />
     <Compile Include="Assets\Scripts\PaddleLines\LineMovement.cs" />

@@ -1045,7 +1045,6 @@ GameObject:
   m_Component:
   - component: {fileID: 131882900}
   - component: {fileID: 131882901}
-  - component: {fileID: 131882902}
   m_Layer: 0
   m_Name: LeftTeam
   m_TagString: LeftTeamInfo
@@ -1116,20 +1115,6 @@ MonoBehaviour:
   - {fileID: 428894284}
   inactiveLineSprite: {fileID: 21300356, guid: f6f95df4975278d4285d503f532f94e9, type: 3}
   activeLineSprite: {fileID: 21300358, guid: f6f95df4975278d4285d503f532f94e9, type: 3}
---- !u!114 &131882902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 131882899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cbb97694b1e90747b5cfff5d615a359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootSpeed: 0
-  attractionForce: 0
 --- !u!1 &132668595
 GameObject:
   m_ObjectHideFlags: 0
@@ -1853,7 +1838,7 @@ AreaEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
-  m_ForceAngle: 45
+  m_ForceAngle: 90
   m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0
@@ -2218,7 +2203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -24.975067}
+  m_AnchoredPosition: {x: 0, y: -24.975098}
   m_SizeDelta: {x: 0, y: -50.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &408746906
@@ -4978,7 +4963,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1252008115}
   - component: {fileID: 1252008116}
-  - component: {fileID: 1252008117}
   m_Layer: 0
   m_Name: RightTeam
   m_TagString: RightTeamInfo
@@ -5017,26 +5001,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1252008114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c30b7613142314f880a9b4d23c362d, type: 3}
+  m_Script: {fileID: 11500000, guid: c2f5d016c09bbe2419257c7407562c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   teamSide: 1
-  controlType: 0
-  numberOfPlayers: 0
-  defenseButtons:
-    xAxis: 
-    yAxis: 
-    shootButton: 
-    attractButton: 
-    leftButton: 
-    rightButton: 
-  attackerButtons:
-    xAxis: 
-    yAxis: 
-    shootButton: 
-    attractButton: 
-    leftButton: 
-    rightButton: 
   lines:
   - {fileID: 277624459}
   - {fileID: 1541552373}
@@ -5049,20 +5017,6 @@ MonoBehaviour:
   - {fileID: 621227003}
   inactiveLineSprite: {fileID: 21300344, guid: f6f95df4975278d4285d503f532f94e9, type: 3}
   activeLineSprite: {fileID: 21300346, guid: f6f95df4975278d4285d503f532f94e9, type: 3}
---- !u!114 &1252008117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1252008114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4cbb97694b1e90747b5cfff5d615a359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootSpeed: 0
-  attractionForce: 0
 --- !u!1 &1289534515
 GameObject:
   m_ObjectHideFlags: 0
@@ -7427,7 +7381,7 @@ AreaEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
-  m_ForceAngle: 225
+  m_ForceAngle: -90
   m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0
@@ -7682,7 +7636,7 @@ AreaEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
-  m_ForceAngle: -45
+  m_ForceAngle: -90
   m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0
@@ -8972,7 +8926,7 @@ AreaEffector2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_UseGlobalAngle: 1
-  m_ForceAngle: 135
+  m_ForceAngle: 90
   m_ForceMagnitude: 0.1
   m_ForceVariation: 0
   m_ForceTarget: 0

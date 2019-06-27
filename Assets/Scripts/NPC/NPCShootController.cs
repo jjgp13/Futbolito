@@ -6,15 +6,16 @@ public class NPCShootController : MonoBehaviour {
 
     public float distanceToShoot;
     public float distanceToAttract;
+    private readonly float[] attractionForces = new float[3] { -0.1f, -0.5f, -1f };
     private float attractionForce;
-    private NPCStats level;
+    int npcLevel;
 
     private void Start()
     {
-        distanceToShoot = 1;
-        distanceToAttract = 2;
+        distanceToShoot = 0.75f;
+        distanceToAttract = 1.25f;
+        npcLevel = MatchInfo._matchInfo.matchLevel - 1;
         attractionForce = 0;
-        level = transform.parent.GetComponent<NPCStats>();
     }
 
     // Update is called once per frame
@@ -22,6 +23,7 @@ public class NPCShootController : MonoBehaviour {
         if (GetComponent<NPCLineMovement>().isActive)
         {
             float distanceToBall = GetComponent<NPCLineMovement>().nearDistance;
+            distanceToBall = Mathf.Abs(distanceToBall);
             if (distanceToBall < distanceToAttract)
             {
                 AttractBall(true);
@@ -41,6 +43,7 @@ public class NPCShootController : MonoBehaviour {
             PlayAttractParticles(false);
     }
 
+
     private void Shoot(bool isShooting)
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -50,7 +53,7 @@ public class NPCShootController : MonoBehaviour {
     private void AttractBall(bool isAttracting)
     {
         if (isAttracting)
-            attractionForce = level.attractionForce;
+            attractionForce = attractionForces[npcLevel];
         else
             attractionForce = 0;
         for (int i = 0; i < transform.childCount; i++)
@@ -67,6 +70,5 @@ public class NPCShootController : MonoBehaviour {
             else
                 attraction.Stop();
         }
-            
     }
 }
