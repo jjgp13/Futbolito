@@ -20,18 +20,22 @@ public class NPCLineMovement : MonoBehaviour {
 
         //Populate list of child paddles
         for (int i = 0; i < transform.childCount; i++)
+        {
             paddles.Add(transform.GetChild(i).gameObject);
+        }
+            
     }
 	
 	// Update is called once per frame
 	void FixedUpdate () {
         if (isActive && ball != null)
         {
+            UpdatePaddlesDistances(paddles);
             //Get nearest Paddle
             GameObject nearestChild = GetNearestPaddle(paddles);
 
             if (ball.transform.position.y > nearestChild.transform.position.y) transform.Translate(Vector2.up * speed * Time.deltaTime);
-            if (ball.transform.position.y < nearestChild.transform.position.y) transform.Translate(Vector2.up * -speed * Time.deltaTime);
+            if (ball.transform.position.y < nearestChild.transform.position.y) transform.Translate(-Vector2.up * speed * Time.deltaTime);
 
             if (transform.position.y < -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer)
                 transform.position = new Vector2(transform.position.x, -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer);
@@ -49,20 +53,28 @@ public class NPCLineMovement : MonoBehaviour {
     /// <returns>Nearest paddle to the ball</returns>
     GameObject GetNearestPaddle(List<GameObject> paddlesInThisLine)
     {
-        GameObject nearChild = paddlesInThisLine[0];
+        GameObject nearChild;
+        nearChild = paddlesInThisLine[0];
         nearDistance = Vector2.Distance(ball.transform.position, nearChild.transform.position);
         for (int i = 1; i < paddlesInThisLine.Count; i++)
         {
             float distance = Vector2.Distance(ball.transform.position, paddlesInThisLine[i].transform.position);
-            if(distance < nearDistance)
+            if (distance < nearDistance)
             {
                 nearDistance = distance;
                 nearChild = paddlesInThisLine[i];
             }
         }
+
+
         return nearChild;
     }
 
+
+    private void UpdatePaddlesDistances(List<GameObject> paddlesInLine)
+    {
+
+    }
 
     void SetLineSpeed(int numPlayerInLine)
     {

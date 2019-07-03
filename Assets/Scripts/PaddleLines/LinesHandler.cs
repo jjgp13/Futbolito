@@ -49,6 +49,8 @@ public class LinesHandler : MonoBehaviour {
     [Header("Reference to child gameobjects (lines and indicators)")]
     //Reference to lines
     public GameObject[] lines = new GameObject[4];
+    public bool[] activeLines = new bool[4];
+
     //reference to indicators to see which line is active
     public SpriteRenderer[] linesIndicators = new SpriteRenderer[4];
     public Sprite inactiveLineSprite;
@@ -66,14 +68,45 @@ public class LinesHandler : MonoBehaviour {
         ball = GameObject.FindGameObjectWithTag("Ball");
         //When game start, check the number of controlls in each team
         //If the team is not handle by AI, check type of controls select
-        if (teamSide == TeamSide.LeftTeam) SetLinesActiveLimits(-8.3f, -3f, 3f);
-        if (teamSide == TeamSide.RightTeam) SetLinesActiveLimits(8.3f, 3f, -3f);
+        if (teamSide == TeamSide.LeftTeam)
+            SetLinesActiveLimits(-8.3f, -3f, 3f);
 
-        if (controlType == ControlType.Manual)
+
+        if (teamSide == TeamSide.RightTeam)
+            SetLinesActiveLimits(8.3f, 3f, -3f);
+
+        //If two players are in the same team. Hold button is assigned automic
+        if (MatchInfo._matchInfo.leftControlsAssigned.Count == 2)
+            AssignHoldButtonToLinesTwoPlayers(teamSide);
+        else
         {
-            lineIndex = 1;
-            ActivateLines(new bool[] { false, true, true, false });
+            //If not, hold button should be changed every time lines are activated
+            //Only the goalkeeper and the strikers will always have the same hold button assigned
+            //Left team
+            if (teamSide == TeamSide.LeftTeam)
+            {
+                lines[0].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].leftButton;//Goalkeaper
+                lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].rightButton;//Defense
+                lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].leftButton;//Mid
+                lines[3].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].rightButton;//Strikers
+            }
+            //Right team
+            if (teamSide == TeamSide.RightTeam)
+            {
+                lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].leftButton;//Defense
+                lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].rightButton;//Mid
+                lines[3].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].leftButton;//Strikers
+                lines[0].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].rightButton;//Goalkeaper
+            }
         }
+            
+
+
+        //if (controlType == ControlType.Manual)
+        //{
+        //    lineIndex = 1;
+        //    ActivateLines(activeLines);
+        //}
     }
 
     // Update is called once per frame
@@ -118,37 +151,47 @@ public class LinesHandler : MonoBehaviour {
     private void GetClosetsLinesLeftSide()
     {
         float ballPos = ball.transform.position.x;
-        bool[] linesConfiguation;
+        bool ballInMiddle = false;
 
         if (ballPos < linesActiveBallLimit[0])
-            linesConfiguation = new bool[] { true, false, false, false };
+            activeLines = new bool[] { true, false, false, false };
         else if (ballPos < linesActiveBallLimit[1])
-            linesConfiguation = new bool[] { true, true, false, false };
+            activeLines = new bool[] { true, true, false, false };
         else if (ballPos > linesActiveBallLimit[2])
-            linesConfiguation = new bool[] { false, false, true, true };
+            activeLines = new bool[] { false, false, true, true };
         else
-            linesConfiguation = new bool[] { false, true, true, false };
+        {
+            activeLines = new bool[] { false, true, true, false };
+            ballInMiddle = true;
+        }
+            
 
-        ActivateLines(linesConfiguation);
-        ChangeLineIndicator(linesConfiguation);
+        ActivateLines(activeLines);
+        ChangeLineIndicator(activeLines);
+        AssignHoldButtonToLinesSinglePlyers(ballInMiddle, teamSide);
     }
 
     private void GetClosetsLinesRightSide()
     {
         float ballPos = ball.transform.position.x;
-        bool[] linesConfiguation;
+        bool ballInMiddle = false;
 
         if (ballPos > linesActiveBallLimit[0])
-            linesConfiguation = new bool[] { true, false, false, false };
+            activeLines = new bool[] { true, false, false, false };
         else if (ballPos > linesActiveBallLimit[1])
-            linesConfiguation = new bool[] { true, true, false, false };
+            activeLines = new bool[] { true, true, false, false };
         else if (ballPos < linesActiveBallLimit[2])
-            linesConfiguation = new bool[] { false, false, true, true };
+            activeLines = new bool[] { false, false, true, true };
         else
-            linesConfiguation = new bool[] { false, true, true, false };
+        {
+            activeLines = new bool[] { false, true, true, false };
+            ballInMiddle = true;
+        }
+            
 
-        ActivateLines(linesConfiguation);
-        ChangeLineIndicator(linesConfiguation);
+        ActivateLines(activeLines);
+        ChangeLineIndicator(activeLines);
+        AssignHoldButtonToLinesSinglePlyers(ballInMiddle, teamSide);
     }
 
     /// <summary>
@@ -230,6 +273,66 @@ public class LinesHandler : MonoBehaviour {
 
         //Set the number of player on this team Side
         numberOfPlayers = controlsCount;
+    }
+
+    private void AssignHoldButtonToLinesTwoPlayers(TeamSide side)
+    {
+        //Left team
+        if(side == TeamSide.LeftTeam)
+        {
+            ////Defender
+            lines[0].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].leftButton;//Goalkeaper
+            lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].rightButton;//Defense
+
+            ////Attacker
+            lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[1].leftButton;//Mid
+            lines[3].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[1].rightButton;//Strikers
+        }
+
+        //Right team
+        if (side == TeamSide.RightTeam)
+        {
+            ////Defender
+            lines[0].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].rightButton;//Gk
+            lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].leftButton;//Defense
+
+            ////Attacker
+            lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[1].rightButton;//Mid
+            lines[3].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[1].leftButton;//Strikers
+        }
+    }
+
+    private void AssignHoldButtonToLinesSinglePlyers(bool ballInTheMiddle, TeamSide side)
+    {
+        //Left team
+        if (side == TeamSide.LeftTeam)
+        {
+            if (ballInTheMiddle)
+            {
+                lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].leftButton;
+                lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].rightButton;
+            }
+            else
+            {
+                lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].rightButton;//defense
+                lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.leftControllers[0].leftButton;//mid
+            }
+        }
+
+        //Right team
+        if (side == TeamSide.RightTeam)
+        {
+            if (ballInTheMiddle)
+            {
+                lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].rightButton;
+                lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].leftButton;
+            }
+            else
+            {
+                lines[1].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].leftButton;//defense
+                lines[2].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].rightButton;//mid
+            }
+        }
     }
 
     private void ChangeLineIndicator(bool[] lines)

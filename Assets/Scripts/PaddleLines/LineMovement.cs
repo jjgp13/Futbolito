@@ -9,14 +9,16 @@ public class LineMovement : MonoBehaviour {
     public float velocity;
     public bool isActive;
     private int paddlesInLine;
-    private string move;
+    private string moveAxis;
+    //Could be right or left button. It depends on which lines are active
+    public string holdLineButton;
     
 
     void Start () {
         //Set who moves this line given the controllers map;
         if(gameObject.GetComponentInParent<LinesHandler>().numberOfPlayers == 1)
         {
-            move = gameObject.GetComponentInParent<LinesHandler>().defenseButtons.yAxis;
+            moveAxis = gameObject.GetComponentInParent<LinesHandler>().defenseButtons.yAxis;
         }
         else
         {
@@ -30,12 +32,12 @@ public class LineMovement : MonoBehaviour {
         //Set selection as false.
         isActive = false;
 	}
-	
-	void LateUpdate () {
-        if (isActive)
+
+    void LateUpdate () {
+        if (isActive && !Input.GetButton(holdLineButton))
         {
-            //Get Left joystick Up/Down movement
-            float yMov = Input.GetAxis(move);
+            //Get Left joystick Up/Down moveAxis
+            float yMov = Input.GetAxis(moveAxis);
             
             velocity = yMov * speed;
             transform.Translate(Vector3.up * velocity * Time.deltaTime); 

@@ -6,10 +6,12 @@ public class PlayerAnimationController : MonoBehaviour {
     public LinesHandler linesHandler;
     private string shootButton;
     private string attractButton;
+    private string wallPassButton;
 
     public Animator animatorController;
     public float shootForce;
     public float attractionForce;
+    public float wallPassForce;
 
     float shootHoldingTime = 0;
     float attractHoldingTime = 0;
@@ -24,6 +26,7 @@ public class PlayerAnimationController : MonoBehaviour {
         {
             shootButton = linesHandler.defenseButtons.shootButton;
             attractButton = linesHandler.defenseButtons.attractButton;
+            wallPassButton = linesHandler.defenseButtons.wallPassButton;
         }
         else
         {
@@ -69,6 +72,28 @@ public class PlayerAnimationController : MonoBehaviour {
                 direction *= shootForce;
                 //Debug.Log("Point of contact: " + pointOfContact + "Velocity: " + direction);
                 objectHitted.GetComponent<Rigidbody2D>().AddForceAtPosition(direction, pointOfContact, ForceMode2D.Impulse);
+            }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        GameObject objectHitted = collision.gameObject;
+        if (GetComponentInParent<LineMovement>().isActive)
+        {
+            //If ball is inside of trigger and press wall pass
+            if (objectHitted.tag == "Ball" && Input.GetButtonDown(wallPassButton))
+            {
+                //If ball is in movement, stops it
+                if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0 && collision.gameObject.GetComponent<Rigidbody2D>().velocity.y > 0)
+                    collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
+                else//If ball is quite, make wall pass
+                {
+                    int randomWall = Random.Range(0, 100);
+                    //pass to upper wall
+                    if (randomWall >= 50) collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, wallPassForce);
+                    else collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -wallPassForce);
+                }
             }
         }
     }
@@ -124,4 +149,5 @@ public class PlayerAnimationController : MonoBehaviour {
             attractBall.Stop();
         }
     }
+
 }

@@ -112,9 +112,10 @@ public class QuickMatchMenuController : MonoBehaviour {
             string yAxis = "Left_Joystick_Vertical_P" + (controlsNumber[i] + 1).ToString();
             string shoot = "Shoot_Button_P" + (controlsNumber[i] + 1).ToString();
             string attractBall = "Attract_Ball_Button_P" + (controlsNumber[i] + 1).ToString();
+            string wallPass = "Wall_Pass_Button_P" + (controlsNumber[i] + 1).ToString();
             string left = "Left_Button_P" + (controlsNumber[i] + 1).ToString();
             string right = "Right_Button_P" + (controlsNumber[i] + 1).ToString();
-            ControlMapping control = new ControlMapping(xAxis, yAxis, shoot, attractBall, left, right);
+            ControlMapping control = new ControlMapping(xAxis, yAxis, shoot, attractBall, wallPass,left, right);
             teamSide.Add(control);
         }
     }
