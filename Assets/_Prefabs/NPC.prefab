@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isShooting: 0
   shootForce: 0
+  attractingParticles: {fileID: 6800193449624916647}
 --- !u!58 &3872520966594670152
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -195,9 +196,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.2}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.75
+  m_Radius: 1
 --- !u!250 &175141696821838085
 PointEffector2D:
   m_ObjectHideFlags: 0
@@ -238,7 +239,7 @@ PrefabInstance:
     - target: {fileID: 2088465763338404585, guid: c6b3adaee5ee0b44baaef2885cbc894a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: 0.124
       objectReference: {fileID: 0}
     - target: {fileID: 2088465763338404585, guid: c6b3adaee5ee0b44baaef2885cbc894a,
         type: 3}
@@ -285,11 +286,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2176401115863979715, guid: c6b3adaee5ee0b44baaef2885cbc894a,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6b3adaee5ee0b44baaef2885cbc894a, type: 3}
 --- !u!4 &6670035740142536333 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2088465763338404585, guid: c6b3adaee5ee0b44baaef2885cbc894a,
+    type: 3}
+  m_PrefabInstance: {fileID: 4641806733579306084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6800193449624916647 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2176401115863979715, guid: c6b3adaee5ee0b44baaef2885cbc894a,
     type: 3}
   m_PrefabInstance: {fileID: 4641806733579306084}
   m_PrefabAsset: {fileID: 0}

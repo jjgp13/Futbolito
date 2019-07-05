@@ -5,44 +5,34 @@ using UnityEngine;
 public class NPCShootController : MonoBehaviour {
 
     public float distanceToShoot;
-    public float distanceToAttract;
-    private readonly float[] attractionForces = new float[3] { -0.1f, -0.5f, -1f };
-    private float attractionForce;
-    int npcLevel;
+    public float angleToShoot;
+    private List<GameObject> paddles = new List<GameObject>();
+    private GameObject ball;
 
     private void Start()
     {
-        distanceToShoot = 0.75f;
-        distanceToAttract = 1.25f;
-        npcLevel = MatchInfo._matchInfo.matchLevel - 1;
-        attractionForce = 0;
+        ball = GameObject.FindGameObjectWithTag("Ball");
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            paddles.Add(transform.GetChild(i).gameObject);
+        }
+        
     }
 
     // Update is called once per frame
-    void FixedUpdate () {
-        if (GetComponent<NPCLineMovement>().isActive)
+    void Update () {
+        if (GetComponent<NPCLineMovement>().isActive && ball != null)
         {
-            float distanceToBall = GetComponent<NPCLineMovement>().nearDistance;
-            distanceToBall = Mathf.Abs(distanceToBall);
-            if (distanceToBall < distanceToAttract)
-            {
-                AttractBall(true);
-                PlayAttractParticles(true);
-            }
-            else
-            {
-                AttractBall(false);
-                PlayAttractParticles(false);
-            }
-            
-            if (distanceToBall < distanceToShoot)
-                Shoot(true);
-            else
-                Shoot(false);
-        }else
-            PlayAttractParticles(false);
-    }
+            //Check distances of the paddle in this line.
+            //If one of them is in the distance to shoot
+            bool canShoot = CheckDistances(paddles);
 
+            Shoot(canShoot);
+        }
+        //If not ball, find ball
+        if (ball == null) ball = GameObject.FindGameObjectWithTag("Ball");
+    }
 
     private void Shoot(bool isShooting)
     {
@@ -50,25 +40,21 @@ public class NPCShootController : MonoBehaviour {
             transform.GetChild(i).GetComponent<Animator>().SetBool("Shoot", isShooting);
     }
 
-    private void AttractBall(bool isAttracting)
+    private bool CheckDistances(List<GameObject> paddles)
     {
-        if (isAttracting)
-            attractionForce = attractionForces[npcLevel];
-        else
-            attractionForce = 0;
-        for (int i = 0; i < transform.childCount; i++)
-            transform.GetChild(i).GetComponent<PointEffector2D>().forceMagnitude = attractionForce;
-    }
-
-    private void PlayAttractParticles(bool play)
-    {      
-        for (int i = 0; i < transform.childCount; i++)
+        foreach(GameObject paddle in paddles)
         {
-            ParticleSystem attraction = transform.GetChild(i).transform.GetChild(0).GetComponent<ParticleSystem>();
-            if (play)
-                attraction.Play();
-            else
-                attraction.Stop();
+            //check if ball is in front of the paddle, given the team side
+            Vector2 direction = ball.transform.position - paddle.transform.position;
+            float angleToBall = Vector2.Angle(direction, paddle.transform.up);
+
+            //Check distance to ball
+            float distanceToball = Vector2.Distance(ball.transform.position, paddle.transform.position);
+
+            //If distance to ball is less than distance to shoot and ball is in front. Shoot
+            if (distanceToball < distanceToShoot && angleToBall < angleToShoot)
+                return true;
         }
+        return false;
     }
 }

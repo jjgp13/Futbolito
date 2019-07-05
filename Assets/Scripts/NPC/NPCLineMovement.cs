@@ -30,7 +30,6 @@ public class NPCLineMovement : MonoBehaviour {
 	void FixedUpdate () {
         if (isActive && ball != null)
         {
-            UpdatePaddlesDistances(paddles);
             //Get nearest Paddle
             GameObject nearestChild = GetNearestPaddle(paddles);
 
@@ -68,12 +67,6 @@ public class NPCLineMovement : MonoBehaviour {
 
 
         return nearChild;
-    }
-
-
-    private void UpdatePaddlesDistances(List<GameObject> paddlesInLine)
-    {
-
     }
 
     void SetLineSpeed(int numPlayerInLine)

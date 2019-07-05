@@ -6,7 +6,10 @@ public class NPCHitBall : MonoBehaviour
 {
     public bool isShooting;
     public float shootForce;
-    private readonly float[] shootForces = new float[3] { 2f, 2.5f, 3f };
+    private readonly float[] shootForces = new float[3] { 1.5f, 2f, 2.5f };
+
+    [Header("Reference to attracting particles")]
+    public ParticleSystem attractingParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -31,9 +34,16 @@ public class NPCHitBall : MonoBehaviour
                 Vector2 pointOfContact = firstContact.point;
                 //Get direction vector
                 Vector2 direction = objectHitted.transform.position - gameObject.transform.position;
+
+                //Try decrementing y velocity
+                if (direction.x < direction.y) direction.y /= 2f;
+
+                //Normalized 
                 direction.Normalize();
+                //Multiplay by shoot force
                 direction *= shootForce;
-                //Debug.Log("Point of contact: " + pointOfContact + "Velocity: " + direction);
+                
+                //Add force to ball
                 objectHitted.GetComponent<Rigidbody2D>().AddForceAtPosition(direction, pointOfContact, ForceMode2D.Impulse);
             }
         }

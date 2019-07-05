@@ -20,5 +20,6 @@ MonoBehaviour:
     defense: 4
     mid: 5
     attack: 1
-  firstU: {fileID: 21300000, guid: 7126d86553a129e45818abf896b43e07, type: 3}
-  secondU: {fileID: 21300002, guid: 7126d86553a129e45818abf896b43e07, type: 3}
+  firstU: {fileID: -8230353712397236755, guid: 57a571e9cc96043408818ba11917fedf, type: 3}
+  secondU: {fileID: -3150441797163170874, guid: 57a571e9cc96043408818ba11917fedf,
+    type: 3}

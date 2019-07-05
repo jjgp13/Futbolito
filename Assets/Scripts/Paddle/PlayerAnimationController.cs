@@ -68,9 +68,16 @@ public class PlayerAnimationController : MonoBehaviour {
                 Vector2 pointOfContact = firstContact.point;
                 //Get direction vector
                 Vector2 direction = objectHitted.transform.position - gameObject.transform.position;
+                
+                //Try decrementing y velocity
+                if (direction.x < direction.y) direction.y /= 2f;
+
+                //Normalized 
                 direction.Normalize();
+                //Multiplay by shoot force
                 direction *= shootForce;
-                //Debug.Log("Point of contact: " + pointOfContact + "Velocity: " + direction);
+
+                //Add force to ball
                 objectHitted.GetComponent<Rigidbody2D>().AddForceAtPosition(direction, pointOfContact, ForceMode2D.Impulse);
             }
         }
@@ -134,6 +141,7 @@ public class PlayerAnimationController : MonoBehaviour {
     {
         if (Input.GetButton(attractButton))
         {
+            animatorController.SetBool("Magnet", true);
             attractHoldingTime += Time.deltaTime;
             if (attractHoldingTime > 0)
             {
@@ -144,6 +152,7 @@ public class PlayerAnimationController : MonoBehaviour {
         }
         else
         {
+            animatorController.SetBool("Magnet", false);
             attractHoldingTime = 0;
             GetComponent<PointEffector2D>().forceMagnitude = 0;
             attractBall.Stop();
