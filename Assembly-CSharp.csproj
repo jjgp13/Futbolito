@@ -108,6 +108,9 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Editor">
       <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
     </Reference>
@@ -135,6 +138,9 @@
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/UnityEditor.Advertisements.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
@@ -152,12 +158,6 @@
     </Reference>
     <Reference Include="com.unity.multiplayer-hlapi.Runtime">
       <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/Unity.2D.PixelPerfect.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>D:/GameProjects/Futbolito/Futbolito/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.0f2/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
