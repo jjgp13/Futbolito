@@ -14,10 +14,7 @@ public class NPCShootController : MonoBehaviour {
         ball = GameObject.FindGameObjectWithTag("Ball");
 
         for (int i = 0; i < transform.childCount; i++)
-        {
             paddles.Add(transform.GetChild(i).gameObject);
-        }
-        
     }
 
     // Update is called once per frame

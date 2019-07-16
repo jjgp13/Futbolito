@@ -20,10 +20,7 @@ public class NPCLineMovement : MonoBehaviour {
 
         //Populate list of child paddles
         for (int i = 0; i < transform.childCount; i++)
-        {
             paddles.Add(transform.GetChild(i).gameObject);
-        }
-            
     }
 	
 	// Update is called once per frame

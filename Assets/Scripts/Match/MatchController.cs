@@ -16,10 +16,6 @@ public class MatchController : MonoBehaviour {
     public bool gameIsPaused;
     public bool ballInGame;
 
-    [Header("Reference to table selected")]
-    public SpriteRenderer table;
-    public SpriteRenderer grass;
-
     //Variables to hanlde bullet time
     [Header("Variables for bullet time")]
     public float slowDownTime;
@@ -92,10 +88,6 @@ public class MatchController : MonoBehaviour {
     //Initial state of objects.
     private void Start()
     {
-        //Set table color and grass pattern
-        table.sprite = MatchInfo._matchInfo.tableSelected;
-        grass.sprite = MatchInfo._matchInfo.grassSelected;
-
         //Start initial animation.
         StartCoroutine(InitAnimation());
 

@@ -56,11 +56,6 @@ public class LinesHandler : MonoBehaviour {
     public Sprite inactiveLineSprite;
     public Sprite activeLineSprite;
 
-    private void Awake()
-    {
-        AssignControlls(teamSide);
-    }
-
 
     private void Start()
     {
@@ -99,8 +94,8 @@ public class LinesHandler : MonoBehaviour {
                 lines[0].GetComponent<LineMovement>().holdLineButton = MatchInfo._matchInfo.rightControllers[0].rightButton;//Goalkeaper
             }
         }
-            
 
+        AssignControlls(teamSide);
 
         //if (controlType == ControlType.Manual)
         //{

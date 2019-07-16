@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Match\GolController.cs" />
     <Compile Include="Assets\Scripts\Match\MatchController.cs" />
     <Compile Include="Assets\Scripts\Match\MatchInfo.cs" />
+    <Compile Include="Assets\Scripts\Match\SetMatchController.cs" />
     <Compile Include="Assets\Scripts\Match\SetPlayfield.cs" />
     <Compile Include="Assets\Scripts\Match\SoundMatchController.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCAttractBall.cs" />
