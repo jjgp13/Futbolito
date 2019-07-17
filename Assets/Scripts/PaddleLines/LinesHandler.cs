@@ -56,6 +56,13 @@ public class LinesHandler : MonoBehaviour {
     public Sprite inactiveLineSprite;
     public Sprite activeLineSprite;
 
+    private void Awake()
+    {
+        if(teamSide == TeamSide.LeftTeam && MatchInfo._matchInfo.leftControlsAssigned.Count > 0)
+            AssignControlls(teamSide);
+        if (teamSide == TeamSide.RightTeam && MatchInfo._matchInfo.rightControlsAssigned.Count > 0)
+            AssignControlls(teamSide);
+    }
 
     private void Start()
     {
@@ -95,7 +102,6 @@ public class LinesHandler : MonoBehaviour {
             }
         }
 
-        AssignControlls(teamSide);
 
         //if (controlType == ControlType.Manual)
         //{

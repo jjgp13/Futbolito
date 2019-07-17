@@ -193,7 +193,7 @@ public class MatchControllerConfiguration : MonoBehaviour
                 matchType.text = "COM VS 2P";
 
         if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count > 0 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count > 0)
-            if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 1 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 0)
+            if (QuickMatchMenuController.controller.controlNumbersForLeftTeam.Count == 1 && QuickMatchMenuController.controller.controlNumbersForRightTeam.Count == 1)
                 matchType.text = "1P VS 1P";
             else
                 matchType.text = "2P VS 2P";

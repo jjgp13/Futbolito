@@ -126,12 +126,14 @@ public class QuickMatchMenuController : MonoBehaviour {
     /// </summary>
     public void AssignControlsToMachInfoObject()
     {
-        //If left controls are assigned to one player. Give the UI control to left team player
-        if(leftControls.Count > 0)
-        {
-            MatchInfo._matchInfo.leftControlsAssigned = controlNumbersForLeftTeam;
-            MatchInfo._matchInfo.leftControllers = leftControls;
+        MatchInfo._matchInfo.leftControlsAssigned = controlNumbersForLeftTeam;
+        MatchInfo._matchInfo.leftControllers = leftControls;
+        MatchInfo._matchInfo.rightControlsAssigned = controlNumbersForRightTeam;
+        MatchInfo._matchInfo.rightControllers = rightControls;
 
+        //If left controls are assigned to one player. Give the UI control to left team player
+        if (leftControls.Count > 0)
+        {
             inputModule.horizontalAxis = leftControls[0].xAxis;
             inputModule.verticalAxis = leftControls[0].yAxis;
             inputModule.submitButton = leftControls[0].shootButton;
@@ -142,9 +144,6 @@ public class QuickMatchMenuController : MonoBehaviour {
         }
         else //otherwise give UI control to right team player.
         {
-            MatchInfo._matchInfo.rightControlsAssigned = controlNumbersForRightTeam;
-            MatchInfo._matchInfo.rightControllers = rightControls;
-
             inputModule.horizontalAxis = rightControls[0].xAxis;
             inputModule.verticalAxis = rightControls[0].yAxis;
             inputModule.submitButton = rightControls[0].shootButton;

@@ -1185,9 +1185,9 @@ MonoBehaviour:
     rightButton: 
   lines:
   - {fileID: 386671497}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 135208695}
+  - {fileID: 1025399378}
+  - {fileID: 2021341654}
   activeLines: 00000000
   linesIndicators:
   - {fileID: 1644827621}
@@ -4838,16 +4838,16 @@ MonoBehaviour:
     leftButton: 
     rightButton: 
   lines:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 987003130}
+  - {fileID: 978264139}
+  - {fileID: 1283689571}
+  - {fileID: 1060870430}
   activeLines: 00000000
   linesIndicators:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1953629307}
+  - {fileID: 683173698}
+  - {fileID: 149859296}
+  - {fileID: 2036865948}
   inactiveLineSprite: {fileID: 21300344, guid: f6f95df4975278d4285d503f532f94e9, type: 3}
   activeLineSprite: {fileID: 21300346, guid: f6f95df4975278d4285d503f532f94e9, type: 3}
 --- !u!1001 &1283689570
