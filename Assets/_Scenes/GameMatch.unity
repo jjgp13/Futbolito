@@ -681,6 +681,10 @@ GameObject:
   - component: {fileID: 105161460}
   - component: {fileID: 105161462}
   - component: {fileID: 105161464}
+  - component: {fileID: 105161468}
+  - component: {fileID: 105161467}
+  - component: {fileID: 105161466}
+  - component: {fileID: 105161465}
   m_Layer: 0
   m_Name: MatchController
   m_TagString: Untagged
@@ -871,6 +875,64 @@ MonoBehaviour:
   tableColor: {fileID: 1556311401}
   leftTeam: {fileID: 131882899}
   rightTeam: {fileID: 1252008114}
+--- !u!114 &105161465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105161459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 766a06eabab68ef4bbb19d78111520d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slowDownTime: 0
+  timesSlower: 0
+  bulletTime: 0
+--- !u!114 &105161466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105161459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efc8b154bd8d8f4484d2de58ed4260a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainPausePanel: {fileID: 0}
+  matchStatus: {fileID: 0}
+  matchType: {fileID: 0}
+  matchScore: {fileID: 0}
+  pauseMatchPanelOptions: {fileID: 0}
+  finishQuickMatchPanelOptions: {fileID: 0}
+  finishTourMatchPanelOptions: {fileID: 0}
+--- !u!114 &105161467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105161459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a577cbb051ec914a8220eb265cf8aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &105161468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105161459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2d404200cba00499afcb0af3e3ef6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &108617125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,7 +1549,7 @@ GameObject:
   - component: {fileID: 180928616}
   - component: {fileID: 180928615}
   m_Layer: 5
-  m_Name: PlayerFlag
+  m_Name: LeftTeamScoreFlag
   m_TagString: LeftTeamFlags
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8199,7 +8261,7 @@ GameObject:
   - component: {fileID: 1966330852}
   - component: {fileID: 1966330851}
   m_Layer: 5
-  m_Name: NPCFlag
+  m_Name: RightTeamScoreFlag
   m_TagString: RightTeamFlags
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

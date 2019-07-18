@@ -21,7 +21,7 @@ public class GolController : MonoBehaviour {
             PlaySound();
 
             if (gameObject.tag == "GoalTrigger")
-                MatchController._matchController.AdjustScore(gameObject.name);
+                MatchScoreController.instance.AdjustScore(gameObject.name);
 
             StartCoroutine(MatchController._matchController.GolAnimation());
 

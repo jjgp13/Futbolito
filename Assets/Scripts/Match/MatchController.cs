@@ -16,13 +16,6 @@ public class MatchController : MonoBehaviour {
     public bool gameIsPaused;
     public bool ballInGame;
 
-    //Variables to hanlde bullet time
-    [Header("Variables for bullet time")]
-    public float slowDownTime;
-    public float timesSlower;
-    public bool bulletTime;
-    private float bulletTimeTimer;
-
     [Header("Scriptable objects with teams information")]
     //Reference to teams that are on this match
     public Team leftTeam;
@@ -33,47 +26,25 @@ public class MatchController : MonoBehaviour {
     public GameObject intialAnimationObject;
     public Text matchTypeText;
 
-    [Header("Pause panel objects")]
-    public GameObject mainPausePanel;
-    //Paused, Victory, tie, defeat
-    public Text matchStatus;
-    public Text matchType;
-    public Text matchScore;
-
-    public GameObject pauseMatchPanelOptions; 
-    public GameObject finishQuickMatchPanelOptions;
-    public GameObject finishTourMatchPanelOptions;
     
-
     [Header("Final match animation objects")]
     public GameObject finalMatchPanel;
     public Text finalMatchStatusText;
 
-    [Header("Goal Animation objects")]
     public GameObject golAnimation_UI;
-    public GameObject leftTeamScore_UI;
-    public GameObject rightTeamScore_UI;
 
-    //Variables that manage the time elapsed in the match
-    [Header("Time panel")]
-    public GameObject timePanel;
-    public Text timeText;
-    private float timer;
-    private bool endMatch;
-
+    public bool endMatch;
     private int roundMatch;
-    
+
+    public GameObject finishQuickMatchPanelOptions;
+    public GameObject finishTourMatchPanelOptions;
 
     [Header("Restart ball Panel")]
     //Reference to the panel that counts when the ball is inactive and it should be restarted.
     public GameObject timeInactiveBallPanel;
     public Text restartingBallTimeText;
     
-    //Variables that handle the score in the match
-    public int LeftTeamScore { get; set; }
-    public int RightTeamScore { get; set; }
-
-
+    
     //Singleton, reference to this script and its info.
     private void Awake()
     {
@@ -92,131 +63,42 @@ public class MatchController : MonoBehaviour {
         StartCoroutine(InitAnimation());
 
         //Start score at 0 and game as playing
-        LeftTeamScore = 0;
-        RightTeamScore = 0;
         gameIsPaused = false;
 
-        //Set time
-        timer = MatchInfo._matchInfo.matchTime * 59;
-        timeText.text = string.Format("{0}:00", MatchInfo._matchInfo.matchTime.ToString()); 
         ballInGame = false;
         endMatch = false;
 
-
         //Active these panels to assign flags
         golAnimation_UI.SetActive(true);
-        mainPausePanel.SetActive(true);
         
 
         //Set UI (flags and team names)
         SetTeamFlags("LeftTeamFlags", leftTeam.flag, leftTeam.teamName);
         SetTeamFlags("RightTeamFlags", rightTeam.flag, rightTeam.teamName);
 
-        //Hide-show UI panels
-        pauseMatchPanelOptions.SetActive(true);
-        finishQuickMatchPanelOptions.SetActive(false);
-        mainPausePanel.SetActive(false);
+        
         golAnimation_UI.SetActive(false);
 
-        bulletTime = false;
-        bulletTimeTimer = 0;
+        finishQuickMatchPanelOptions.SetActive(false);
+
     }
 
     private void Update()
     {
-        if(timer > 0 && ballInGame)
-        {
-            timer -= Time.deltaTime;
-
-            string minutes = Mathf.Floor(timer / 60).ToString("00");
-            string seconds = (timer % 60).ToString("00");
-            timeText.text = string.Format("{0}:{1}", minutes, seconds);
-            
-            if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);
-        }
-
-        if (bulletTime)
-        {
-            bulletTimeTimer += Time.unscaledDeltaTime;
-            if(bulletTimeTimer > slowDownTime)
-            {
-                Time.timeScale = 1f;
-                bulletTime = false;
-                bulletTimeTimer = 0;
-            }
-        }
-
-        //This handle the time remaing in match
-        if (timer <= 0)
-        {
-            endMatch = true;
-            timeText.text = "FINISH";
-            timeText.GetComponent<Animator>().SetBool("Warning", false);
-        }
+        
 
         //if time has finished start end animation 
         if (endMatch)
         {
-            timer = 1;
             StartCoroutine(PlayEndMatchAnimation(false));
             ballInGame = false;
             endMatch = false;
         }
     }
 
-    /// <summary>
-    /// This method update the score in the current match.
-    /// </summary>
-    /// <param name="golName">Who score?</param>
-    public void AdjustScore(string golName)
-    {
-        //Play goal sound
-        GetComponent<SoundMatchController>().PlayGolSound();
-        if (golName == "RightGoalTrigger")
-        {
-            //Increase score
-            LeftTeamScore++;
-            //PlayerDataController.playerData.goalsScored++;
-            //Change color of Balls in goals UI
-            Animator anim = leftTeamScore_UI.transform.GetChild(LeftTeamScore).GetComponent<Animator>();
-            anim.SetTrigger("Goal");
-        }
-        else if (golName == "LeftGoalTrigger")
-        {
-            RightTeamScore++;
-            //PlayerDataController.playerData.goalsAgainst++;
-            Animator anim = rightTeamScore_UI.transform.GetChild(RightTeamScore).GetComponent<Animator>();
-            anim.SetTrigger("Goal");
-        }
-        //Update pause panel text
-        UpdateUIScore();
-        //Check if score is 5
-        CheckScore();
-    }
+    
 
-    /// <summary>
-    /// This method checks if score is equal to 5 for everyone
-    /// If not continue spawing balls
-    /// </summary>
-    public void CheckScore()
-    {
-        //play end animation with knockout.
-        if (LeftTeamScore == 5)
-        {
-            StartCoroutine(PlayEndMatchAnimation(true));
-            //PlayerDataController.playerData.knockoutVictories++;
-            return;
-        }
-
-        if (RightTeamScore == 5)
-        {
-            StartCoroutine(PlayEndMatchAnimation(true));
-            //PlayerDataController.playerData.knockoutDefeats++;
-            return;
-        }
-
-        SpawnBall();
-    }
+    
 
     /// <summary>
     /// Instatiate ball in game field
@@ -239,13 +121,7 @@ public class MatchController : MonoBehaviour {
         golAnimation_UI.SetActive(false);
     }
 
-    /// <summary>
-    /// Update pause panel score.
-    /// </summary>
-    public void UpdateUIScore()
-    {
-        matchScore.text = LeftTeamScore.ToString() + "-" + RightTeamScore.ToString();
-    }
+    
 
     /// <summary>
     /// Play end match animation.
@@ -287,56 +163,16 @@ public class MatchController : MonoBehaviour {
         finalMatchPanel.gameObject.SetActive(false);
 
         //Activate final match panel
-        mainPausePanel.SetActive(true);
-        //Change final match status
-        if (LeftTeamScore > RightTeamScore)
-        {
-            matchStatus.text = "VICTORY!";
-            matchStatus.color = Color.yellow;
-
-            //PlayerDataController.playerData.victories++;
-            //PlayerDataController.playerData.GetPlayerCoins("Victory", MatchInfo._matchInfo.matchLevel);
-        }
-        else if (LeftTeamScore < RightTeamScore)
-        {
-            matchStatus.text = "DEFEAT";
-            matchStatus.color = Color.red;
-            
-            //PlayerDataController.playerData.defeats++;
-            //PlayerDataController.playerData.GetPlayerCoins("Defeat", MatchInfo._matchInfo.matchLevel);
-        }
-        else
-        {
-            matchStatus.text = "TIE";
-
-            //PlayerDataController.playerData.ties++;
-            //PlayerDataController.playerData.GetPlayerCoins("Tie", MatchInfo._matchInfo.matchLevel);
-        }
+        GetComponent<PauseMatchController>().mainPausePanel.SetActive(true);
+        
         //Deactivate pause options
-        pauseMatchPanelOptions.SetActive(false);
+        GetComponent<PauseMatchController>().pauseMatchPanelOptions.SetActive(false);
+
+
         //Activate differents options depending of match's type.
         if (MatchInfo._matchInfo.matchType == MatchType.QuickMatch) finishQuickMatchPanelOptions.SetActive(true);
         if (MatchInfo._matchInfo.matchType == MatchType.TourMatch) finishTourMatchPanelOptions.SetActive(true);
 
-        
-        //Players info
-        //Increment player data for team used and formation used
-        //PlayerDataController.playerData.IncrementDictionaryElement(leftTeam.teamName, PlayerDataController.playerData.timesTeamSelected);
-
-        string usedLineUp = MatchInfo._matchInfo.leftTeamLineUp.defense.ToString() + "-" +
-            MatchInfo._matchInfo.leftTeamLineUp.mid.ToString() + "-" +
-            MatchInfo._matchInfo.leftTeamLineUp.attack.ToString();
-        //PlayerDataController.playerData.IncrementDictionaryElement(usedLineUp, PlayerDataController.playerData.timesFormationSelected);
-
-        //Set team most used and formation most used
-        //string teamMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesTeamSelected);
-        //PlayerDataController.playerData.teamMostUsed = teamMostUsed;
-
-        //string lineUpMostUsed = PlayerDataController.playerData.GetFirstElementFromDictionaries(PlayerDataController.playerData.timesFormationSelected);
-        //PlayerDataController.playerData.mostFormationUsed = lineUpMostUsed;
-        
-        //Save player's data
-        //PlayerDataController.playerData.SavePlayerInfo();
     }
     
 
@@ -358,28 +194,6 @@ public class MatchController : MonoBehaviour {
         }
     }
 
-    /// <summary>
-    /// This method will resume the match, if the match is in pause state.
-    /// </summary>
-    public void Resume()
-    {
-        mainPausePanel.SetActive(false);
-        Time.timeScale = 1f;
-        gameIsPaused = false;
-        timePanel.SetActive(true);
-    }
-
-    /// <summary>
-    /// This method will pause the match, if the match is in playing state.
-    /// </summary>
-    public void Pause()
-    {
-        mainPausePanel.SetActive(true);
-        timePanel.SetActive(false);
-        Time.timeScale = 0f;
-        gameIsPaused = true;
-    }
-
     //Activate inital animation.
     IEnumerator InitAnimation()
     {
@@ -387,7 +201,7 @@ public class MatchController : MonoBehaviour {
         if (MatchInfo._matchInfo.matchType == MatchType.QuickMatch)
         {
             matchTypeText.text = "Friendly";
-            matchType.text = matchTypeText.text;
+            GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
         }
         if (MatchInfo._matchInfo.matchType == MatchType.TourMatch)
             SetInitalMatchTypeGivenTournament(TournamentController._tourCtlr.matchesRound, TournamentController._tourCtlr.teamsForKnockoutStage);
@@ -395,9 +209,12 @@ public class MatchController : MonoBehaviour {
         intialAnimationObject.SetActive(true);
         yield return new WaitForSeconds(2.5f);
         intialAnimationObject.SetActive(false);
-        timePanel.SetActive(true);
-        leftTeamScore_UI.SetActive(true);
-        rightTeamScore_UI.SetActive(true);
+
+        GetComponent<TimeMatchController>().timePanel.SetActive(true);
+
+        GetComponent<MatchScoreController>().leftTeamScore_UI.SetActive(true);
+        GetComponent<MatchScoreController>().rightTeamScore_UI.SetActive(true);
+        
         //Instiatite a ball
         SpawnBall();
     }
@@ -413,7 +230,7 @@ public class MatchController : MonoBehaviour {
         {
             int roundMatch = TournamentController._tourCtlr.matchesRound + 1;
             matchTypeText.text = TournamentController._tourCtlr.tourName + "\n Match " + roundMatch.ToString();
-            matchType.text = matchTypeText.text;
+            GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
         }
         else
         {
@@ -423,19 +240,19 @@ public class MatchController : MonoBehaviour {
                 {
                     case 3:
                         matchTypeText.text = "Round of 16";
-                        matchType.text = matchTypeText.text;
+                        GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
                         break;
                     case 4:
                         matchTypeText.text = "Quarter finals";
-                        matchType.text = matchTypeText.text;
+                        GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
                         break;
                     case 5:
                         matchTypeText.text = "Semi finals";
-                        matchType.text = matchTypeText.text;
+                        GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
                         break;
                     case 6:
                         matchTypeText.text = "FINAL";
-                        matchType.text = matchTypeText.text;
+                        GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
                         break;
                 }
             }
@@ -445,34 +262,19 @@ public class MatchController : MonoBehaviour {
                 {
                     case 3:
                         matchTypeText.text = "Quarter finals";
-                        matchType.text = matchTypeText.text;
+                        GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
                         break;
                     case 4:
                         matchTypeText.text = "Semi finals";
-                        matchType.text = matchTypeText.text;
+                        GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
                         break;
                     case 5:
                         matchTypeText.text = "FINAL";
-                        matchType.text = matchTypeText.text;
+                        GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
                         break;
                 }
             }
         }
-    }
-
-    //Animation for bullet time hit.
-    //Fix
-    public void PlayBulletTimeAnimation(Vector2 pos)
-    {
-        Time.timeScale = 0.02f;
-        bulletTime = true;
-    }
-
-    public IEnumerator BallHittedEffect()
-    {
-        Time.timeScale = 0.5f;
-        yield return new WaitForSecondsRealtime(0.1f);
-        Time.timeScale = 1;
     }
 
     /// <summary>

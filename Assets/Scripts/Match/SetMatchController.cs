@@ -27,8 +27,8 @@ public class SetMatchController : MonoBehaviour
         tableColor.sprite = MatchInfo._matchInfo.tableSelected;
 
         //Set team side scripts
-        SetTeam(leftTeam, MatchInfo._matchInfo.leftControlsAssigned.Count);
-        SetTeam(rightTeam, MatchInfo._matchInfo.rightControlsAssigned.Count);
+        SetInputsForTeam(leftTeam, MatchInfo._matchInfo.leftControlsAssigned.Count);
+        SetInputsForTeam(rightTeam, MatchInfo._matchInfo.rightControlsAssigned.Count);
     }
 
 
@@ -38,7 +38,7 @@ public class SetMatchController : MonoBehaviour
     /// </summary>
     /// <param name="team">Left or right team game object</param>
     /// <param name="teamPlayers">Number of players assigned to that team</param>
-    private void SetTeam(GameObject team, int teamPlayersCount)
+    private void SetInputsForTeam(GameObject team, int teamPlayersCount)
     {
         //If there are at least one player.
         //Lines will be handle by controller input

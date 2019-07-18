@@ -70,12 +70,16 @@
     <Compile Include="Assets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\Scripts\LineUpButton.cs" />
     <Compile Include="Assets\Scripts\MainMenuController.cs" />
+    <Compile Include="Assets\Scripts\Match\BulletTimeController.cs" />
     <Compile Include="Assets\Scripts\Match\GolController.cs" />
     <Compile Include="Assets\Scripts\Match\MatchController.cs" />
     <Compile Include="Assets\Scripts\Match\MatchInfo.cs" />
+    <Compile Include="Assets\Scripts\Match\MatchScoreController.cs" />
+    <Compile Include="Assets\Scripts\Match\PauseMatchController.cs" />
     <Compile Include="Assets\Scripts\Match\SetMatchController.cs" />
     <Compile Include="Assets\Scripts\Match\SetPlayfield.cs" />
     <Compile Include="Assets\Scripts\Match\SoundMatchController.cs" />
+    <Compile Include="Assets\Scripts\Match\TimeMatchController.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCAttractBall.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCHitBall.cs" />
     <Compile Include="Assets\Scripts\NPC\NPCLineMovement.cs" />
