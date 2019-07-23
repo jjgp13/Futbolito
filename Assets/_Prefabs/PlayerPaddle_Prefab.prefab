@@ -4763,8 +4763,8 @@ GameObject:
   - component: {fileID: 4337451446030452}
   - component: {fileID: 212943662615449042}
   - component: {fileID: 50646569453009556}
-  - component: {fileID: 61908929142357924}
   - component: {fileID: 95569099755741644}
+  - component: {fileID: 61908929142357924}
   - component: {fileID: 114130473505388842}
   - component: {fileID: 114757819027460776}
   - component: {fileID: 58537865357930838}
@@ -4863,6 +4863,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
+--- !u!95 &95569099755741644
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1541516827129650}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6d0b0c34ccc0e6f4fb4c090bcf1b5b29, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 1
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &61908929142357924
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4889,25 +4908,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.2}
   m_EdgeRadius: 0
---- !u!95 &95569099755741644
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1541516827129650}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6d0b0c34ccc0e6f4fb4c090bcf1b5b29, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 1
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114130473505388842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4924,7 +4924,7 @@ MonoBehaviour:
   animatorController: {fileID: 95569099755741644}
   shootForce: 0
   attractionForce: -1
-  wallPassForce: 10
+  wallPassForce: 15
   attractBall: {fileID: 198545946335611030}
   chargingShoot: {fileID: 198742338819376840}
 --- !u!114 &114757819027460776
@@ -4990,7 +4990,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.27}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5001,7 +5001,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 0.3}
+  m_Size: {x: 1.48, y: 1.05}
   m_EdgeRadius: 0
 --- !u!1001 &2086645697661869653
 PrefabInstance:

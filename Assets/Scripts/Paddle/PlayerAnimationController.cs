@@ -141,7 +141,6 @@ public class PlayerAnimationController : MonoBehaviour {
     {
         if (Input.GetButton(attractButton))
         {
-            animatorController.SetBool("Magnet", true);
             attractHoldingTime += Time.deltaTime;
             if (attractHoldingTime > 0)
             {
@@ -152,7 +151,6 @@ public class PlayerAnimationController : MonoBehaviour {
         }
         else
         {
-            animatorController.SetBool("Magnet", false);
             attractHoldingTime = 0;
             GetComponent<PointEffector2D>().forceMagnitude = 0;
             attractBall.Stop();

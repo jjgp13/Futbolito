@@ -29,13 +29,7 @@ public class MatchScoreController : MonoBehaviour
         LeftTeamScore = 0;
         RightTeamScore = 0;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     /// <summary>
     /// This method update the score in the current match.
     /// </summary>
