@@ -24,7 +24,6 @@ public class TimeMatchController : MonoBehaviour
     {
         CheckMatchTime();
         DecreaseMatchTime();
-
     }
 
     private void CheckMatchTime()

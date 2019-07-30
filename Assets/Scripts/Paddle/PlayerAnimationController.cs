@@ -79,6 +79,7 @@ public class PlayerAnimationController : MonoBehaviour {
 
                 //Add force to ball
                 objectHitted.GetComponent<Rigidbody2D>().AddForceAtPosition(direction, pointOfContact, ForceMode2D.Impulse);
+                BulletTimeController.instance.DoSlowMotion();
             }
         }
     }
@@ -91,16 +92,18 @@ public class PlayerAnimationController : MonoBehaviour {
             //If ball is inside of trigger and press wall pass
             if (objectHitted.tag == "Ball" && Input.GetButtonDown(wallPassButton))
             {
+                collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+                collision.gameObject.GetComponent<BallBehavior>().stopBallParticles.Play();
                 //If ball is in movement, stops it
-                if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0 && collision.gameObject.GetComponent<Rigidbody2D>().velocity.y > 0)
-                    collision.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f,0f);
-                else//If ball is quite, make wall pass
-                {
-                    int randomWall = Random.Range(0, 100);
-                    //pass to upper wall
-                    if (randomWall >= 50) collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, wallPassForce);
-                    else collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -wallPassForce);
-                }
+                //if(collision.gameObject.GetComponent<Rigidbody2D>().velocity.x > 0 && collision.gameObject.GetComponent<Rigidbody2D>().velocity.y > 0)
+                //    
+                //else//If ball is quite, make wall pass
+                //{
+                //    int randomWall = Random.Range(0, 100);
+                //    //pass to upper wall
+                //    if (randomWall >= 50) collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, wallPassForce);
+                //    else collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, -wallPassForce);
+                //}
             }
         }
     }

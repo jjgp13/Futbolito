@@ -7,7 +7,9 @@ public class BallBehavior : MonoBehaviour {
     Rigidbody2D rb;
     public ParticleSystem ballExplosion;
     public ParticleSystem ballHitParticles;
+    public ParticleSystem stopBallParticles;
     public GameObject energyParticles;
+
 
     public float timeToWaitToStart;
     private float inactiveBallTime;
