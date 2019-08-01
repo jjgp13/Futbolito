@@ -9,18 +9,21 @@ public class BulletTimeController : MonoBehaviour
     public float slowDownTime;
     public bool inSlowMotion = false;
 
+    
 
     private void Awake()
     {
         instance = this;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        //Debug.Log(Time.timeScale);
         if (inSlowMotion)
         {
             Time.timeScale += (1f / slowDownTime) * Time.unscaledDeltaTime;
-            if(Time.timeScale > 1)
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            if(Time.timeScale >= 1)
             {
                 inSlowMotion = false;
                 Time.timeScale = 1f;
@@ -28,8 +31,10 @@ public class BulletTimeController : MonoBehaviour
         }
     }
 
-    public void DoSlowMotion()
+    public void DoSlowMotion(float timesSlower, float motionTime)
     {
+        slowDownFactor = timesSlower;
+        slowDownTime = motionTime;
         inSlowMotion = true;
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;

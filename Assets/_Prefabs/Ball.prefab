@@ -65,6 +65,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -247,7 +248,7 @@ AudioSource:
 --- !u!199 &199590037812927922
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -271,6 +272,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -5041,7 +5043,7 @@ ParticleSystem:
   looping: 0
   prewarm: 0
   playOnAwake: 0
-  useUnscaledTime: 0
+  useUnscaledTime: 1
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
   startDelay:
@@ -6034,16 +6036,16 @@ ParticleSystem:
           time: 0
           value: 1
           inSlope: 0.102633715
-          outSlope: -2.0005226
+          outSlope: -3.3019876
           tangentMode: 69
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 1
         - serializedVersion: 3
-          time: 0.49986938
+          time: 0.3028479
           value: 0
-          inSlope: -2.0005226
-          outSlope: 0.9997235
+          inSlope: -3.3019876
+          outSlope: 0.71719265
           tangentMode: 69
           weightedMode: 0
           inWeight: 0.12559739
@@ -6051,7 +6053,7 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0.49999237
-          inSlope: 0.9997235
+          inSlope: 0.71719265
           outSlope: -1
           tangentMode: 69
           weightedMode: 0
@@ -9752,7 +9754,7 @@ ParticleSystem:
 --- !u!199 &6171977774308778178
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 2
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -9776,6 +9778,7 @@ ParticleSystemRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

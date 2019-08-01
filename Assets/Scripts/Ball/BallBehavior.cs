@@ -97,10 +97,10 @@ public class BallBehavior : MonoBehaviour {
     /// <param name="other"></param>
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "PlayerPaddle" || other.gameObject.tag == "NPCPaddle")
-            soundC.PlaySound(soundC.paddleHit);
-        if (other.gameObject.tag == "Wall")
-            soundC.PlaySound(soundC.againstWall);
+        //if (other.gameObject.tag == "PlayerPaddle" || other.gameObject.tag == "NPCPaddle")
+        //    soundC.PlaySound(soundC.paddleHit);
+        //if (other.gameObject.tag == "Wall")
+        //    soundC.PlaySound(soundC.againstWall);
     }
     
 }
