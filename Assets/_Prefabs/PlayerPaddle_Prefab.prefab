@@ -48,7 +48,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -4929,7 +4929,7 @@ MonoBehaviour:
   isLineActive: 0
   shootButton: 
   wallPassButton: 
-  magentButton: 
+  magnetButton: 
 --- !u!114 &444919222870189380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4967,7 +4967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5561004558662791370
 Transform:
   m_ObjectHideFlags: 0
@@ -5031,7 +5031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7834d67204b8f4d909040c0a5c8611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionForce: 0
+  attractionForce: -3
   attractBall: {fileID: 198545946335611030}
 --- !u!1 &4329960836727808180
 GameObject:
@@ -5050,7 +5050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6231029674664392866
 Transform:
   m_ObjectHideFlags: 0

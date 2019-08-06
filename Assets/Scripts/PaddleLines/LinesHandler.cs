@@ -209,8 +209,14 @@ public class LinesHandler : MonoBehaviour {
                 lines[i].GetComponent<NPCLineMovement>().isActive = conf[i];
             
             for (int j = 0; j < lines[i].transform.childCount; j++)
+            {
                 lines[i].transform.GetChild(j).GetComponent<Animator>().SetBool("Active", conf[i]);
+                //If magnet is on, close it
+                //lines[i].transform.GetChild(j).transform.GetComponentInChildren<PaddleMagnet>().MagnetOff();
+            }
+                
         }
+        //Circle indicators of active lines
         for(int i = 0; i < linesIndicators.Length; i++)
         {
             if(conf[i]) linesIndicators[i].sprite = activeLineSprite;

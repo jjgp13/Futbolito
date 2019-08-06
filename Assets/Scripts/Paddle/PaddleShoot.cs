@@ -63,14 +63,17 @@ public class PaddleShoot : MonoBehaviour
     {
         shootHoldingTime = 0;
         if (chargingShoot.isPlaying)
-        {
-            chargingShoot.Stop();
-            var emission = chargingShoot.emission;
-            emission.rateOverTime = 0;
-        }
+            StopChargingParticles();
         //Pass infor to animator
         paddleAnimator.SetBool("touching", false);
         paddleAnimator.SetFloat("timeTouching", shootHoldingTime);
+    }
+
+    private void StopChargingParticles()
+    {
+        chargingShoot.Stop();
+        var emission = chargingShoot.emission;
+        emission.rateOverTime = 0;
     }
 
     //Check if the object hitted is the ball

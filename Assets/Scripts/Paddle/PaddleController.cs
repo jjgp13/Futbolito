@@ -11,7 +11,7 @@ public class PaddleController : MonoBehaviour
 
     public string shootButton;
     public string wallPassButton;
-    public string magentButton;
+    public string magnetButton;
 
     private void Start()
     {
@@ -19,7 +19,7 @@ public class PaddleController : MonoBehaviour
         if (linesHandler.numberOfPlayers == 1)
         {
             shootButton = linesHandler.defenseButtons.shootButton;
-            //wallPassButton = linesHandler.defenseButtons.wallPassButton;
+            magnetButton = linesHandler.defenseButtons.attractButton;
         }
         else
         {
