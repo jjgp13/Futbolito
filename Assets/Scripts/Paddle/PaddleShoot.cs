@@ -84,7 +84,7 @@ public class PaddleShoot : MonoBehaviour
         if (objectHitted.tag == "Ball")
         {
             float shootForce = ReturnLevelHitForce();
-            Debug.Log(shootForce);
+            //Debug.Log(shootForce);
             //if is playing shoot animation
             if (shootForce > 0)
             {

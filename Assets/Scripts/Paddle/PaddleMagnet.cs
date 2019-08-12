@@ -13,6 +13,8 @@ public class PaddleMagnet : MonoBehaviour
     public float attractionForce;    
     public ParticleSystem attractBall;
 
+    private bool isMagnetOff;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class PaddleMagnet : MonoBehaviour
 
             if (Input.GetButtonUp(magnetButton))
                 MagnetOff();
-        }
+        } else if (!isMagnetOff) MagnetOff();
 
     }
 
@@ -48,6 +50,7 @@ public class PaddleMagnet : MonoBehaviour
 
     public void MagnetOff()
     {
+        isMagnetOff = true;
         attractHoldingTime = 0;
         GetComponent<PointEffector2D>().forceMagnitude = 0;
         attractBall.Stop();

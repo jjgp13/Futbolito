@@ -5104,7 +5104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPassButton: 
-  wallPassForce: 0
+  wallPassForce: 10
 --- !u!1001 &2086645697661869653
 PrefabInstance:
   m_ObjectHideFlags: 0

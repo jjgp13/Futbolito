@@ -71,16 +71,16 @@ public class NPCLineMovement : MonoBehaviour {
         switch (numPlayerInLine)
         {
             case 1:
-                speed = 3f;
+                speed = 4f;
                 break;
             case 2:
-                speed = 2.5f;
+                speed = 3.25f;
                 break;
             case 3:
-                speed = 2f;
+                speed = 2.5f;
                 break;
             case 4:
-                speed = 1.5f;
+                speed = 1.75f;
                 break;
             case 5:
                 speed = 1f;

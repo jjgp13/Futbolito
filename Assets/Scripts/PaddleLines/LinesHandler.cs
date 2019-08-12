@@ -71,11 +71,11 @@ public class LinesHandler : MonoBehaviour {
         //When game start, check the number of controlls in each team
         //If the team is not handle by AI, check type of controls select
         if (teamSide == TeamSide.LeftTeam)
-            SetLinesActiveLimits(-8.3f, -3f, 3f);
+            SetLinesActiveLimits(-8.4f, -3f, 3f);
 
 
         if (teamSide == TeamSide.RightTeam)
-            SetLinesActiveLimits(8.3f, 3f, -3f);
+            SetLinesActiveLimits(8.4f, 3f, -3f);
 
         //If two players are in the same team. Hold button is assigned automic
         if (MatchInfo._matchInfo.leftControlsAssigned.Count == 2)
@@ -209,11 +209,7 @@ public class LinesHandler : MonoBehaviour {
                 lines[i].GetComponent<NPCLineMovement>().isActive = conf[i];
             
             for (int j = 0; j < lines[i].transform.childCount; j++)
-            {
                 lines[i].transform.GetChild(j).GetComponent<Animator>().SetBool("Active", conf[i]);
-                //If magnet is on, close it
-                //lines[i].transform.GetChild(j).transform.GetComponentInChildren<PaddleMagnet>().MagnetOff();
-            }
                 
         }
         //Circle indicators of active lines

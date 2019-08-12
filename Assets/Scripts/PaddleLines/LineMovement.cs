@@ -53,19 +53,19 @@ public class LineMovement : MonoBehaviour {
         switch (numPlayerInLine)
         {
             case 1:
-                speed = 5.5f;
+                speed = 5f;
                 break;
             case 2:
-                speed = 4.5f;
+                speed = 4.25f;
                 break;
             case 3:
                 speed = 3.5f;
                 break;
             case 4:
-                speed = 2.5f;
+                speed = 2.75f;
                 break;
             case 5:
-                speed = 1.5f;
+                speed = 2f;
                 break;
         }
     }

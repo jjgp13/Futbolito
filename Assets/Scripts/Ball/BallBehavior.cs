@@ -41,6 +41,7 @@ public class BallBehavior : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        Debug.Log(rb.velocity.magnitude);
         if ((rb.velocity.x > -minVelocityLimit && rb.velocity.x < minVelocityLimit && rb.velocity.y > -minVelocityLimit && rb.velocity.y < minVelocityLimit) && kickOff)
         {
             inactiveBallTime += Time.deltaTime;
