@@ -55,4 +55,5 @@ public class PaddleMagnet : MonoBehaviour
         GetComponent<PointEffector2D>().forceMagnitude = 0;
         attractBall.Stop();
     }
+
 }

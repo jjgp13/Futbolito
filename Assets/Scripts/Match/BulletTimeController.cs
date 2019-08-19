@@ -9,8 +9,6 @@ public class BulletTimeController : MonoBehaviour
     public float slowDownTime;
     public bool inSlowMotion = false;
 
-    
-
     private void Awake()
     {
         instance = this;

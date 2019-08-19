@@ -20,6 +20,7 @@ public class PaddleController : MonoBehaviour
         {
             shootButton = linesHandler.defenseButtons.shootButton;
             magnetButton = linesHandler.defenseButtons.attractButton;
+            wallPassButton = linesHandler.defenseButtons.wallPassButton;
         }
         else
         {

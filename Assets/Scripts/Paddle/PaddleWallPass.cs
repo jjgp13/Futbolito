@@ -16,20 +16,34 @@ public class PaddleWallPass : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (GetComponentInParent<LineMovement>().isActive)
+        if (GetComponentInParent<PaddleController>().isLineActive)
         {
             GameObject obj = collision.gameObject;
             //If ball is inside of trigger and press wall pass
-            if (obj.tag == "Ball" && Input.GetButtonDown(wallPassButton))
+            if (obj.CompareTag("Ball") && Input.GetButtonDown(wallPassButton))
             {
                 if (!BulletTimeController.instance.inSlowMotion)
                     BulletTimeController.instance.DoSlowMotion(0.25f, 1f);
 
-                
-                obj.GetComponent<Rigidbody2D>().velocity *= 0.1f;
-                collision.gameObject.GetComponent<BallBehavior>().stopBallParticles.Play();
+                //Stop ball
+                if (obj.GetComponent<Rigidbody2D>().velocity.magnitude > 1f)
+                {
+                    obj.GetComponent<Rigidbody2D>().velocity *= 0.1f;
+                    collision.gameObject.GetComponent<BallBehavior>().stopBallParticles.Play();
+                }//Wall pass
+                else
+                {
+                    obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                    if(transform.position.y >= obj.transform.position.y)
+                        obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * wallPassForce;
+                    else
+                        obj.GetComponent<Rigidbody2D>().velocity = Vector2.up * wallPassForce;
+                }
+
+
                 
             }
         }
     }
+
 }
