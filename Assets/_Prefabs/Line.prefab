@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3830911421258896337}
   - component: {fileID: 3830911421258896339}
   m_Layer: 0
-  m_Name: GKLine
+  m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,6 +61,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -149,6 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceToShoot: 1
   angleToShoot: 45
+  isLineShooting: 0
+  shootProbalities: 90
 --- !u!114 &3830911421258896339
 MonoBehaviour:
   m_ObjectHideFlags: 0

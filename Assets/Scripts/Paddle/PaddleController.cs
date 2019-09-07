@@ -27,7 +27,11 @@ public class PaddleController : MonoBehaviour
             //Controls for two players
             //Think
         }
+    }
 
+    public void StopMagnet()
+    {
+        GetComponentInChildren<PaddleMagnet>().MagnetOff();
     }
 
     // Update is called once per frame

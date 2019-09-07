@@ -8,7 +8,6 @@ public class BallBehavior : MonoBehaviour {
     public ParticleSystem ballExplosion;
     public ParticleSystem ballHitParticles;
     public ParticleSystem stopBallParticles;
-    public GameObject energyParticles;
 
 
     public float timeToWaitToStart;
@@ -19,8 +18,6 @@ public class BallBehavior : MonoBehaviour {
     public int timeInactiveToRespawn;
     public float minVelocityLimit;
     public float iniMinForce, iniMaxForce;
-
-    private BallSoundsController soundC;
 
 
     // Use this for initialization
@@ -34,14 +31,11 @@ public class BallBehavior : MonoBehaviour {
         Invoke("AddInitialVelocity", timeToWaitToStart);
 
         inactiveBallTime = 0;
-        kickOff = false;
-
-        soundC = GetComponent<BallSoundsController>();
+        kickOff = false;        
     }
 
     private void FixedUpdate()
     {
-        Debug.Log(rb.velocity.magnitude);
         if ((rb.velocity.x > -minVelocityLimit && rb.velocity.x < minVelocityLimit && rb.velocity.y > -minVelocityLimit && rb.velocity.y < minVelocityLimit) && kickOff)
         {
             inactiveBallTime += Time.deltaTime;

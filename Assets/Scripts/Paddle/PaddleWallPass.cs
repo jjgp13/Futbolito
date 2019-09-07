@@ -22,18 +22,15 @@ public class PaddleWallPass : MonoBehaviour
             //If ball is inside of trigger and press wall pass
             if (obj.CompareTag("Ball") && Input.GetButtonDown(wallPassButton))
             {
-                if (!BulletTimeController.instance.inSlowMotion)
-                    BulletTimeController.instance.DoSlowMotion(0.25f, 1f);
 
                 //Stop ball
-                if (obj.GetComponent<Rigidbody2D>().velocity.magnitude > 1f)
+                if (obj.GetComponent<Rigidbody2D>().velocity != Vector2.zero)
                 {
-                    obj.GetComponent<Rigidbody2D>().velocity *= 0.1f;
+                    obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     collision.gameObject.GetComponent<BallBehavior>().stopBallParticles.Play();
                 }//Wall pass
                 else
                 {
-                    obj.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     if(transform.position.y >= obj.transform.position.y)
                         obj.GetComponent<Rigidbody2D>().velocity = Vector2.down * wallPassForce;
                     else
