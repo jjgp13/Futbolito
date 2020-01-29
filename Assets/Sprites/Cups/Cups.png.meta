@@ -1,15 +1,27 @@
 fileFormatVersion: 2
 guid: c54765494d758e44d8be2a3d989a53da
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Copa_del_Mundo
-    21300002: CopaAmerica
-    21300004: CopaOro
-    21300006: CopaDeEuropa
-    21300008: CopaAfricana
-    21300010: CopaAsiatica
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Copa_del_Mundo
+  - first:
+      213: 21300002
+    second: CopaAmerica
+  - first:
+      213: 21300004
+    second: CopaOro
+  - first:
+      213: 21300006
+    second: CopaDeEuropa
+  - first:
+      213: 21300008
+    second: CopaAfricana
+  - first:
+      213: 21300010
+    second: CopaAsiatica
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -64,7 +76,7 @@ TextureImporter:
   compressionQualitySet: 0
   textureFormatSet: 0
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -75,7 +87,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -86,7 +99,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -97,7 +111,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -108,6 +123,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -127,6 +143,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 55a79b26978a06c429a14193dda71b52
+      internalID: 21300000
       vertices: []
       indices: 
       edges: []
@@ -147,6 +164,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 58e75c427eee8724f990c631e50b597f
+      internalID: 21300002
       vertices: []
       indices: 
       edges: []
@@ -167,6 +185,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 4cf3e0e6b461250469dfd0195163044b
+      internalID: 21300004
       vertices: []
       indices: 
       edges: []
@@ -187,6 +206,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7db75d5fb99b333479f11cc0e05a1e50
+      internalID: 21300006
       vertices: []
       indices: 
       edges: []
@@ -207,6 +227,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: cf9b8ad8b56a36e4792632eb439957f4
+      internalID: 21300008
       vertices: []
       indices: 
       edges: []
@@ -227,6 +248,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 73876ffa0fa06214a9954424c6ba608d
+      internalID: 21300010
       vertices: []
       indices: 
       edges: []
@@ -235,10 +257,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: bbae08acbfa47a847b5d9ebe4d6ab2a7
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
