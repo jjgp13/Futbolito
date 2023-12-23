@@ -252,7 +252,7 @@ TextureImporter:
       213: 21300164
     second: Uzbekistan
   externalObjects: {}
-  serializedVersion: 10
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -269,9 +269,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -281,8 +284,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -303,11 +306,17 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -317,8 +326,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -328,8 +339,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -339,8 +352,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -350,7 +365,22 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -2107,9 +2137,92 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-  spritePackingTag: 
+    nameFileIdTable:
+      Albania: 21300096
+      Alemania: 21300024
+      Arabia: 21300006
+      Argelia: 21300120
+      Argentina: 21300048
+      Australia: 21300036
+      Austria: 21300098
+      Barein: 21300144
+      Belgica: 21300040
+      Bolivia: 21300068
+      Brasil: 21300008
+      Burkina_Faso: 21300122
+      Camerun: 21300124
+      Canada: 21300082
+      Catar: 21300146
+      Chile: 21300070
+      China: 21300148
+      Colombia: 21300058
+      Congo: 21300136
+      Corea_Del_Norte: 21300150
+      Costa_Rica: 21300012
+      Costa_de_Marfil: 21300128
+      Croacia: 21300050
+      Curazao: 21300088
+      Dinamarca: 21300038
+      Ecuador: 21300072
+      Egipto: 21300002
+      Emiratos_Arabes: 21300152
+      Eslovaquia: 21300100
+      Espana: 21300020
+      Estados_Unidos: 21300074
+      Flags 1_39: 21300078
+      Francia: 21300032
+      Gabon: 21300130
+      Gales: 21300102
+      Ghana: 21300126
+      Guinea: 21300132
+      Guyana: 21300086
+      Haiti: 21300064
+      Honduras: 21300090
+      Hungria: 21300104
+      Inglaterra: 21300044
+      Irak: 21300154
+      Iran: 21300022
+      Irlanda: 21300106
+      Irlanda del Norte: 21300108
+      Islandia: 21300052
+      Italia: 21300110
+      Jamaica: 21300076
+      Japon: 21300062
+      Jordania: 21300156
+      Korea: 21300030
+      Kuwait: 21300158
+      Mali: 21300134
+      Marruecos: 21300018
+      Martinica: 21300084
+      Mexico: 21300028
+      Nicaragua: 21300092
+      Nigeria: 21300054
+      Oman: 21300160
+      Palestina: 21300162
+      Panama: 21300046
+      Paraguay: 21300066
+      Peru: 21300034
+      Polonia: 21300056
+      Portugal: 21300016
+      Republica_Checa: 21300112
+      Rumania: 21300114
+      Rusia: 21300000
+      Salvador: 21300094
+      Senegal: 21300060
+      Serbia: 21300014
+      Suecia: 21300026
+      Suiza: 21300010
+      Togo: 21300138
+      Tunez: 21300042
+      Turquia: 21300116
+      Ucrania: 21300118
+      Uganda: 21300140
+      Uruguay: 21300004
+      Uzbekistan: 21300164
+      Venezuela: 21300080
+      Zimbaue: 21300142
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
