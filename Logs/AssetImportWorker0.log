@@ -1,0 +1,457 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.14f1 (eff2de9070d8) revision 15725278'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22631) 64bit Core' Language: 'en' Physical Memory: 31998 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2022.3.14f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Users/jjgal/Unity/Futbolito
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+52142
+Successfully changed project path to: C:/Users/jjgal/Unity/Futbolito
+C:/Users/jjgal/Unity/Futbolito
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [14648] Host "[IP] 10.0.0.148 [Port] 0 [Flags] 2 [Guid] 3081875088 [EditorId] 3081875088 [Version] 1048832 [Id] WindowsEditor(7,jjgp13) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [14648] Host "[IP] 10.0.0.148 [Port] 0 [Flags] 2 [Guid] 3081875088 [EditorId] 3081875088 [Version] 1048832 [Id] WindowsEditor(7,jjgp13) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+[Physics::Module] Initialized MultithreadedJobDispatcher with 15 workers.
+Refreshing native plugins compatible for Editor in 12.80 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.14f1 (eff2de9070d8)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/jjgal/Unity/Futbolito/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: AMD Radeon (TM) Graphics (ID=0x1681)
+    Vendor:   ATI
+    VRAM:     15999 MB
+    Driver:   31.0.12044.3
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56800
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.14f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.009141 seconds.
+- Loaded All Assemblies, in  0.459 seconds
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.313 seconds
+Domain Reload Profiling: 771ms
+	BeginReloadAssembly (144ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (45ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (67ms)
+	LoadAllAssembliesAndSetupDomain (191ms)
+		LoadAssemblies (142ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (188ms)
+			TypeCache.Refresh (186ms)
+				TypeCache.ScanAssembly (163ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (314ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (231ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (10ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (3ms)
+			ProcessInitializeOnLoadAttributes (154ms)
+			ProcessInitializeOnLoadMethodAttributes (58ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory is not a mono symbol file
+- Loaded All Assemblies, in  0.722 seconds
+Refreshing native plugins compatible for Editor in 7.73 ms, found 2 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.779 seconds
+Domain Reload Profiling: 1498ms
+	BeginReloadAssembly (190ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (5ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (39ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (28ms)
+	LoadAllAssembliesAndSetupDomain (452ms)
+		LoadAssemblies (401ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (157ms)
+			TypeCache.Refresh (134ms)
+				TypeCache.ScanAssembly (113ms)
+			ScanForSourceGeneratedMonoScriptInfo (18ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (779ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (588ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (61ms)
+			ProcessInitializeOnLoadAttributes (324ms)
+			ProcessInitializeOnLoadMethodAttributes (183ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (9ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.07 seconds
+Refreshing native plugins compatible for Editor in 8.61 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2583 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 61 unused Assets / (68.8 KB). Loaded Objects now: 3031.
+Memory consumption went from 110.3 MB to 110.2 MB.
+Total: 11.848500 ms (FindLiveObjects: 0.254700 ms CreateObjectMapping: 0.198500 ms MarkObjects: 11.072000 ms  DeleteObjects: 0.321400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+========================================================================
+Received Import Request.
+  Time since last request: 78277.791236 seconds.
+  path: Assets/_Prefabs/BackButton.prefab
+  artifactKey: Guid(349c8366b30dc0f428e3d5c26d93003c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Prefabs/BackButton.prefab using Guid(349c8366b30dc0f428e3d5c26d93003c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75e686716f8758994007c151814bf538') in 0.041943 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time since last request: 0.000030 seconds.
+  path: Assets/_Prefabs/WinExplosion.prefab
+  artifactKey: Guid(9b0241c1d1fdf5d46a02006f5be550d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Prefabs/WinExplosion.prefab using Guid(9b0241c1d1fdf5d46a02006f5be550d4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c54fac4cdcc438597d5d06538b8e2b28') in 0.189985 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 6
+========================================================================
+Received Import Request.
+  Time since last request: 0.000045 seconds.
+  path: Assets/_Prefabs/MatchInfo.prefab
+  artifactKey: Guid(6c4f45f2f493e9f4fa894322e1f4fd47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Prefabs/MatchInfo.prefab using Guid(6c4f45f2f493e9f4fa894322e1f4fd47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7279695fdb42d55fb23cdbc8d3a7d774') in 0.004666 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/_Prefabs/PlayerPaddle_Prefab.prefab
+  artifactKey: Guid(352991deeca90494a9b8a555941c2900) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Prefabs/PlayerPaddle_Prefab.prefab using Guid(352991deeca90494a9b8a555941c2900) Importer(815301076,1909f56bfc062723c751e8b465ee728b) Asset 'Futbol_Player': Transition 'FirstLevelHitPlayerAnim -> IdlePlayerAnim' in state 'FirstLevelHitPlayerAnim' doesn't have an Exit Time or any condition, transition will be ignored
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.EditorUtility:Internal_InstantiateRemoveAllNonAnimationComponentsSingle (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
+UnityEditor.EditorUtility:InstantiateRemoveAllNonAnimationComponents (UnityEngine.Object,UnityEngine.Vector3,UnityEngine.Quaternion)
+UnityEditor.EditorUtility:InstantiateForAnimatorPreview (UnityEngine.Object)
+UnityEditor.GameObjectInspector/PreviewData:UpdateGameObject (UnityEngine.Object)
+UnityEditor.GameObjectInspector/PreviewData:.ctor (UnityEngine.Object,bool)
+UnityEditor.GameObjectInspector:GetPreviewData (bool)
+UnityEditor.GameObjectInspector:RenderStaticPreview (string,UnityEngine.Object[],int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreview (UnityEngine.Object,UnityEngine.Object[],string,int,int)
+UnityEditor.AssetPreviewUpdater:CreatePreviewForAsset (UnityEngine.Object,UnityEngine.Object[],string)
+
+[C:\build\output\unity\unity\Editor\Src\Animation\StateMachine.cpp line 1841]
+
+ -> (artifact id: 'feec1dac2d51708cbe71d780e0187841') in 0.194777 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 78
+========================================================================
+Received Import Request.
+  Time since last request: 7.338619 seconds.
+  path: Assets/Resources/Teams/Bahrain/BahrainUniformes.png
+  artifactKey: Guid(6eb2c6a9ceec3e24985485b15baa26a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Bahrain/BahrainUniformes.png using Guid(6eb2c6a9ceec3e24985485b15baa26a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '445975276929198743c177f2bb2131c1') in 0.057157 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 1.295078 seconds.
+  path: Assets/Resources/Teams/Argentina/ArgentinaUniformes.png
+  artifactKey: Guid(d8733f540d8df4b4ea164ba4cd6caa8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Argentina/ArgentinaUniformes.png using Guid(d8733f540d8df4b4ea164ba4cd6caa8b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '75359f26faf30d3063a4ef51982f9762') in 0.034142 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.484740 seconds.
+  path: Assets/Resources/Teams/Austria/AustriaUniformes.png
+  artifactKey: Guid(06047e22952fcc1438d36a0551173381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Austria/AustriaUniformes.png using Guid(06047e22952fcc1438d36a0551173381) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a29525d98134936ea3bde8c98af00e6e') in 0.036025 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.413993 seconds.
+  path: Assets/Resources/Teams/Brazil/BrazilUniformes.png
+  artifactKey: Guid(7b72e9e65d6193443bfc28dd25c7053e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Brazil/BrazilUniformes.png using Guid(7b72e9e65d6193443bfc28dd25c7053e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1089c3ec19534920dcc286c9ef87879') in 0.029968 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.427542 seconds.
+  path: Assets/Resources/Teams/Chile/ChileUniforme.png
+  artifactKey: Guid(97a0bea23af461643a99176bff6a6ce0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Chile/ChileUniforme.png using Guid(97a0bea23af461643a99176bff6a6ce0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a404abbd042f4e48bde3e06a0d3192b3') in 0.035362 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 1.161796 seconds.
+  path: Assets/Resources/Teams/France/FranceUniformes.png
+  artifactKey: Guid(b3c874d6b348a924f8cffe38b2e09ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/France/FranceUniformes.png using Guid(b3c874d6b348a924f8cffe38b2e09ce4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b057d2605b801b4ffaebdbe7995e2ddb') in 0.033361 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 1.618020 seconds.
+  path: Assets/Resources/Teams/England/EnglandUniformes.png
+  artifactKey: Guid(dd645931951679347b4298a1ec47cdad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/England/EnglandUniformes.png using Guid(dd645931951679347b4298a1ec47cdad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4659b8595262afe1e35f80f1be38dcbd') in 0.031615 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.429610 seconds.
+  path: Assets/Resources/Teams/El Salvador/Local.png
+  artifactKey: Guid(0f02c0c7ada1ed5469308743809a302c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/El Salvador/Local.png using Guid(0f02c0c7ada1ed5469308743809a302c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '571126a5275f01f6118a299cd546c717') in 0.058916 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time since last request: 0.123475 seconds.
+  path: Assets/Resources/Teams/Egypt/Egypt.asset
+  artifactKey: Guid(5723e9a123c7d5949ad72b59c53cc4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Egypt/Egypt.asset using Guid(5723e9a123c7d5949ad72b59c53cc4a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '98490da2ce4d1ed1c1c53b726875c434') in 0.003253 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.142430 seconds.
+  path: Assets/Resources/Teams/Ecuador/EcuadorUniformes.png
+  artifactKey: Guid(517b5517e9fbeb64a818484acfc9c8f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Ecuador/EcuadorUniformes.png using Guid(517b5517e9fbeb64a818484acfc9c8f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a66b3acf2f6c891def3bdf24563dfa1') in 0.039799 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.151415 seconds.
+  path: Assets/Resources/Teams/DR Congo/DRCongoUniformes.png
+  artifactKey: Guid(66475b61d5092ad4db73f81b2ab4cc6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/DR Congo/DRCongoUniformes.png using Guid(66475b61d5092ad4db73f81b2ab4cc6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb543fae2c96370ab60a7e39ba381a05') in 0.036384 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.152678 seconds.
+  path: Assets/Resources/Teams/Denmark/DenmarkUniformes.png
+  artifactKey: Guid(903a9cd430f9ae34ab4088cef02fe541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Denmark/DenmarkUniformes.png using Guid(903a9cd430f9ae34ab4088cef02fe541) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29e51a289213fd1f7151887467510ea4') in 0.032816 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.163857 seconds.
+  path: Assets/Resources/Teams/Czech Republic/Czech Republic.asset
+  artifactKey: Guid(62a8896cb0e5e7b4eb75fb2790d3e634) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Czech Republic/Czech Republic.asset using Guid(62a8896cb0e5e7b4eb75fb2790d3e634) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '489cee1a0b75203378f0a04a2ea67dfa') in 0.002126 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 0.186790 seconds.
+  path: Assets/Resources/Teams/Curazao/CurazaoUniformes.png
+  artifactKey: Guid(7189b6e45cd916b4aaa01a3dbaf006af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Curazao/CurazaoUniformes.png using Guid(7189b6e45cd916b4aaa01a3dbaf006af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aff2a320d1de326a48165fe66714522d') in 0.035974 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.151049 seconds.
+  path: Assets/Resources/Teams/Croatia/CroatiaUniforme.png
+  artifactKey: Guid(2883aa185e0dbe040897afec6d13d860) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Croatia/CroatiaUniforme.png using Guid(2883aa185e0dbe040897afec6d13d860) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd137ee8bc4cc0b47418129346a722755') in 0.031998 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.123725 seconds.
+  path: Assets/Resources/Teams/Costa Rica/CostaRicaUniforme.png
+  artifactKey: Guid(f8fbcae943507db4d9e7ac38ebd9080d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Costa Rica/CostaRicaUniforme.png using Guid(f8fbcae943507db4d9e7ac38ebd9080d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdb7ed879fa7e7dcc40a07f53598b585') in 0.033253 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.352215 seconds.
+  path: Assets/Resources/Teams/Colombia/ColombiaUniformes.png
+  artifactKey: Guid(ac0768b42fbe0b94890e6f651baffb64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Colombia/ColombiaUniformes.png using Guid(ac0768b42fbe0b94890e6f651baffb64) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd767a8d8d83a1c26eaae2b1d4d8a1885') in 0.038310 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.233512 seconds.
+  path: Assets/Resources/Teams/China PR/ChinaUniformes.png
+  artifactKey: Guid(19f633b079b11b44b8bdc7bbc69739e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/China PR/ChinaUniformes.png using Guid(19f633b079b11b44b8bdc7bbc69739e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2a5c424e2dcf56d9cc4415e9e11f3ab') in 0.032570 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.560816 seconds.
+  path: Assets/Resources/Teams/Canada/CanadaUniformes.png
+  artifactKey: Guid(2cbe3e74bffa62b4587bd2a9dd0e995d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Canada/CanadaUniformes.png using Guid(2cbe3e74bffa62b4587bd2a9dd0e995d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b4b211fd54ba1e3b68bdb395259189c') in 0.038610 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.134405 seconds.
+  path: Assets/Resources/Teams/Cameroon/CameroonUniformes.png
+  artifactKey: Guid(cec6a5d570eeb0d4b8208f8de0bbd757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Cameroon/CameroonUniformes.png using Guid(cec6a5d570eeb0d4b8208f8de0bbd757) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bba6f997f2214883a979cbbb6bb9e597') in 0.041550 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 6.352508 seconds.
+  path: Assets/Resources/Teams/French Guiana/GuyanaUniformes.png
+  artifactKey: Guid(5d8331423378d2044912a94ec4af304f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/French Guiana/GuyanaUniformes.png using Guid(5d8331423378d2044912a94ec4af304f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3883a7daddf080ac74bdefb52b8399a') in 0.036004 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.110812 seconds.
+  path: Assets/Resources/Teams/Gabon/GabonUniformes.png
+  artifactKey: Guid(9d1bf6810a5e0224391643c5aed780de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Gabon/GabonUniformes.png using Guid(9d1bf6810a5e0224391643c5aed780de) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a064a3e0a8c07a3d4bdd156c2202b8ad') in 0.031506 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 0.094070 seconds.
+  path: Assets/Resources/Teams/Germany/GermanyUniformes.png
+  artifactKey: Guid(f53f40c3324484a47881f3dc94402a70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Germany/GermanyUniformes.png using Guid(f53f40c3324484a47881f3dc94402a70) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32dbadc583c0b68d304af9f8cb78ace3') in 0.033008 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 4
+========================================================================
+Received Import Request.
+  Time since last request: 2.694122 seconds.
+  path: Assets/Resources/Teams/Martinique/Martinique.asset
+  artifactKey: Guid(cf51e68d2d57ac048812b1e2b8f3ab61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Martinique/Martinique.asset using Guid(cf51e68d2d57ac048812b1e2b8f3ab61) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd141417e90b965e72a19c206afe631d') in 0.002506 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Import Request.
+  Time since last request: 1.251469 seconds.
+  path: Assets/Resources/Teams/Mexico/Mexico.asset
+  artifactKey: Guid(1dc968877b32b884093a7504df60a913) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Resources/Teams/Mexico/Mexico.asset using Guid(1dc968877b32b884093a7504df60a913) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a6c25bbcf7f03fb5b1f89de250bc66d') in 0.002437 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 5
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 7.10 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3 unused Assets / (4.0 KB). Loaded Objects now: 3051.
+Memory consumption went from 74.7 MB to 74.7 MB.
+Total: 9.797000 ms (FindLiveObjects: 0.309200 ms CreateObjectMapping: 0.250100 ms MarkObjects: 9.140800 ms  DeleteObjects: 0.095400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
