@@ -105,10 +105,7 @@ namespace TMPro
             this.mesh.tangents = this.tangents;
             this.mesh.triangles = this.triangles;
             this.mesh.bounds = s_DefaultBounds;
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_MeshInfo.cs
-========
             this.material = null;
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_MeshInfo.cs
         }
 
 
@@ -229,10 +226,7 @@ namespace TMPro
             this.mesh.tangents = this.tangents;
             this.mesh.triangles = this.triangles;
             this.mesh.bounds = s_DefaultBounds;
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_MeshInfo.cs
-========
             this.material = null;
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_MeshInfo.cs
         }
 
 

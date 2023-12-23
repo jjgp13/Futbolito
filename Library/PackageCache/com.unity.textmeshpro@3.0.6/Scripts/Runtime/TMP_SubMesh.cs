@@ -8,10 +8,6 @@ using Object = UnityEngine.Object;
 namespace TMPro
 {
     [RequireComponent(typeof(MeshRenderer))]
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_SubMesh.cs
-    [RequireComponent(typeof(MeshFilter))]
-========
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs
     [ExecuteAlways]
     public class TMP_SubMesh : MonoBehaviour
     {
@@ -344,10 +340,6 @@ namespace TMPro
         }
 
 
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_SubMesh.cs
-
-========
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs
         #if UNITY_EDITOR
         // Event received when custom material editor properties are changed.
         void ON_MATERIAL_PROPERTY_CHANGED(bool isChanged, Material mat)
@@ -458,37 +450,6 @@ namespace TMPro
         //    SetMaterialDirty();
         }
         #endif
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_SubMesh.cs
-
-
-
-        public static TMP_SubMesh AddSubTextObject(TextMeshPro textComponent, MaterialReference materialReference)
-        {
-            GameObject go = new GameObject("TMP SubMesh [" + materialReference.material.name + "]", typeof(TMP_SubMesh));
-
-            TMP_SubMesh subMesh = go.GetComponent<TMP_SubMesh>();
-
-            go.transform.SetParent(textComponent.transform, false);
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localRotation = Quaternion.identity;
-            go.transform.localScale = Vector3.one;
-            go.layer = textComponent.gameObject.layer;
-
-            subMesh.m_meshFilter = go.GetComponent<MeshFilter>();
-
-            subMesh.m_TextComponent = textComponent;
-            subMesh.m_fontAsset = materialReference.fontAsset;
-            subMesh.m_spriteAsset = materialReference.spriteAsset;
-            subMesh.m_isDefaultMaterial = materialReference.isDefaultMaterial;
-            subMesh.SetSharedMaterial(materialReference.material);
-
-            subMesh.renderer.sortingLayerID = textComponent.renderer.sortingLayerID;
-            subMesh.renderer.sortingOrder = textComponent.renderer.sortingOrder;
-
-            return subMesh;
-        }
-========
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs
 
 
         public void DestroySelf()
@@ -637,8 +598,6 @@ namespace TMPro
 
             m_renderer.sharedMaterial = m_sharedMaterial;
 
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_SubMesh.cs
-========
             // Special handling to keep the Culling of the material in sync with parent text object
             if (m_sharedMaterial.HasProperty(ShaderUtilities.ShaderTag_CullMode))
             {
@@ -646,7 +605,6 @@ namespace TMPro
                 m_sharedMaterial.SetFloat(ShaderUtilities.ShaderTag_CullMode, cullMode);
             }
 
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMesh.cs
             #if UNITY_EDITOR
             if (m_sharedMaterial != null && gameObject.name != "TMP SubMesh [" + m_sharedMaterial.name + "]")
                 gameObject.name = "TMP SubMesh [" + m_sharedMaterial.name + "]";

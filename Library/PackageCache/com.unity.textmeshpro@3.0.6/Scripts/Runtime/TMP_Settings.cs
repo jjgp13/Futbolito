@@ -7,9 +7,6 @@ using System.Collections.Generic;
 
 namespace TMPro
 {
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_Settings.cs
-    [System.Serializable]
-========
     /// <summary>
     /// Scaling options for the sprites
     /// </summary>
@@ -20,7 +17,6 @@ namespace TMPro
     //}
 
     [System.Serializable][ExcludeFromPresetAttribute]
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_Settings.cs
     public class TMP_Settings : ScriptableObject
     {
         private static TMP_Settings s_Instance;

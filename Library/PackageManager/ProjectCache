@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638377856685553520
-    m_Hash: 2595336803
+      ticks: 638389623278819271
+    m_Hash: 946859219
   m_LockFileStatus:
     m_FilePath: C:/Users/jjgal/Unity/Futbolito/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638377856985158523
-    m_Hash: 17838997
+      ticks: 638389624055341279
+    m_Hash: 644269921
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -1239,6 +1239,7 @@ m_ResolvedPackages:
     - 1.3.9
     - 1.4.0
     - 1.4.1
+    - 1.4.2
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -1256,6 +1257,7 @@ m_ResolvedPackages:
     - 1.3.9
     - 1.4.0
     - 1.4.1
+    - 1.4.2
     - 2.0.1-exp.1
     - 2.0.1-exp.2
     - 2.0.1-pre.12
@@ -1430,6 +1432,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.4
     - 3.2.0-pre.5
     - 3.2.0-pre.6
+    - 3.2.0-pre.7
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     compatible:
@@ -1440,6 +1443,7 @@ m_ResolvedPackages:
     - 3.2.0-pre.4
     - 3.2.0-pre.5
     - 3.2.0-pre.6
+    - 3.2.0-pre.7
     - 4.0.0-pre.1
     - 4.0.0-pre.2
     recommended: 3.0.6

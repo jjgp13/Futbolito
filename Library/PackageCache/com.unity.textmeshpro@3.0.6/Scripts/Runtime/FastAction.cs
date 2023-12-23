@@ -21,12 +21,8 @@ namespace TMPro
 
         public void Remove(System.Action rhs)
         {
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/FastAction.cs
-            if (lookup.TryGetValue(rhs, out LinkedListNode<System.Action> node))
-========
             LinkedListNode<System.Action> node; 
             if (lookup.TryGetValue(rhs, out node))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/FastAction.cs
             {
                 lookup.Remove(rhs);
                 delegates.Remove(node);
@@ -61,7 +57,8 @@ namespace TMPro
 
         public void Remove(System.Action<A> rhs)
         {
-            if (lookup.TryGetValue(rhs, out LinkedListNode<System.Action<A>> node))
+            LinkedListNode<System.Action<A>> node;
+            if (lookup.TryGetValue(rhs, out node))
             {
                 lookup.Remove(rhs);
                 delegates.Remove(node);
@@ -96,7 +93,8 @@ namespace TMPro
 
         public void Remove(System.Action<A, B> rhs)
         {
-            if (lookup.TryGetValue(rhs, out LinkedListNode<System.Action<A, B>> node))
+            LinkedListNode<System.Action<A, B>> node;
+            if (lookup.TryGetValue(rhs, out node))
             {
                 lookup.Remove(rhs);
                 delegates.Remove(node);
@@ -131,7 +129,8 @@ namespace TMPro
 
         public void Remove(System.Action<A, B, C> rhs)
         {
-            if (lookup.TryGetValue(rhs, out LinkedListNode<System.Action<A, B, C>> node))
+            LinkedListNode<System.Action<A, B, C>> node;
+            if (lookup.TryGetValue(rhs, out node))
             {
                 lookup.Remove(rhs);
                 delegates.Remove(node);

@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Library/PackageCache/com.unity.ads@3.5.0/Plugins/iOS/UnityAds.framework/Headers.meta
-guid: 44250786a15ea4177abc994400a3359e
-========
 guid: 2d04e96a28a6344998bd24fd14dddf22
->>>>>>>> pc/console:Library/PackageCache/com.unity.ads@4.4.2/Plugins/iOS/UnityAds.framework/Headers.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

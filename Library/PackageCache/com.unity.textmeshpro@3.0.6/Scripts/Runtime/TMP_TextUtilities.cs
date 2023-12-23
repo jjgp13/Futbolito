@@ -2036,12 +2036,8 @@ namespace TMPro
             worldPoint = (Vector3)Vector2.zero;
             Ray ray = RectTransformUtility.ScreenPointToRay(cam, screenPoint);
 
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_TextUtilities.cs
-            if (!new Plane(transform.rotation * Vector3.back, transform.position).Raycast(ray, out float enter))
-========
             float enter;
             if (!new Plane(transform.rotation * Vector3.back, transform.position).Raycast(ray, out enter))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_TextUtilities.cs
                 return false;
 
             worldPoint = ray.GetPoint(enter);

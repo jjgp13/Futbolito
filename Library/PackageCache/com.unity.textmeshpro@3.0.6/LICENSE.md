@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/LICENSE.md
-TextMesh Pro copyright © 2014-2019 Unity Technologies ApS
-========
 TextMesh Pro copyright © 2021 Unity Technologies ApS
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/LICENSE.md
 
 Licensed under the Unity Companion License for Unity-dependent projects--see [Unity Companion License](http://www.unity3d.com/legal/licenses/Unity_Companion_License). 
 

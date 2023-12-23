@@ -152,13 +152,6 @@ namespace TMPro
 
         public static GameObject CreateText(Resources resources)
         {
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_DefaultControls.cs
-            GameObject go = CreateUIElementRoot("Text (TMP)", s_ThickElementSize);
-
-            TextMeshProUGUI lbl = go.AddComponent<TextMeshProUGUI>();
-            lbl.text = "New Text";
-            SetDefaultTextValues(lbl);
-========
             GameObject go = null;
 
             #if UNITY_EDITOR
@@ -168,7 +161,6 @@ namespace TMPro
                 go = CreateUIElementRoot("Text (TMP)", s_TextElementSize);
                 go.AddComponent<TextMeshProUGUI>();
             #endif
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_DefaultControls.cs
 
             return go;
         }

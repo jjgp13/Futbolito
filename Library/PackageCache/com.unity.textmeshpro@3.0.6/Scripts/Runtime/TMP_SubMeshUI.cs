@@ -10,12 +10,8 @@ using Object = UnityEngine.Object;
 namespace TMPro
 {
     [ExecuteAlways]
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_SubMeshUI.cs
-    public class TMP_SubMeshUI : MaskableGraphic, IClippable, IMaskable, IMaterialModifier
-========
     [RequireComponent(typeof(CanvasRenderer))]
     public class TMP_SubMeshUI : MaskableGraphic
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_SubMeshUI.cs
     {
         /// <summary>
         /// The TMP Font Asset assigned to this sub text object.

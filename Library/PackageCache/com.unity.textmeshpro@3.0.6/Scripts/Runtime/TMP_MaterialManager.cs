@@ -400,14 +400,9 @@ namespace TMPro
             Texture tex = targetMaterial.GetTexture(ShaderUtilities.ID_MainTex);
             int texID = tex.GetInstanceID();
             long key = (long)sourceID << 32 | (long)(uint)texID;
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_MaterialManager.cs
-
-            if (m_fallbackMaterials.TryGetValue(key, out FallbackMaterial fallback))
-========
             FallbackMaterial fallback;
 
             if (m_fallbackMaterials.TryGetValue(key, out fallback))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_MaterialManager.cs
             {
                 // Check if source material properties have changed.
                 int sourceMaterialCRC = sourceMaterial.ComputeCRC();
@@ -471,18 +466,13 @@ namespace TMPro
             if (targetMaterial == null) return;
 
             int sourceID = targetMaterial.GetInstanceID();
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_MaterialManager.cs
-
-            // Lookup key to retrieve 
-            if (m_fallbackMaterialLookup.TryGetValue(sourceID, out long key))
-========
             long key;
 
             // Lookup key to retrieve
             if (m_fallbackMaterialLookup.TryGetValue(sourceID, out key))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_MaterialManager.cs
             {
-                if (m_fallbackMaterials.TryGetValue(key, out FallbackMaterial fallback))
+                FallbackMaterial fallback;
+                if (m_fallbackMaterials.TryGetValue(key, out fallback))
                 {
                     //Debug.Log("Adding Fallback material " + fallback.fallbackMaterial.name + " with reference count of " + (fallback.count + 1));
                     fallback.count += 1;
@@ -500,18 +490,13 @@ namespace TMPro
             if (targetMaterial == null) return;
 
             int sourceID = targetMaterial.GetInstanceID();
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_MaterialManager.cs
-
-            // Lookup key to retrieve 
-            if (m_fallbackMaterialLookup.TryGetValue(sourceID, out long key))
-========
             long key;
 
             // Lookup key to retrieve
             if (m_fallbackMaterialLookup.TryGetValue(sourceID, out key))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_MaterialManager.cs
             {
-                if (m_fallbackMaterials.TryGetValue(key, out FallbackMaterial fallback))
+                FallbackMaterial fallback;
+                if (m_fallbackMaterials.TryGetValue(key, out fallback))
                 {
                     fallback.count -= 1;
 
@@ -558,16 +543,13 @@ namespace TMPro
         {
             if (fallbackMaterial == null) return;
 
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMP_MaterialManager.cs
-            if (m_fallbackMaterialLookup.TryGetValue(materialID, out long key))
-========
             int materialID = fallbackMaterial.GetInstanceID();
             long key;
 
             if (m_fallbackMaterialLookup.TryGetValue(materialID, out key))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMP_MaterialManager.cs
             {
-                if (m_fallbackMaterials.TryGetValue(key, out FallbackMaterial fallback))
+                FallbackMaterial fallback;
+                if (m_fallbackMaterials.TryGetValue(key, out fallback))
                 {
                     //Debug.Log("Releasing Fallback material " + fallback.fallbackMaterial.name + " with remaining reference count of " + (fallback.count - 1));
 

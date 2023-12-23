@@ -561,15 +561,9 @@ namespace TMPro
         public static int AddMaterialReference(Material material, TMP_FontAsset fontAsset, ref MaterialReference[] materialReferences, Dictionary<int, int> materialReferenceIndexLookup)
         {
             int materialID = material.GetInstanceID();
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/MaterialReferenceManager.cs
-
-            if (materialReferenceIndexLookup.TryGetValue(materialID, out int index))
-            {
-========
             int index;
 
             if (materialReferenceIndexLookup.TryGetValue(materialID, out index))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/MaterialReferenceManager.cs
                 return index;
 
             index = materialReferenceIndexLookup.Count;
@@ -604,15 +598,9 @@ namespace TMPro
         public static int AddMaterialReference(Material material, TMP_SpriteAsset spriteAsset, ref MaterialReference[] materialReferences, Dictionary<int, int> materialReferenceIndexLookup)
         {
             int materialID = material.GetInstanceID();
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/MaterialReferenceManager.cs
-
-            if (materialReferenceIndexLookup.TryGetValue(materialID, out int index))
-            {
-========
             int index;
 
             if (materialReferenceIndexLookup.TryGetValue(materialID, out index))
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/MaterialReferenceManager.cs
                 return index;
 
             index = materialReferenceIndexLookup.Count;

@@ -46,29 +46,14 @@ namespace TMPro
 
         internal static string UintToString(this List<uint> unicodes)
         {
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMPro_ExtensionMethods.cs
-            if (start > unicodes.Length)
-                return string.Empty;
-
-            int end = Mathf.Min(start + length, unicodes.Length);
-
-            char[] chars = new char[end - start];
-
-            int writeIndex = 0;
-
-            for (int i = start; i < end; i++)
-========
             char[] chars = new char[unicodes.Count];
 
             for (int i = 0; i < unicodes.Count; i++)
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_ExtensionMethods.cs
             {
-                chars[writeIndex++] = (char)unicodes[i];
+                chars[i] = (char)unicodes[i];
             }
 
             return new string(chars);
-<<<<<<<< HEAD:Library/PackageCache/com.unity.textmeshpro@2.0.1/Scripts/Runtime/TMPro_ExtensionMethods.cs
-========
         }
 
         public static string IntToString(this int[] unicodes, int start, int length)
@@ -88,7 +73,6 @@ namespace TMPro
             }
 
             return new string(chars);
->>>>>>>> pc/console:Library/PackageCache/com.unity.textmeshpro@3.0.6/Scripts/Runtime/TMPro_ExtensionMethods.cs
         }
 
 
