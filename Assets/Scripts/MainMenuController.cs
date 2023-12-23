@@ -43,10 +43,10 @@ public class MainMenuController : MonoBehaviour {
         SetPlayerStats();
     }
 
-    private void Update()
-    {
-        Debug.Log(string.Format("X:{0} Y:{1} ",Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-    }
+    //private void Update()
+    //{
+    //    Debug.Log(Input.GetButton("Shoot_Button"));
+    //}
 
     /// <summary>
     /// this method will load a scene

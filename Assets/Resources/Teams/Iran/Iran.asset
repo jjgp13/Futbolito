@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Iran
   m_EditorClassIdentifier: 
   teamName: Iran
+  region: Asia
   flag: {fileID: 21300022, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
   formationImage: {fileID: 21300004, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
   teamFormation:

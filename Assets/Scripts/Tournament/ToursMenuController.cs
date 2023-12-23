@@ -72,7 +72,7 @@ public class ToursMenuController : MonoBehaviour {
             Button newTeam = Instantiate(teamButton);
             Team team = tour.teams[i];
             newTeam.image.sprite = team.flag;
-            newTeam.GetComponent<TeamSelected>().team = team;
+            newTeam.GetComponent<TeamSelected>().teamInfo = team;
             newTeam.transform.GetChild(0).GetComponent<Text>().text = team.teamName;
             newTeam.transform.SetParent(teamsPanel.transform);
         }
@@ -178,12 +178,12 @@ public class ToursMenuController : MonoBehaviour {
     /// </summary>
     void ResetTimeLevelPanel()
     {
-        timePanel.transform.GetChild(1).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().pressedSprite;
-        timePanel.transform.GetChild(0).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().notPressedSprite;
-        timePanel.transform.GetChild(2).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().notPressedSprite;
+        //timePanel.transform.GetChild(1).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().pressedSprite;
+        //timePanel.transform.GetChild(0).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().notPressedSprite;
+        //timePanel.transform.GetChild(2).GetComponent<Image>().sprite = timePanel.GetComponent<PanelSelection>().notPressedSprite;
 
-        levelPanel.transform.GetChild(1).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().pressedSprite;
-        levelPanel.transform.GetChild(0).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().notPressedSprite;
-        levelPanel.transform.GetChild(2).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().notPressedSprite;
+        //levelPanel.transform.GetChild(1).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().pressedSprite;
+        //levelPanel.transform.GetChild(0).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().notPressedSprite;
+        //levelPanel.transform.GetChild(2).GetComponent<Image>().sprite = levelPanel.GetComponent<PanelSelection>().notPressedSprite;
     }
 }

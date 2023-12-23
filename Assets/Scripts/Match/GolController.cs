@@ -21,12 +21,7 @@ public class GolController : MonoBehaviour {
             PlaySound();
 
             if (gameObject.tag == "GoalTrigger")
-                MatchController._matchController.AdjustScore(gameObject.name);
-
-
-            HoldButton._holdButton.isHolding = false;
-            HoldButton._holdButton.btnReference.interactable = true;
-            ShootButton._shootButton.isShooting = false;
+                MatchScoreController.instance.AdjustScore(gameObject.name);
 
             StartCoroutine(MatchController._matchController.GolAnimation());
 

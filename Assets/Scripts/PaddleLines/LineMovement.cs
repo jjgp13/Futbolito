@@ -9,14 +9,22 @@ public class LineMovement : MonoBehaviour {
     public float velocity;
     public bool isActive;
     private int paddlesInLine;
-    private Vector3 phoneIniAcc, accDifference;
-
-    private void Awake()
-    {
-        phoneIniAcc = Input.acceleration;
-    }
+    private string moveAxis;
+    //Could be right or left button. It depends on which lines are active
+    public string holdLineButton;
+    
 
     void Start () {
+        //Set who moves this line given the controllers map;
+        if(gameObject.GetComponentInParent<LinesHandler>().numberOfPlayers == 1)
+        {
+            moveAxis = gameObject.GetComponentInParent<LinesHandler>().defenseButtons.yAxis;
+        }
+        else
+        {
+            //Two controllers
+        }
+
         //Set speed of line
         paddlesInLine = GetComponent<SetLine>().numberPaddles;
         SetSpeed(paddlesInLine);
@@ -24,15 +32,15 @@ public class LineMovement : MonoBehaviour {
         //Set selection as false.
         isActive = false;
 	}
-	
-	void LateUpdate () {
-        if (isActive)
+
+    void LateUpdate () {
+        if (isActive && !Input.GetButton(holdLineButton))
         {
-            accDifference = phoneIniAcc - Input.acceleration;
-            float yMov = accDifference.y;
+            //Get Left joystick Up/Down moveAxis
+            float yMov = Input.GetAxis(moveAxis);
             
             velocity = yMov * speed;
-            transform.Translate(-Vector3.up * velocity * Time.deltaTime); 
+            transform.Translate(Vector3.up * velocity * Time.deltaTime); 
             if (transform.position.y < -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer)
                 transform.position = new Vector2(transform.position.x, -GetComponent<SetLine>().yLimit + GetComponent<SetLine>().halfPlayer);
             if (transform.position.y > GetComponent<SetLine>().yLimit - GetComponent<SetLine>().halfPlayer)
@@ -45,19 +53,19 @@ public class LineMovement : MonoBehaviour {
         switch (numPlayerInLine)
         {
             case 1:
-                speed = 17.5f;
+                speed = 5f;
                 break;
             case 2:
-                speed = 15f;
+                speed = 4.25f;
                 break;
             case 3:
-                speed = 12.5f;
+                speed = 3.5f;
                 break;
             case 4:
-                speed = 10f;
+                speed = 2.75f;
                 break;
             case 5:
-                speed = 7.5f;
+                speed = 2f;
                 break;
         }
     }

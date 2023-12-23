@@ -151,8 +151,11 @@ PlayerSettings:
       sharedDepthBuffer: 0
       dashSupport: 0
       lowOverheadMode: 0
+<<<<<<< HEAD
       protectedContext: 0
       v2Signing: 0
+=======
+>>>>>>> pc/console
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   protectGraphicsMemory: 0
@@ -621,7 +624,12 @@ PlayerSettings:
   scriptingRuntimeVersion: 1
   gcIncremental: 0
   gcWBarrierValidation: 0
+<<<<<<< HEAD
   apiCompatibilityLevelPerPlatform: {}
+=======
+  apiCompatibilityLevelPerPlatform:
+    Standalone: 3
+>>>>>>> pc/console
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Futbolito

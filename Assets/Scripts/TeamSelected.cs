@@ -1,18 +1,83 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
-public class TeamSelected : MonoBehaviour {
+public class TeamSelected : MonoBehaviour, ISelectHandler {
 
     /// <summary>
     /// Prefab of button selection team.
     /// </summary>
-    public Team team;
+    public Team teamInfo;
     public Image flagOutline;
     public bool isSelected = false;
+    private Button buttonComponent;
+    //Left team or right team
+    private string sidePanel;
+
+    private void Awake()
+    {
+        buttonComponent = GetComponent<Button>();
+    }
+
+    private void Start()
+    {
+        sidePanel = transform.parent.name;
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        ((ISelectHandler)buttonComponent).OnSelect(eventData);
+        if (sidePanel == "LeftTeam")
+        {
+            SetTeamFlags("LeftTeamFlags");
+            SetTeamUniforms(sidePanel);
+        }
+        if (sidePanel == "RightTeam")
+        {
+            SetTeamFlags("RightTeamFlags");
+            SetTeamUniforms(sidePanel);
+        }
+    }
+
+
+    /// <summary>
+    /// Find flags in scene and fill them with team information
+    /// </summary>
+    /// <param name="side">For which team side is selecting</param>
+    private void SetTeamFlags(string side)
+    {
+        GameObject[] flags = GameObject.FindGameObjectsWithTag(side);
+        foreach (GameObject flag in flags)
+        {
+            flag.GetComponent<Image>().sprite = teamInfo.flag;
+            flag.transform.GetChild(0).GetComponent<Text>().text = teamInfo.teamName;
+        }
+    }
+
+    /// <summary>
+    /// Given the team selected. Change the uniforms.
+    /// </summary>
+    /// <param name="side">Team side (left or right)</param>
+    private void SetTeamUniforms(string side)
+    {
+        if (side == "LeftTeam")
+        {
+            GameObject.Find("LeftTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
+            GameObject.Find("LeftTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
+        }
+
+        if (side == "RightTeam")
+        {
+            GameObject.Find("RightTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
+            GameObject.Find("RightTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
+        }
+    }
+
 
     public void SelectTeam()
     {
+        GetComponent<Button>().interactable = false;
         //Get scene and depending on that it will act different.
         Scene currentScene = SceneManager.GetActiveScene();
 
@@ -22,10 +87,10 @@ public class TeamSelected : MonoBehaviour {
             TournamentController tc = TournamentController._tourCtlr;
             if (tc != null)
             {
-                tc.teamSelected = team.teamName;
+                tc.teamSelected = teamInfo.teamName;
                 tc.GetPlayerMatchesInGroupPhase();
             }
-            FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = team.flag;
+            FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = teamInfo.flag;
         }
 
         //Behaviour for outline effect
@@ -55,4 +120,5 @@ public class TeamSelected : MonoBehaviour {
         }
     }
 
+    
 }

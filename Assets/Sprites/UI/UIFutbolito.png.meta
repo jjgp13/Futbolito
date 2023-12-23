@@ -69,7 +69,11 @@ TextureImporter:
       213: 21300042
     second: UIFutbolito_21
   externalObjects: {}
+<<<<<<< HEAD
   serializedVersion: 10
+=======
+  serializedVersion: 12
+>>>>>>> pc/console
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -86,9 +90,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -98,8 +105,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -120,9 +127,15 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -134,6 +147,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -146,6 +160,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -158,6 +173,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
   - serializedVersion: 3
@@ -170,8 +186,25 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
+<<<<<<< HEAD
+=======
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+>>>>>>> pc/console
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -190,7 +223,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 02305410000000000800000000000000
+=======
+      spriteID: a51a0e5ea3193394d8154d98e6fb821c
+>>>>>>> pc/console
       internalID: 21300000
       vertices: []
       indices: 
@@ -211,7 +248,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 22305410000000000800000000000000
+=======
+      spriteID: aae945c0fdbc26349960af5772655aa3
+>>>>>>> pc/console
       internalID: 21300002
       vertices: []
       indices: 
@@ -232,7 +273,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 42305410000000000800000000000000
+=======
+      spriteID: 9b7312e22ec064c42afcc72ed8bd68f4
+>>>>>>> pc/console
       internalID: 21300004
       vertices: []
       indices: 
@@ -253,7 +298,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 62305410000000000800000000000000
+=======
+      spriteID: 71ff7e8ff11815d44970b6c429f5b044
+>>>>>>> pc/console
       internalID: 21300006
       vertices: []
       indices: 
@@ -274,7 +323,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 82305410000000000800000000000000
+=======
+      spriteID: c8aca71ac2dde4942b702a0f30ceae43
+>>>>>>> pc/console
       internalID: 21300008
       vertices: []
       indices: 
@@ -295,7 +348,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: a2305410000000000800000000000000
+=======
+      spriteID: 3f9eb4ea36dfa4b40912d2fe55368df5
+>>>>>>> pc/console
       internalID: 21300010
       vertices: []
       indices: 
@@ -316,7 +373,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: c2305410000000000800000000000000
+=======
+      spriteID: 0327b868ca00aa74ba30622cc91c6057
+>>>>>>> pc/console
       internalID: 21300012
       vertices: []
       indices: 
@@ -337,7 +398,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: e2305410000000000800000000000000
+=======
+      spriteID: 3506c8f26bbf44942807723034d62f77
+>>>>>>> pc/console
       internalID: 21300014
       vertices: []
       indices: 
@@ -358,7 +423,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 03305410000000000800000000000000
+=======
+      spriteID: 0a3ae1dd63a9b144dbd3fd8fff58ef63
+>>>>>>> pc/console
       internalID: 21300016
       vertices: []
       indices: 
@@ -379,7 +448,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 23305410000000000800000000000000
+=======
+      spriteID: 161dcabbd988b694a90b5d44d93c753a
+>>>>>>> pc/console
       internalID: 21300018
       vertices: []
       indices: 
@@ -400,7 +473,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 43305410000000000800000000000000
+=======
+      spriteID: 30d816425434513449a3cc2bd2e918e0
+>>>>>>> pc/console
       internalID: 21300020
       vertices: []
       indices: 
@@ -421,7 +498,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 63305410000000000800000000000000
+=======
+      spriteID: 67a82d30b1054e34b805295cdcdfd6c3
+>>>>>>> pc/console
       internalID: 21300022
       vertices: []
       indices: 
@@ -442,7 +523,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 83305410000000000800000000000000
+=======
+      spriteID: 2f8bfe7f4d316cc4191f0099a9b35e58
+>>>>>>> pc/console
       internalID: 21300024
       vertices: []
       indices: 
@@ -463,7 +548,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: a3305410000000000800000000000000
+=======
+      spriteID: df17fd5ac40127948b3ca5eb5e3aed6f
+>>>>>>> pc/console
       internalID: 21300026
       vertices: []
       indices: 
@@ -484,7 +573,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: c3305410000000000800000000000000
+=======
+      spriteID: 268a681911faa0a4dbab61def47392b7
+>>>>>>> pc/console
       internalID: 21300028
       vertices: []
       indices: 
@@ -505,7 +598,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: e3305410000000000800000000000000
+=======
+      spriteID: 9c3ebdb63e554d143a06a7e163141b47
+>>>>>>> pc/console
       internalID: 21300030
       vertices: []
       indices: 
@@ -526,7 +623,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 04305410000000000800000000000000
+=======
+      spriteID: 9d788862015687d42ac2e13ee2fc7cea
+>>>>>>> pc/console
       internalID: 21300032
       vertices: []
       indices: 
@@ -547,7 +648,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 24305410000000000800000000000000
+=======
+      spriteID: 3d6447d8c2adb2244afb568c2fc9ffee
+>>>>>>> pc/console
       internalID: 21300034
       vertices: []
       indices: 
@@ -568,7 +673,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 44305410000000000800000000000000
+=======
+      spriteID: 9183de6a835cfce43812fe54863933df
+>>>>>>> pc/console
       internalID: 21300036
       vertices: []
       indices: 
@@ -589,7 +698,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 64305410000000000800000000000000
+=======
+      spriteID: 344ffafbe42e1374e82bcf01def11f92
+>>>>>>> pc/console
       internalID: 21300038
       vertices: []
       indices: 
@@ -610,7 +723,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: 84305410000000000800000000000000
+=======
+      spriteID: 21f2f35d652a92a44bd2ed29355f4f16
+>>>>>>> pc/console
       internalID: 21300040
       vertices: []
       indices: 
@@ -631,7 +748,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
+<<<<<<< HEAD
       spriteID: a4305410000000000800000000000000
+=======
+      spriteID: 0e72f875fd5d0bf45bc1434519f3f74b
+>>>>>>> pc/console
       internalID: 21300042
       vertices: []
       indices: 
@@ -647,9 +768,35 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+<<<<<<< HEAD
   spritePackingTag: 
+=======
+    nameFileIdTable:
+      UIFutbolito_0: 21300000
+      UIFutbolito_1: 21300002
+      UIFutbolito_10: 21300020
+      UIFutbolito_11: 21300022
+      UIFutbolito_12: 21300024
+      UIFutbolito_13: 21300026
+      UIFutbolito_14: 21300028
+      UIFutbolito_15: 21300030
+      UIFutbolito_16: 21300032
+      UIFutbolito_17: 21300034
+      UIFutbolito_18: 21300036
+      UIFutbolito_19: 21300038
+      UIFutbolito_2: 21300004
+      UIFutbolito_20: 21300040
+      UIFutbolito_21: 21300042
+      UIFutbolito_3: 21300006
+      UIFutbolito_4: 21300008
+      UIFutbolito_5: 21300010
+      UIFutbolito_6: 21300012
+      UIFutbolito_7: 21300014
+      UIFutbolito_8: 21300016
+      UIFutbolito_9: 21300018
+  mipmapLimitGroupName: 
+>>>>>>> pc/console
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
