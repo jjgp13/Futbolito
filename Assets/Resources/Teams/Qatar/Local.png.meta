@@ -24,11 +24,7 @@ TextureImporter:
       213: 21300012
     second: Shoot_3B
   externalObjects: {}
-<<<<<<< HEAD
-  serializedVersion: 10
-=======
   serializedVersion: 12
->>>>>>> pc/console
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -64,7 +60,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -90,7 +86,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -104,33 +100,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -143,9 +113,20 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-<<<<<<< HEAD
-=======
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -158,13 +139,12 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
->>>>>>> pc/console
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle
+      name: Local_0
       rect:
         serializedVersion: 2
         x: 32
@@ -172,20 +152,20 @@ TextureImporter:
         width: 64
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08f85533b27c1d34bba1c2fd18d9523c
-      internalID: 21300000
+      spriteID: f9d8f4823472c1d48b18df241ee999ed
+      internalID: -1074625559
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shoot1
+      name: Local_1
       rect:
         serializedVersion: 2
         x: 160
@@ -193,20 +173,20 @@ TextureImporter:
         width: 64
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b8d0ba492995ee459f12e37af5e6e6b
-      internalID: 21300002
+      spriteID: c8e86484212def846807dcae82393e8f
+      internalID: 791372632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shoot2
+      name: Local_2
       rect:
         serializedVersion: 2
         x: 288
@@ -214,20 +194,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38e61e037ebc5954dae3528411ddd158
-      internalID: 21300004
+      spriteID: fc162a05c03f41042afcce954247402c
+      internalID: 1129618377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shoot3
+      name: Local_3
       rect:
         serializedVersion: 2
         x: 32
@@ -235,20 +215,20 @@ TextureImporter:
         width: 64
         height: 88
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1cf241804c18e44399cea7685a38890
-      internalID: 21300006
+      spriteID: ff0af9545a9c47d4dba9c669d7c1764e
+      internalID: 32796922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shoot_1B
+      name: Local_4
       rect:
         serializedVersion: 2
         x: 160
@@ -256,20 +236,20 @@ TextureImporter:
         width: 64
         height: 40
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13943e776e235f24db2ab59ad8f7f2f2
-      internalID: 21300008
+      spriteID: 7a3e3462ee474be4a9ef683bb429822b
+      internalID: 909213252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shoot_2B
+      name: Local_5
       rect:
         serializedVersion: 2
         x: 288
@@ -277,20 +257,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfedb7f310533694a9f33b54b403907f
-      internalID: 21300010
+      spriteID: d6b61fe0a0db108478b915c7bf169fd2
+      internalID: 75331163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Shoot_3B
+      name: Local_6
       rect:
         serializedVersion: 2
         x: 32
@@ -298,14 +278,14 @@ TextureImporter:
         width: 64
         height: 88
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b2e9e3f0e3aa50c41ac610544a256317
-      internalID: 21300012
+      spriteID: 4acc3b9ff0cb30641b45d005fee54053
+      internalID: -681415111
       vertices: []
       indices: 
       edges: []
@@ -313,26 +293,22 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: b38ede2f3b5653747b56b5dd90fa9cc3
+    spriteID: d30ba97e63108f542b86330cf7e751c4
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
-  spritePackingTag: 
-=======
     nameFileIdTable:
-      Idle: 21300000
-      Shoot1: 21300002
-      Shoot2: 21300004
-      Shoot3: 21300006
-      Shoot_1B: 21300008
-      Shoot_2B: 21300010
-      Shoot_3B: 21300012
+      Local_0: -1074625559
+      Local_1: 791372632
+      Local_2: 1129618377
+      Local_3: 32796922
+      Local_4: 909213252
+      Local_5: 75331163
+      Local_6: -681415111
   mipmapLimitGroupName: 
->>>>>>> pc/console
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 

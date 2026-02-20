@@ -27,12 +27,12 @@ public class UniformButton : MonoBehaviour
         if (parent == "LeftTeam")
         {
             thisButton.GetComponent<Image>().color = Color.blue;
-            MatchInfo._matchInfo.leftTeamUniform = gameObject.name;
+            MatchInfo.instance.leftTeamUniform = gameObject.name;
         }
         else
         {
             thisButton.GetComponent<Image>().color = Color.red;
-            MatchInfo._matchInfo.rightTeamUniform = gameObject.name;
+            MatchInfo.instance.rightTeamUniform = gameObject.name;
         }
             
         thisButton.interactable = false;

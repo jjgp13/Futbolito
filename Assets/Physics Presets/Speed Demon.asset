@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8847b60ec1003524b997bba184c50c0e, type: 3}
+  m_Name: Speed Demon
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsPreset
+  presetName: Speed Demon
+  description: "Ultra light ball, minimal drag. Everything is fast and twitchy. Quick
+    reflexes required \u2014 blink and you miss."
+  ballMass: 0.5
+  ballLinearDrag: 0.15
+  ballAngularDrag: 0.02
+  ballGravityScale: 0
+  ballFriction: 0
+  ballBounciness: 0.88
+  figureFriction: 0
+  figureBounciness: 0.65
+  wallFriction: 0
+  wallBounciness: 0.92
+  lightShotForce: 45
+  mediumShotForce: 85
+  heavyShotForce: 140
+  wallPassForce: 40
+  maxVerticalAngle: 55
+  shotActiveWindow: 0.3
+  shotCooldown: 0.25
+  maxBallSpeed: 0
+  kickoffForceMin: 5
+  kickoffForceMax: 8
+  enableTimeSlowOnHeavyShot: 0
+  timeSlowFactor: 0.3
+  timeSlowDuration: 0.05
+  cameraShakeMultiplier: 1.2

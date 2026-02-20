@@ -30,11 +30,7 @@ TextureImporter:
       213: 21300016
     second: 3-5-2
   externalObjects: {}
-<<<<<<< HEAD
-  serializedVersion: 10
-=======
   serializedVersion: 12
->>>>>>> pc/console
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -70,7 +66,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -96,7 +92,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -110,33 +106,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -149,9 +119,20 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-<<<<<<< HEAD
-=======
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -164,8 +145,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
->>>>>>> pc/console
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -184,8 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 776c1975269a55240b49f2ae72d9404f
-      internalID: 21300000
+      spriteID: 7e8b65a947de84f4d93103b11a7894af
+      internalID: -1584632025
       vertices: []
       indices: 
       edges: []
@@ -205,8 +185,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ab1531ad6152a241a26e96cac22530d
-      internalID: 21300002
+      spriteID: 5ce62ac81c1b7844aab6db770bce2df8
+      internalID: 1702756434
       vertices: []
       indices: 
       edges: []
@@ -226,8 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52ee896290dfabc45b4a07e8348e5456
-      internalID: 21300004
+      spriteID: edb0401d6ad7bf24c94b0eed1416f651
+      internalID: -1039324531
       vertices: []
       indices: 
       edges: []
@@ -247,8 +227,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5f196579c1f229449b0c13ca7ac454d
-      internalID: 21300006
+      spriteID: b41389ca22d1eb54d91c259b5eb1a759
+      internalID: 2104517217
       vertices: []
       indices: 
       edges: []
@@ -268,8 +248,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7c8ba881897ec8d4e8bdea94c1697513
-      internalID: 21300008
+      spriteID: 4265d11589597384c8ba41fa4cfa0db4
+      internalID: -1017811500
       vertices: []
       indices: 
       edges: []
@@ -289,8 +269,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f3ddb7ee701a9b42b3c390a40d4ba6d
-      internalID: 21300010
+      spriteID: c9f74dd9fecac244089b21a4f3d5773a
+      internalID: -1190293436
       vertices: []
       indices: 
       edges: []
@@ -310,8 +290,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7b4c406d474cd943a21625c449ddfa3
-      internalID: 21300012
+      spriteID: 0a3c88640a127ff418057436ff92f209
+      internalID: -1201118094
       vertices: []
       indices: 
       edges: []
@@ -331,8 +311,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1fb5023f6a0b4b408ed1186d075b39e
-      internalID: 21300014
+      spriteID: de018ca4f25980b48973014b6249614e
+      internalID: 485463384
       vertices: []
       indices: 
       edges: []
@@ -352,8 +332,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23975b58850ce9446b9614568fa66633
-      internalID: 21300016
+      spriteID: 91c7df5a870428e439d3845ee0b6e246
+      internalID: -181785844
       vertices: []
       indices: 
       edges: []
@@ -361,28 +341,24 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e376d6dc5235f314688ca81073cd70d3
+    spriteID: 1c41ab453c58b654abc5513d87aa2ada
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
-  spritePackingTag: 
-=======
     nameFileIdTable:
-      3-4-3: 21300014
-      3-5-2: 21300016
-      4-2-4: 21300006
-      4-3-3: 21300002
-      4-4-2: 21300000
-      4-5-1: 21300004
-      5-2-3: 21300012
-      5-3-2: 21300008
-      5-4-1: 21300010
+      3-4-3: 485463384
+      3-5-2: -181785844
+      4-2-4: 2104517217
+      4-3-3: 1702756434
+      4-4-2: -1584632025
+      4-5-1: -1039324531
+      5-2-3: -1201118094
+      5-3-2: -1017811500
+      5-4-1: -1190293436
   mipmapLimitGroupName: 
->>>>>>> pc/console
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bf6672f8954862488b332a4db11a355, type: 3}
+  m_Name: BlueTeam
+  m_EditorClassIdentifier: 
+  teamName: BlueTeam
+  region: Unknown
+  flag: {fileID: -969626506, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
+  formationImage: {fileID: 1702756434, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  teamFormation:
+    defense: 4
+    mid: 3
+    attack: 3
+  firstU: {fileID: -98981252, guid: ec613cbb079883b4a8d18dee974bec18, type: 3}
+  secondU: {fileID: -228738018, guid: bbd14556ae60fc6458c94b0681187dbf, type: 3}

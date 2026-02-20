@@ -69,11 +69,11 @@ public class MatchScoreController : MonoBehaviour
         //play end animation with knockout.
         if (LeftTeamScore == 5 || RightTeamScore == 5)
         {
-            StartCoroutine(MatchController._matchController.PlayEndMatchAnimation(true));
+            StartCoroutine(MatchController.instance.PlayEndMatchAnimation(true));
             return;
         }
 
-        MatchController._matchController.SpawnBall();
+        MatchController.instance.SpawnBall();
     }
 
     /// <summary>

@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Ball
   - Wall
@@ -21,6 +21,13 @@ TagManager:
   - PlayerDataObject
   - LeftTeamInfo
   - RightTeamInfo
+  - TopWall
+  - BottomWall
+  - TopGoalWall
+  - BottomGoalWall
+  - RodFigure
+  - RightGoalTrigger
+  - LeftGoalTrigger
   layers:
   - Default
   - TransparentFX
@@ -58,15 +65,14 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: playfield
+  - name: TableComponents
     uniqueID: 3305887407
     locked: 0
-  - name: Walls
-    uniqueID: 775681537
+  - name: Ball
+    uniqueID: 2067892715
     locked: 0
-  - name: ball
-    uniqueID: 3340466089
-    locked: 0
-  - name: players
+  - name: Players
     uniqueID: 331218617
     locked: 0
+  m_RenderingLayers:
+  - Default

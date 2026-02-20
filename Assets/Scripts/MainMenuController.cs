@@ -39,14 +39,9 @@ public class MainMenuController : MonoBehaviour {
     
     private void Start()
     {
-        playerCoins.text = PlayerDataController.playerData.playerCoins.ToString();
-        SetPlayerStats();
+        //playerCoins.text = PlayerDataController.playerData.playerCoins.ToString();
+        //SetPlayerStats();
     }
-
-    //private void Update()
-    //{
-    //    Debug.Log(Input.GetButton("Shoot_Button"));
-    //}
 
     /// <summary>
     /// this method will load a scene
@@ -54,31 +49,32 @@ public class MainMenuController : MonoBehaviour {
     /// <param name="sceneName">Name of the scene</param>
     public void LoadScene(string sceneName)
     {
-        //This is called in the button New on the panel that appears if there's a previous tournament played.
-        if (sceneName == "TournamentSelectionScene") SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
+        ////This is called in the button New on the panel that appears if there's a previous tournament played.
+        //if (sceneName == "TournamentSelectionScene") SceneManager.LoadScene(sceneName);
 
-        //This is called in the button Tournament on main menu
-        //If there is tournament data already it will show the panel with the option to continue the tournament.
-        //If no data, go directly to the tournamnet selection scene.
-        if (sceneName == "Tournament")
-        {
-            if (SaveSystem.LoadTournament() != null)
-                mainMenuAnimator.SetBool("ExistingTour", true);
-            else
-                SceneManager.LoadScene("TournamentSelectionScene");
-        }
+        ////This is called in the button Tournament on main menu
+        ////If there is tournament data already it will show the panel with the option to continue the tournament.
+        ////If no data, go directly to the tournamnet selection scene.
+        //if (sceneName == "Tournament")
+        //{
+        //    if (SaveSystem.LoadTournament() != null)
+        //        mainMenuAnimator.SetBool("ExistingTour", true);
+        //    else
+        //        SceneManager.LoadScene("TournamentSelectionScene");
+        //}
 
-        //Called by Quick Match button. Load directly Quick match scene.
-        if (sceneName == "QuickMatchMenu") SceneManager.LoadScene(sceneName);
+        ////Called by Quick Match button. Load directly Quick match scene.
+        //if (sceneName == "QuickMatchMenu_Scene") SceneManager.LoadScene(sceneName);
         
-        //Called by continue button in Continue tournament panel.
-        //This will create the Tournament info object to load Tournament main menu scene with the info.
-        if(sceneName == "TourMainMenu")
-        {
-            TourController.GetComponent<TournamentController>().LoadTour();
-            Instantiate(TourController);
-            SceneManager.LoadScene(sceneName);
-        }
+        ////Called by continue button in Continue tournament panel.
+        ////This will create the Tournament info object to load Tournament main menu scene with the info.
+        //if(sceneName == "TourMainMenu")
+        //{
+        //    TourController.GetComponent<TournamentController>().LoadTour();
+        //    Instantiate(TourController);
+        //    SceneManager.LoadScene(sceneName);
+        //}
     }
     
     /// <summary>
@@ -138,7 +134,7 @@ public class MainMenuController : MonoBehaviour {
     /// <summary>
     /// Set player stats when main menu is loaded.
     /// </summary>
-    public void SetPlayerStats()
+    private void SetPlayerStats()
     {
         PlayerDataController pData = PlayerDataController.playerData;
         playerTotalMatches.text = pData.totalMatches.ToString();

@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{6E639626-C695-24D7-8F80-59B8EFF624C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityEngine.InputSystem.Samples.UIvsGameInput", "UnityEngine.InputSystem.Samples.UIvsGameInput.csproj", "{E8D089FA-3827-2F1D-9E33-A3C412484AEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{8578B5CF-91ED-3591-D196-08711C910F6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{6E639626-C695-24D7-8F80-59B8EFF624C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E639626-C695-24D7-8F80-59B8EFF624C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E639626-C695-24D7-8F80-59B8EFF624C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8D089FA-3827-2F1D-9E33-A3C412484AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8D089FA-3827-2F1D-9E33-A3C412484AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8D089FA-3827-2F1D-9E33-A3C412484AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8D089FA-3827-2F1D-9E33-A3C412484AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8578B5CF-91ED-3591-D196-08711C910F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8578B5CF-91ED-3591-D196-08711C910F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8578B5CF-91ED-3591-D196-08711C910F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8578B5CF-91ED-3591-D196-08711C910F6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

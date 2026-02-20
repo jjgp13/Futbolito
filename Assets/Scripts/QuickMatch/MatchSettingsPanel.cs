@@ -5,6 +5,21 @@ using UnityEngine.UI;
 
 public class MatchSettingsPanel : MonoBehaviour
 {
+    [Header("Left team UI elements")]
+    public Image leftTeamFlag;
+    public Image leftTeamLocalUniform;
+    public Image leftTeamVisitorUniform;
+    public Text leftTeamName;
+    public Image leftTeamFormation;
+
+    [Header("Right team UI elements")]
+    public Image rightTeamFlag;
+    public Image rightTeamLocalUniform;
+    public Image rightTeamVisitorUniform;
+    public Text rightTeamName;
+    public Image rightTeamFormation;
+
+
     [Header("References to UI settings elements")]
     public Image matchBall;
     public Image matchGrass;
@@ -18,6 +33,28 @@ public class MatchSettingsPanel : MonoBehaviour
     public GameObject tablesPanel;
     public GameObject timesPanel;
     public GameObject levelsPanel;
+
+    private void Awake()
+    {
+        SetTeamInfoInUI();
+    }
+
+    private void SetTeamInfoInUI()
+    {
+        //Set left team info
+        leftTeamFlag.sprite = MatchInfo.instance.leftTeam.flag;
+        leftTeamLocalUniform.sprite = MatchInfo.instance.leftTeam.firstU;
+        leftTeamVisitorUniform.sprite = MatchInfo.instance.leftTeam.secondU;
+        leftTeamName.text = MatchInfo.instance.leftTeam.teamName;
+        leftTeamFormation.sprite = MatchInfo.instance.leftTeam.formationImage;
+
+        //Set right team info
+        rightTeamFlag.sprite = MatchInfo.instance.rightTeam.flag;
+        rightTeamLocalUniform.sprite = MatchInfo.instance.rightTeam.firstU;
+        rightTeamVisitorUniform.sprite = MatchInfo.instance.rightTeam.secondU;
+        rightTeamName.text = MatchInfo.instance.rightTeam.teamName;
+        rightTeamFormation.sprite = MatchInfo.instance.rightTeam.formationImage;
+    }
 
     public void ShowHideParentSettingPanel(bool activate)
     {
@@ -48,7 +85,7 @@ public class MatchSettingsPanel : MonoBehaviour
     public void SelectingBall(Button ballButton)
     {
         //Change info in Match Info Object
-        MatchInfo._matchInfo.ballSelected = ballButton.GetComponent<Image>().sprite;
+        MatchInfo.instance.ballSelected = ballButton.GetComponent<Image>().sprite;
         //Hide parent panel
         ballButton.transform.parent.gameObject.SetActive(false);
         //Hide main settings panel
@@ -62,8 +99,8 @@ public class MatchSettingsPanel : MonoBehaviour
         Sprite grassPattern = tableButton.GetComponent<Image>().sprite;
         Sprite tableColor = tableButton.transform.GetChild(1).GetComponent<Image>().sprite;
         //Change grass pattern and table color in Match Info Object;
-        MatchInfo._matchInfo.grassSelected = grassPattern;
-        MatchInfo._matchInfo.tableSelected = tableColor;
+        MatchInfo.instance.grassSelected = grassPattern;
+        MatchInfo.instance.tableSelected = tableColor;
         //Hide Parent panel
         tableButton.transform.parent.gameObject.SetActive(false);
         //Hide main settings panel
@@ -78,7 +115,7 @@ public class MatchSettingsPanel : MonoBehaviour
         //Change time in match info object
         string timeString = timeButton.transform.GetChild(0).GetComponent<Text>().text;
         int time = int.Parse(timeString.Substring(0,1));
-        MatchInfo._matchInfo.matchTime = time;
+        MatchInfo.instance.matchTime = time;
         //Hide Parent panel
         timeButton.transform.parent.gameObject.SetActive(false);
         //Hide main settings panel
@@ -104,7 +141,7 @@ public class MatchSettingsPanel : MonoBehaviour
                 level = 3;
                 break;
         }
-        MatchInfo._matchInfo.matchLevel = level;
+        MatchInfo.instance.matchLevel = level;
         //Hide Parent panel
         levelButton.transform.parent.gameObject.SetActive(false);
         //Hide main settings panel

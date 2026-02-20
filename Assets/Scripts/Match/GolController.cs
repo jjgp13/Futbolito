@@ -1,8 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GolController : MonoBehaviour {
+
+    /// <summary>
+    /// Fired when a goal is scored. Parameter is the scoring side tag ("LeftGoalTrigger" or "RightGoalTrigger").
+    /// </summary>
+    public static event Action<string> OnGoalScored;
 
     public GameObject GolExplosionAnimation;
     public AudioClip[] golSounds;
@@ -20,21 +26,33 @@ public class GolController : MonoBehaviour {
         {
             PlaySound();
 
-            if (gameObject.tag == "GoalTrigger")
+            if (gameObject.tag == "LeftGoalTrigger" || gameObject.tag == "RightGoalTrigger")
+            {
+                // Log goal event for AI analysis
+                string scoringSide = gameObject.tag == "LeftGoalTrigger" ? "LEFT_GOAL" : "RIGHT_GOAL";
+                int leftScore = MatchScoreController.instance != null ? MatchScoreController.instance.LeftTeamScore : -1;
+                int rightScore = MatchScoreController.instance != null ? MatchScoreController.instance.RightTeamScore : -1;
+                AIDebugLogger.Log("MATCH", "GOAL_SCORED",
+                    $"{scoringSide} — Score: L{leftScore + (scoringSide == "LEFT_GOAL" ? 1 : 0)}-R{rightScore + (scoringSide == "RIGHT_GOAL" ? 1 : 0)}");
+
                 MatchScoreController.instance.AdjustScore(gameObject.name);
 
-            StartCoroutine(MatchController._matchController.GolAnimation());
+                // Fire event for sound/crowd system
+                OnGoalScored?.Invoke(gameObject.tag);
+            }
+
+            StartCoroutine(MatchController.instance.GolAnimation());
 
             Instantiate(GolExplosionAnimation, other.gameObject.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
-            MatchController._matchController.ballInGame = false;
+            MatchController.instance.ballInGame = false;
             
         }
     }
 
     private void PlaySound()
     {
-        int clipIndex = Random.Range(0, 4);
+        int clipIndex = UnityEngine.Random.Range(0, golSounds.Length);
         audioS.clip = golSounds[clipIndex];
         audioS.Play();
     }

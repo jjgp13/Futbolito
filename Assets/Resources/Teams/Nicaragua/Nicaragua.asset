@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teamName: Nicaragua
   region: America
-  flag: {fileID: 21300092, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
-  formationImage: {fileID: 21300000, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
+  flag: {fileID: -553254081, guid: 7579b38913b5bdb44b1ffd7dee7085b0, type: 3}
+  formationImage: {fileID: -1584632025, guid: 6b3a9b93db054764492fe24341f3f1f9, type: 3}
   teamFormation:
     defense: 4
     mid: 4
     attack: 2
-  firstU: {fileID: 21300000, guid: 993da0949abeae54aacf338e8de78287, type: 3}
-  secondU: {fileID: 21300002, guid: 993da0949abeae54aacf338e8de78287, type: 3}
+  firstU: {fileID: 1001634159, guid: 993da0949abeae54aacf338e8de78287, type: 3}
+  secondU: {fileID: 1196188202, guid: 993da0949abeae54aacf338e8de78287, type: 3}

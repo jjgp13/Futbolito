@@ -15,8 +15,17 @@ public class TimeMatchController : MonoBehaviour
     void Start()
     {
         //Set time
-        timer = MatchInfo._matchInfo.matchTime * 59;
-        timeText.text = string.Format("{0}:00", MatchInfo._matchInfo.matchTime.ToString());
+        if (MatchInfo.instance != null)
+        {
+            timer = MatchInfo.instance.matchTime * 59;
+            timeText.text = string.Format("{0}:00", MatchInfo.instance.matchTime.ToString());
+        }
+        else
+        {
+            timer = 5 * 59;
+            timeText.text = string.Format("{0}:00", 5);
+        }
+        
     }
 
     // Update is called once per frame
@@ -30,7 +39,7 @@ public class TimeMatchController : MonoBehaviour
     {
         if (timer <= 0)
         {
-            MatchController._matchController.endMatch = true;
+            MatchController.instance.endMatch = true;
             timeText.text = "FINISH";
             timeText.GetComponent<Animator>().SetBool("Warning", false);
         }
@@ -38,7 +47,7 @@ public class TimeMatchController : MonoBehaviour
 
     private void DecreaseMatchTime()
     {
-        if (timer > 0 && MatchController._matchController.ballInGame)
+        if (timer > 0 && MatchController.instance.ballInGame)
         {
             timer -= Time.deltaTime;
 

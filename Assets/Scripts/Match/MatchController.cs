@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -8,18 +9,18 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class MatchController : MonoBehaviour {
 
+    // Match lifecycle events for sound/crowd system
+    public static event Action OnMatchStart;
+    public static event Action OnMatchEnd;
+    public static event Action OnBallSpawned;
+
     //Singleton
-    public static MatchController _matchController;
+    public static MatchController instance;
     
     //Reference to ball in field
     public GameObject ball;
     public bool gameIsPaused;
     public bool ballInGame;
-
-    [Header("Scriptable objects with teams information")]
-    //Reference to teams that are on this match
-    public Team leftTeam;
-    public Team rightTeam;
 
     [Header("Initial animation UI objects")]
     //Reference to the object that handle the initial animation.
@@ -48,11 +49,8 @@ public class MatchController : MonoBehaviour {
     //Singleton, reference to this script and its info.
     private void Awake()
     {
-        _matchController = this;
-
-        //Reference to player and NPC Game objects to pull info
-        leftTeam = MatchInfo._matchInfo.leftTeam;
-        rightTeam = MatchInfo._matchInfo.rightTeam;
+        if (instance == null)
+            instance = this;
     }
 
 
@@ -71,11 +69,6 @@ public class MatchController : MonoBehaviour {
         //Active these panels to assign flags
         golAnimation_UI.SetActive(true);
         
-
-        //Set UI (flags and team names)
-        SetTeamFlags("LeftTeamFlags", leftTeam.flag, leftTeam.teamName);
-        SetTeamFlags("RightTeamFlags", rightTeam.flag, rightTeam.teamName);
-
         
         golAnimation_UI.SetActive(false);
 
@@ -96,16 +89,13 @@ public class MatchController : MonoBehaviour {
         }
     }
 
-    
-
-    
-
     /// <summary>
     /// Instatiate ball in game field
     /// </summary>
     public void SpawnBall()
     {
         Instantiate(ball, Vector2.zero, Quaternion.identity);
+        OnBallSpawned?.Invoke();
     }
 
     /// <summary>
@@ -121,8 +111,6 @@ public class MatchController : MonoBehaviour {
         golAnimation_UI.SetActive(false);
     }
 
-    
-
     /// <summary>
     /// Play end match animation.
     /// </summary>
@@ -131,7 +119,7 @@ public class MatchController : MonoBehaviour {
     public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
         //PlayerDataController.playerData.totalMatches++;
-        //switch(MatchInfo._matchInfo.matchLevel)
+        //switch(MatchInfo.instance.matchLevel)
         //{
         //    case 1:
         //        PlayerDataController.playerData.easyLevelMatches++;
@@ -145,8 +133,11 @@ public class MatchController : MonoBehaviour {
         //}
 
 
+        // Signal match has ended (for sound/crowd system)
+        OnMatchEnd?.Invoke();
+
         //If match time has finished and ball is still in gamefield, stop and destroy.
-        ball.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        ball.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         Destroy(GameObject.FindGameObjectWithTag("Ball"));
 
         //Change text depending on game final status.
@@ -170,41 +161,31 @@ public class MatchController : MonoBehaviour {
 
 
         //Activate differents options depending of match's type.
-        if (MatchInfo._matchInfo.matchType == MatchType.QuickMatch) finishQuickMatchPanelOptions.SetActive(true);
-        if (MatchInfo._matchInfo.matchType == MatchType.TourMatch) finishTourMatchPanelOptions.SetActive(true);
+        if (MatchInfo.instance.matchType == MatchType.QuickMatch) finishQuickMatchPanelOptions.SetActive(true);
+        if (MatchInfo.instance.matchType == MatchType.TourMatch) finishTourMatchPanelOptions.SetActive(true);
 
     }
     
-
-    /// <summary>
-    /// This method will search for game objects with the tag given and it will set the flag and the name of the team
-    /// </summary>
-    /// <param name="tag">Objects to search by tag</param>
-    /// <param name="flag">Team flag</param>
-    /// <param name="name">Team name</param>
-    public void SetTeamFlags(string tag, Sprite flag, string name)
-    {
-        GameObject[] flags = GameObject.FindGameObjectsWithTag(tag);
-        for (int i = 0; i < flags.Length; i++)
-        {
-            //Get the image and set the flag
-            flags[i].GetComponent<Image>().sprite = flag;
-            //Get its first child and set its name
-            flags[i].transform.GetChild(0).GetComponent<Text>().text = name;
-        }
-    }
-
     //Activate inital animation.
     IEnumerator InitAnimation()
     {
         //Change initial animation text, depending of the match type
-        if (MatchInfo._matchInfo.matchType == MatchType.QuickMatch)
+        if(MatchInfo.instance != null)
+        {
+            if (MatchInfo.instance.matchType == MatchType.QuickMatch)
+            {
+                matchTypeText.text = "Friendly";
+                GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
+            }
+            if (MatchInfo.instance.matchType == MatchType.TourMatch)
+                SetInitalMatchTypeGivenTournament(TournamentController._tourCtlr.matchesRound, TournamentController._tourCtlr.teamsForKnockoutStage);
+        }
+        else
         {
             matchTypeText.text = "Friendly";
             GetComponent<PauseMatchController>().matchType.text = matchTypeText.text;
         }
-        if (MatchInfo._matchInfo.matchType == MatchType.TourMatch)
-            SetInitalMatchTypeGivenTournament(TournamentController._tourCtlr.matchesRound, TournamentController._tourCtlr.teamsForKnockoutStage);
+        
 
         intialAnimationObject.SetActive(true);
         yield return new WaitForSeconds(2.5f);
@@ -217,6 +198,9 @@ public class MatchController : MonoBehaviour {
         
         //Instiatite a ball
         SpawnBall();
+
+        // Signal match has started (for sound/crowd system)
+        OnMatchStart?.Invoke();
     }
 
     /// <summary>

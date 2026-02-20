@@ -1,0 +1,2215 @@
+fileFormatVersion: 2
+guid: 7579b38913b5bdb44b1ffd7dee7085b0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: Rusia
+  - first:
+      213: 21300002
+    second: Egipto
+  - first:
+      213: 21300004
+    second: Uruguay
+  - first:
+      213: 21300006
+    second: Arabia
+  - first:
+      213: 21300008
+    second: Brasil
+  - first:
+      213: 21300010
+    second: Suiza
+  - first:
+      213: 21300012
+    second: Costa_Rica
+  - first:
+      213: 21300014
+    second: Serbia
+  - first:
+      213: 21300016
+    second: Portugal
+  - first:
+      213: 21300018
+    second: Marruecos
+  - first:
+      213: 21300020
+    second: Espana
+  - first:
+      213: 21300022
+    second: Iran
+  - first:
+      213: 21300024
+    second: Alemania
+  - first:
+      213: 21300026
+    second: Suecia
+  - first:
+      213: 21300028
+    second: Mexico
+  - first:
+      213: 21300030
+    second: Korea
+  - first:
+      213: 21300032
+    second: Francia
+  - first:
+      213: 21300034
+    second: Peru
+  - first:
+      213: 21300036
+    second: Australia
+  - first:
+      213: 21300038
+    second: Dinamarca
+  - first:
+      213: 21300040
+    second: Belgica
+  - first:
+      213: 21300042
+    second: Tunez
+  - first:
+      213: 21300044
+    second: Inglaterra
+  - first:
+      213: 21300046
+    second: Panama
+  - first:
+      213: 21300048
+    second: Argentina
+  - first:
+      213: 21300050
+    second: Croacia
+  - first:
+      213: 21300052
+    second: Islandia
+  - first:
+      213: 21300054
+    second: Nigeria
+  - first:
+      213: 21300056
+    second: Polonia
+  - first:
+      213: 21300058
+    second: Colombia
+  - first:
+      213: 21300060
+    second: Senegal
+  - first:
+      213: 21300062
+    second: Japon
+  - first:
+      213: 21300064
+    second: Haiti
+  - first:
+      213: 21300066
+    second: Paraguay
+  - first:
+      213: 21300068
+    second: Bolivia
+  - first:
+      213: 21300070
+    second: Chile
+  - first:
+      213: 21300072
+    second: Ecuador
+  - first:
+      213: 21300074
+    second: Estados_Unidos
+  - first:
+      213: 21300076
+    second: Jamaica
+  - first:
+      213: 21300078
+    second: Flags 1_39
+  - first:
+      213: 21300080
+    second: Venezuela
+  - first:
+      213: 21300082
+    second: Canada
+  - first:
+      213: 21300084
+    second: Martinica
+  - first:
+      213: 21300086
+    second: Guyana
+  - first:
+      213: 21300088
+    second: Curazao
+  - first:
+      213: 21300090
+    second: Honduras
+  - first:
+      213: 21300092
+    second: Nicaragua
+  - first:
+      213: 21300094
+    second: Salvador
+  - first:
+      213: 21300096
+    second: Albania
+  - first:
+      213: 21300098
+    second: Austria
+  - first:
+      213: 21300100
+    second: Eslovaquia
+  - first:
+      213: 21300102
+    second: Gales
+  - first:
+      213: 21300104
+    second: Hungria
+  - first:
+      213: 21300106
+    second: Irlanda
+  - first:
+      213: 21300108
+    second: Irlanda del Norte
+  - first:
+      213: 21300110
+    second: Italia
+  - first:
+      213: 21300112
+    second: Republica_Checa
+  - first:
+      213: 21300114
+    second: Rumania
+  - first:
+      213: 21300116
+    second: Turquia
+  - first:
+      213: 21300118
+    second: Ucrania
+  - first:
+      213: 21300120
+    second: Argelia
+  - first:
+      213: 21300122
+    second: Burkina_Faso
+  - first:
+      213: 21300124
+    second: Camerun
+  - first:
+      213: 21300126
+    second: Ghana
+  - first:
+      213: 21300128
+    second: Costa_de_Marfil
+  - first:
+      213: 21300130
+    second: Gabon
+  - first:
+      213: 21300132
+    second: Guinea
+  - first:
+      213: 21300134
+    second: Mali
+  - first:
+      213: 21300136
+    second: Congo
+  - first:
+      213: 21300138
+    second: Togo
+  - first:
+      213: 21300140
+    second: Uganda
+  - first:
+      213: 21300142
+    second: Zimbaue
+  - first:
+      213: 21300144
+    second: Barein
+  - first:
+      213: 21300146
+    second: Catar
+  - first:
+      213: 21300148
+    second: China
+  - first:
+      213: 21300150
+    second: Corea_Del_Norte
+  - first:
+      213: 21300152
+    second: Emiratos_Arabes
+  - first:
+      213: 21300154
+    second: Irak
+  - first:
+      213: 21300156
+    second: Jordania
+  - first:
+      213: 21300158
+    second: Kuwait
+  - first:
+      213: 21300160
+    second: Oman
+  - first:
+      213: 21300162
+    second: Palestina
+  - first:
+      213: 21300164
+    second: Uzbekistan
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  swizzle: 50462976
+  cookieLightType: 2
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Russia
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f12c2ac4f9caec4e87cbcac4645673f
+      internalID: -1691158186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Egypt
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a660911ae50527f4589c368ee2e1d7df
+      internalID: 123438171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uruguay
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c63aa65a4981cb4b8023d3708b0b5a4
+      internalID: 59539418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SuadiArabia
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a578a87423a33c9469b67d3899786ac9
+      internalID: -1348592985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brazil
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03fb4ff0c60f1b44fb873e9078713ce5
+      internalID: 1184830640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Switzerland
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b01ba5d841c430459b76b7ba547f1b7
+      internalID: 1266925268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CostaRica
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bdf05754c77e1e4f8fa806437d4d6a7
+      internalID: -1750750500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Serbia
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 723
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d32fce7bc60fa946a3d4d6889df5320
+      internalID: -163111469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Portugal
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ad9bf20e62cd4f488e67692de08a2f8
+      internalID: -1352879989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Morocco
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6982aa254b041f44d8897388e4a85fc9
+      internalID: 603565613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spain
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d819d9cd7abb22d48ad6447d9c5d5c3e
+      internalID: 1278119759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Iran
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c6b9ca3438a3694297a23214d7897a2
+      internalID: 448465066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Germany
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5398697d8a57fb347a6d267d6fe804c6
+      internalID: 1887896972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sweden
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30dcb45963fd976449ec2a2616508914
+      internalID: -68173740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mexico
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 294edd87b3f15f74a8a887ccedc304ab
+      internalID: 1725704053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SouthKorea
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 651
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66e72de6c82f37a4c8b0bb93dc6da528
+      internalID: -1403571469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: France
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44531ef0c3adfae45b0f911e1deff170
+      internalID: 187334952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Peru
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06e1605f94319a8408078d6b0aed0b8b
+      internalID: 485140657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Australia
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53f0d54395ba10c4abfe3a2c554d57b2
+      internalID: 1450224415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Denmark
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dbd9d30d17d4264d91ea5b91e4a5e57
+      internalID: 1325201113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Belgium
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 74ce332a8bad40747995854eac19f799
+      internalID: 1389935834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tunisia
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cce7a028985d0264195b52385755e360
+      internalID: -196191051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: England
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3a18abd28848a84fae8272fa1bf3e95
+      internalID: 1922353503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Panama
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 579
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71bf11a80aae5df45b8ed520096e8fbe
+      internalID: 379821026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Argentina
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aabc628e1ece3ba4ca1c151f93081f00
+      internalID: -969626506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Croatia
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04f129be091afbb4c8a7d64883dc1412
+      internalID: -1218028716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Iceland
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62da9493ea7520c44814c63f45d8040a
+      internalID: -1374957408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nigeria
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4513da525c26ba44896e8d45111c74ff
+      internalID: 2072748800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Poland
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c266ae421a53264eb8f919325e73684
+      internalID: -1661591981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Colombia
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a58529e121dc374c80c9d8ed4f11b0e
+      internalID: -405612515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Senegal
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a1b7c35d923ceb4faca61999340196e
+      internalID: 428765474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Japan
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 507
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7727290e10e43bc44b2617ba5ebe44b9
+      internalID: -2048540197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Haiti
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3a18f12609d6da42ac704a6373a092a
+      internalID: -1160639383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Paraguay
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc489915b91596409622fe3b445e4c0
+      internalID: -861712500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bolivia
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ef56783734c0194b9d26f367c6e19d4
+      internalID: 1384521357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chile
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a4ee2af88673124183668b425efc3ef
+      internalID: 403478493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ecuador
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c80f075bbbd08549a908990eb4be88c
+      internalID: 595031686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UnitedStates
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 677350b5faa18704ca00be96611dfd33
+      internalID: -2078071061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jamaica
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d27d72d56bfea564bb1265ad25f37cd5
+      internalID: -1323625734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeamFlags_39
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 435
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11bfa8951465dc54ca6ca24959499fa7
+      internalID: -1171970731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Venezuela
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d6d4d6d0d907b04288fc1d30b904972
+      internalID: -773184150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Canada
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5dfac6b24bacad4d93f7dafa23ffce1
+      internalID: -1202928406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FrenchGuinea
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2801d7ee44a70418c63487c8200207
+      internalID: -978906431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeamFlags_43
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 816552afccf519449a66dc864170d274
+      internalID: 1850473213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Curacao
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71af03f9e2b98ce499d324c2a35051cd
+      internalID: -1595902270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Honduras
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe0fe8d4fed56c647993c60a7dd7a953
+      internalID: 910617752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nicaragua
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d2aa5c07f118654283936614903aa35
+      internalID: -553254081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ElSalvador
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 363
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfd63120c655e5746b698ce3de30aa0b
+      internalID: -2004691085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Albania
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f77b9a04f24f7034fb9444476d395ae5
+      internalID: 2015792929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Austria
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d457ab2b50db047b2443c8673e8e0e
+      internalID: -1922784480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Slovakia
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 696da3a1b10e24d4897180794e6cf220
+      internalID: -1411204767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wales
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7717751ad465dab43b6e98945a07dfcb
+      internalID: -1752899140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hungary
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b3f69c93bcc0bb49b8d4690f90a9f1d
+      internalID: 826690710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ireland
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f526c7608716c04d987c55705fd8358
+      internalID: 80691633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NorthernIreland
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cc8660b27d09924299f95b1dccb9857
+      internalID: 924091596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Italy
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 291
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a140b7094e2c7846a62e214ac1b50ca
+      internalID: 1885631909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CzechRepublic
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5de6fb9ef6b06bb4c807a745568ece71
+      internalID: -210513209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Romania
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ae2814fc875926438d89cd926d71968
+      internalID: 2024654516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Turkey
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97bea6630eec2b848b0f1fc9faf941a9
+      internalID: -889979318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ukraine
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9989ae2b8aca3c84d82231641c49d9a8
+      internalID: 948306165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Algeria
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e4e698fe8b55ce4a905f58761539946
+      internalID: -1381641745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BurkinaFaso
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcdeba69f7973484091050e1ac5faf04
+      internalID: -1198961110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cameroon
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f697f375fe0ce7f459e34b8b1824de44
+      internalID: -1004408780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ghana
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 219
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c87a811c6a798f4d8a49519c8bfce49
+      internalID: -1340911850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvoryCoast
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4b37128633710a4098aea5bfefc03ff
+      internalID: -1045368126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gabon
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3da73a7683c65ea48b5136640a1d5503
+      internalID: -268939361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Guinea-Bissau
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 542435ca1d5f38149ad9c02fafc56590
+      internalID: 785672095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mali
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2aef9a55e77596f44a2857d42d6af68b
+      internalID: -1146354366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Congo
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8213999e0865dc04e9c329d80730755d
+      internalID: -547949938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Togo
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67df39fed645fac4ea579f02bc4dd87a
+      internalID: 1798095310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uganda
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69b2b21fd4087dd4a987ca441222b9bf
+      internalID: -520672152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Zimbabwe
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 147
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0be109e4fb819438e285b88f4ee46e
+      internalID: 838436047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bahrain
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4f80887326daf2448cbb07a72c09697
+      internalID: -1965521729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Qatar
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0dc929666828c44eb02b730c2fd66e6
+      internalID: -1882587453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: China
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d865cdacb254144bbeaa5bcc92113c1
+      internalID: 1187603512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NorthKorea
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96959de558279284d89ac6994ae87e37
+      internalID: -754480675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UniterdArabEmirates
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cf9cf95ed95a414aaa168f72a12cf08
+      internalID: 785671498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Iraq
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86fef6761e0db2b449b3643669b794f4
+      internalID: 766590619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jordan
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ebcab92206de344bde20dfbadb789e
+      internalID: -1985201202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kuwait
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 75
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac314c903f291b946bcf5f81fe7768f7
+      internalID: -1849238240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Oman
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b166cf97c7b90c64ca0484deba6df423
+      internalID: 1998523204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Palestine
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 3
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65936e89d484a2241a32f041d3acd2eb
+      internalID: -845093405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Uzbekistan
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 3
+        width: 96
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce1298c54ea013549aadf1be750d8e2d
+      internalID: 1930466186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Albania: 2015792929
+      Algeria: -1381641745
+      Argentina: -969626506
+      Australia: 1450224415
+      Austria: -1922784480
+      Bahrain: -1965521729
+      Belgium: 1389935834
+      Bolivia: 1384521357
+      Brazil: 1184830640
+      BurkinaFaso: -1198961110
+      Cameroon: -1004408780
+      Canada: -1202928406
+      Chile: 403478493
+      China: 1187603512
+      Colombia: -405612515
+      Congo: -547949938
+      CostaRica: -1750750500
+      Croatia: -1218028716
+      Curacao: -1595902270
+      CzechRepublic: -210513209
+      Denmark: 1325201113
+      Ecuador: 595031686
+      Egypt: 123438171
+      ElSalvador: -2004691085
+      England: 1922353503
+      France: 187334952
+      FrenchGuinea: -978906431
+      Gabon: -268939361
+      Germany: 1887896972
+      Ghana: -1340911850
+      Guinea-Bissau: 785672095
+      Haiti: -1160639383
+      Honduras: 910617752
+      Hungary: 826690710
+      Iceland: -1374957408
+      Iran: 448465066
+      Iraq: 766590619
+      Ireland: 80691633
+      Italy: 1885631909
+      IvoryCoast: -1045368126
+      Jamaica: -1323625734
+      Japan: -2048540197
+      Jordan: -1985201202
+      Kuwait: -1849238240
+      Mali: -1146354366
+      Mexico: 1725704053
+      Morocco: 603565613
+      Nicaragua: -553254081
+      Nigeria: 2072748800
+      NorthKorea: -754480675
+      NorthernIreland: 924091596
+      Oman: 1998523204
+      Palestine: -845093405
+      Panama: 379821026
+      Paraguay: -861712500
+      Peru: 485140657
+      Poland: -1661591981
+      Portugal: -1352879989
+      Qatar: -1882587453
+      Romania: 2024654516
+      Russia: -1691158186
+      Senegal: 428765474
+      Serbia: -163111469
+      Slovakia: -1411204767
+      SouthKorea: -1403571469
+      Spain: 1278119759
+      SuadiArabia: -1348592985
+      Sweden: -68173740
+      Switzerland: 1266925268
+      TeamFlags_39: -1171970731
+      TeamFlags_43: 1850473213
+      Togo: 1798095310
+      Tunisia: -196191051
+      Turkey: -889979318
+      Uganda: -520672152
+      Ukraine: 948306165
+      UnitedStates: -2078071061
+      UniterdArabEmirates: 785671498
+      Uruguay: 59539418
+      Uzbekistan: 1930466186
+      Venezuela: -773184150
+      Wales: -1752899140
+      Zimbabwe: 838436047
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

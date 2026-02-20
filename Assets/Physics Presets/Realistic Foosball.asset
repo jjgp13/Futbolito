@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8847b60ec1003524b997bba184c50c0e, type: 3}
+  m_Name: Realistic Foosball
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsPreset
+  presetName: Realistic Foosball
+  description: Simulates a real foosball table. Higher friction, realistic bounce,
+    heavier ball with natural deceleration.
+  ballMass: 1.2
+  ballLinearDrag: 1.5
+  ballAngularDrag: 0.3
+  ballGravityScale: 0
+  ballFriction: 0.3
+  ballBounciness: 0.6
+  figureFriction: 0.2
+  figureBounciness: 0.4
+  wallFriction: 0.1
+  wallBounciness: 0.7
+  lightShotForce: 20
+  mediumShotForce: 40
+  heavyShotForce: 70
+  wallPassForce: 20
+  maxVerticalAngle: 30
+  shotActiveWindow: 0.25
+  shotCooldown: 0.6
+  maxBallSpeed: 60
+  kickoffForceMin: 2
+  kickoffForceMax: 4
+  enableTimeSlowOnHeavyShot: 0
+  timeSlowFactor: 0.3
+  timeSlowDuration: 0.1
+  cameraShakeMultiplier: 0.5

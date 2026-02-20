@@ -61,17 +61,17 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
     /// <param name="side">Team side (left or right)</param>
     private void SetTeamUniforms(string side)
     {
-        if (side == "LeftTeam")
-        {
-            GameObject.Find("LeftTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
-            GameObject.Find("LeftTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
-        }
+        //if (side == "LeftTeam")
+        //{
+        //    GameObject.Find("LeftTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
+        //    GameObject.Find("LeftTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
+        //}
 
-        if (side == "RightTeam")
-        {
-            GameObject.Find("RightTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
-            GameObject.Find("RightTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
-        }
+        //if (side == "RightTeam")
+        //{
+        //    GameObject.Find("RightTeamFirstU").GetComponent<Image>().sprite = teamInfo.firstU;
+        //    GameObject.Find("RightTeamSecondU").GetComponent<Image>().sprite = teamInfo.secondU;
+        //}
     }
 
 
@@ -90,7 +90,7 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
                 tc.teamSelected = teamInfo.teamName;
                 tc.GetPlayerMatchesInGroupPhase();
             }
-            FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = teamInfo.flag;
+            //FindObjectOfType<ToursMenuController>().teamSelectedFlag.sprite = teamInfo.flag;
         }
 
         //Behaviour for outline effect
@@ -104,9 +104,9 @@ public class TeamSelected : MonoBehaviour, ISelectHandler {
             Image outline = Instantiate(flagOutline);
             outline.transform.SetParent(gameObject.transform);
             outline.transform.position = gameObject.transform.position;
-            Vector2 size = gameObject.GetComponent<RectTransform>().sizeDelta;
-            int inc = 16;
-            outline.rectTransform.sizeDelta = new Vector2(size.x + inc, size.y + inc);
+            //Vector2 size = gameObject.GetComponent<RectTransform>().sizeDelta;
+            //int inc = 16;
+            //outline.rectTransform.sizeDelta = new Vector2(size.x + inc, size.y + inc);
         }
     }
 

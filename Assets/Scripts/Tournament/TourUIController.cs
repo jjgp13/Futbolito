@@ -705,8 +705,8 @@ public class TourUIController : MonoBehaviour {
             //Save tournament data
             tourInfo.SaveTour();
             //Delete object that contains the data.
-            Destroy(FindObjectOfType<TournamentController>().gameObject);
-            Destroy(FindObjectOfType<MatchInfo>().gameObject);
+            //Destroy(FindObjectOfType<TournamentController>().gameObject);
+            //Destroy(FindObjectOfType<MatchInfo>().gameObject);
             SceneManager.LoadScene(sceneName);
         }
         

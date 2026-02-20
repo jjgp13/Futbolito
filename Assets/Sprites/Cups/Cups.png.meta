@@ -21,11 +21,7 @@ TextureImporter:
       213: 21300010
     second: CopaAsiatica
   externalObjects: {}
-<<<<<<< HEAD
-  serializedVersion: 10
-=======
   serializedVersion: 12
->>>>>>> pc/console
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -61,7 +57,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -70,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +83,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -101,33 +97,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -140,9 +110,20 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-<<<<<<< HEAD
-=======
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -155,13 +136,12 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
->>>>>>> pc/console
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Copa_del_Mundo
+      name: Cups_0
       rect:
         serializedVersion: 2
         x: 0
@@ -169,20 +149,20 @@ TextureImporter:
         width: 48
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55a79b26978a06c429a14193dda71b52
-      internalID: 21300000
+      spriteID: 864620497775738468944650c7048895
+      internalID: 1128725581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CopaAmerica
+      name: Cups_1
       rect:
         serializedVersion: 2
         x: 48
@@ -190,20 +170,20 @@ TextureImporter:
         width: 48
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 58e75c427eee8724f990c631e50b597f
-      internalID: 21300002
+      spriteID: 5d480a14da6947f499fe4c602e97f6c8
+      internalID: 118868275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CopaOro
+      name: Cups_2
       rect:
         serializedVersion: 2
         x: 96
@@ -211,20 +191,20 @@ TextureImporter:
         width: 48
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cf3e0e6b461250469dfd0195163044b
-      internalID: 21300004
+      spriteID: 8481a2df9d113ac41a9c286003f80a52
+      internalID: -137082148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CopaDeEuropa
+      name: Cups_3
       rect:
         serializedVersion: 2
         x: 0
@@ -232,20 +212,20 @@ TextureImporter:
         width: 48
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7db75d5fb99b333479f11cc0e05a1e50
-      internalID: 21300006
+      spriteID: dfda93d167b79304c98acf5ea4184c3b
+      internalID: -909271111
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CopaAfricana
+      name: Cups_4
       rect:
         serializedVersion: 2
         x: 48
@@ -253,20 +233,20 @@ TextureImporter:
         width: 48
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf9b8ad8b56a36e4792632eb439957f4
-      internalID: 21300008
+      spriteID: 4be5e64a9fd0dfe40abdd290c8f1c6c0
+      internalID: 1613733961
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CopaAsiatica
+      name: Cups_5
       rect:
         serializedVersion: 2
         x: 96
@@ -274,14 +254,14 @@ TextureImporter:
         width: 48
         height: 96
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73876ffa0fa06214a9954424c6ba608d
-      internalID: 21300010
+      spriteID: 59086f91a44b09949b9a06d400cd51a7
+      internalID: 2069354094
       vertices: []
       indices: 
       edges: []
@@ -289,25 +269,21 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: bbae08acbfa47a847b5d9ebe4d6ab2a7
+    spriteID: 0fb67254d279dc448951903c3f1efbb2
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
-  spritePackingTag: 
-=======
     nameFileIdTable:
-      CopaAfricana: 21300008
-      CopaAmerica: 21300002
-      CopaAsiatica: 21300010
-      CopaDeEuropa: 21300006
-      CopaOro: 21300004
-      Copa_del_Mundo: 21300000
+      Cups_0: 1128725581
+      Cups_1: 118868275
+      Cups_2: -137082148
+      Cups_3: -909271111
+      Cups_4: 1613733961
+      Cups_5: 2069354094
   mipmapLimitGroupName: 
->>>>>>> pc/console
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 

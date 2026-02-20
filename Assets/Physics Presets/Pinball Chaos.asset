@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8847b60ec1003524b997bba184c50c0e, type: 3}
+  m_Name: Pinball Chaos
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsPreset
+  presetName: Pinball Chaos
+  description: Maximum bounciness everywhere. Ball ricochets wildly off walls and
+    figures. Pure chaos and fun.
+  ballMass: 0.6
+  ballLinearDrag: 0.1
+  ballAngularDrag: 0.02
+  ballGravityScale: 0
+  ballFriction: 0
+  ballBounciness: 1
+  figureFriction: 0
+  figureBounciness: 0.9
+  wallFriction: 0
+  wallBounciness: 1
+  lightShotForce: 25
+  mediumShotForce: 50
+  heavyShotForce: 85
+  wallPassForce: 30
+  maxVerticalAngle: 60
+  shotActiveWindow: 0.4
+  shotCooldown: 0.3
+  maxBallSpeed: 80
+  kickoffForceMin: 3
+  kickoffForceMax: 5
+  enableTimeSlowOnHeavyShot: 1
+  timeSlowFactor: 0.25
+  timeSlowDuration: 0.12
+  cameraShakeMultiplier: 1.8

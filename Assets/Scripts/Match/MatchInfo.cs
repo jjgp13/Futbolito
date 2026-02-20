@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 //Type of match
 public enum MatchType
@@ -17,21 +18,19 @@ public enum MatchType
 public class MatchInfo : MonoBehaviour {
 
     //Singleton
-    public static MatchInfo _matchInfo;
+    public static MatchInfo instance;
     
     //Left team information
     [Header("Left team information")]
-    public Team leftTeam;
-    public List<int> leftControlsAssigned;
-    public List<ControlMapping> leftControllers = new List<ControlMapping>();
+    public List<PlayerInput> leftControllers = new List<PlayerInput>(); // This is assigned in GameControlsConfigPanel.cs
+    public Team leftTeam; // This is assigned in Se
     public Formation leftTeamLineUp;
     public string leftTeamUniform;
 
     //Right team information
     [Header("Right team information")]
+    public List<PlayerInput> rightControllers = new List<PlayerInput>(); // This is assigned in GameControlsConfigPanel.cs
     public Team rightTeam;
-    public List<int> rightControlsAssigned;
-    public List<ControlMapping> rightControllers = new List<ControlMapping>();
     public Formation rightTeamLineUp;
     public string rightTeamUniform;
 
@@ -47,7 +46,8 @@ public class MatchInfo : MonoBehaviour {
 
     private void Awake()
     {
-        _matchInfo = this;
+        if (instance == null)
+            instance = this;
         DontDestroyOnLoad(this);
     }
 

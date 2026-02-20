@@ -24,11 +24,7 @@ TextureImporter:
       213: 21300012
     second: AsianCupMapSprite
   externalObjects: {}
-<<<<<<< HEAD
-  serializedVersion: 10
-=======
   serializedVersion: 12
->>>>>>> pc/console
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -64,7 +60,7 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 1
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -73,7 +69,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -90,7 +86,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 1
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 2
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -104,33 +100,7 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -143,9 +113,20 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
-<<<<<<< HEAD
-=======
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Server
     maxTextureSize: 2048
@@ -158,13 +139,12 @@ TextureImporter:
     overridden: 0
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 1
->>>>>>> pc/console
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NoTourSelected
+      name: WorldPixelMap_0
       rect:
         serializedVersion: 2
         x: 0
@@ -172,20 +152,20 @@ TextureImporter:
         width: 512
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4fb2d3345fefed3438f07bb29b36942c
-      internalID: 21300000
+      spriteID: f9a90396f234a3b42b49c92863d901a1
+      internalID: 55366416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: WorldCupMapSprite
+      name: WorldPixelMap_1
       rect:
         serializedVersion: 2
         x: 512
@@ -193,41 +173,41 @@ TextureImporter:
         width: 512
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b9ddcbc6403b434cb7bce1d01c2cecf
-      internalID: 21300002
+      spriteID: c211e8c11e1d39043aa06a65ba35e3e3
+      internalID: 1614583801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldCupMapSprite
+      name: WorldPixelMap_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 513
+        x: 0
+        y: 512
         width: 512
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2794b86b25ad8b34ea4cc1d2e3591faf
-      internalID: 21300004
+      spriteID: 3dcb36e8fac4e7f4ca4173e89de07ea0
+      internalID: -546271267
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AmericanCupMapSprite
+      name: WorldPixelMap_3
       rect:
         serializedVersion: 2
         x: 512
@@ -235,20 +215,20 @@ TextureImporter:
         width: 512
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fa2e7facd73acf4d848bbdb47789b4a
-      internalID: 21300006
+      spriteID: 8c15646f4a71b0b45bf31d40fb386be3
+      internalID: 1698485162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AfricanCupMapSprite
+      name: WorldPixelMap_4
       rect:
         serializedVersion: 2
         x: 0
@@ -256,20 +236,20 @@ TextureImporter:
         width: 512
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d31ea27311669743b936baf606a4edb
-      internalID: 21300008
+      spriteID: 45f4ebe8d999dbb4d991672344867022
+      internalID: -498471300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EuroCupMapSprite
+      name: WorldPixelMap_5
       rect:
         serializedVersion: 2
         x: 512
@@ -277,20 +257,20 @@ TextureImporter:
         width: 512
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f893387b1118a7a4ab7a3b2328671dca
-      internalID: 21300010
+      spriteID: b2ac69ba030df104d972c84404d61944
+      internalID: 1513710582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsianCupMapSprite
+      name: WorldPixelMap_6
       rect:
         serializedVersion: 2
         x: 0
@@ -298,14 +278,14 @@ TextureImporter:
         width: 512
         height: 256
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c6f0f0db18d4a64eaad2634b5d526d3
-      internalID: 21300012
+      spriteID: 20205db3287962c469b9f69c3caaffa9
+      internalID: 1514532757
       vertices: []
       indices: 
       edges: []
@@ -313,26 +293,22 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 74acd491682f8c34386b942b607366a7
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-<<<<<<< HEAD
-  spritePackingTag: 
-=======
     nameFileIdTable:
-      AfricanCupMapSprite: 21300008
-      AmericanCupMapSprite: 21300006
-      AsianCupMapSprite: 21300012
-      EuroCupMapSprite: 21300010
-      GoldCupMapSprite: 21300004
-      NoTourSelected: 21300000
-      WorldCupMapSprite: 21300002
+      WorldPixelMap_0: 55366416
+      WorldPixelMap_1: 1614583801
+      WorldPixelMap_2: -546271267
+      WorldPixelMap_3: 1698485162
+      WorldPixelMap_4: -498471300
+      WorldPixelMap_5: 1513710582
+      WorldPixelMap_6: 1514532757
   mipmapLimitGroupName: 
->>>>>>> pc/console
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 

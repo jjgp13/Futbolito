@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8847b60ec1003524b997bba184c50c0e, type: 3}
+  m_Name: Arcade
+  m_EditorClassIdentifier: Assembly-CSharp::PhysicsPreset
+  presetName: Arcade
+  description: Fast, bouncy, and explosive. Low friction, high bounciness, powerful
+    shots with time-slow and screen shake.
+  ballMass: 0.8
+  ballLinearDrag: 0.3
+  ballAngularDrag: 0.05
+  ballGravityScale: 0
+  ballFriction: 0
+  ballBounciness: 0.95
+  figureFriction: 0
+  figureBounciness: 0.7
+  wallFriction: 0
+  wallBounciness: 0.95
+  lightShotForce: 35
+  mediumShotForce: 70
+  heavyShotForce: 120
+  wallPassForce: 35
+  maxVerticalAngle: 50
+  shotActiveWindow: 0.35
+  shotCooldown: 0.4
+  maxBallSpeed: 0
+  kickoffForceMin: 4
+  kickoffForceMax: 7
+  enableTimeSlowOnHeavyShot: 1
+  timeSlowFactor: 0.2
+  timeSlowDuration: 0.15
+  cameraShakeMultiplier: 1.5
