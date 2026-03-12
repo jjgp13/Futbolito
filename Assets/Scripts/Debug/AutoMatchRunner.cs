@@ -240,6 +240,7 @@ public class AutoMatchRunner : MonoBehaviour
 
     private void InitTestSuite()
     {
+        AIDebugLogger.CleanLogDirectory();
         SyncMatchCountFromProfile();
         isRunning = true;
         currentMatch = 1;
