@@ -16,11 +16,28 @@ public class RodConfiguration : MonoBehaviour
     private Formation teamFormation;
     private float screenHalfWidthInWorldUnits;
 
+    /// <summary>
+    /// When set, overrides team formation with formation preset values.
+    /// Also provides speed values to movement scripts via GetActiveFormationPreset().
+    /// </summary>
+    [HideInInspector] public FormationPreset activeFormationPreset;
+
     void Awake()
     {
         foosballFigureGameObject = FoosballFigurePrefab;
+
+        // Override formation from active FormationPreset if set
+        if (FormationPreset.Active != null)
+        {
+            activeFormationPreset = FormationPreset.Active;
+        }
+
         // Initialize based on game state
-        if (MatchInfo.instance != null)
+        if (AutoMatchRunner.IsAutoMode)
+        {
+            RodConfigurationFromTeamScriptableObject();
+        }
+        else if (MatchInfo.instance != null)
         {
             RodConfigurationFromMatchInfoObject();
         }
@@ -49,7 +66,9 @@ public class RodConfiguration : MonoBehaviour
         TeamRodsController teamRodsController = GetComponentInParent<TeamRodsController>();
         teamInfo = teamRodsController.testingTeam;
         teamUniform = "Local";
-        teamFormation = teamRodsController.testingTeam.teamFormation;
+        teamFormation = activeFormationPreset != null
+            ? activeFormationPreset.ToFormation()
+            : teamRodsController.testingTeam.teamFormation;
 
         // Enable/disable scripts based on players assigned
         bool hasPlayers = teamRodsController.playersAssignedToThisTeamSide > 0;
@@ -66,13 +85,17 @@ public class RodConfiguration : MonoBehaviour
         {
             teamInfo = MatchInfo.instance.leftTeam;
             teamUniform = MatchInfo.instance.leftTeamUniform;
-            teamFormation = MatchInfo.instance.leftTeamLineUp;
+            teamFormation = activeFormationPreset != null
+                ? activeFormationPreset.ToFormation()
+                : MatchInfo.instance.leftTeamLineUp;
         }
         else if (transform.parent.name == "RightTeam")
         {
             teamInfo = MatchInfo.instance.rightTeam;
             teamUniform = MatchInfo.instance.rightTeamUniform;
-            teamFormation = MatchInfo.instance.rightTeamLineUp;
+            teamFormation = activeFormationPreset != null
+                ? activeFormationPreset.ToFormation()
+                : MatchInfo.instance.rightTeamLineUp;
         }
     }
 
@@ -96,36 +119,57 @@ public class RodConfiguration : MonoBehaviour
         // Store foosballFigureGameObjectdle half-size
         halfPlayer = foosballFigureGameObject.transform.localScale.x / 2;
 
-        // Set area effector size (CircleCollider2D radius)
-        // IMPORTANT: These radius values are used by AITeamRodsController for reach-based activation
-        // Larger radius = rod can reach ball from further away
-        // The reach calculation in AITeamRodsController considers:
-        // - This collider radius (magnet detection range)
-        // - Rod movement limits (vertical reach)
-        // - Horizontal distance to ball
+        // Set magnet effector radius based on actual figure spacing
+        // Each figure's magnet radius = half the spacing to adjacent figures (with 10% gap)
+        // This prevents magnet fields from overlapping between figures on the same rod
+        SetMagnetRadiiFromSpacing(availableHeight, rodFoosballFigureCount);
+    }
+
+    /// <summary>
+    /// Calculates magnet CircleCollider2D radius per figure based on actual spacing.
+    /// For N figures: spacing = effectiveHeight / (N-1), radius = spacing / 2 * 0.9
+    /// For GK (1 figure): radius = availableHeight / 4 (generous since no neighbors)
+    /// </summary>
+    private void SetMagnetRadiiFromSpacing(float availableHeight, int figureCount)
+    {
+        float radius;
+
+        if (figureCount <= 1)
+        {
+            // Goalkeeper — no adjacent figures, cap at 3 to avoid oversized field
+            radius = Mathf.Min(availableHeight / 4f, 3f);
+        }
+        else
+        {
+            // Calculate figure spacing using same spreadFactor as DevidefoosballFigureGameObjectdlesInLine
+            float spreadFactor;
+            switch (figureCount)
+            {
+                case 2: spreadFactor = 0.4f; break;
+                case 3: spreadFactor = 0.6f; break;
+                case 4: spreadFactor = 0.75f; break;
+                case 5: spreadFactor = 0.85f; break;
+                default: spreadFactor = 0.8f; break;
+            }
+
+            float effectiveHeight = availableHeight * spreadFactor;
+            float spacing = effectiveHeight / (figureCount - 1);
+
+            // Radius = half spacing with 10% gap to prevent overlap
+            radius = (spacing / 2f) * 0.9f;
+        }
+
+        // Clamp to reasonable bounds
+        radius = Mathf.Clamp(radius, 1f, 4f);
+
         foreach (CircleCollider2D effector in GetComponentsInChildren<CircleCollider2D>())
         {
-            switch (rodFoosballFigureCount)
-            {
-                case 1: // Goalkeeper - largest reach
-                    effector.radius = 2.5f;
-                    break;
-                case 2: // Defense (2 figures)
-                    effector.radius = 2.25f;
-                    break;
-                case 3: // Midfield (3 figures)
-                    effector.radius = 2f;
-                    break;
-                case 4: // Attack (4 figures)
-                    effector.radius = 1.75f;
-                    break;
-                case 5: // Special formation (5 figures)
-                    effector.radius = 1.5f;
-                    break;
-                default:
-                    effector.radius = 2f;
-                    break;
-            }
+            effector.radius = radius;
+        }
+
+        if (Debug.isDebugBuild)
+        {
+            Debug.Log($"[RodConfig] {gameObject.name}: {figureCount} figures, magnet radius = {radius:F2}");
         }
     }
 

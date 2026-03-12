@@ -20,18 +20,16 @@ public static class PhysicsPresetFactory
         }
 
         CreateCurrentDefault();
-        CreateRealisticPreset();
         CreateArcadePreset();
         CreatePinballChaosPreset();
         CreateAirHockeyPreset();
-        CreateHeavyMetalPreset();
         CreateSpeedDemonPreset();
         CreateCompetitivePreset();
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
 
-        Debug.Log("[PhysicsPresetFactory] Created 8 presets in 'Assets/Physics Presets/'");
+        Debug.Log("[PhysicsPresetFactory] Created 6 presets in 'Assets/Physics Presets/'");
     }
 
     private static void CreateCurrentDefault()
@@ -46,39 +44,20 @@ public static class PhysicsPresetFactory
         preset.wallBounciness = 0.9f;
         preset.surfaceFriction = 0f;
         preset.lightShotForce = 30f;
-        preset.mediumShotForce = 60f;
-        preset.heavyShotForce = 100f;
+        preset.heavyShotForce = 60f;
         preset.maxVerticalAngle = 45f;
         preset.shotActiveWindow = 0.3f;
         preset.shotCooldown = 0.5f;
         preset.maxBallSpeed = 0f;
         preset.cameraShakeMultiplier = 1f;
+        preset.bumpStrength = 3f;
+        preset.maxBumpRange = 3.5f;
+        preset.magnetPullForce = 15f;
+        preset.magnetMaxBallSpeed = 8f;
         SavePreset(preset, "Current Default");
     }
 
-    private static void CreateRealisticPreset()
-    {
-        var preset = ScriptableObject.CreateInstance<PhysicsPreset>();
-        preset.presetName = "Realistic Foosball";
-        preset.description = "Simulates a real foosball table. Higher friction, realistic bounce, heavier ball with natural deceleration.";
-        preset.ballMass = 1.2f;
-        preset.ballLinearDrag = 1.5f;
-        preset.ballBounciness = 0.6f;
-        preset.figureBounciness = 0.4f;
-        preset.wallBounciness = 0.7f;
-        preset.surfaceFriction = 0.25f;
-        preset.lightShotForce = 20f;
-        preset.mediumShotForce = 40f;
-        preset.heavyShotForce = 70f;
-        preset.maxVerticalAngle = 30f;
-        preset.shotActiveWindow = 0.25f;
-        preset.shotCooldown = 0.6f;
-        preset.maxBallSpeed = 60f;
-        preset.cameraShakeMultiplier = 0.5f;
-        SavePreset(preset, "Realistic Foosball");
-    }
-
-    private static void CreateArcadePreset()
+    private static void CreateAirHockeyPreset()
     {
         var preset = ScriptableObject.CreateInstance<PhysicsPreset>();
         preset.presetName = "Arcade";
@@ -90,13 +69,16 @@ public static class PhysicsPresetFactory
         preset.wallBounciness = 0.95f;
         preset.surfaceFriction = 0f;
         preset.lightShotForce = 35f;
-        preset.mediumShotForce = 70f;
-        preset.heavyShotForce = 120f;
+        preset.heavyShotForce = 70f;
         preset.maxVerticalAngle = 50f;
         preset.shotActiveWindow = 0.35f;
         preset.shotCooldown = 0.4f;
         preset.maxBallSpeed = 0f;
         preset.cameraShakeMultiplier = 1.5f;
+        preset.bumpStrength = 5f;
+        preset.maxBumpRange = 4.5f;
+        preset.magnetPullForce = 12f;
+        preset.magnetMaxBallSpeed = 10f;
         SavePreset(preset, "Arcade");
     }
 
@@ -112,13 +94,16 @@ public static class PhysicsPresetFactory
         preset.wallBounciness = 1f;
         preset.surfaceFriction = 0f;
         preset.lightShotForce = 25f;
-        preset.mediumShotForce = 50f;
-        preset.heavyShotForce = 85f;
+        preset.heavyShotForce = 50f;
         preset.maxVerticalAngle = 60f;
         preset.shotActiveWindow = 0.4f;
         preset.shotCooldown = 0.3f;
         preset.maxBallSpeed = 80f;
         preset.cameraShakeMultiplier = 1.8f;
+        preset.bumpStrength = 6f;
+        preset.maxBumpRange = 5f;
+        preset.magnetPullForce = 10f;
+        preset.magnetMaxBallSpeed = 12f;
         SavePreset(preset, "Pinball Chaos");
     }
 
@@ -134,36 +119,17 @@ public static class PhysicsPresetFactory
         preset.wallBounciness = 0.9f;
         preset.surfaceFriction = 0f;
         preset.lightShotForce = 18f;
-        preset.mediumShotForce = 38f;
-        preset.heavyShotForce = 65f;
+        preset.heavyShotForce = 38f;
         preset.maxVerticalAngle = 40f;
         preset.shotActiveWindow = 0.3f;
         preset.shotCooldown = 0.45f;
         preset.maxBallSpeed = 55f;
         preset.cameraShakeMultiplier = 0.7f;
+        preset.bumpStrength = 2.5f;
+        preset.maxBumpRange = 3f;
+        preset.magnetPullForce = 18f;
+        preset.magnetMaxBallSpeed = 7f;
         SavePreset(preset, "Air Hockey");
-    }
-
-    private static void CreateHeavyMetalPreset()
-    {
-        var preset = ScriptableObject.CreateInstance<PhysicsPreset>();
-        preset.presetName = "Heavy Metal";
-        preset.description = "Heavy ball, massive impact. Slow but satisfying — every shot feels like a cannonball.";
-        preset.ballMass = 2f;
-        preset.ballLinearDrag = 2f;
-        preset.ballBounciness = 0.35f;
-        preset.figureBounciness = 0.25f;
-        preset.wallBounciness = 0.4f;
-        preset.surfaceFriction = 0.35f;
-        preset.lightShotForce = 40f;
-        preset.mediumShotForce = 80f;
-        preset.heavyShotForce = 150f;
-        preset.maxVerticalAngle = 25f;
-        preset.shotActiveWindow = 0.35f;
-        preset.shotCooldown = 0.7f;
-        preset.maxBallSpeed = 50f;
-        preset.cameraShakeMultiplier = 2f;
-        SavePreset(preset, "Heavy Metal");
     }
 
     private static void CreateSpeedDemonPreset()
@@ -178,13 +144,16 @@ public static class PhysicsPresetFactory
         preset.wallBounciness = 0.92f;
         preset.surfaceFriction = 0f;
         preset.lightShotForce = 45f;
-        preset.mediumShotForce = 85f;
-        preset.heavyShotForce = 140f;
+        preset.heavyShotForce = 85f;
         preset.maxVerticalAngle = 55f;
         preset.shotActiveWindow = 0.3f;
         preset.shotCooldown = 0.25f;
         preset.maxBallSpeed = 0f;
         preset.cameraShakeMultiplier = 1.2f;
+        preset.bumpStrength = 4f;
+        preset.maxBumpRange = 4f;
+        preset.magnetPullForce = 8f;
+        preset.magnetMaxBallSpeed = 15f;
         SavePreset(preset, "Speed Demon");
     }
 
@@ -200,13 +169,16 @@ public static class PhysicsPresetFactory
         preset.wallBounciness = 0.8f;
         preset.surfaceFriction = 0.1f;
         preset.lightShotForce = 25f;
-        preset.mediumShotForce = 55f;
-        preset.heavyShotForce = 95f;
+        preset.heavyShotForce = 55f;
         preset.maxVerticalAngle = 35f;
         preset.shotActiveWindow = 0.3f;
         preset.shotCooldown = 0.5f;
         preset.maxBallSpeed = 70f;
         preset.cameraShakeMultiplier = 0.8f;
+        preset.bumpStrength = 3f;
+        preset.maxBumpRange = 3f;
+        preset.magnetPullForce = 15f;
+        preset.magnetMaxBallSpeed = 8f;
         SavePreset(preset, "Competitive");
     }
 

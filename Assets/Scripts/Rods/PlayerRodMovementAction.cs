@@ -97,6 +97,14 @@ public class PlayerRodMovementAction : MonoBehaviour
 
     private void RodConfigurationSpeed(int numPlayerInLine)
     {
+        // Use FormationPreset speed if active, otherwise fall back to hardcoded defaults
+        var preset = GetComponent<RodConfiguration>()?.activeFormationPreset;
+        if (preset != null)
+        {
+            speed = preset.GetPlayerSpeed(numPlayerInLine);
+            return;
+        }
+
         switch (numPlayerInLine)
         {
             case 1:

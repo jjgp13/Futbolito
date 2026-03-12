@@ -35,6 +35,14 @@ public class AIRodMovementAction : MonoBehaviour
     private float positioningAccuracy = 1f; // 1=perfect, lower=overshoot
     private float movementSpeedMultiplier = 1f; // 1=full speed, lower=slower
 
+    // BumpNudge state
+    private MovementMode preBumpMode = MovementMode.Tracking;
+    private float bumpTimer;
+    private float bumpSlamDuration = 0.2f;
+    private float bumpReverseDuration = 0.2f;
+    private int bumpPhase; // 0=slam, 1=reverse
+    private float bumpTargetY;
+
     public enum MovementMode
     {
         Tracking,           // Simple ball tracking (default)
@@ -44,7 +52,8 @@ public class AIRodMovementAction : MonoBehaviour
         Intercepting,       // Move to intercept ball trajectory
         ClearingLane,       // Move figures out of teammate's shooting/passing lane
         CenteringIdle,      // Move to center position before going idle
-        GoalkeeperIntercept // GK-specific: predict ball crossing point at GK's X position
+        GoalkeeperIntercept, // GK-specific: predict ball crossing point at GK's X position
+        BumpNudge           // Quick slam to nudge nearby ball via RodBumpEffect
     }
 
     // Use this for initialization
@@ -123,6 +132,9 @@ public class AIRodMovementAction : MonoBehaviour
             case MovementMode.GoalkeeperIntercept:
                 ExecuteGoalkeeperInterceptMovement();
                 break;
+            case MovementMode.BumpNudge:
+                ExecuteBumpNudgeMovement();
+                break;
         }
 
         // Apply movement limits
@@ -140,6 +152,7 @@ public class AIRodMovementAction : MonoBehaviour
     private void ExecuteTrackingMovement()
     {
         GameObject bestFigure = GetBestAvailableFigure();
+        if (bestFigure == null) return;
         Vector2 targetPosition = ball.transform.position;
 
         MoveTowardYPosition(targetPosition.y, bestFigure.transform.position.y);
@@ -206,6 +219,7 @@ public class AIRodMovementAction : MonoBehaviour
 
         // Get best available figure to execute the coverage
         GameObject coveringFigure = GetBestAvailableFigure();
+        if (coveringFigure == null) return;
 
         MoveTowardYPosition(coverageY, coveringFigure.transform.position.y);
     }
@@ -229,6 +243,7 @@ public class AIRodMovementAction : MonoBehaviour
         targetPosition.y += Random.Range(-angleOffset, angleOffset);
 
         GameObject attackingFigure = GetBestAvailableFigure();
+        if (attackingFigure == null) return;
         MoveTowardYPosition(targetPosition.y, attackingFigure.transform.position.y);
     }
 
@@ -378,6 +393,52 @@ public class AIRodMovementAction : MonoBehaviour
             $"threat:{threatLevel:F2} predicted_y:{predictedY:F2} target_y:{targetY:F2} ball_speed:{ballVel.magnitude:F1}");
 
         MoveTowardYPosition(targetY, interceptFigure.transform.position.y);
+    }
+
+    /// <summary>
+    /// BUMP NUDGE MODE — Quick slam toward ball's Y then reverse.
+    /// The fast direction change triggers RodBumpEffect to nudge the ball.
+    /// Auto-returns to previous mode after one oscillation cycle.
+    /// </summary>
+    private void ExecuteBumpNudgeMovement()
+    {
+        if (ball == null)
+        {
+            currentMode = preBumpMode;
+            return;
+        }
+
+        bumpTimer += Time.deltaTime;
+        float effectiveSpeed = speed * movementSpeedMultiplier * 1.5f; // 50% faster for the slam
+
+        if (bumpPhase == 0)
+        {
+            // Phase 0: Slam toward ball's Y position
+            float direction = Mathf.Sign(bumpTargetY - transform.position.y);
+            transform.Translate(Vector2.up * direction * effectiveSpeed * Time.deltaTime);
+            currentVelocity = direction * effectiveSpeed;
+
+            if (bumpTimer >= bumpSlamDuration)
+            {
+                bumpPhase = 1;
+                bumpTimer = 0f;
+            }
+        }
+        else
+        {
+            // Phase 1: Reverse direction (this triggers the bump)
+            float direction = -Mathf.Sign(bumpTargetY - transform.position.y);
+            transform.Translate(Vector2.up * direction * effectiveSpeed * Time.deltaTime);
+            currentVelocity = direction * effectiveSpeed;
+
+            if (bumpTimer >= bumpReverseDuration)
+            {
+                // Done — return to previous mode
+                currentMode = preBumpMode;
+                bumpPhase = 0;
+                bumpTimer = 0f;
+            }
+        }
     }
 
     #endregion
@@ -582,6 +643,9 @@ public class AIRodMovementAction : MonoBehaviour
 
     #region Movement Execution
 
+    // Exposed for shot angle calculation
+    [HideInInspector] public float currentVelocity;
+
     /// <summary>
     /// Moves rod toward target Y position
     /// Applies positioning accuracy (overshoot on lower difficulty) and speed multiplier
@@ -608,10 +672,16 @@ public class AIRodMovementAction : MonoBehaviour
         if (targetY > currentY)
         {
             transform.Translate(Vector2.up * effectiveSpeed * Time.deltaTime);
+            currentVelocity = effectiveSpeed;
         }
         else if (targetY < currentY)
         {
             transform.Translate(-Vector2.up * effectiveSpeed * Time.deltaTime);
+            currentVelocity = -effectiveSpeed;
+        }
+        else
+        {
+            currentVelocity = 0f;
         }
     }
 
@@ -778,23 +848,31 @@ public class AIRodMovementAction : MonoBehaviour
 
     void RodConfigurationSpeed(int numberOfFigureInRod)
     {
-        switch (numberOfFigureInRod)
+        // Use FormationPreset speed if active, otherwise fall back to hardcoded defaults
+        if (rodConfig != null && rodConfig.activeFormationPreset != null)
         {
-            case 1:
-                speed = 3f;
-                break;
-            case 2:
-                speed = 2.5f;
-                break;
-            case 3:
-                speed = 2f;
-                break;
-            case 4:
-                speed = 1.5f;
-                break;
-            case 5:
-                speed = 1f;
-                break;
+            speed = rodConfig.activeFormationPreset.GetAISpeed(numberOfFigureInRod);
+        }
+        else
+        {
+            switch (numberOfFigureInRod)
+            {
+                case 1:
+                    speed = 3f;
+                    break;
+                case 2:
+                    speed = 2.5f;
+                    break;
+                case 3:
+                    speed = 2f;
+                    break;
+                case 4:
+                    speed = 1.5f;
+                    break;
+                case 5:
+                    speed = 1f;
+                    break;
+            }
         }
 
         if (MatchInfo.instance != null)
@@ -813,6 +891,14 @@ public class AIRodMovementAction : MonoBehaviour
     /// </summary>
     public void SetMovementMode(MovementMode mode)
     {
+        // When entering BumpNudge, save current mode to restore after
+        if (mode == MovementMode.BumpNudge && currentMode != MovementMode.BumpNudge)
+        {
+            preBumpMode = currentMode;
+            bumpPhase = 0;
+            bumpTimer = 0f;
+            bumpTargetY = ball != null ? ball.transform.position.y : transform.position.y;
+        }
         currentMode = mode;
     }
 
