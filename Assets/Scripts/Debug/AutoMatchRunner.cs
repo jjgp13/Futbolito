@@ -23,10 +23,9 @@ public class AutoMatchRunner : MonoBehaviour
 
     public enum TestProfile
     {
-        Quick,     // 48 matches — 1 per combo (6 difficulty × 8 presets)
-        Standard,  // 96 matches — 2 per combo
-        Full,      // 144 matches — 3 per combo
-        Custom     // User-defined matchCount
+        Quick,     // 1 run per unique combo
+        Standard,  // 2 runs per unique combo
+        Full       // 3 runs per unique combo
     }
 
     /// <summary>Number of unique combos = difficulty rotations × physics presets × formation presets (or 1 if disabled).</summary>
@@ -41,6 +40,7 @@ public class AutoMatchRunner : MonoBehaviour
         }
     }
 
+    /// <summary>Computes total match count from profile and unique combos.</summary>
     public static int MatchCountForProfile(TestProfile profile, int uniqueCombos)
     {
         return profile switch
@@ -48,7 +48,7 @@ public class AutoMatchRunner : MonoBehaviour
             TestProfile.Quick => uniqueCombos * 1,
             TestProfile.Standard => uniqueCombos * 2,
             TestProfile.Full => uniqueCombos * 3,
-            _ => -1 // Custom — don't override
+            _ => uniqueCombos
         };
     }
 
@@ -57,13 +57,10 @@ public class AutoMatchRunner : MonoBehaviour
     #region Configuration
 
     [Header("Test Profile")]
-    [Tooltip("Quick = 1 run per combo (~29 min), Standard = 2 (~58 min), Full = 3 (~87 min), Custom = manual")]
+    [Tooltip("Quick = 1 run per combo, Standard = 2 runs per combo, Full = 3 runs per combo")]
     [SerializeField] private TestProfile testProfile = TestProfile.Quick;
 
-    [Header("Test Configuration")]
-    [Tooltip("Number of matches (auto-set by profile, editable in Custom mode)")]
-    [SerializeField, Range(1, 200)] private int matchCount = 48;
-
+    [Header("Match Settings")]
     [Tooltip("Match duration in minutes (game time)")]
     [SerializeField, Range(2, 5)] private int matchTimeMinutes = 3;
 
@@ -110,6 +107,7 @@ public class AutoMatchRunner : MonoBehaviour
 
     private bool isRunning;
     private int currentMatch;
+    private int matchCount; // Computed from profile × unique combos
     private string testRunId;
     private float testStartRealTime;
     private float matchStartRealTime;
@@ -327,9 +325,7 @@ public class AutoMatchRunner : MonoBehaviour
 
     private void SyncMatchCountFromProfile()
     {
-        int computed = MatchCountForProfile(testProfile, UniqueCombos);
-        if (computed > 0)
-            matchCount = computed;
+        matchCount = MatchCountForProfile(testProfile, UniqueCombos);
     }
 
     private void LogSuiteStart()
