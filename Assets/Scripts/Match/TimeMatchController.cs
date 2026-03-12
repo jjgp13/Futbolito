@@ -11,9 +11,12 @@ public class TimeMatchController : MonoBehaviour
     public Text timeText;
     private float timer;
 
+    private bool timeExpired;
+
     // Start is called before the first frame update
     void Start()
     {
+        timeExpired = false;
         //Set time
         if (MatchInfo.instance != null)
         {
@@ -37,8 +40,9 @@ public class TimeMatchController : MonoBehaviour
 
     private void CheckMatchTime()
     {
-        if (timer <= 0)
+        if (timer <= 0 && !timeExpired)
         {
+            timeExpired = true;
             MatchController.instance.endMatch = true;
             timeText.text = "FINISH";
             timeText.GetComponent<Animator>().SetBool("Warning", false);

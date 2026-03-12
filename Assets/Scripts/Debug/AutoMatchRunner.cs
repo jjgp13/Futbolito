@@ -187,7 +187,6 @@ public class AutoMatchRunner : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SubscribeToMatchEvents();
     }
 
     private void OnDisable()
@@ -257,6 +256,9 @@ public class AutoMatchRunner : MonoBehaviour
         // Scale physics step with timeScale to prevent spiral of death.
         // Default fixedDeltaTime is 0.02 → at 5x, use 0.1 (same real-world rate).
         Time.fixedDeltaTime = 0.02f * timeScale;
+
+        // Apply configuration to the first match so difficulty/formation/preset are set
+        ApplyMatchConfiguration(currentMatch);
     }
 
     public void StartTestSuite()

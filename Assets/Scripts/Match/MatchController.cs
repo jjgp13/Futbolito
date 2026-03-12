@@ -35,6 +35,7 @@ public class MatchController : MonoBehaviour {
     public GameObject golAnimation_UI;
 
     public bool endMatch;
+    private bool matchEnded;
     private int roundMatch;
 
     public GameObject finishQuickMatchPanelOptions;
@@ -53,6 +54,15 @@ public class MatchController : MonoBehaviour {
             instance = this;
     }
 
+    private void OnDestroy()
+    {
+        // Clear static event delegates to prevent stale references across scene reloads
+        OnMatchStart = null;
+        OnMatchEnd = null;
+        OnBallSpawned = null;
+        if (instance == this) instance = null;
+    }
+
 
     //Initial state of objects.
     private void Start()
@@ -65,6 +75,7 @@ public class MatchController : MonoBehaviour {
 
         ballInGame = false;
         endMatch = false;
+        matchEnded = false;
 
         //Active these panels to assign flags
         golAnimation_UI.SetActive(true);
@@ -78,10 +89,8 @@ public class MatchController : MonoBehaviour {
 
     private void Update()
     {
-        
-
         //if time has finished start end animation 
-        if (endMatch)
+        if (endMatch && !matchEnded)
         {
             StartCoroutine(PlayEndMatchAnimation(false));
             ballInGame = false;
@@ -118,20 +127,9 @@ public class MatchController : MonoBehaviour {
     /// <returns></returns>
     public IEnumerator PlayEndMatchAnimation(bool knockout)
     {
-        //PlayerDataController.playerData.totalMatches++;
-        //switch(MatchInfo.instance.matchLevel)
-        //{
-        //    case 1:
-        //        PlayerDataController.playerData.easyLevelMatches++;
-        //        break;
-        //    case 2:
-        //        PlayerDataController.playerData.normalLevelMatches++;
-        //        break;
-        //    case 3:
-        //        PlayerDataController.playerData.hardLevelMatches++;
-        //        break;
-        //}
-
+        // Guard against multiple invocations (knockout + timer can both trigger)
+        if (matchEnded) yield break;
+        matchEnded = true;
 
         // Signal match has ended (for sound/crowd system)
         OnMatchEnd?.Invoke();
@@ -139,6 +137,12 @@ public class MatchController : MonoBehaviour {
         //If match time has finished and ball is still in gamefield, stop and destroy.
         ball.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         Destroy(GameObject.FindGameObjectWithTag("Ball"));
+
+        // In auto-test mode, skip all UI panels — AutoMatchRunner handles the flow
+        if (AutoMatchRunner.IsAutoMode)
+        {
+            yield break;
+        }
 
         //Change text depending on game final status.
         if (knockout)
@@ -268,7 +272,7 @@ public class MatchController : MonoBehaviour {
     /// <param name="sceneName">Name of the scene</param>
     public void LoadScene(string sceneName)
     {
-        Time.timeScale = 1;
+        Time.timeScale = AutoMatchRunner.IsAutoMode ? AutoMatchRunner.Instance.TimeScale : 1;
         if (sceneName == "MainMenu" || sceneName == "QuickMatchMenu")
         {
             if(sceneName == "MainMenu") Destroy(GameObject.FindGameObjectWithTag("PlayerDataObject"));
