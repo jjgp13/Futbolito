@@ -120,14 +120,17 @@ public class AutoMatchRunner : MonoBehaviour
     private string currentPhysicsPresetName;
     private string currentFormationPresetName;
 
-    // Difficulty combos to cycle through
+    // Difficulty combos to cycle through (includes reverse combos so Left is stronger too)
     private static readonly int[,] DifficultyRotation = {
         { 1, 1 }, // Easy vs Easy
-        { 1, 2 }, // Easy vs Medium
-        { 1, 3 }, // Easy vs Hard
+        { 1, 2 }, // Easy vs Medium  (Right stronger)
+        { 1, 3 }, // Easy vs Hard    (Right stronger)
         { 2, 2 }, // Medium vs Medium
-        { 2, 3 }, // Medium vs Hard
+        { 2, 3 }, // Medium vs Hard  (Right stronger)
         { 3, 3 }, // Hard vs Hard
+        { 2, 1 }, // Medium vs Easy  (Left stronger)
+        { 3, 1 }, // Hard vs Easy    (Left stronger)
+        { 3, 2 }, // Hard vs Medium  (Left stronger)
     };
 
     // Public read-only accessors for Editor UI

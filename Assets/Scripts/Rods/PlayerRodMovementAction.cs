@@ -101,7 +101,7 @@ public class PlayerRodMovementAction : MonoBehaviour
         var preset = GetComponent<RodConfiguration>()?.activeFormationPreset;
         if (preset != null)
         {
-            speed = preset.GetPlayerSpeed(numPlayerInLine);
+            speed = preset.GetPlayerSpeed(numPlayerInLine, GetComponent<RodConfiguration>().rodRole);
             return;
         }
 

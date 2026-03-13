@@ -851,7 +851,7 @@ public class AIRodMovementAction : MonoBehaviour
         // Use FormationPreset speed if active, otherwise fall back to hardcoded defaults
         if (rodConfig != null && rodConfig.activeFormationPreset != null)
         {
-            speed = rodConfig.activeFormationPreset.GetAISpeed(numberOfFigureInRod);
+            speed = rodConfig.activeFormationPreset.GetAISpeed(numberOfFigureInRod, rodConfig.rodRole);
         }
         else
         {

@@ -10,6 +10,9 @@ public class RodConfiguration : MonoBehaviour
     public float rodMovementLimit;
     public float halfPlayer;
 
+    [Header("Rod Role")]
+    public RodRole rodRole;
+
     private GameObject foosballFigureGameObject;
     private Team teamInfo;
     private string teamUniform;
@@ -25,6 +28,7 @@ public class RodConfiguration : MonoBehaviour
     void Awake()
     {
         foosballFigureGameObject = FoosballFigurePrefab;
+        rodRole = RodRoleExtensions.FromRodName(gameObject.name);
 
         // Override formation from active FormationPreset if set
         if (FormationPreset.Active != null)

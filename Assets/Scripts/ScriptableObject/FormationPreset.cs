@@ -42,6 +42,18 @@ public class FormationPreset : ScriptableObject
     [Tooltip("Speed for rod with 5 figures")]
     public float aiSpeed5Fig = 1f;
 
+    [Header("Role Speed Multipliers (optional)")]
+    [Tooltip("Multiplies the base speed for GK (both player+AI have separate sets)")]
+    public float playerGoalkeeperMultiplier = 1f;
+    public float playerDefenseMultiplier = 1f;
+    public float playerMidfieldMultiplier = 1f;
+    public float playerAttackMultiplier = 1f;
+
+    public float aiGoalkeeperMultiplier = 1f;
+    public float aiDefenseMultiplier = 1f;
+    public float aiMidfieldMultiplier = 1f;
+    public float aiAttackMultiplier = 1f;
+
     /// <summary>
     /// Returns a Formation object matching this preset's figure counts.
     /// </summary>
@@ -76,10 +88,11 @@ public class FormationPreset : ScriptableObject
 
     /// <summary>
     /// Gets the player rod base speed for a given figure count.
+    /// If a role is provided, the corresponding role multiplier is applied.
     /// </summary>
-    public float GetPlayerSpeed(int figureCount)
+    public float GetPlayerSpeed(int figureCount, RodRole role = RodRole.Midfield)
     {
-        return figureCount switch
+        float baseSpeed = figureCount switch
         {
             1 => playerSpeed1Fig,
             2 => playerSpeed2Fig,
@@ -88,14 +101,29 @@ public class FormationPreset : ScriptableObject
             5 => playerSpeed5Fig,
             _ => playerSpeed3Fig
         };
+
+        return baseSpeed * GetPlayerRoleMultiplier(role);
+    }
+
+    private float GetPlayerRoleMultiplier(RodRole role)
+    {
+        return role switch
+        {
+            RodRole.Goalkeeper => playerGoalkeeperMultiplier,
+            RodRole.Defense => playerDefenseMultiplier,
+            RodRole.Midfield => playerMidfieldMultiplier,
+            RodRole.Attack => playerAttackMultiplier,
+            _ => 1f
+        };
     }
 
     /// <summary>
     /// Gets the AI rod base speed for a given figure count.
+    /// If a role is provided, the corresponding role multiplier is applied.
     /// </summary>
-    public float GetAISpeed(int figureCount)
+    public float GetAISpeed(int figureCount, RodRole role = RodRole.Midfield)
     {
-        return figureCount switch
+        float baseSpeed = figureCount switch
         {
             1 => aiSpeed1Fig,
             2 => aiSpeed2Fig,
@@ -103,6 +131,20 @@ public class FormationPreset : ScriptableObject
             4 => aiSpeed4Fig,
             5 => aiSpeed5Fig,
             _ => aiSpeed3Fig
+        };
+
+        return baseSpeed * GetAIRoleMultiplier(role);
+    }
+
+    private float GetAIRoleMultiplier(RodRole role)
+    {
+        return role switch
+        {
+            RodRole.Goalkeeper => aiGoalkeeperMultiplier,
+            RodRole.Defense => aiDefenseMultiplier,
+            RodRole.Midfield => aiMidfieldMultiplier,
+            RodRole.Attack => aiAttackMultiplier,
+            _ => 1f
         };
     }
 }
