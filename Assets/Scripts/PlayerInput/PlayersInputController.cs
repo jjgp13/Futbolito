@@ -46,7 +46,8 @@ public class PlayersInputController : MonoBehaviour
 
     /// <summary>
     /// Manually join a player with a specific control scheme and device.
-    /// Returns the created PlayerInput, or null if join was rejected.
+    /// Uses PlayerInput.Instantiate instead of PlayerInputManager.JoinPlayer
+    /// to preserve the actions asset from the prefab.
     /// </summary>
     public PlayerInput JoinPlayerManually(string controlScheme, InputDevice device)
     {
@@ -62,22 +63,24 @@ public class PlayersInputController : MonoBehaviour
             return null;
         }
 
-        PlayerInput newPlayer = playerInputManager.JoinPlayer(
+        // Use PlayerInput.Instantiate instead of PlayerInputManager.JoinPlayer
+        // because JoinPlayer strips the actions asset from the prefab.
+        // Instantiate preserves it and still fires onPlayerJoined on the manager.
+        PlayerInput newPlayer = PlayerInput.Instantiate(
+            playerInputManager.playerPrefab,
             controlScheme: controlScheme,
-            pairWithDevice: device
+            pairWithDevices: new InputDevice[] { device }
         );
 
         if (newPlayer == null)
         {
-            Debug.LogError($"JoinPlayer failed for scheme '{controlScheme}'");
+            Debug.LogError($"PlayerInput.Instantiate failed for scheme '{controlScheme}'");
             return null;
         }
 
-        // Safety: verify the PlayerInput has actions and the correct scheme
         if (newPlayer.actions == null)
         {
-            Debug.LogError($"Player {newPlayer.playerIndex}: actions is NULL after join! " +
-                           "Check that PlayerInputController_prefab has Input Actions Asset assigned.");
+            Debug.LogError($"Player {newPlayer.playerIndex}: actions is NULL after Instantiate!");
         }
         else
         {
