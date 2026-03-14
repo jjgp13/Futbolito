@@ -62,10 +62,31 @@ public class PlayersInputController : MonoBehaviour
             return null;
         }
 
-        return playerInputManager.JoinPlayer(
+        PlayerInput newPlayer = playerInputManager.JoinPlayer(
             controlScheme: controlScheme,
             pairWithDevice: device
         );
+
+        if (newPlayer == null)
+        {
+            Debug.LogError($"JoinPlayer failed for scheme '{controlScheme}'");
+            return null;
+        }
+
+        // Safety: verify the PlayerInput has actions and the correct scheme
+        if (newPlayer.actions == null)
+        {
+            Debug.LogError($"Player {newPlayer.playerIndex}: actions is NULL after join! " +
+                           "Check that PlayerInputController_prefab has Input Actions Asset assigned.");
+        }
+        else
+        {
+            Debug.Log($"Player {newPlayer.playerIndex}: actions='{newPlayer.actions.name}', " +
+                      $"scheme='{newPlayer.currentControlScheme}', " +
+                      $"actionMap='{newPlayer.currentActionMap?.name}'");
+        }
+
+        return newPlayer;
     }
 
     /// <summary>
