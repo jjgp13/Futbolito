@@ -579,7 +579,7 @@
         {
           "name": "Bump",
           "type": "Button",
-          "id": "a7c3e8d1-5f42-4b91-9e67-1234bump0001",
+          "id": "bf32b5ad-d81d-4228-9cc9-b8a1cfd78610",
           "expectedControlType": "Button",
           "processors": "",
           "interactions": "",
@@ -930,7 +930,7 @@
         },
         {
           "name": "",
-          "id": "b8d4f9e2-6a53-4c02-af78-2345bump0002",
+          "id": "efe60e6b-0316-4991-bdc4-06f3f7eaeecc",
           "path": "<XInputController>/buttonNorth",
           "interactions": "",
           "processors": "",
@@ -941,7 +941,7 @@
         },
         {
           "name": "",
-          "id": "c9e5a0f3-7b64-4d13-b089-3456bump0003",
+          "id": "27ef07db-76e5-4c8c-bce8-9a73d7e24d5a",
           "path": "<Keyboard>/r",
           "interactions": "",
           "processors": "",
