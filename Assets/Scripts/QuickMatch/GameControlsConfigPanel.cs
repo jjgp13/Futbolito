@@ -55,14 +55,14 @@ public class GameControlsConfigPanel : MonoBehaviour
 
     #region Join Detection
 
-    // P1 keyboard keys (WASD region) that trigger a join
+    // P1 join key — only the dedicated join key, NOT team selection keys (A/D)
     private static readonly Key[] P1JoinKeys = {
-        Key.F, Key.Space, Key.A, Key.D, Key.W, Key.S
+        Key.F
     };
 
-    // P2 keyboard keys (Arrow region) that trigger a join
+    // P2 join key — only the dedicated join key, NOT team selection keys (arrows)
     private static readonly Key[] P2JoinKeys = {
-        Key.NumpadEnter, Key.RightShift, Key.LeftArrow, Key.RightArrow, Key.UpArrow, Key.DownArrow
+        Key.NumpadEnter
     };
 
     private bool isWaitingForJoin = true;
