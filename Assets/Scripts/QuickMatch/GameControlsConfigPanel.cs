@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,7 +5,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 /// <summary>
-/// Manages team and player assignments in the game setup screen
+/// Manages team and player assignments in the game setup screen.
+/// Detects raw input to manually join players with the correct control scheme.
 /// </summary>
 [DefaultExecutionOrder(0)]
 public class GameControlsConfigPanel : MonoBehaviour
@@ -53,6 +53,22 @@ public class GameControlsConfigPanel : MonoBehaviour
 
     #endregion
 
+    #region Join Detection
+
+    // P1 keyboard keys (WASD region) that trigger a join
+    private static readonly Key[] P1JoinKeys = {
+        Key.F, Key.Space, Key.A, Key.D, Key.W, Key.S
+    };
+
+    // P2 keyboard keys (Arrow region) that trigger a join
+    private static readonly Key[] P2JoinKeys = {
+        Key.NumpadEnter, Key.RightShift, Key.LeftArrow, Key.RightArrow, Key.UpArrow, Key.DownArrow
+    };
+
+    private bool isWaitingForJoin = true;
+
+    #endregion
+
     private Sprite comCircleSprite;
 
     #region Unity Lifecycle Methods
@@ -60,8 +76,20 @@ public class GameControlsConfigPanel : MonoBehaviour
     private void Awake()
     {
         InitializeSingleton();
-        InitializeTeamLists();
         SaveComSpriteReference();
+    }
+
+    private void OnEnable()
+    {
+        InitializeTeamLists();
+        ResetPlayerStates();
+        isWaitingForJoin = true;
+    }
+
+    private void Update()
+    {
+        if (!isWaitingForJoin) return;
+        DetectJoinInput();
     }
 
     #endregion
@@ -86,10 +114,81 @@ public class GameControlsConfigPanel : MonoBehaviour
         rightTeamPlayerIds = new List<int>();
     }
 
+    private void ResetPlayerStates()
+    {
+        for (int i = 0; i < isPlayerActive.Length; i++)
+        {
+            isPlayerActive[i] = false;
+            playerCurrentPosition[i] = "mid";
+        }
+        StartGameButton.gameObject.SetActive(false);
+    }
+
     private void SaveComSpriteReference()
     {
-        // Save COM sprite for later use
         comCircleSprite = defenderleftTeamCircleSprite.sprite;
+    }
+
+    #endregion
+
+    #region Join Input Detection
+
+    /// <summary>
+    /// Polls raw input each frame to detect join requests from keyboard or gamepad.
+    /// </summary>
+    private void DetectJoinInput()
+    {
+        if (PlayersInputController.instance == null) return;
+        if (PlayersInputController.instance.playerInputs.Count >= PlayersInputController.MaxPlayers) return;
+
+        var keyboard = Keyboard.current;
+        if (keyboard != null)
+        {
+            // Check P1 keyboard join
+            if (!PlayersInputController.instance.IsSchemeAlreadyJoined(PlayersInputController.SchemeKeyboardP1))
+            {
+                foreach (var key in P1JoinKeys)
+                {
+                    if (keyboard[key].wasPressedThisFrame)
+                    {
+                        PlayersInputController.instance.JoinPlayerManually(
+                            PlayersInputController.SchemeKeyboardP1, keyboard);
+                        break;
+                    }
+                }
+            }
+
+            // Check P2 keyboard join
+            if (!PlayersInputController.instance.IsSchemeAlreadyJoined(PlayersInputController.SchemeKeyboardP2))
+            {
+                foreach (var key in P2JoinKeys)
+                {
+                    if (keyboard[key].wasPressedThisFrame)
+                    {
+                        PlayersInputController.instance.JoinPlayerManually(
+                            PlayersInputController.SchemeKeyboardP2, keyboard);
+                        break;
+                    }
+                }
+            }
+        }
+
+        // Check gamepad join (each gamepad is unique, use Xbox scheme)
+        foreach (var gamepad in Gamepad.all)
+        {
+            if (gamepad.startButton.wasPressedThisFrame ||
+                gamepad.buttonSouth.wasPressedThisFrame)
+            {
+                // Only join if this specific gamepad isn't already paired
+                bool alreadyPaired = PlayersInputController.instance.playerInputs.Any(
+                    p => p.devices.Contains(gamepad));
+                if (!alreadyPaired)
+                {
+                    PlayersInputController.instance.JoinPlayerManually(
+                        PlayersInputController.SchemeXbox, gamepad);
+                }
+            }
+        }
     }
 
     #endregion
@@ -131,23 +230,18 @@ public class GameControlsConfigPanel : MonoBehaviour
     {
         if (playerNumber < 0 || playerNumber >= isPlayerActive.Length) return;
 
-        // Get the player's current UI image
         Image playerUI = ReturnPlayerUiImage(playerNumber);
         if (playerUI != null)
         {
             playerUI.color = new Color(1f, 1f, 1f, 0.5f);
         }
 
-        // Update player state
         isPlayerActive[playerNumber] = false;
-
-        // Remove player from teams if assigned
         RemovePlayerFromTeams(playerNumber);
     }
 
     private void RemovePlayerFromTeams(int playerNumber)
     {
-        // If player was on a team, remove them
         if (leftTeamPlayerIds.Contains(playerNumber))
         {
             HandleReturnToMiddle(playerNumber, leftTeamPlayerIds, defenderleftTeamCircleSprite, attackerleftTeamCircleSprite);
@@ -157,13 +251,9 @@ public class GameControlsConfigPanel : MonoBehaviour
             HandleReturnToMiddle(playerNumber, rightTeamPlayerIds, defenderRightTeamCircleSprite, attackerRightTeamCircleSprite);
         }
 
-        // Update match type display
         SetMatchType();
     }
 
-    /// <summary>
-    /// Checks if player is active and activates their UI
-    /// </summary>
     private void CheckInputToActivatePlayers(bool isObjectActive, Image playerBall, int playerNumber)
     {
         if (!isObjectActive)
@@ -223,20 +313,17 @@ public class GameControlsConfigPanel : MonoBehaviour
 
     private void HandleLeftTeamSelection(int playerIndex)
     {
-        // Check if team is full
         if (leftTeamPlayerIds.Count >= 2)
         {
             Debug.LogWarning("Left team is already full");
             return;
         }
 
-        // First player on team controls defense positions
         if (leftTeamPlayerIds.Count == 0)
         {
             leftTeamPlayerIds.Add(playerIndex);
             SetPlayerUiImage(playerIndex, ReturnPlayerUiImage(playerIndex).sprite, defenderleftTeamCircleSprite, attackerleftTeamCircleSprite);
         }
-        // Second player on team controls attack positions
         else if (leftTeamPlayerIds.Count == 1)
         {
             leftTeamPlayerIds.Add(playerIndex);
@@ -250,20 +337,17 @@ public class GameControlsConfigPanel : MonoBehaviour
 
     private void HandleRightTeamSelection(int playerIndex)
     {
-        // Check if team is full
         if (rightTeamPlayerIds.Count >= 2)
         {
             Debug.LogWarning("Right team is already full");
             return;
         }
 
-        // First player on team controls defense positions
         if (rightTeamPlayerIds.Count == 0)
         {
             rightTeamPlayerIds.Add(playerIndex);
             SetPlayerUiImage(playerIndex, ReturnPlayerUiImage(playerIndex).sprite, defenderRightTeamCircleSprite, attackerRightTeamCircleSprite);
         }
-        // Second player on team controls attack positions
         else if (rightTeamPlayerIds.Count == 1)
         {
             rightTeamPlayerIds.Add(playerIndex);
@@ -282,20 +366,16 @@ public class GameControlsConfigPanel : MonoBehaviour
             return;
         }
 
-        // Handle single player on team
         if (teamPlayerIds.Count == 1)
         {
             teamPlayerIds.Remove(playerIndex);
             SetPlayerUiImage(playerIndex, comCircleSprite, defenderCircleSprite, attackerCircleSprite);
         }
-        // Handle two players on team
         else if (teamPlayerIds.Count == 2)
         {
-            // Get the remaining player's sprite
             int remainingPlayerIndex = teamPlayerIds.First(id => id != playerIndex);
             teamPlayerIds.Remove(playerIndex);
 
-            // If removing the first player, update UI accordingly
             if (teamPlayerIds[0] == remainingPlayerIndex)
             {
                 SetPlayerUiImage(remainingPlayerIndex, ReturnPlayerUiImage(remainingPlayerIndex).sprite, defenderCircleSprite, attackerCircleSprite);
@@ -311,26 +391,17 @@ public class GameControlsConfigPanel : MonoBehaviour
 
     #region UI Management
 
-    /// <summary>
-    /// Updates UI with player sprite
-    /// </summary>
     private void SetPlayerUiImage(int playerIndex, Sprite sprite, Image defenderCircleSprite, Image attackerCircleSprite)
     {
         defenderCircleSprite.sprite = sprite;
         attackerCircleSprite.sprite = sprite;
     }
 
-    /// <summary>
-    /// Updates single UI element with player sprite
-    /// </summary>
     private void SetPlayerUiImage(int playerIndex, Sprite sprite, Image circleSprite)
     {
         circleSprite.sprite = sprite;
     }
 
-    /// <summary>
-    /// Sets transparency of player UI element
-    /// </summary>
     private void SetPlayerUiImageTransparency(int playerIndex, float transparency)
     {
         Image playerImage = ReturnPlayerUiImage(playerIndex);
@@ -340,9 +411,6 @@ public class GameControlsConfigPanel : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns the UI image for the specified player
-    /// </summary>
     private Image ReturnPlayerUiImage(int playerNumber)
     {
         switch (playerNumber)
@@ -355,14 +423,10 @@ public class GameControlsConfigPanel : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Sets match type text based on team compositions
-    /// </summary>
     private void SetMatchType()
     {
         string matchType;
 
-        // Determine match type based on team compositions
         if (leftTeamPlayerIds.Count == 0 && rightTeamPlayerIds.Count == 0)
         {
             matchType = "Select a team";
@@ -412,6 +476,24 @@ public class GameControlsConfigPanel : MonoBehaviour
     #region Game Start Logic
 
     /// <summary>
+    /// Called by PlayerController.OnAccept() when a player presses their accept key.
+    /// Shows the start button if at least one team has players.
+    /// </summary>
+    public void OnPlayerAccept(int playerIndex)
+    {
+        if (!isPlayerActive[playerIndex]) return;
+
+        if (leftTeamPlayerIds.Count > 0 || rightTeamPlayerIds.Count > 0)
+        {
+            StartGameButton.gameObject.SetActive(true);
+        }
+        else
+        {
+            matchTypeText.text = "Select a team side";
+        }
+    }
+
+    /// <summary>
     /// Checks if controls are assigned and sends them to MatchInfo
     /// </summary>
     public bool AreControlsAssigned()
@@ -420,9 +502,6 @@ public class GameControlsConfigPanel : MonoBehaviour
         return leftTeamPlayerIds.Count > 0 || rightTeamPlayerIds.Count > 0;
     }
 
-    /// <summary>
-    /// Assigns controllers to the MatchInfo class
-    /// </summary>
     private void AssignControlsToMatchInfoClass()
     {
         foreach (PlayerInput playerInput in PlayersInputController.instance.playerInputs)
@@ -474,53 +553,37 @@ public class GameControlsConfigPanel : MonoBehaviour
     /// </summary>
     public void StartGame()
     {
+        isWaitingForJoin = false;
         AssignControlsToTeams();
-        //Find GameController script and start the game
         GameObject.Find("MatchController").GetComponent<MatchController>().enabled = true;
-        //Deactivate this panel
         gameObject.SetActive(false);
     }
 
-    /// <summary>
-    /// Assigns player inputs to team TeamRodsControllers
-    /// </summary>
     private void AssignControlsToTeams()
     {
-        // Get all player inputs
         var playerInputs = PlayersInputController.instance.playerInputs.ToList();
 
-        // Handle left team assignments
         AssignControlsToTeam(leftTeam, leftTeamPlayerIds, playerInputs);
-
-        // Handle right team assignments
         AssignControlsToTeam(rightTeam, rightTeamPlayerIds, playerInputs);
 
-        // Activate teams
         leftTeam.gameObject.SetActive(true);
         rightTeam.gameObject.SetActive(true);
     }
 
-    /// <summary>
-    /// Assigns player inputs to a specific team
-    /// </summary>
     private void AssignControlsToTeam(GameObject team, List<int> teamPlayerIds, List<PlayerInput> playerInputs)
     {
         if (team == null || teamPlayerIds.Count == 0)
         {
-            //It means that the team is not being controlled by a player
             team.GetComponent<TeamRodsController>().enabled = false;
             return;
         }
-        //it means that the team is being controlled by a player
         team.GetComponent<AITeamRodsController>().enabled = false;
 
         TeamRodsController TeamRodsController = team.GetComponent<TeamRodsController>();
         if (TeamRodsController == null) return;
 
-        // Set the number of players on this team
         TeamRodsController.playersAssignedToThisTeamSide = teamPlayerIds.Count;
 
-        // Collect player inputs for this team
         List<PlayerInput> teamInputs = new List<PlayerInput>();
         foreach (PlayerInput input in playerInputs)
         {
@@ -530,16 +593,13 @@ public class GameControlsConfigPanel : MonoBehaviour
             }
         }
 
-        // Assign inputs based on team size
         if (teamInputs.Count == 1)
         {
-            // Single player controls both defense and offense
             TeamRodsController.defensePlayerInput = teamInputs[0];
             TeamRodsController.attackerPlayerInput = teamInputs[0];
         }
         else if (teamInputs.Count >= 2)
         {
-            // First player controls defense, second player controls offense
             TeamRodsController.defensePlayerInput = teamInputs[0];
             TeamRodsController.attackerPlayerInput = teamInputs[1];
         }

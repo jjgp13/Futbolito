@@ -65,11 +65,49 @@ Speed values are tunable per FormationPreset, so different formations can experi
 5. **AutoMatchRunner** rotates through formation presets alongside physics presets and difficulty combos
 
 ## Controls
+
+### Player Join System
+Players join matches via **manual join** (not auto-join). `GameControlsConfigPanel` detects raw input and calls `PlayersInputController.JoinPlayerManually()` with the correct control scheme and device. Max 4 players (2 keyboard + 2 gamepad, or any mix).
+
+**Join flow:**
+1. Panel shows "Press key to join" prompt
+2. Pressing a P1 key (WASD region) or P2 key (Arrow region) or gamepad button triggers a manual join
+3. `PlayerInputManager.JoinPlayer(controlScheme, device)` creates a `PlayerInput` instance
+4. Player selects a team side (left/right) using their assigned keys
+5. Accept confirms, Start begins the match
+
+### Control Schemes
+| Scheme | Device | Join Keys | Region |
+|--------|--------|-----------|--------|
+| Keyboard_P1 | Keyboard | F, Space, WASD | Left side of keyboard |
+| Keyboard_P2 | Keyboard | NumpadEnter, RightShift, Arrows | Right side of keyboard |
+| Xbox | XInput Controller | Start, A button | Per gamepad (unique device) |
+
+### Gameplay Controls
+| Action | Keyboard P1 | Keyboard P2 | Xbox |
+|--------|------------|------------|------|
+| Move rod | W/S | ↑/↓ | Left Stick |
+| Shoot | Space | Right Ctrl | A button |
+| Magnet | E | Right Shift | B button |
+| Wall Pass | Q | Numpad 0 | X button |
+| Bump | R | Numpad . | Y button |
+| Switch rod left | A | ← | LB |
+| Switch rod right | D | → | RB |
+
+### UI Controls
+| Action | Keyboard P1 | Keyboard P2 | Xbox |
+|--------|------------|------------|------|
+| Join | F | Numpad Enter | Start |
+| Select left team | A | ← | LB |
+| Select right team | D | → | RB |
+| Accept | Space | Right Shift | A button |
+
+### Rod Control Modes
 - **Rod sliding**: Analog stick Y axis — moves the active rod up/down
 - **Shoot**: Button press — charge time determines shot power (light/heavy)
 - **Magnet**: Hold to attract and catch the ball (see Magnet Catch & Position below)
 - **Switch rod**: Cycle which rod(s) the player controls
-- **1 player**: Controls 2 rods at a time (GK+Def or Def+Mid or Mid+Atk)
+- **1 player per team**: Controls 2 rods at a time (GK+Def or Def+Mid or Mid+Atk)
 - **2 players per team**: Player 1 = GK+Defense, Player 2 = Midfield+Attack
 
 ## Shot Mechanics
@@ -202,7 +240,8 @@ MainMenu_Scene
 - **Save system**: JSON serialization via SaveSystem.cs
 
 ## Key Technical Details
-- **Input**: Unity Input System (PlayerInput) — supports gamepad and keyboard
+- **Input**: Unity Input System with **manual join** via `PlayerInputManager.JoinPlayersManually`. Three control schemes: `Keyboard_P1` (WASD region), `Keyboard_P2` (Arrow region), `Xbox` (per gamepad). `GameControlsConfigPanel` polls raw input to detect join requests. `PlayersInputController` (DontDestroyOnLoad singleton) manages player lifecycle. `PlayerInputController_prefab` has `NeverAutoSwitchControlSchemes = true`.
+- **Input architecture**: `PlayersInputController` → `PlayerInputManager` (manual join) → spawns `PlayerInputController_prefab` (PlayerInput + PlayerController) → `GameControlsConfigPanel` manages team selection → `MatchInfo` stores controllers → `TeamRodsController` wires inputs to rods
 - **Physics**: Unity 2D Physics with PhysicsMaterial2D
 - **Camera**: Cinemachine with impulse-based screen shake on shots
 - **Rod naming**: GK rod is spelled "GoalKepperRod" (historical typo, preserved for compatibility)
