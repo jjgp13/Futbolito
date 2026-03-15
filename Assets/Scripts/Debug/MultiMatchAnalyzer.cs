@@ -85,8 +85,8 @@ public static class MultiMatchAnalyzer
         sb.AppendLine("└──────────────────────────────────────────────────────────────────────────┘");
         sb.AppendLine();
 
-        sb.AppendLine($"  {"#",-4} {"Score",-10} {"Winner",-8} {"End",-8} {"Difficulty",-16} {"Physics",-16} {"Formation",-16} {"Time",-8} {"Rsp",-4}");
-        sb.AppendLine($"  {"─",-4} {"─────",-10} {"──────",-8} {"───",-8} {"──────────",-16} {"───────",-16} {"─────────",-16} {"────",-8} {"───",-4}");
+        sb.AppendLine($"  {"#",-4} {"Score",-10} {"Winner",-8} {"End",-8} {"Difficulty",-16} {"Physics",-16} {"Formation",-16} {"Time",-8} {"Rsp",-4} {"Bmp",-4}");
+        sb.AppendLine($"  {"─",-4} {"─────",-10} {"──────",-8} {"───",-8} {"──────────",-16} {"───────",-16} {"─────────",-16} {"────",-8} {"───",-4} {"───",-4}");
 
         foreach (var r in results)
         {
@@ -99,7 +99,7 @@ public static class MultiMatchAnalyzer
             string formation = (r.formationPreset ?? "Default").Length > 14
                 ? (r.formationPreset ?? "Default").Substring(0, 14)
                 : r.formationPreset ?? "Default";
-            sb.AppendLine($"  {r.matchNumber,-4} {score,-10} {r.winner,-8} {end,-8} {diff,-16} {preset,-16} {formation,-16} {r.realDurationSeconds:F1}s   {r.ballRestarts}");
+            sb.AppendLine($"  {r.matchNumber,-4} {score,-10} {r.winner,-8} {end,-8} {diff,-16} {preset,-16} {formation,-16} {r.realDurationSeconds:F1}s   {r.ballRestarts,-4}{r.bumpCount}");
         }
 
         sb.AppendLine();
@@ -300,10 +300,13 @@ public static class MultiMatchAnalyzer
         float avgDeadTime = (float)results.Average(r => r.deadBallTime);
         float totalRestarts = results.Sum(r => r.ballRestarts);
         int matchesWithRestarts = results.Count(r => r.ballRestarts > 0);
+        float avgBumps = (float)results.Average(r => r.bumpCount);
+        float totalBumps = results.Sum(r => r.bumpCount);
 
         string healthIcon = avgRestarts < 1 ? "PASS ✓" : (avgRestarts < 3 ? "WARN !" : "FAIL ✗");
-        sb.AppendLine($"  [{healthIcon}] BALL HEALTH (respawns and dead time)");
+        sb.AppendLine($"  [{healthIcon}] BALL HEALTH (respawns, bumps, and dead time)");
         sb.AppendLine($"         Avg respawns/match: {avgRestarts:F1} (total: {totalRestarts})");
+        sb.AppendLine($"         Avg bumps/match:    {avgBumps:F1} (total: {totalBumps})");
         sb.AppendLine($"         Matches with respawns: {matchesWithRestarts}/{results.Count}");
         sb.AppendLine($"         Avg dead ball time/match: {avgDeadTime:F1}s");
 

@@ -42,6 +42,7 @@
     <UnityVersion>6000.2.12f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.12f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.12f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.2.12f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
@@ -54,6 +55,7 @@
     <Compile Include="Assets\Scripts\Match\MatchController.cs" />
     <Compile Include="Assets\Scripts\Tournament\TourUIController.cs" />
     <Compile Include="Assets\Scripts\Tournament\TournamentController.cs" />
+    <Compile Include="Assets\Scripts\Rods\RodBumpEffect.cs" />
     <Compile Include="Assets\Scripts\Rods\PlayerRodShootAction.cs" />
     <Compile Include="Assets\Tests.cs" />
     <Compile Include="Assets\Scripts\PlayerInput\PlayersInputController.cs" />
@@ -71,6 +73,7 @@
     <Compile Include="Assets\Scripts\Match\GolController.cs" />
     <Compile Include="Assets\Scripts\DestroyObject.cs" />
     <Compile Include="Assets\Scripts\Match\MatchScoreController.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObject\FormationPreset.cs" />
     <Compile Include="Assets\Scripts\Rods\FSM\States\IdleState.cs" />
     <Compile Include="Assets\Scripts\Match\BulletTimeController.cs" />
     <Compile Include="Assets\Scripts\Ball\BallBehavior.cs" />
@@ -81,8 +84,10 @@
     <Compile Include="Assets\Scripts\SaveSystem.cs" />
     <Compile Include="Assets\Samples\Input System\1.7.0\Simple Multiplayer\SimpleMultiplayerPlayer.cs" />
     <Compile Include="Assets\Scripts\Rods\RodConfiguration.cs" />
+    <Compile Include="Assets\Scripts\Rods\PlayerRodBumpAction.cs" />
     <Compile Include="Assets\Scripts\PlayerInput\PlayerController.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\PhysicsPreset.cs" />
+    <Compile Include="Assets\Scripts\Rods\RodRole.cs" />
     <Compile Include="Assets\Scripts\Match\MatchInfo.cs" />
     <Compile Include="Assets\Scripts\Match\SoundMatchController.cs" />
     <Compile Include="Assets\Scripts\Rods\FSM\States\PositioningState.cs" />
@@ -105,6 +110,8 @@
     <Compile Include="Assets\Scripts\Rods\AIHitBall.cs" />
     <Compile Include="Assets\Scripts\ScriptableObject\ShopItem.cs" />
     <Compile Include="Assets\Scripts\PlayerData\PlayerDataController.cs" />
+    <Compile Include="Assets\Scripts\Debug\MultiMatchAnalyzer.cs" />
+    <Compile Include="Assets\Scripts\Debug\AutoMatchRunner.cs" />
     <Compile Include="Assets\Scripts\Ball\BallSoundsController.cs" />
     <Compile Include="Assets\Scripts\Rods\AIRodWallPassAction.cs" />
     <Compile Include="Assets\Scripts\Rods\PlayerRodWallPassAction.cs" />

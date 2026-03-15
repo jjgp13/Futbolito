@@ -56,4 +56,16 @@ public class PhysicsPreset : ScriptableObject
     [Header("Camera Shake")]
     [Tooltip("Camera shake intensity multiplier (1 = default)")]
     public float cameraShakeMultiplier = 1f;
+
+    [Header("Rod Bump")]
+    [Tooltip("Force applied when rod bumps the ball")]
+    public float bumpStrength = 3f;
+    [Tooltip("Max distance from figure for bump to affect ball")]
+    public float maxBumpRange = 3.5f;
+
+    [Header("Magnet")]
+    [Tooltip("Force pulling ball toward figure magnet")]
+    public float magnetPullForce = 15f;
+    [Tooltip("Max ball speed at which magnet can catch")]
+    public float magnetMaxBallSpeed = 8f;
 }

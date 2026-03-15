@@ -184,10 +184,7 @@ public class AIRodMagnetAction : MonoBehaviour
             magnetActiveTime += Time.deltaTime;
             if (magnetActiveTime > maxMagnetDuration)
             {
-                if (showDebugInfo)
-                {
-                    Debug.Log($"[AIRodMagnetAction] {gameObject.name} - Magnet timed out after {maxMagnetDuration}s");
-                }
+                AIDebugLogger.Log(gameObject.name, "MAGNET", $"Magnet timed out after {maxMagnetDuration}s");
                 DeactivateMagnet();
                 return;
             }
@@ -258,10 +255,7 @@ public class AIRodMagnetAction : MonoBehaviour
         // CONDITION 1: Check if ball is moving too fast
         if (ballSpeed > effectiveSpeedLimit)
         {
-            if (showDebugInfo)
-            {
-                Debug.Log($"[AIRodMagnetAction] {gameObject.name} - Ball moving too fast ({ballSpeed:F2} > {effectiveSpeedLimit:F2})");
-            }
+            AIDebugLogger.Log(gameObject.name, "MAGNET", $"Ball moving too fast ({ballSpeed:F2} > {effectiveSpeedLimit:F2})");
             return -1;
         }
 
@@ -287,20 +281,14 @@ public class AIRodMagnetAction : MonoBehaviour
             // CONDITION 3: Check if ball is in "shootable position" - if yes, don't use magnet
             if (IsBallInShootablePosition(figures[i].transform, ballPosition))
             {
-                if (showDebugInfo)
-                {
-                    Debug.Log($"[AIRodMagnetAction] {gameObject.name} - Ball already in shootable position for figure {i}");
-                }
+                AIDebugLogger.Log(gameObject.name, "MAGNET", $"Ball already in shootable position for figure {i}");
                 continue;
             }
 
             // CONDITION 4: Check if ball is too close (prevent over-attraction)
             if (distanceToBall < minimumMagnetDistance)
             {
-                if (showDebugInfo)
-                {
-                    Debug.Log($"[AIRodMagnetAction] {gameObject.name} - Ball too close to figure {i} ({distanceToBall:F2} < {minimumMagnetDistance})");
-                }
+                AIDebugLogger.Log(gameObject.name, "MAGNET", $"Ball too close to figure {i} ({distanceToBall:F2} < {minimumMagnetDistance})");
                 continue;
             }
 
@@ -407,10 +395,7 @@ public class AIRodMagnetAction : MonoBehaviour
             }
         }
 
-        if (showDebugInfo)
-        {
-            Debug.Log($"[AIRodMagnetAction] {gameObject.name} - Magnet activated on all figures");
-        }
+        AIDebugLogger.Log(gameObject.name, "MAGNET", "Magnet activated on all figures");
     }
 
     /// <summary>
@@ -432,10 +417,7 @@ public class AIRodMagnetAction : MonoBehaviour
             }
         }
 
-        if (showDebugInfo)
-        {
-            Debug.Log($"[AIRodMagnetAction] {gameObject.name} - Magnet deactivated");
-        }
+        AIDebugLogger.Log(gameObject.name, "MAGNET", "Magnet deactivated");
     }
 
     #endregion

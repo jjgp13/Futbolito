@@ -65,11 +65,10 @@ public class MatchController : MonoBehaviour {
 
 
     //Initial state of objects.
+    private bool waitingForPlayerSelection;
+
     private void Start()
     {
-        //Start initial animation.
-        StartCoroutine(InitAnimation());
-
         //Start score at 0 and game as playing
         gameIsPaused = false;
 
@@ -79,12 +78,31 @@ public class MatchController : MonoBehaviour {
 
         //Active these panels to assign flags
         golAnimation_UI.SetActive(true);
-        
-        
         golAnimation_UI.SetActive(false);
 
         finishQuickMatchPanelOptions.SetActive(false);
 
+        // If the controls config panel is active, wait for the player to choose a side
+        // and press Start — GameControlsConfigPanel.StartGame() will re-enable us
+        if (GameControlsConfigPanel.instance != null && GameControlsConfigPanel.instance.gameObject.activeInHierarchy)
+        {
+            waitingForPlayerSelection = true;
+            this.enabled = false;
+            return;
+        }
+
+        //Start initial animation.
+        StartCoroutine(InitAnimation());
+    }
+
+    private void OnEnable()
+    {
+        // When re-enabled by GameControlsConfigPanel.StartGame(), start the match
+        if (waitingForPlayerSelection)
+        {
+            waitingForPlayerSelection = false;
+            StartCoroutine(InitAnimation());
+        }
     }
 
     private void Update()
@@ -195,12 +213,18 @@ public class MatchController : MonoBehaviour {
         yield return new WaitForSeconds(2.5f);
         intialAnimationObject.SetActive(false);
 
-        GetComponent<TimeMatchController>().timePanel.SetActive(true);
+        // Initialize timer with correct value from AutoMatchRunner/MatchInfo, then show panel
+        var timerController = GetComponent<TimeMatchController>();
+        timerController.enabled = true;
+        timerController.ResetTimer();
+        timerController.timePanel.SetActive(true);
 
         GetComponent<MatchScoreController>().leftTeamScore_UI.SetActive(true);
         GetComponent<MatchScoreController>().rightTeamScore_UI.SetActive(true);
         
         //Instiatite a ball
+        BallBehavior.ResetMatchStats();
+        RodBumpEffect.ResetMatchStats();
         SpawnBall();
 
         // Signal match has started (for sound/crowd system)

@@ -97,10 +97,7 @@ public class PositioningState : AIRodState
         shootAction = stateMachine.gameObject.GetComponent<AIRodShootAction>();
         wallPassAction = stateMachine.gameObject.GetComponent<AIRodWallPassAction>();
 
-        if (stateMachine.ShowDebugInfo)
-        {
-            Debug.Log($"[{stateMachine.gameObject.name}] Entering POSITIONING state - Ball-centric behavior active");
-        }
+        AIDebugLogger.Log(stateMachine.gameObject.name, "POSITIONING", "Entering POSITIONING state - Ball-centric behavior active");
     }
 
     public override void Update()
@@ -337,10 +334,7 @@ public class PositioningState : AIRodState
         if (ShouldClearLane())
         {
             rodMovement.SetMovementMode(AIRodMovementAction.MovementMode.ClearingLane);
-            if (stateMachine.ShowDebugInfo)
-            {
-                Debug.Log($"[{stateMachine.gameObject.name}] CLEARING LANE - Teammate behind has ball");
-            }
+            AIDebugLogger.Log(stateMachine.gameObject.name, "POSITIONING", "CLEARING LANE - Teammate behind has ball");
             return;
         }
 
@@ -370,30 +364,21 @@ public class PositioningState : AIRodState
                     rodMovement.SetMovementMode(AIRodMovementAction.MovementMode.DefensiveBlocking);
                 }
 
-                if (stateMachine.ShowDebugInfo)
-                {
-                    Debug.Log($"[{stateMachine.gameObject.name}] Context: DEFENSIVE - Mode: {rodMovement.GetMovementMode()}");
-                }
+                AIDebugLogger.Log(stateMachine.gameObject.name, "POSITIONING", $"Context: DEFENSIVE - Mode: {rodMovement.GetMovementMode()}");
                 break;
 
             case MovementContext.Attacking:
                 // Ball moving toward opponent - position for shot
                 rodMovement.SetMovementMode(AIRodMovementAction.MovementMode.AttackingPosition);
 
-                if (stateMachine.ShowDebugInfo)
-                {
-                    Debug.Log($"[{stateMachine.gameObject.name}] Context: ATTACKING - Mode: AttackingPosition");
-                }
+                AIDebugLogger.Log(stateMachine.gameObject.name, "POSITIONING", "Context: ATTACKING - Mode: AttackingPosition");
                 break;
 
             case MovementContext.Neutral:
                 // Contested ball - simple tracking
                 rodMovement.SetMovementMode(AIRodMovementAction.MovementMode.Tracking);
 
-                if (stateMachine.ShowDebugInfo)
-                {
-                    Debug.Log($"[{stateMachine.gameObject.name}] Context: NEUTRAL - Mode: Tracking");
-                }
+                AIDebugLogger.Log(stateMachine.gameObject.name, "POSITIONING", "Context: NEUTRAL - Mode: Tracking");
                 break;
         }
     }
@@ -428,10 +413,7 @@ public class PositioningState : AIRodState
                 break;
         }
 
-        if (stateMachine.ShowDebugInfo)
-        {
-            Debug.Log($"[{stateMachine.gameObject.name}] GK Context: {context} - Mode: {rodMovement.GetMovementMode()}");
-        }
+        AIDebugLogger.Log(stateMachine.gameObject.name, "POSITIONING", $"GK Context: {context} - Mode: {rodMovement.GetMovementMode()}");
     }
 
     #endregion
@@ -530,11 +512,7 @@ public class PositioningState : AIRodState
                 {
                     string reason = blockedShot ? "shots blocked" : $"proactive (no shot for {evaluationCyclesWithoutShot} cycles)";
                     AIDebugLogger.LogWallPass(stateMachine.gameObject.name, true, $"Triggered: {reason}");
-
-                    if (stateMachine.ShowDebugInfo)
-                    {
-                        Debug.Log($"[{stateMachine.gameObject.name}] AI Decision: WALL PASS ({reason})");
-                    }
+                    AIDebugLogger.Log(stateMachine.gameObject.name, "AI_DECISION", $"AI Decision: WALL PASS ({reason})");
 
                     wallPassAction.EvaluateAndExecuteWallPass();
                     evaluationCyclesWithoutShot = 0;

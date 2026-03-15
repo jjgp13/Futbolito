@@ -164,10 +164,7 @@ public class AIRodWallPassAction : MonoBehaviour
         if (wallPassExecutedRecently)
         {
             AIDebugLogger.LogWallPass(gameObject.name, false, $"On cooldown ({wallPassCooldownTimer:F1}s / {WALL_PASS_COOLDOWN}s)");
-            if (showDebugInfo)
-            {
-                Debug.Log($"[AIRodWallPassAction] {gameObject.name}: Wall pass on cooldown");
-            }
+            AIDebugLogger.Log(gameObject.name, "WALLPASS", "Wall pass on cooldown");
             return false;
         }
 
@@ -199,10 +196,7 @@ public class AIRodWallPassAction : MonoBehaviour
         {
             if (wallPassActions[i] != null && wallPassActions[i].CanPerformWallPass())
             {
-                if (showDebugInfo)
-                {
-                    Debug.Log($"[AIRodWallPassAction] {gameObject.name}: Figure {i} can perform wall pass");
-                }
+                AIDebugLogger.Log(gameObject.name, "WALLPASS", $"Figure {i} can perform wall pass");
                 return i;
             }
         }
@@ -234,11 +228,7 @@ public class AIRodWallPassAction : MonoBehaviour
         wallPassCooldownTimer = 0f;
 
         AIDebugLogger.LogWallPass(gameObject.name, true, $"Executed on figure {figureIndex}");
-
-        if (showDebugInfo)
-        {
-            Debug.Log($"[AIRodWallPassAction] {gameObject.name}: Wall pass executed on figure {figureIndex}");
-        }
+        AIDebugLogger.Log(gameObject.name, "WALLPASS", $"Wall pass executed on figure {figureIndex}");
 
         // Optional: Trigger FSM cooldown state
         // This prevents other actions immediately after wall pass

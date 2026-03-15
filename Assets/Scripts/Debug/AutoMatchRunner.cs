@@ -164,6 +164,7 @@ public class AutoMatchRunner : MonoBehaviour
         public string winner;
         public int ballRestarts;
         public float deadBallTime;
+        public int bumpCount;
         public string logFilePath;
     }
 
@@ -184,6 +185,8 @@ public class AutoMatchRunner : MonoBehaviour
         if (autoStartOnPlay && !isRunning)
         {
             InitTestSuite();
+            // Load the match scene to start fresh (same as button-triggered path)
+            SceneManager.LoadScene(matchSceneName);
         }
     }
 
@@ -515,9 +518,10 @@ public class AutoMatchRunner : MonoBehaviour
     {
         if (!isRunning) return;
 
-        // Read ball stats from BallBehavior
+        // Read ball and bump stats
         int ballRestarts = BallBehavior.BallSpawnCount;
         float deadBallTime = BallBehavior.TotalDeadBallTime;
+        int bumpCount = RodBumpEffect.TotalBumpCount;
 
         var result = new MatchResult
         {
@@ -531,7 +535,8 @@ public class AutoMatchRunner : MonoBehaviour
             realDurationSeconds = Time.realtimeSinceStartup - matchStartRealTime,
             gameDurationSeconds = matchTimeMinutes * 60f,
             ballRestarts = ballRestarts,
-            deadBallTime = deadBallTime
+            deadBallTime = deadBallTime,
+            bumpCount = bumpCount
         };
 
         result.knockout = (result.leftScore >= 5 || result.rightScore >= 5);
@@ -549,7 +554,7 @@ public class AutoMatchRunner : MonoBehaviour
 
         string leftDiff = DifficultyName(result.leftDifficulty);
         string rightDiff = DifficultyName(result.rightDifficulty);
-        Debug.Log($"[AutoMatchRunner] Match {currentMatch}: L{result.leftScore}-R{result.rightScore} ({result.winner}) [{leftDiff} vs {rightDiff}] [{result.physicsPreset}] [{result.formationPreset}] restarts:{result.ballRestarts} deadBall:{result.deadBallTime:F0}s [{result.realDurationSeconds:F1}s]");
+        Debug.Log($"[AutoMatchRunner] Match {currentMatch}: L{result.leftScore}-R{result.rightScore} ({result.winner}) [{leftDiff} vs {rightDiff}] [{result.physicsPreset}] [{result.formationPreset}] restarts:{result.ballRestarts} bumps:{result.bumpCount} deadBall:{result.deadBallTime:F0}s [{result.realDurationSeconds:F1}s]");
 
         if (currentMatch < matchCount)
         {

@@ -20,6 +20,16 @@ public enum CollisionType
 
 public class BallBehavior : MonoBehaviour
 {
+    // Static counters for AutoMatchRunner reporting (reset each match via OnBallSpawned)
+    public static int BallSpawnCount { get; private set; }
+    public static float TotalDeadBallTime { get; private set; }
+
+    public static void ResetMatchStats()
+    {
+        BallSpawnCount = 0;
+        TotalDeadBallTime = 0f;
+    }
+
     Rigidbody2D rb;
     
     [Header("Particle Effects")]
@@ -52,8 +62,8 @@ public class BallBehavior : MonoBehaviour
     public float maxBallSpeed = 0f;
 
     [Header("Restarting ball values")]
-    [Tooltip("Enable/disable automatic ball respawn when inactive")]
-    public bool autoRespawnWhenInactive = true;
+    [Tooltip("Enable/disable automatic ball respawn when inactive (disable to let rod bumps handle stuck balls)")]
+    public bool autoRespawnWhenInactive = false;
 
     [Tooltip("Time in seconds before respawning an inactive ball")]
     public int timeInactiveToRespawn;
@@ -64,13 +74,32 @@ public class BallBehavior : MonoBehaviour
     [Tooltip("Initial force range for ball movement")]
     public float iniMinForce, iniMaxForce;
 
+    [Header("Tiered Stuck Recovery")]
+    [Tooltip("Seconds stuck before applying emergency nudge toward center")]
+    [SerializeField] private float emergencyNudgeTime = 5f;
+    [Tooltip("Seconds stuck before last-resort respawn")]
+    [SerializeField] private float lastResortRespawnTime = 10f;
+    [Tooltip("Force of the emergency nudge impulse")]
+    [SerializeField] private float emergencyNudgeForce = 5f;
+    [Tooltip("Faster nudge time when ball is in a corner zone")]
+    [SerializeField] private float cornerNudgeTime = 3f;
+    [Tooltip("Stronger force for corner nudge")]
+    [SerializeField] private float cornerNudgeForce = 8f;
+
+    [Header("Corner Detection")]
+    [SerializeField] private float cornerXThreshold = 13f;
+    [SerializeField] private float cornerYThreshold = 3.8f;
+
+    private float stuckTimer;
+    private float lastNudgeTime;
+
     // Event for external systems to listen to
     public static event Action<BallImpactEventArgs> OnBallImpact;
 
     void Start()
     {
         //Set sprite of the ball selected
-        if (MatchInfo.instance != null)
+        if (MatchInfo.instance != null && MatchInfo.instance.ballSelected != null)
         {
             GetComponent<SpriteRenderer>().sprite = MatchInfo.instance.ballSelected;
         }
@@ -82,6 +111,9 @@ public class BallBehavior : MonoBehaviour
 
         inactiveBallTime = 0;
         kickOff = false;
+        
+        // Disable auto-respawn — rod bumps handle stuck balls now
+        autoRespawnWhenInactive = false;
         
         // Setup trail
         InitializeTrail();
@@ -134,6 +166,9 @@ public class BallBehavior : MonoBehaviour
 
         if (ballIsInactive && kickOff)
         {
+            // Always track stuck time for tiered recovery
+            stuckTimer += Time.deltaTime;
+
             if (autoRespawnWhenInactive)
             {
                 inactiveBallTime += Time.deltaTime;
@@ -151,11 +186,33 @@ public class BallBehavior : MonoBehaviour
                     stopBallParticles.Play();
                 }
             }
+
+            // Tier 2: Emergency nudge — ball stuck in dead zone, no rod bump resolved it
+            // In corners, nudge fires faster (3s vs 5s) and can repeat every 2s
+            bool inCorner = IsInCornerZone();
+            float nudgeThreshold = inCorner ? cornerNudgeTime : emergencyNudgeTime;
+            float nudgeCooldown = inCorner ? 2f : 3f;
+
+            if (stuckTimer >= nudgeThreshold && (stuckTimer - lastNudgeTime) >= nudgeCooldown)
+            {
+                ApplyEmergencyNudge(inCorner);
+            }
+
+            // Tier 3: Last-resort respawn — nothing worked
+            if (stuckTimer >= lastResortRespawnTime)
+            {
+                AIDebugLogger.Log("BALL", "LAST_RESORT_RESPAWN",
+                    $"Ball stuck for {stuckTimer:F1}s — respawning");
+                RespawnBall();
+                return;
+            }
         }
         else
         {
             MatchController.instance.timeInactiveBallPanel.SetActive(false);
             inactiveBallTime = 0;
+            stuckTimer = 0f;
+            lastNudgeTime = 0f;
 
             if (stopBallParticles != null && stopBallParticles.isPlaying)
             {
@@ -177,6 +234,31 @@ public class BallBehavior : MonoBehaviour
             rb.linearVelocity = rb.linearVelocity.normalized * maxBallSpeed;
             PhysicsTelemetryLogger.LogSpeedClamped();
         }
+    }
+
+    private void ApplyEmergencyNudge(bool isCorner)
+    {
+        lastNudgeTime = stuckTimer;
+
+        float force = isCorner ? cornerNudgeForce : emergencyNudgeForce;
+
+        // Push ball toward field center with some randomness
+        Vector2 toCenter = ((Vector2)Vector3.zero - rb.position).normalized;
+        // Bias X toward center more strongly in corners (escape the wall)
+        if (isCorner)
+            toCenter.x *= 1.5f;
+        toCenter += new Vector2(UnityEngine.Random.Range(-0.3f, 0.3f), UnityEngine.Random.Range(-0.3f, 0.3f));
+        toCenter.Normalize();
+
+        rb.AddForce(toCenter * force * rb.mass, ForceMode2D.Impulse);
+
+        AIDebugLogger.Log("BALL", isCorner ? "CORNER_NUDGE" : "EMERGENCY_NUDGE",
+            $"Stuck {stuckTimer:F1}s — force:{force:F1} dir:{toCenter} pos:({rb.position.x:F1},{rb.position.y:F1})");
+    }
+
+    private bool IsInCornerZone()
+    {
+        return Mathf.Abs(rb.position.x) > cornerXThreshold && Mathf.Abs(rb.position.y) > cornerYThreshold;
     }
 
     private void UpdateTrailEffect()
@@ -251,6 +333,8 @@ public class BallBehavior : MonoBehaviour
 
     public void RespawnBall()
     {
+        TotalDeadBallTime += inactiveBallTime;
+        BallSpawnCount++;
         MatchController.instance.timeInactiveBallPanel.SetActive(false);
         MatchController.instance.SpawnBall();
         Destroy(gameObject);

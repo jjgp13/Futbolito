@@ -705,7 +705,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105161459}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8fc5621e3842afb44b5917ee40516385, type: 3}
   m_Name: 
@@ -925,7 +925,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105161459}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a577cbb051ec914a8220eb265cf8aac, type: 3}
   m_Name: 
@@ -9255,6 +9255,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841887303}
   m_CullTransparentMesh: 0
+--- !u!1 &1866932786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866932788}
+  - component: {fileID: 1866932787}
+  m_Layer: 0
+  m_Name: AutoMatchRunner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1866932787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866932786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb2b4250678a444448ad3e940db3bb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AutoMatchRunner
+  testProfile: 0
+  matchTimeMinutes: 5
+  timeScale: 5
+  rotateDifficulty: 1
+  rotatePhysicsPresets: 1
+  physicsPresets:
+  - {fileID: 11400000, guid: 98f424b166c91e645bd0de8ff8c788a4, type: 2}
+  - {fileID: 11400000, guid: 4e3732ef3c88c2c4fa0867647b5e7c22, type: 2}
+  - {fileID: 11400000, guid: 8c260a74dc518cc4a9bd4f08eae52f10, type: 2}
+  - {fileID: 11400000, guid: f796be6e899cc3847b519cde273b28a9, type: 2}
+  - {fileID: 11400000, guid: 28a416d510d6ce94cbc209705dfca9f8, type: 2}
+  - {fileID: 11400000, guid: 6d90d2e818539874ba0fd45aa16e6246, type: 2}
+  rotateFormations: 1
+  formationPresets:
+  - {fileID: 11400000, guid: e4e944f8e82b4b14d90bbd31889c798b, type: 2}
+  - {fileID: 11400000, guid: b8fd5eec00da3a74d9a14e653220eb2b, type: 2}
+  - {fileID: 11400000, guid: 46239faf7ef43814984c883e018bc98e, type: 2}
+  - {fileID: 11400000, guid: 33438c80721a84e468cd7f5957a6a4c8, type: 2}
+  - {fileID: 11400000, guid: 8074444811779ef4e9609b942bc5830b, type: 2}
+  matchSceneName: GameMatchTesting_Scene
+  autoStartOnPlay: 1
+--- !u!4 &1866932788
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866932786}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.49228, y: -0.75035, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1874729780
 GameObject:
   m_ObjectHideFlags: 0
@@ -11456,3 +11521,4 @@ SceneRoots:
   - {fileID: 1252008115}
   - {fileID: 2085919937}
   - {fileID: 360993566}
+  - {fileID: 1866932788}

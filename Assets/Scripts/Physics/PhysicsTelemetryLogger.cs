@@ -79,7 +79,7 @@ public class PhysicsTelemetryLogger : MonoBehaviour
             activePresetName = manager.activePreset.presetName;
         }
 
-        Debug.Log($"[PhysicsTelemetry] Session started: {activePresetName}");
+        AIDebugLogger.Log("PHYSICS", "SESSION_START", $"Preset: {activePresetName}");
     }
 
     /// <summary>
@@ -94,7 +94,7 @@ public class PhysicsTelemetryLogger : MonoBehaviour
         if (session != null)
         {
             completedSessions.Add(session);
-            Debug.Log($"[PhysicsTelemetry] Session closed: {activePresetName}\n{session}");
+            AIDebugLogger.Log("PHYSICS", "SESSION_CLOSE", $"Preset: {activePresetName}");
         }
 
         // Start fresh
@@ -230,6 +230,6 @@ public class PhysicsTelemetryLogger : MonoBehaviour
         string filePath = Path.Combine(logDir, $"physics_telemetry_{timestamp}.txt");
 
         File.WriteAllText(filePath, report);
-        Debug.Log($"[PhysicsTelemetry] Report written to: {filePath}\n{report}");
+        AIDebugLogger.Log("PHYSICS", "REPORT", $"Written to: {filePath}");
     }
 }

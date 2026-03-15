@@ -71,7 +71,7 @@ public class PhysicsPresetManager : MonoBehaviour
             telemetry.OnPresetChanged();
         }
 
-        Debug.Log($"[PhysicsPresetManager] Applying preset: {activePreset.presetName}");
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[PhysicsPresetManager] Applying preset: {activePreset.presetName}");
 
         ApplyPhysicsMaterials();
         ApplyBallSettings();

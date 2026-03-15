@@ -105,7 +105,7 @@ public class AIGoalEvaluator : MonoBehaviour
         if (teamController != null)
         {
             teamSide = teamController.teamSide;
-            Debug.Log($"[AIGoalEvaluator] ✅ Initialized for AI control on {teamSide} team");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[AIGoalEvaluator] ✅ Initialized for AI control on {teamSide} team");
             CacheGoalInformation();
         }
         else
@@ -130,20 +130,22 @@ public class AIGoalEvaluator : MonoBehaviour
             goalPosition = opponentGoalTransform.position;
 
             // Debug verification
-            Debug.Log($"[AIGoalEvaluator] Goal Cached Successfully:\n" +
-                $"  Team: {teamSide}\n" +
-                $"  Looking for tag: '{goalTag}'\n" +
-                $"  Found goal: '{goalObject.name}'\n" +
-                $"  Goal Position: {goalPosition}\n" +
-                $"  Expected: {(teamSide == TeamSide.LeftTeam ? "Right side (positive X)" : "Left side (negative X)")}\n" +
-                $"  Actual X: {goalPosition.x:F2} {(teamSide == TeamSide.LeftTeam ? (goalPosition.x > 0 ? "✅" : "❌ WRONG!") : (goalPosition.x < 0 ? "✅" : "❌ WRONG!"))}");
-
+            if (!AutoMatchRunner.IsAutoMode)
+            {
+                Debug.Log($"[AIGoalEvaluator] Goal Cached Successfully:\n" +
+                    $"  Team: {teamSide}\n" +
+                    $"  Looking for tag: '{goalTag}'\n" +
+                    $"  Found goal: '{goalObject.name}'\n" +
+                    $"  Goal Position: {goalPosition}\n" +
+                    $"  Expected: {(teamSide == TeamSide.LeftTeam ? "Right side (positive X)" : "Left side (negative X)")}\n" +
+                    $"  Actual X: {goalPosition.x:F2} {(teamSide == TeamSide.LeftTeam ? (goalPosition.x > 0 ? "✅" : "❌ WRONG!") : (goalPosition.x < 0 ? "✅" : "❌ WRONG!"))}");
+            }
             // Get goal width from collider
             BoxCollider2D goalCollider = goalObject.GetComponent<BoxCollider2D>();
             if (goalCollider != null)
             {
                 goalWidth = goalCollider.size.y; // Height in 2D is vertical goal opening
-                Debug.Log($"  Goal Width: {goalWidth}");
+                if (!AutoMatchRunner.IsAutoMode) Debug.Log($"  Goal Width: {goalWidth}");
             }
             else
             {
@@ -911,48 +913,23 @@ public class AIGoalEvaluator : MonoBehaviour
         lastEvaluatedShot = opportunity;
         hasDebugData = true;
 
-        // Log detailed information to console
+        // Log detailed information to file
         if (showShootingScores)
         {
             string rodName = figure.parent != null ? figure.parent.name : "Unknown Rod";
 
-            // Enhanced debug: Show direction calculations
             Vector2 figurePos = figure.position;
             Vector2 directionToGoal = (goalPosition - figurePos).normalized;
             Vector2 expectedDirection = teamSide == TeamSide.LeftTeam ? Vector2.right : Vector2.left;
-
-            // Calculate if direction is correct
             float directionDot = Vector2.Dot(directionToGoal, expectedDirection);
-            bool directionCorrect = directionDot > 0.5f; // Should be close to 1.0 if correct
+            bool directionCorrect = directionDot > 0.5f;
 
-            Debug.Log($"[AIGoalEvaluator] {rodName} - Shot Evaluation:\n" +
-          $"  Team Side: {teamSide}\n" +
-          $"  Figure Position: {figurePos}\n" +
-          $"  Goal Position: {goalPosition}\n" +
-          $"  Direction to Goal: {directionToGoal}\n" +
-          $"  Expected Direction: {expectedDirection} ({(teamSide == TeamSide.LeftTeam ? "RIGHT ?" : "LEFT ?")})\n" +
-          $"  Direction Match: {(directionCorrect ? "? CORRECT" : "? WRONG")} (dot: {directionDot:F2})\n" +
-          $"  Shooting Score: {opportunity.shootingScore:F3}\n" +
-          $"  Direct Shot Clear: {opportunity.isDirectShotClear}\n" +
-          $"  Clear Path Width: {opportunity.clearPathWidth:F2} (min required: {minimumClearWidth:F2})\n" +
-          $"  Recommended Angle: {opportunity.recommendedAngle:F1}°\n" +
-          $"  Blocking Figures: {(opportunity.blockingFigures?.Count ?? 0)}\n" +
-          $"  Distance to Goal: {Vector2.Distance(opportunity.figurePosition, goalPosition):F2}\n" +
-          $"  Should Shoot: {(opportunity.shootingScore >= minimumShootScore ? "YES" : "NO")}");
-
-            // Log blocker details
-            if (opportunity.blockingFigures != null && opportunity.blockingFigures.Count > 0)
-            {
-                Debug.Log($"  Blockers:");
-                foreach (Transform blocker in opportunity.blockingFigures)
-                {
-                    if (blocker != null)
-                    {
-                        string blockerRod = blocker.parent != null ? blocker.parent.name : "Unknown";
-                        Debug.Log($"    - {blocker.name} on {blockerRod} at {blocker.position}");
-                    }
-                }
-            }
+            AIDebugLogger.Log(rodName, "SHOOT_EVAL",
+                $"Score:{opportunity.shootingScore:F3} Clear:{opportunity.isDirectShotClear} " +
+                $"PathWidth:{opportunity.clearPathWidth:F2} DirDot:{directionDot:F2} " +
+                $"Blockers:{opportunity.blockingFigures?.Count ?? 0} " +
+                $"Dist:{Vector2.Distance(opportunity.figurePosition, goalPosition):F2} " +
+                $"Shoot:{(opportunity.shootingScore >= minimumShootScore ? "YES" : "NO")}");
         }
     }
 #endif

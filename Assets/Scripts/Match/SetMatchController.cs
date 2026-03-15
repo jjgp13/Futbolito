@@ -38,6 +38,13 @@ public class SetMatchController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        // In auto-test mode — force AI vs AI, no controls panel
+        if (AutoMatchRunner.IsAutoMode)
+        {
+            SetMatchForAutoTest();
+            return;
+        }
+
         if(MatchInfo.instance != null) 
         {
             SetMatchFromMatchInfoGameObject();
@@ -117,6 +124,29 @@ public class SetMatchController : MonoBehaviour
     /*
      These methods are for testing the scene
      */
+
+    /// <summary>
+    /// Auto-test mode: both teams AI-controlled, no controls panel, no player input.
+    /// </summary>
+    private void SetMatchForAutoTest()
+    {
+        // Ensure both team GameObjects are active
+        leftTeamGameObject.SetActive(true);
+        rightTeamGameObject.SetActive(true);
+
+        // Enable both teams with AI control
+        SetInputsForTeam(leftTeamGameObject, 0);  // 0 players = AI
+        SetInputsForTeam(rightTeamGameObject, 0);
+
+        // Set team flags from testing defaults
+        SetTeamFlags("LeftTeamFlags", leftTeamInformation.flag, leftTeamInformation.teamName);
+        SetTeamFlags("RightTeamFlags", rightTeamInformation.flag, rightTeamInformation.teamName);
+
+        // Hide controls panel
+        if (NoControlsPanel != null)
+            NoControlsPanel.SetActive(false);
+    }
+
     private void SetMatchSceneTestingGameplay()
     {
         //Testing scene, it means there are no players in the scene
@@ -127,7 +157,17 @@ public class SetMatchController : MonoBehaviour
         SetTeamFlags("LeftTeamFlags", leftTeamInformation.flag, leftTeamInformation.teamName);
         SetTeamFlags("RightTeamFlags", rightTeamInformation.flag, rightTeamInformation.teamName);
 
-        Instantiate(playersController);
+        // Only instantiate if no PlayersInputController exists yet (DontDestroyOnLoad guard)
+        if (PlayersInputController.instance == null)
+        {
+            Instantiate(playersController);
+        }
+        else
+        {
+            // Existing singleton — clear stale players from previous session
+            PlayersInputController.instance.playerInputs.Clear();
+        }
+
         NoControlsPanel.SetActive(true);
     }
 }

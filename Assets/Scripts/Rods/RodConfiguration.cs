@@ -171,7 +171,7 @@ public class RodConfiguration : MonoBehaviour
             effector.radius = radius;
         }
 
-        if (Debug.isDebugBuild)
+        if (Debug.isDebugBuild && !AutoMatchRunner.IsAutoMode)
         {
             Debug.Log($"[RodConfig] {gameObject.name}: {figureCount} figures, magnet radius = {radius:F2}");
         }
@@ -383,7 +383,7 @@ public class RodConfiguration : MonoBehaviour
 
         if (distances.Length == 0)
         {
-            Debug.Log($"Line {gameObject.name}: No distances to analyze (less than 2 players)");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"Line {gameObject.name}: No distances to analyze (less than 2 players)");
             return;
         }
 
@@ -400,7 +400,7 @@ public class RodConfiguration : MonoBehaviour
         }
 
         float average = sum / distances.Length;
-        Debug.Log($"Line {gameObject.name}: Avg distance = {average:F2}, Min = {min:F2}, Max = {max:F2}");
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"Line {gameObject.name}: Avg distance = {average:F2}, Min = {min:F2}, Max = {max:F2}");
     }
 
     /// <summary>
@@ -426,7 +426,7 @@ public class RodConfiguration : MonoBehaviour
         float distanceToBottomWall = Mathf.Abs(children[0].position.y - bottomWallUpperEdge);
         float distanceToTopWall = Mathf.Abs(children[children.Length - 1].position.y - topWallLowerEdge);
 
-        Debug.Log($"Line {gameObject.name}: Distance to bottom wall = {distanceToBottomWall:F2}, Distance to top wall = {distanceToTopWall:F2}");
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"Line {gameObject.name}: Distance to bottom wall = {distanceToBottomWall:F2}, Distance to top wall = {distanceToTopWall:F2}");
 
         return new Vector2(distanceToBottomWall, distanceToTopWall);
     }
@@ -460,7 +460,7 @@ public class RodConfiguration : MonoBehaviour
         }
         else
         {
-            Debug.Log($"Line {gameObject.name}: Wall distances are consistent with player spacing ({expectedDistance:F2})");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"Line {gameObject.name}: Wall distances are consistent with player spacing ({expectedDistance:F2})");
         }
     }
 

@@ -191,7 +191,7 @@ public class AIRodStateMachine : MonoBehaviour
 
         if (showDebugInfo)
         {
-            Debug.Log($"[AIRodStateMachine] {gameObject.name}: Priority override to {newPriority}");
+            AIDebugLogger.Log(gameObject.name, "FSM", $"Priority override to {newPriority}");
         }
 
         return true;
@@ -398,10 +398,7 @@ public class AIRodStateMachine : MonoBehaviour
 
         if (showDebugInfo)
         {
-            Debug.Log($"[AIRodStateMachine] {gameObject.name} initialized with REFACTORED ARCHITECTURE:\n" +
-                      $"  - States: Idle, Positioning, Shooting, Cooldown\n" +
-                      $"  - Actions (Parallel): Magnet, Shoot (charging), WallPass\n" +
-                      $"  - All rods use same ball-centric logic.");
+            AIDebugLogger.Log(gameObject.name, "FSM", "Initialized with REFACTORED ARCHITECTURE: Idle, Positioning, Shooting, Cooldown");
         }
     }
 
@@ -429,7 +426,7 @@ public class AIRodStateMachine : MonoBehaviour
 
             if (showDebugInfo)
             {
-                Debug.Log($"State changed to: {currentState.GetStateName()}", gameObject);
+                AIDebugLogger.Log(gameObject.name, "FSM", $"State changed to: {currentState.GetStateName()}");
             }
         }
         else
@@ -455,7 +452,7 @@ public class AIRodStateMachine : MonoBehaviour
 
         if (showDebugInfo)
         {
-            Debug.Log($"State transitioned to: {currentState.GetStateName()}", gameObject);
+            AIDebugLogger.Log(gameObject.name, "FSM", $"State transitioned to: {currentState.GetStateName()}");
         }
     }
 
@@ -476,7 +473,7 @@ public class AIRodStateMachine : MonoBehaviour
 
         if (showDebugInfo)
         {
-            Debug.Log($"State set to: {currentState.GetStateName()}", gameObject);
+            AIDebugLogger.Log(gameObject.name, "FSM", $"State set to: {currentState.GetStateName()}");
         }
     }
 

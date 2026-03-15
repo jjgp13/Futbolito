@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c4cf8c08e0acae4b8ba7287c9e73e59, type: 3}
+  m_Name: Wide 3-5-2
+  m_EditorClassIdentifier: Assembly-CSharp::FormationPreset
+  presetName: Wide 3-5-2
+  description: Strong midfield control with 5 figures. Fewer defenders but fast defense
+    rod compensates.
+  defense: 3
+  midfield: 5
+  attack: 2
+  playerSpeed1Fig: 10
+  playerSpeed2Fig: 8
+  playerSpeed3Fig: 6
+  playerSpeed4Fig: 4
+  playerSpeed5Fig: 2
+  aiSpeed1Fig: 3
+  aiSpeed2Fig: 2.5
+  aiSpeed3Fig: 2
+  aiSpeed4Fig: 1.5
+  aiSpeed5Fig: 1

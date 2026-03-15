@@ -558,7 +558,7 @@ public class TeamRodsController : MonoBehaviour
         if (playerControlled)
         {
             // === PLAYER CONTROL ===
-            Debug.Log($"[TeamRodsController] Configuring {rod.name} for PLAYER control - Removing AI components, adding Player components");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[TeamRodsController] Configuring {rod.name} for PLAYER control - Removing AI components, adding Player components");
 
             // REMOVE AI components
             RemoveAIComponents(rod);
@@ -569,7 +569,7 @@ public class TeamRodsController : MonoBehaviour
         else
         {
             // === AI CONTROL ===
-            Debug.Log($"[TeamRodsController] Configuring {rod.name} for AI control - Removing Player components, adding AI components");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[TeamRodsController] Configuring {rod.name} for AI control - Removing Player components, adding AI components");
 
             // REMOVE Player components
             RemovePlayerComponents(rod);
@@ -588,13 +588,14 @@ public class TeamRodsController : MonoBehaviour
         DestroyComponentIfExists<AIRodMagnetAction>(rod);
         DestroyComponentIfExists<AIRodShootAction>(rod);
         DestroyComponentIfExists<AIRodWallPassAction>(rod);
+        DestroyComponentIfExists<RodBumpEffect>(rod);
 
         // Remove AI core components
         DestroyComponentIfExists<AIRodStateMachine>(rod);
         DestroyComponentIfExists<AIGoalEvaluator>(rod);
         DestroyComponentIfExists<AIRodMovementAction>(rod);
 
-        Debug.Log($"✓ Removed AI components from {rod.name}");
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Removed AI components from {rod.name}");
     }
 
     /// <summary>
@@ -606,11 +607,12 @@ public class TeamRodsController : MonoBehaviour
         DestroyComponentIfExists<PlayerRodMagnetAction>(rod);
         DestroyComponentIfExists<PlayerRodShootAction>(rod);
         DestroyComponentIfExists<PlayerRodWallPassAction>(rod);
+        DestroyComponentIfExists<PlayerRodBumpAction>(rod);
 
         // Remove Player movement component
         DestroyComponentIfExists<PlayerRodMovementAction>(rod);
 
-        Debug.Log($"✓ Removed Player components from {rod.name}");
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Removed Player components from {rod.name}");
     }
 
     /// <summary>
@@ -631,7 +633,7 @@ public class TeamRodsController : MonoBehaviour
         if (playerMovement == null)
         {
             playerMovement = rod.AddComponent<PlayerRodMovementAction>();
-            Debug.Log($"✓ Added PlayerRodMovementAction to {rod.name}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Added PlayerRodMovementAction to {rod.name}");
         }
         playerMovement.enabled = true;
         playerMovement.isActive = false; // Will be activated by UpdateLinesActiveStatus()
@@ -641,7 +643,7 @@ public class TeamRodsController : MonoBehaviour
         if (playerShoot == null)
         {
             playerShoot = rod.AddComponent<PlayerRodShootAction>();
-            Debug.Log($"✓ Added PlayerRodShootAction to {rod.name}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Added PlayerRodShootAction to {rod.name}");
         }
         playerShoot.enabled = true;
 
@@ -650,7 +652,7 @@ public class TeamRodsController : MonoBehaviour
         if (playerMagnet == null)
         {
             playerMagnet = rod.AddComponent<PlayerRodMagnetAction>();
-            Debug.Log($"✓ Added PlayerRodMagnetAction to {rod.name}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Added PlayerRodMagnetAction to {rod.name}");
         }
         playerMagnet.enabled = true;
 
@@ -659,11 +661,19 @@ public class TeamRodsController : MonoBehaviour
         if (playerWallPass == null)
         {
             playerWallPass = rod.AddComponent<PlayerRodWallPassAction>();
-            Debug.Log($"✓ Added PlayerRodWallPassAction to {rod.name}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Added PlayerRodWallPassAction to {rod.name}");
         }
         playerWallPass.enabled = true;
 
-        Debug.Log($"✅ Player components configured on {rod.name}");
+        // Add PlayerRodBumpAction
+        PlayerRodBumpAction playerBump = rod.GetComponent<PlayerRodBumpAction>();
+        if (playerBump == null)
+        {
+            playerBump = rod.AddComponent<PlayerRodBumpAction>();
+        }
+        playerBump.enabled = true;
+
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✅ Player components configured on {rod.name}");
     }
 
     /// <summary>
@@ -684,7 +694,7 @@ public class TeamRodsController : MonoBehaviour
         if (aiMovement == null)
         {
             aiMovement = rod.AddComponent<AIRodMovementAction>();
-            Debug.Log($"✓ Added AIRodMovementAction to {rod.name}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Added AIRodMovementAction to {rod.name}");
         }
         aiMovement.enabled = true;
         aiMovement.isActive = false; // Will be activated by AITeamRodsController
@@ -694,7 +704,7 @@ public class TeamRodsController : MonoBehaviour
         if (aiGoalEvaluator == null)
         {
             aiGoalEvaluator = rod.AddComponent<AIGoalEvaluator>();
-            Debug.Log($"✓ Added AIGoalEvaluator to {rod.name}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Added AIGoalEvaluator to {rod.name}");
         }
         aiGoalEvaluator.enabled = true;
 
@@ -703,7 +713,7 @@ public class TeamRodsController : MonoBehaviour
         if (aiFSM == null)
         {
             aiFSM = rod.AddComponent<AIRodStateMachine>();
-            Debug.Log($"✓ Added AIRodStateMachine to {rod.name}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✓ Added AIRodStateMachine to {rod.name}");
         }
         aiFSM.enabled = true;
         aiFSM.useFSM = true;
@@ -712,7 +722,15 @@ public class TeamRodsController : MonoBehaviour
         // by AIRodStateMachine.Awake() if missing, so we don't need to manually add them here.
         // But we can verify they exist after a frame
 
-        Debug.Log($"✅ AI components configured on {rod.name} (Action components will be auto-added by AIRodStateMachine)");
+        // Add RodBumpEffect for stuck ball detection
+        RodBumpEffect bumpEffect = rod.GetComponent<RodBumpEffect>();
+        if (bumpEffect == null)
+        {
+            bumpEffect = rod.AddComponent<RodBumpEffect>();
+        }
+        bumpEffect.enabled = true;
+
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"✅ AI components configured on {rod.name} (Action components will be auto-added by AIRodStateMachine)");
     }
 
     /// <summary>

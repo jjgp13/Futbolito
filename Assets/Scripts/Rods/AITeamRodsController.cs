@@ -491,7 +491,7 @@ public class AITeamRodsController : MonoBehaviour
         if (MatchInfo.instance != null)
         {
             aiDifficultyLevel = Mathf.Clamp(MatchInfo.instance.matchLevel, 1, 3);
-            Debug.Log($"[AITeamRodsController] Loaded difficulty level {aiDifficultyLevel} from MatchInfo");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[AITeamRodsController] Loaded difficulty level {aiDifficultyLevel} from MatchInfo");
         }
         else
         {
@@ -526,7 +526,7 @@ public class AITeamRodsController : MonoBehaviour
                 break;
         }
 
-        Debug.Log($"[AITeamRodsController] Applied difficulty preset: Level {aiDifficultyLevel}");
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[AITeamRodsController] Applied difficulty preset: Level {aiDifficultyLevel}");
 
         // Apply to rods if already initialized
         if (Application.isPlaying && rods[0] != null)
@@ -761,7 +761,7 @@ public class AITeamRodsController : MonoBehaviour
             }
         }
 
-        Debug.Log($"[AITeamRodsController] Applied difficulty settings to {rods.Length} rods");
+        if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[AITeamRodsController] Applied difficulty settings to {rods.Length} rods");
     }
 
     /// <summary>

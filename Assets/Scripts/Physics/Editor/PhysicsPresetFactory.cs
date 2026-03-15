@@ -57,7 +57,7 @@ public static class PhysicsPresetFactory
         SavePreset(preset, "Current Default");
     }
 
-    private static void CreateAirHockeyPreset()
+    private static void CreateArcadePreset()
     {
         var preset = ScriptableObject.CreateInstance<PhysicsPreset>();
         preset.presetName = "Arcade";

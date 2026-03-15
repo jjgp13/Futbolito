@@ -5,62 +5,62 @@ using UnityEngine.UI;
 
 public class TimeMatchController : MonoBehaviour
 {
-    //Variables that manage the time elapsed in the match
     [Header("Time panel")]
     public GameObject timePanel;
     public Text timeText;
     private float timer;
+    private bool timerActive;
 
-    private bool timeExpired;
-
-    // Start is called before the first frame update
     void Start()
     {
-        timeExpired = false;
-        //Set time
-        if (MatchInfo.instance != null)
-        {
-            timer = MatchInfo.instance.matchTime * 59;
-            timeText.text = string.Format("{0}:00", MatchInfo.instance.matchTime.ToString());
-        }
-        else
-        {
-            timer = 5 * 59;
-            timeText.text = string.Format("{0}:00", 5);
-        }
-        
+        // Timer is inert until ResetTimer() is called from MatchController.InitAnimation
+        timerActive = false;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Initializes (or reinitializes) the countdown timer.
+    /// Called by MatchController.InitAnimation right before ball spawn
+    /// so the value always reflects the latest MatchInfo / AutoMatchRunner setting.
+    /// </summary>
+    public void ResetTimer()
+    {
+        int minutes;
+        if (AutoMatchRunner.Instance != null)
+            minutes = AutoMatchRunner.Instance.MatchTimeMinutes;
+        else if (MatchInfo.instance != null)
+            minutes = MatchInfo.instance.matchTime;
+        else
+            minutes = 5;
+
+        timer = minutes * 60;
+        timeText.text = string.Format("{0}:00", minutes);
+        timerActive = true;
+    }
+
     void Update()
     {
-        CheckMatchTime();
-        DecreaseMatchTime();
-    }
+        if (!timerActive) return;
 
-    private void CheckMatchTime()
-    {
-        if (timer <= 0 && !timeExpired)
+        if (timer <= 0)
         {
-            timeExpired = true;
+            timerActive = false;
             MatchController.instance.endMatch = true;
             timeText.text = "FINISH";
-            timeText.GetComponent<Animator>().SetBool("Warning", false);
+            var anim = timeText.GetComponent<Animator>();
+            if (anim != null) anim.SetBool("Warning", false);
+            return;
         }
-    }
 
-    private void DecreaseMatchTime()
-    {
-        if (timer > 0 && MatchController.instance.ballInGame)
+        timer -= Time.deltaTime;
+
+        string minutes = Mathf.Floor(timer / 60).ToString("00");
+        string seconds = (timer % 60).ToString("00");
+        timeText.text = string.Format("{0}:{1}", minutes, seconds);
+
+        if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20)
         {
-            timer -= Time.deltaTime;
-
-            string minutes = Mathf.Floor(timer / 60).ToString("00");
-            string seconds = (timer % 60).ToString("00");
-            timeText.text = string.Format("{0}:{1}", minutes, seconds);
-
-            if (int.Parse(minutes) == 0 && int.Parse(seconds) <= 20) timeText.GetComponent<Animator>().SetBool("Warning", true);
+            var anim = timeText.GetComponent<Animator>();
+            if (anim != null) anim.SetBool("Warning", true);
         }
     }
-
 }

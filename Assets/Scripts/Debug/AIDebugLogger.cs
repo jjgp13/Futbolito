@@ -15,7 +15,7 @@ using System.Collections.Generic;
 /// LOG FORMAT:
 /// [Frame] [Time] [Rod] [Action] Message
 /// 
-/// The logger automatically enables showDebugInfo on all AI components when active.
+/// AI components call AIDebugLogger.Log() directly — all output goes to file only.
 /// </summary>
 public class AIDebugLogger : MonoBehaviour
 {
@@ -50,8 +50,28 @@ public class AIDebugLogger : MonoBehaviour
     private float matchStartTime;
     private bool isLogging = false;
 
-    // Track original debug flag states for restoration
-    private Dictionary<MonoBehaviour, bool> originalDebugFlags = new Dictionary<MonoBehaviour, bool>();
+    /// <summary>Path to the current match log file (null if not logging).</summary>
+    public string CurrentLogFilePath => logFilePath;
+
+    /// <summary>
+    /// Deletes all files in the ai_logs directory. Call before starting a new test suite.
+    /// </summary>
+    public static void CleanLogDirectory()
+    {
+        string dir = Path.Combine(Application.persistentDataPath, "ai_logs");
+        if (Directory.Exists(dir))
+        {
+            try
+            {
+                Directory.Delete(dir, true);
+                if (!AutoMatchRunner.IsAutoMode) Debug.Log("[AIDebugLogger] Log directory cleaned");
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning($"[AIDebugLogger] Failed to clean log directory: {e.Message}");
+            }
+        }
+    }
 
     // In-memory buffer for analysis
     private List<AILogEntry> logEntries = new List<AILogEntry>();
@@ -102,11 +122,9 @@ public class AIDebugLogger : MonoBehaviour
 
     private void Start()
     {
-        // Only auto-start here if NOT using auto-match mode (legacy behavior)
         if (enableLogging && !autoLogOnMatch)
         {
             StartLogging();
-            Invoke(nameof(ReEnableDebugFlags), 3f);
         }
     }
 
@@ -123,7 +141,6 @@ public class AIDebugLogger : MonoBehaviour
 
         StartLogging();
         Log("SYSTEM", "MATCH_START", "Match started — auto-logging enabled");
-        Invoke(nameof(ReEnableDebugFlags), 1f);
     }
 
     private void OnMatchEnded()
@@ -133,18 +150,6 @@ public class AIDebugLogger : MonoBehaviour
         Log("SYSTEM", "MATCH_END", "Match ended — finalizing log");
         RunAnalysis();
         StopLogging();
-    }
-
-    /// <summary>
-    /// Re-scans for AI components and enables debug flags.
-    /// Called with delay to catch components initialized after Start().
-    /// </summary>
-    private void ReEnableDebugFlags()
-    {
-        if (isLogging)
-        {
-            EnableAllDebugFlags();
-        }
     }
 
     private void OnDestroy()
@@ -199,13 +204,10 @@ public class AIDebugLogger : MonoBehaviour
             logWriter.WriteLine(new string('=', 80));
             logWriter.WriteLine();
 
-            // Subscribe to Unity log messages
-            Application.logMessageReceived += OnUnityLogMessage;
+            isLogging = true;
 
-            // Auto-enable debug flags
-            EnableAllDebugFlags();
-
-            Debug.Log($"[AIDebugLogger] Logging started → {logFilePath}");
+            if (!AutoMatchRunner.IsAutoMode)
+                Debug.Log($"[AIDebugLogger] Logging started → {logFilePath}");
         }
         catch (Exception e)
         {
@@ -218,9 +220,6 @@ public class AIDebugLogger : MonoBehaviour
     {
         if (!isLogging) return;
 
-        Application.logMessageReceived -= OnUnityLogMessage;
-        RestoreDebugFlags();
-
         if (logWriter != null)
         {
             logWriter.Flush();
@@ -229,7 +228,8 @@ public class AIDebugLogger : MonoBehaviour
         }
 
         isLogging = false;
-        Debug.Log($"[AIDebugLogger] Logging stopped. {entryCount} entries written to {logFilePath}");
+        if (!AutoMatchRunner.IsAutoMode)
+            Debug.Log($"[AIDebugLogger] Logging stopped. {entryCount} entries written to {logFilePath}");
     }
 
     #endregion
@@ -377,122 +377,10 @@ public class AIDebugLogger : MonoBehaviour
             }
         }
 
-        if (mirrorToConsole)
+        if (mirrorToConsole && !AutoMatchRunner.IsAutoMode)
         {
             Debug.Log($"[AILog] {line}");
         }
-    }
-
-    /// <summary>
-    /// Captures Unity Debug.Log messages that match AI prefixes
-    /// </summary>
-    private void OnUnityLogMessage(string logString, string stackTrace, LogType type)
-    {
-        if (!isLogging || logWriter == null) return;
-
-        // Filter for AI-related messages
-        if (logString.StartsWith("[AIRod") ||
-            logString.StartsWith("[AITeam") ||
-            logString.StartsWith("[AIDebug") ||
-            logString.Contains("] Context:") ||
-            logString.Contains("] GK Context:") ||
-            logString.Contains("] AI Decision:") ||
-            logString.Contains("] CLEARING LANE") ||
-            logString.Contains("GK_INTERCEPT") ||
-            logString.Contains("GK_CLEAR") ||
-            logString.Contains("BALL_HIT") ||
-            logString.Contains("SHOT_MISSED") ||
-            logString.Contains("GOAL_SCORED") ||
-            logString.Contains("MAGNET_TO_SHOOT"))
-        {
-            // Parse rod name from message if possible
-            string rodName = ExtractRodName(logString);
-            string actionType = "UNITY_LOG";
-
-            WriteEntry(rodName, actionType, logString);
-        }
-    }
-
-    private string ExtractRodName(string message)
-    {
-        // Try to extract rod name from patterns like [AIRodShootAction] RodName: ...
-        int bracketEnd = message.IndexOf(']');
-        if (bracketEnd < 0) return "UNKNOWN";
-
-        string afterBracket = message.Substring(bracketEnd + 1).TrimStart();
-
-        // Look for rod name before the next colon or dash
-        int colonIdx = afterBracket.IndexOf(':');
-        int dashIdx = afterBracket.IndexOf('-');
-        int endIdx = -1;
-
-        if (colonIdx >= 0 && dashIdx >= 0)
-            endIdx = Math.Min(colonIdx, dashIdx);
-        else if (colonIdx >= 0)
-            endIdx = colonIdx;
-        else if (dashIdx >= 0)
-            endIdx = dashIdx;
-
-        if (endIdx > 0)
-        {
-            return afterBracket.Substring(0, endIdx).Trim();
-        }
-
-        return "UNKNOWN";
-    }
-
-    #endregion
-
-    #region Debug Flag Management
-
-    private void EnableAllDebugFlags()
-    {
-        originalDebugFlags.Clear();
-
-        // Find all AI components and enable their debug flags
-        EnableDebugOnComponents<AIRodShootAction>("showDebugInfo");
-        EnableDebugOnComponents<AIRodMagnetAction>("showDebugInfo");
-        EnableDebugOnComponents<AIRodWallPassAction>("showDebugInfo");
-        EnableDebugOnComponents<AIRodStateMachine>("showDebugInfo");
-
-        Log("SYSTEM", "CONFIG", $"Enabled showDebugInfo on {originalDebugFlags.Count} AI components");
-    }
-
-    private void EnableDebugOnComponents<T>(string fieldName) where T : MonoBehaviour
-    {
-        T[] components = FindObjectsOfType<T>();
-        foreach (T component in components)
-        {
-            var field = typeof(T).GetField(fieldName,
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.Instance);
-
-            if (field != null && field.FieldType == typeof(bool))
-            {
-                bool original = (bool)field.GetValue(component);
-                originalDebugFlags[component] = original;
-                field.SetValue(component, true);
-            }
-        }
-    }
-
-    private void RestoreDebugFlags()
-    {
-        foreach (var kvp in originalDebugFlags)
-        {
-            if (kvp.Key == null) continue;
-
-            var field = kvp.Key.GetType().GetField("showDebugInfo",
-                System.Reflection.BindingFlags.NonPublic |
-                System.Reflection.BindingFlags.Instance);
-
-            if (field != null)
-            {
-                field.SetValue(kvp.Key, kvp.Value);
-            }
-        }
-
-        originalDebugFlags.Clear();
     }
 
     #endregion
@@ -504,7 +392,7 @@ public class AIDebugLogger : MonoBehaviour
     {
         if (logEntries.Count == 0)
         {
-            Debug.Log("[AIDebugLogger] No log entries to analyze.");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log("[AIDebugLogger] No log entries to analyze.");
             return;
         }
 
@@ -518,15 +406,12 @@ public class AIDebugLogger : MonoBehaviour
         try
         {
             File.WriteAllText(analysisPath, summary);
-            Debug.Log($"[AIDebugLogger] Analysis written to {analysisPath}");
+            if (!AutoMatchRunner.IsAutoMode) Debug.Log($"[AIDebugLogger] Analysis written to {analysisPath}");
         }
         catch (Exception e)
         {
             Debug.LogError($"[AIDebugLogger] Failed to write analysis: {e.Message}");
         }
-
-        // Also log to console
-        Debug.Log($"[AIDebugLogger] === ANALYSIS SUMMARY ===\n{summary}");
     }
 
     [ContextMenu("Open Log Directory")]

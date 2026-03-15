@@ -206,10 +206,7 @@ public class AIRodShootAction : MonoBehaviour
         
         ForceStopAllFigureParticles();
 
-        if (showDebugInfo)
-        {
-            Debug.Log($"[AIRodShootAction] {gameObject.name}: Rod became inactive, stopped all particles");
-        }
+        AIDebugLogger.Log(gameObject.name, "SHOOT_CHARGE", "Rod became inactive, stopped all particles");
     }
 
     /// <summary>
@@ -339,10 +336,7 @@ public class AIRodShootAction : MonoBehaviour
             if (!ballInFront)
             {
                 AIDebugLogger.LogShootEval(gameObject.name, false, $"Fig{i} ball behind (ballX: {ballPosition.x:F2}, figX: {figurePos.x:F2})");
-                if (showDebugInfo)
-                {
-                    Debug.Log($"[AIRodShootAction] {gameObject.name} Figure {i}: Ball behind figure (ballX: {ballPosition.x:F2}, figureX: {figurePos.x:F2})");
-                }
+                AIDebugLogger.Log(gameObject.name, "SHOOT_EVAL", $"Figure {i}: Ball behind figure (ballX: {ballPosition.x:F2}, figureX: {figurePos.x:F2})");
                 continue;
             }
 
@@ -390,27 +384,21 @@ public class AIRodShootAction : MonoBehaviour
                 if (passOpp.shouldPass)
                 {
                     AIDebugLogger.LogShootEval(gameObject.name, true, $"PASS to rod {passOpp.targetRodIndex} (passScore: {passOpp.passScore:F2}, shotScore: {bestShootingScore:F2})");
-                    if (showDebugInfo)
-                    {
-                        Debug.Log($"[AIRodShootAction] {gameObject.name}: Pass recommended to rod {passOpp.targetRodIndex} (passScore: {passOpp.passScore:F2})");
-                    }
+                    AIDebugLogger.Log(gameObject.name, "SHOOT_EVAL", $"Pass recommended to rod {passOpp.targetRodIndex} (passScore: {passOpp.passScore:F2})");
                     // Use a lighter shot toward the target rod (forward pass)
                     return bestFigureIndex;
                 }
             }
 
             AIDebugLogger.LogShootEval(gameObject.name, false, $"Score too low ({bestShootingScore:F2} < {minimumShootScore:F2}), no pass available");
-            if (showDebugInfo)
-            {
-                Debug.Log($"[AIRodShootAction] {gameObject.name}: Best shooting score ({bestShootingScore:F2}) below threshold ({minimumShootScore:F2})");
-            }
+            AIDebugLogger.Log(gameObject.name, "SHOOT_EVAL", $"Best shooting score ({bestShootingScore:F2}) below threshold ({minimumShootScore:F2})");
             return -1;
         }
 
         AIDebugLogger.LogShootEval(gameObject.name, true, $"Fig{bestFigureIndex} READY (score: {bestShootingScore:F2} ≥ {minimumShootScore:F2})");
-        if (showDebugInfo && bestFigureIndex >= 0)
+        if (bestFigureIndex >= 0)
         {
-            Debug.Log($"[AIRodShootAction] {gameObject.name}: Figure {bestFigureIndex} ready to shoot (score: {bestShootingScore:F2})");
+            AIDebugLogger.Log(gameObject.name, "SHOOT_EVAL", $"Figure {bestFigureIndex} ready to shoot (score: {bestShootingScore:F2})");
         }
 
         return bestFigureIndex;
@@ -481,10 +469,7 @@ public class AIRodShootAction : MonoBehaviour
             }
         }
 
-        if (showDebugInfo)
-        {
-            Debug.Log($"[AIRodShootAction] {gameObject.name}: Started charging ALL figures (target: {targetChargeTime:F2}s, triggered by figure {figureIndex})");
-        }
+        AIDebugLogger.Log(gameObject.name, "SHOOT_CHARGE", $"Started charging ALL figures (target: {targetChargeTime:F2}s, triggered by figure {figureIndex})");
     }
 
     /// <summary>
@@ -501,10 +486,7 @@ public class AIRodShootAction : MonoBehaviour
         // Check for interrupt before continuing charge
         if (ShouldInterruptCharge())
         {
-            if (showDebugInfo)
-            {
-                Debug.Log($"[AIRodShootAction] {gameObject.name}: Charge interrupted - ball moved away");
-            }
+            AIDebugLogger.Log(gameObject.name, "SHOOT_CHARGE", "Charge interrupted - ball moved away");
             StopCharging();
             return;
         }
@@ -520,10 +502,7 @@ public class AIRodShootAction : MonoBehaviour
                 if (bestFigure >= 0 && bestFigure != chargingFigureIndex)
                 {
                     chargingFigureIndex = bestFigure;
-                    if (showDebugInfo)
-                    {
-                        Debug.Log($"[AIRodShootAction] {gameObject.name}: Charge adapted to figure {bestFigure}");
-                    }
+                    AIDebugLogger.Log(gameObject.name, "SHOOT_CHARGE", $"Charge adapted to figure {bestFigure}");
                 }
             }
         }
@@ -627,10 +606,7 @@ public class AIRodShootAction : MonoBehaviour
         currentChargeTime = 0f;
         chargingFigureIndex = -1;
 
-        if (showDebugInfo)
-        {
-            Debug.Log($"[AIRodShootAction] {gameObject.name}: Charging stopped on ALL figures");
-        }
+        AIDebugLogger.Log(gameObject.name, "SHOOT_CHARGE", "Charging stopped on ALL figures");
     }
 
     #endregion
@@ -688,10 +664,7 @@ public class AIRodShootAction : MonoBehaviour
             }
         }
 
-        if (showDebugInfo)
-        {
-            Debug.Log($"[AIRodShootAction] {gameObject.name}: Shot executed on ALL figures (charge: {currentChargeTime:F2}s)");
-        }
+        AIDebugLogger.Log(gameObject.name, "SHOOT_EXEC", $"Shot executed on ALL figures (charge: {currentChargeTime:F2}s)");
 
         // Transition FSM to ShootingState (blocks movement during animation)
         if (stateMachine != null)
